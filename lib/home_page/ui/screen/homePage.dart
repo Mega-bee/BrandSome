@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/notification_screen.dart';
+import '../widgets/personal_page.dart';
 import '../widgets/searbar_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState() ;
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   void onSelected(BuildContext context, item) {
     switch (item) {
       case 0:
@@ -24,6 +25,8 @@ class _HomePageState extends State<HomePage> {
         break;
     }
   }
+
+ late TabController _tabController = TabController(length: 3, vsync: this);
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +104,41 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.notifications_none),
             ),
           ),
+        ],
+      ),
+      body: Column(
+        children: [
+          Container(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: TabBar(
+                unselectedLabelColor: Colors.white38,
+                controller: _tabController,
+                isScrollable: true,
+                padding:const EdgeInsets.only(left: 10.0),
+                tabs: [
+                  Tab(text:"Personal"),
+                  Tab(text:"Properties"),
+                  Tab(text:"Cars"),
+
+                ],
+              ),
+            ),
+          ),
+
+          Container(
+            width: double.maxFinite,
+            height: 300,
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                PersonalPage(),
+                Text('ollo'),
+                Text('hello'),
+
+              ],
+            ),
+          )
         ],
       ),
     );
