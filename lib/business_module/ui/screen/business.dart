@@ -1,3 +1,5 @@
+import 'package:brandsome/business_module/model/business_card.dart';
+import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 
 import '../../../home_page/ui/widgets/notification_screen.dart';
@@ -24,6 +26,89 @@ class _BusinessScreenState extends State<BusinessScreen> {
     }
   }
 
+  List<BusinessCardModel> bcm = [
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",
+        km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+    BusinessCardModel(
+        img: ImageAsset.TEST_IMAGE,
+        title: "Title Here",
+        subtitle:
+            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+
+        titleTwo: "Country,City,Address",
+        views: "1000",km: "5km"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +134,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
             PopupMenuButton(
                 color: Color(0xff262626),
                 icon: ImageIcon(
-                  AssetImage("assets/images/filter.png"),
+                  AssetImage(ImageAsset.FILTER_ICON),
                   color: Colors.white,
                 ),
                 onSelected: (item) => onSelected(context, item),
@@ -57,108 +142,150 @@ class _BusinessScreenState extends State<BusinessScreen> {
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
                         value: 0,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
                           children: [
-                            ImageIcon(
-                              AssetImage("assets/images/sort.png"),
-                              color: Colors.white,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(
+                                  AssetImage(ImageAsset.SORT_ICON),
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "A-Z",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                Divider(
+                                    thickness: 2, height: 2, color: whiteColor),
+                              ],
                             ),
                             SizedBox(
-                              width: 5,
+                              height: 20,
                             ),
-                            Text(
-                              "A-Z",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Divider(thickness: 1, height: 2, color: whiteColor),
                           ],
                         ),
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
                         value: 1,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                "assets/images/person.png",
-                              ),
-                              color: Colors.white,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(
+                                  AssetImage(
+                                    ImageAsset.PERSON_ICON,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Followers",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
                             ),
                             SizedBox(
-                              width: 5,
+                              height: 20,
                             ),
-                            Text(
-                              "Followers",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Divider(thickness: 1, height: 2, color: whiteColor),
                           ],
                         ),
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
                         value: 2,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                "assets/images/views.png",
-                              ),
-                              color: Colors.white,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(
+                                  AssetImage(
+                                    ImageAsset.VIEWS_ICON,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Views",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
                             ),
                             SizedBox(
-                              width: 5,
+                              height: 20,
                             ),
-                            Text(
-                              "Views",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Divider(thickness: 1, height: 2, color: whiteColor),
                           ],
                         ),
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
                         value: 3,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                "assets/images/paper.png",
-                              ),
-                              color: Colors.white,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(
+                                  AssetImage(
+                                    ImageAsset.PAPER_ICON,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Posts",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
                             ),
                             SizedBox(
-                              width: 5,
+                              height: 20,
                             ),
-                            Text(
-                              "Posts",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Divider(thickness: 1, height: 2, color: whiteColor),
                           ],
                         ),
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
                         value: 4,
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
                           children: [
-                            ImageIcon(
-                              AssetImage(
-                                "assets/images/fav.png",
-                              ),
-                              color: Colors.white,
+                            Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(
+                                  AssetImage(
+                                    ImageAsset.FAV_ICON,
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Reviews",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
                             ),
                             SizedBox(
-                              width: 5,
+                              height: 20,
                             ),
-                            Text(
-                              "Reviews",
-                              style: TextStyle(color: Colors.white),
-                            ),
+                            Divider(thickness: 1, height: 2, color: whiteColor),
                           ],
                         ),
                       ),
@@ -174,7 +301,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   );
                 },
                 icon: ImageIcon(
-                  AssetImage("assets/images/sort-amount-down.png"),
+                  AssetImage(ImageAsset.SORT_AMOUNT_ICON),
                   color: Colors.white,
                 ),
               ),
@@ -182,9 +309,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
           ],
         ),
         body: ListView.builder(
-            itemCount: 7,
+            itemCount: bcm.length,
             itemBuilder: (context, index) {
-              return BusinessCardScreen();
+              return BusinessCardScreen(bcm[index]);
             }));
   }
 }

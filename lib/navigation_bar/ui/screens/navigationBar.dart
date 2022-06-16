@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../business_module/ui/screen/business.dart';
 import '../../../home_page/ui/screen/homePage.dart';
-import '../../../settings_module/ui/screen/settings.dart';
+import '../../../setting_module/ui/screen/setting_screen.dart';
 
 
 class Navigation extends StatefulWidget {
@@ -34,7 +34,7 @@ class _NavigationState extends State<Navigation> {
 
         animationDuration: Duration(milliseconds: 400),
         color: Colors.black,
-        buttonBackgroundColor: Colors.white,
+        buttonBackgroundColor: Color(0xff0ff1E1513),
         backgroundColor: Colors.transparent,
 
         height: 60,

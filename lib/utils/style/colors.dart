@@ -15,4 +15,7 @@ Map<int, Color> color = const {
 MaterialColor primaryColor = MaterialColor(0xFFFF4C29, color);
 MaterialColor blackColor = MaterialColor(0xFF000000, color);
 MaterialColor whiteColor = MaterialColor(0xFFffffff, color);
+MaterialColor greyColor = MaterialColor(0xff606060, color);
+MaterialColor hintText = MaterialColor(0xff9A9A9A, color);
+MaterialColor borderColor = MaterialColor(0xff707070, color);
 

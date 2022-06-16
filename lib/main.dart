@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'BrandSome',
       theme: ThemeData(
-        primarySwatch: blackColor,
+        primarySwatch: primaryColor,
       ),
       home: Navigation()
     );

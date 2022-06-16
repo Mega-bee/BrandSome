@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/style/colors.dart';
 
+
 class SearchBarScreen extends StatefulWidget {
   const SearchBarScreen({Key? key}) : super(key: key);
 

@@ -1,26 +1,27 @@
 import 'package:brandsome/utils/style/colors.dart';
+import 'package:brandsome/utils/style/text_style.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class NewsCard extends StatelessWidget {
-  // final NewsOne newsone;
+import '../../model/post_model.dart';
 
-  // NewsCard(this.newsone);
-
+class BrandCards extends StatelessWidget {
+final postModel posts;
+BrandCards(this.posts);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListTile(
           leading: CircleAvatar(
-            backgroundImage: AssetImage("assets/images/testImageCard.png"),
+            backgroundImage: AssetImage("${posts.imgOne}"),
           ),
           title: Text(
-            "title",
+            "${posts.title}",
             style: TextStyle(color: whiteColor),
           ),
           subtitle: Text(
-            "subtitle",
+            "${posts.subTitle}",
             style: TextStyle(color: whiteColor),
           ),
         ),
@@ -32,53 +33,62 @@ class NewsCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+                "${posts.imgTwo}",
                 fit: BoxFit.cover,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8.0),
-                    child: Icon(
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
+                child: Row(
+                  children: [
+                    Icon(
                       Icons.thumb_up_alt_outlined,
                       color: whiteColor,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 155.0),
-                    child: Text(
-                      "Liked by 28 visitors",
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "${posts.titleTwo}",
                       style: TextStyle(color: whiteColor),
                     ),
-                  ),
-                  Text(
-                    "2 days ago",
-                    style: TextStyle(color: whiteColor),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Text(
-                  "Properties / Appartments / Electricians",
-                  style: TextStyle(color: Colors.white38),
+                  ],
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(left: 15.0),
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'Properties ',
+                          style: StyleText.categoryStyleGreyColor),
+                      TextSpan(
+                          text: 'Appartments ',
+                          style: StyleText.categoryStyleGreyColor),
+                      TextSpan(
+                          text: 'Electricians',
+                          style: StyleText.categoryStyleUnderline)
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+                  "${posts.paragraph}",
                   style: TextStyle(color: whiteColor),
                 ),
               ),
-              SizedBox(height: 30,)
+              SizedBox(
+                height: 30,
+              )
             ],
           ),
         ),
