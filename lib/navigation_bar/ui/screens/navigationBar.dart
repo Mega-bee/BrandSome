@@ -34,7 +34,7 @@ class _NavigationState extends State<Navigation> {
 
         animationDuration: Duration(milliseconds: 400),
         color: Colors.black,
-        buttonBackgroundColor: Color(0xff0ff1E1513),
+        // buttonBackgroundColor: Color(0xff0ff1E1513),
         backgroundColor: Colors.transparent,
 
         height: 60,
@@ -47,17 +47,17 @@ class _NavigationState extends State<Navigation> {
         items: [
           Icon(
             Icons.home,
-            color: primaryColor,
+            color: currentIndex == 0?primaryColor:whiteColor,
             // color: ThemeHelper().getisDark() ? textColor : blackColor ,
           ),
           Icon(
             FontAwesomeIcons.briefcase,
-             color: primaryColor,
+             color:currentIndex == 1?primaryColor:whiteColor,
             // color: ThemeHelper().getisDark() ? textColor : blackColor,
           ),
           Icon(
             Icons.settings,
-            color: primaryColor,
+            color: currentIndex == 2?primaryColor:whiteColor,
             // color: ThemeHelper().getisDark() ? textColor : blackColor,
           ),
 

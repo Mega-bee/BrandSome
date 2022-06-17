@@ -2,14 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../model/subCategory.dart';
 
-class subCategory extends StatelessWidget {
+class subCategory extends StatefulWidget {
   final subCategoryModel subcate;
+  final Function onCardTAP;
 
-  subCategory(this.subcate);
+
+  subCategory(this.subcate, this.onCardTAP ,);
+
+  @override
+  State<subCategory> createState() => _subCategoryState();
+}
+
+class _subCategoryState extends State<subCategory> {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(subcate.img!);
+    return InkWell(
+      onTap: (){
+        widget.subcate.selectedCard = ! widget.subcate.selectedCard;
+        setState(() {
+
+        });
+        // widget.onCardTAP();
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child:  widget.subcate.selectedCard?Image.asset(widget.subcate.img!): Image.asset(widget.subcate.unselectedImg!)
+      ),
+    );
 
 
 

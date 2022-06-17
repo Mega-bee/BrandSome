@@ -31,7 +31,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",
@@ -40,7 +40,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -48,7 +48,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -56,7 +56,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -64,7 +64,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -72,7 +72,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -80,7 +80,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -88,14 +88,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
     BusinessCardModel(
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -103,7 +103,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         img: ImageAsset.TEST_IMAGE,
         title: "Title Here",
         subtitle:
-            "Lorem Ipsum is simply dummy text of the\n printing and typesetting industry. Lorem",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
 
         titleTwo: "Country,City,Address",
         views: "1000",km: "5km"),
@@ -114,6 +114,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          backgroundColor: blackColor,
           title: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
@@ -311,7 +312,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
         body: ListView.builder(
             itemCount: bcm.length,
             itemBuilder: (context, index) {
-              return BusinessCardScreen(bcm[index]);
+              return BusinessCardScreen(bcm[index],);
             }));
   }
 }

@@ -40,152 +40,119 @@ class _HomePageState extends State<HomePage>
 
   List<subCategoryModel> subCat = [
     subCategoryModel(
-    img: ImageAssetSports.BOXING,
-    ),
+        id: 1,
+        img: ImageAssetSports.BOXING,
+        unselectedImg: ImageAssetUnselectedSports.BOXING,
+        selectedCard: false),
     subCategoryModel(
-      img: ImageAssetSports.DRAWING,
-
-    ),
+        id: 2,
+        img: ImageAssetSports.DRAWING,
+        unselectedImg: ImageAssetUnselectedSports.DRAWING,
+        selectedCard: false),
     subCategoryModel(
-      img: ImageAssetSports.KUNG_FU,
-
-    ),
+        id: 3,
+        img: ImageAssetSports.KUNG_FU,
+        unselectedImg: ImageAssetUnselectedSports.KUNG_FU,
+        selectedCard: false),
     subCategoryModel(
-      img: ImageAssetSports.MUAY_THAI,
-
-    ),
+        id: 4,
+        img: ImageAssetSports.MUAY_THAI,
+        unselectedImg: ImageAssetUnselectedSports.MUAY_THAI,
+        selectedCard: false),
     subCategoryModel(
-      img: ImageAssetSports.PERSONAL_TRAINER,
-
-    ),
+        id: 5,
+        img: ImageAssetSports.PERSONAL_TRAINER,
+        unselectedImg: ImageAssetUnselectedSports.PERSONAL_TRAINER,
+        selectedCard: false),
     subCategoryModel(
-      img: ImageAssetSports.PING_PONG,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.SWIMMING,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.TANGO,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.TENNIS,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.BOXING,
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.DRAWING,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.KUNG_FU,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.MUAY_THAI,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.PERSONAL_TRAINER,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.PING_PONG,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.SWIMMING,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.TANGO,
-
-    ),
-    subCategoryModel(
-      img: ImageAssetSports.TENNIS,
-
-    ),
-
+        id: 6,
+        img: ImageAssetSports.PING_PONG,
+        unselectedImg: ImageAssetUnselectedSports.PING_PONG,
+        selectedCard: false),
   ];
 
   List<postModel> post = [
     postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-      title: "Title",
-      subTitle: "Subtitle",
-      imgTwo:
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      paragraph:
-          "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter",
+        subTitle: "Zahle, lebanon",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter",
+        subTitle: "Zahle, lebanon",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter",
+        subTitle: "Zahle, lebanon",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter",
+        subTitle: "Zahle, lebanon",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
+        title: "Peter",
+        subTitle: "Subtitle",
+        imgTwo:
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        paragraph:
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
         title: "Title",
         subTitle: "Subtitle",
         imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
+    postModel(
+        imgOne: ImageAsset.TEST_IMAGE,
         title: "Title",
         subTitle: "Subtitle",
         imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
         paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ), postModel(
-      imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-        "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",titleTwo: "Liked by 28 visitors"
-    ),
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        titleTwo: "Liked by 28 visitors"),
   ];
 
   @override
@@ -193,6 +160,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       backgroundColor: blackColor,
       appBar: AppBar(
+        backgroundColor: blackColor,
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
@@ -228,19 +196,18 @@ class _HomePageState extends State<HomePage>
                                 style: TextStyle(color: Colors.white),
                               ),
                               ImageIcon(
-                                AssetImage(
-                                    ImageAsset.MATERIAL_BUSINESS),
+                                AssetImage(ImageAsset.MATERIAL_BUSINESS),
                                 color: Colors.white,
                               ),
                             ],
                           ),
-                          SizedBox(height: 20,),
-
+                          SizedBox(
+                            height: 20,
+                          ),
                           Divider(thickness: 1, height: 2, color: whiteColor),
                         ],
                       ),
                     ),
-
                     PopupMenuItem(
                       padding: EdgeInsets.all(10),
                       value: 1,
@@ -253,7 +220,7 @@ class _HomePageState extends State<HomePage>
                           ),
                           ImageIcon(
                             AssetImage(
-                             ImageAsset.PAPER_ICON,
+                              ImageAsset.PAPER_ICON,
                             ),
                             color: Colors.white,
                           ),
@@ -278,7 +245,7 @@ class _HomePageState extends State<HomePage>
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            height: 30,
+            height:35,
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: ListView.builder(
@@ -306,7 +273,16 @@ class _HomePageState extends State<HomePage>
                 itemBuilder: (context, index) {
                   return Container(
                       // width: MediaQuery.of(context).size.width * 0.400,
-                      child: subCategory(subCat[index]));
+                      child: subCategory(subCat[index], () {}
+                          //   subCat.forEach((element) {
+                          //     element.selectedCard = false;
+                          //   });
+                          // subCat[index].selectedCard = true;
+                          // setState(() {
+                          //
+                          // });
+                          // }
+                          ));
                 }),
           ),
           Align(
@@ -319,6 +295,16 @@ class _HomePageState extends State<HomePage>
                     color: primaryColor, decoration: TextDecoration.underline),
               ),
             ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Divider(
+            thickness: 3,
+            color: Color(0xff171717),
+          ),
+          SizedBox(
+            height: 12,
           ),
           ListView.builder(
               physics: NeverScrollableScrollPhysics(),

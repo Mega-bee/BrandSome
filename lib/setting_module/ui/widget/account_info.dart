@@ -15,7 +15,7 @@ class AccountInfoScreen extends StatefulWidget {
 
 class _AccountInfoScreenState extends State<AccountInfoScreen> {
   i.File? _pickImage;
-  final _formKey = GlobalKey<FormState>();
+  final _formKeyBusiness = GlobalKey<FormState>();
   final username = TextEditingController();
 
   final phonenumber = TextEditingController();
@@ -147,7 +147,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
             ),
 
             Form(
-              key: _formKey,
+              key: _formKeyBusiness,
               child: Padding(
                 padding: const EdgeInsets.only(left: 38.0, right: 27.0),
                 child: Column(

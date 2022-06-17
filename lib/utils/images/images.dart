@@ -11,6 +11,8 @@ class ImageAsset {
   static const TEST_IMAGE = ROOT +'testImageCard.png';
   static const VIEWS_ICON = ROOT +'views.png';
   static const MATERIAL_BUSINESS = ROOT +'material-business-center.png';
+  static const CAMERA = ROOT +'camera.png';
+  static const PIC = ROOT +'pic.png';
 }
 
 ///sport images
@@ -27,11 +29,28 @@ class ImageAssetSports {
   static const TENNIS = ROOT +'sports-tennis.png';
 }
 
-///social media
-class ImageAssetSocialMedia {
-  static const ROOT = 'assets/images/socialMedia/';
-  static const PERSON = ROOT +'person.png';
-  static const RATE = ROOT +'rate.png';
+///unselected sport images
+class ImageAssetUnselectedSports {
+  static const ROOT = 'assets/images/unselectedSports/';
+  static const BOXING = ROOT +'sports-unselected-boxing-op.png';
+  static const DRAWING = ROOT +'sports-unselected-drawing-op.png';
+  static const KUNG_FU = ROOT +'sports-unselected-kung-fu-op.png';
+  static const KARATE = ROOT +'sports-sports-unselected-karate-op.png';
+  static const MUAY_THAI = ROOT +'sports-unselected-muay-thai-op.png';
+  static const PERSONAL_TRAINER = ROOT +'sports-unselected-personal-trainer-op.png';
+  static const PING_PONG = ROOT +'sports-unselected-ping-pong-op.png';
+  static const SWIMMING = ROOT +'sports-unselected-swimming-op.png';
+  static const TANGO = ROOT +'sports-unselected-tango-op.png';
+  static const TENNIS = ROOT +'sports-unselected-tennis-op.png';
+}
+
+///svg Images
+class SvgImg {
+  static const ROOT = 'assets/images/svg/';
+  static const PAPER = ROOT +'Icon ionic-ios-paper.svg';
+  static const RATE = ROOT +'Icon material-rate-review.svg';
+  static const PERSON = ROOT +'Icon ionic-ios-person.svg';
+
 
 }
 
