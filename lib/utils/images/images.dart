@@ -50,6 +50,8 @@ class SvgImg {
   static const PAPER = ROOT +'Icon ionic-ios-paper.svg';
   static const RATE = ROOT +'Icon material-rate-review.svg';
   static const PERSON = ROOT +'Icon ionic-ios-person.svg';
+  static const PHONE = ROOT +'Icon awesome-phone-alt.svg';
+  static const RATING = ROOT +'rate.svg.';
 
 
 }

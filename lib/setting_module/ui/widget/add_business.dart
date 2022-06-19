@@ -6,6 +6,8 @@ import 'dart:io' as i;
 
 import 'package:image_picker/image_picker.dart';
 
+import 'add_location.dart';
+
 class AddBusiness extends StatefulWidget {
   const AddBusiness({Key? key}) : super(key: key);
 
@@ -54,180 +56,187 @@ class _AddBusinessState extends State<AddBusiness> {
                   ))),
         ],
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20,),
-          InkWell(
-            onTap: () {
-              showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      backgroundColor: whiteColor,
-                      title: Text("Choose option"),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                pickImage(ImageSource.camera);
-                              },
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(
-                                      Icons.camera,
-                                      color: primaryColor,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 20,),
+            InkWell(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: whiteColor,
+                        title: Text("Choose option"),
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  pickImage(ImageSource.camera);
+                                },
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Icon(
+                                        Icons.camera,
+                                        color: primaryColor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Camera",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  )
-                                ],
+                                    Text(
+                                      "Camera",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                pickImage(ImageSource.gallery);
-                              },
-                              splashColor: primaryColor,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Icon(
-                                      Icons.image,
-                                      color: primaryColor,
+                              InkWell(
+                                onTap: () {
+                                  pickImage(ImageSource.gallery);
+                                },
+                                splashColor: primaryColor,
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Icon(
+                                        Icons.image,
+                                        color: primaryColor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    "Gallery",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                    Text(
+                                      "Gallery",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  });
-            },
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: _pickImage != null
-                          ? FileImage(_pickImage!)
-                          : AssetImage("") as ImageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                    color: borderColor,
-                  ),
-                  width: 350,
-                  height: 300,
-                ),
-                Positioned(
-                    top: 120,
-                    left: 140,
-                    child: _pickImage==null?Icon(
-                      Icons.camera_alt,
-                      size: 80,
-                      color: whiteColor,
-                    ):Container())
-              ],
-            ),
-          ),
-          SizedBox(height: 50,),
-          Form(
-            key: _formKeyBusiness,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 30.0, right: 27.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                      );
+                    });
+              },
+              child: Stack(
                 children: [
-                  Text(
-                    "Business Name",
-                    style: TextStyle(color: whiteColor, fontSize: 13),
-                  ),
-                  TextFormField(
-                    style: TextStyle(color: hintText, fontSize: 15),
-                    controller: business,
-                    decoration: InputDecoration(
-                      // contentPadding: EdgeInsets.only(left: 20),
-                      // hintText: "username",
-                      // hintStyle: TextStyle(color: Colors.white),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor, width: 1),
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: _pickImage != null
+                            ? FileImage(_pickImage!)
+                            : AssetImage("") as ImageProvider,
+                        fit: BoxFit.cover,
                       ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
-                      ),
-
-                      // keyboardType: TextInputType.
+                      color: borderColor,
                     ),
+                    width: 350,
+                    height: 300,
                   ),
-                  SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2.0),
-                    child: Text(
-                      "Description",
-                      style: TextStyle(color: whiteColor, fontSize: 13),
-                    ),
-                  ),
-                  TextFormField(
-                    style: TextStyle(color: hintText, fontSize: 15),
-                    controller: description,
-                    decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor, width: 1),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: borderColor),
-                      ),
-
-                      // keyboardType: TextInputType.
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  TextButton(onPressed: (){}, child: Padding(
-                    padding: const EdgeInsets.only(right: 38.0),
-                    child: Text("Add location",style: TextStyle(color: whiteColor),),
-                  ),
-                  ),
-                  Divider(
-                    thickness:
-                    1,
-                    color: borderColor,
-                  ),
-                  SizedBox(height: 30),
-                  TextButton(onPressed: (){}, child: Text("Add location",style: TextStyle(color: whiteColor),),
-                  ),
-                  Divider(
-                    thickness:
-                    1,
-                    color: borderColor,
-                  ),
-
-
+                  Positioned(
+                      top: 120,
+                      left: 140,
+                      child: _pickImage==null?Icon(
+                        Icons.camera_alt,
+                        size: 80,
+                        color: whiteColor,
+                      ):Container())
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 50,),
+            Form(
+              key: _formKeyBusiness,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30.0, right: 27.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Business Name",
+                      style: TextStyle(color: whiteColor, fontSize: 13),
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: hintText, fontSize: 15),
+                      controller: business,
+                      decoration: InputDecoration(
+                        // contentPadding: EdgeInsets.only(left: 20),
+                        // hintText: "username",
+                        // hintStyle: TextStyle(color: Colors.white),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor, width: 1),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+
+                        // keyboardType: TextInputType.
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 2.0),
+                      child: Text(
+                        "Description",
+                        style: TextStyle(color: whiteColor, fontSize: 13),
+                      ),
+                    ),
+                    TextFormField(
+                      style: TextStyle(color: hintText, fontSize: 15),
+                      controller: description,
+                      decoration: InputDecoration(
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor, width: 1),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: borderColor),
+                        ),
+
+                        // keyboardType: TextInputType.
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    TextButton(onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AddLocationScreen()),
+                      );
+                    }, child: Padding(
+                      padding: const EdgeInsets.only(right: 38.0),
+                      child: Text("Add location",style: TextStyle(color: whiteColor),),
+                    ),
+                    ),
+                    Divider(
+                      thickness:
+                      1,
+                      color: borderColor,
+                    ),
+                    SizedBox(height: 30),
+                    TextButton(onPressed: (){}, child: Text("Add services",style: TextStyle(color: whiteColor),),
+                    ),
+                    Divider(
+                      thickness:
+                      1,
+                      color: borderColor,
+                    ),
+
+
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

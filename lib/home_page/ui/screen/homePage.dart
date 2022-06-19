@@ -33,9 +33,9 @@ class _HomePageState extends State<HomePage>
   }
 
   List<CategoryModel> categorys = [
-    CategoryModel(id: 1, name: "Personal"),
-    CategoryModel(id: 2, name: "Properties"),
-    CategoryModel(id: 3, name: "Cars"),
+    CategoryModel(id: 1, name: "Personal", selectedCard: true),
+    CategoryModel(id: 2, name: "Properties", selectedCard: false),
+    CategoryModel(id: 3, name: "Cars", selectedCard: false),
   ];
 
   List<subCategoryModel> subCat = [
@@ -245,7 +245,7 @@ class _HomePageState extends State<HomePage>
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            height:35,
+            height: 40,
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: ListView.builder(
@@ -255,9 +255,13 @@ class _HomePageState extends State<HomePage>
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Category(
-                          categorys[index],
-                        ));
+                        child: Category(categorys[index], () {
+                          categorys.forEach((element) {
+                            element.selectedCard = false;
+                          });
+                          categorys[index].selectedCard = true;
+                          setState(() {});
+                        }));
                   }),
             ),
           ),
@@ -287,12 +291,22 @@ class _HomePageState extends State<HomePage>
           ),
           Align(
             alignment: AlignmentDirectional.topEnd,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Text(
-                "Advanced interests",
-                style: TextStyle(
-                    color: primaryColor, decoration: TextDecoration.underline),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchBarScreen()),
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: Text(
+                  "Choose interests",
+                  style: TextStyle(
+                      color: primaryColor,
+                      decoration: TextDecoration.underline,
+                      fontSize: 9),
+                ),
               ),
             ),
           ),

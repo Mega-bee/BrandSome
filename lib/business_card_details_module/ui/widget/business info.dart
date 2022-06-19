@@ -46,15 +46,11 @@ class BusinessInfo extends StatelessWidget {
                     Icon(
                       Icons.remove_red_eye_outlined,
                       color: whiteColor,
-                      size: 13,
                     ),
-                    SizedBox(width: 3),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "1000",
-                        style: StyleText.categoryStyleviews,
-                      ),
+                      child: Text("1000",
+                          style: TextStyle(color: whiteColor, fontSize: 15)),
                     ),
                   ],
                 ),
@@ -62,17 +58,17 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
             child: Text(
               "Healthcare/Sports",
-              style: StyleText.categoryStyle,
+              style: TextStyle(color: whiteColor, fontSize: 16),
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
           Padding(
               padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
@@ -84,6 +80,9 @@ class BusinessInfo extends StatelessWidget {
                         color: darkWhiteColor,
                         decoration: TextDecoration.underline),
                   ),
+                  SizedBox(
+                    width: 10,
+                  ),
                   Text(
                     "Yoga",
                     style: TextStyle(
@@ -93,7 +92,7 @@ class BusinessInfo extends StatelessWidget {
                 ],
               )),
           SizedBox(
-            height: 10,
+            height: 22,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
@@ -103,36 +102,49 @@ class BusinessInfo extends StatelessWidget {
                   Icons.location_on_outlined,
                   color: primaryColor,
                 ),
+                SizedBox(
+                  width: 9,
+                ),
                 Container(
-                  color: Color(0xff262626),
+                  padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                  decoration: BoxDecoration(
+                    color: Color(0xff262626),
+                    borderRadius: BorderRadius.circular(
+                        5), // radius of 10// green as background color
+                  ),
                   child: Text(
                     "Zahle",
                     style: TextStyle(
                         color: Color(
                           0xff818181,
                         ),
-                        fontSize: 12),
+                        fontSize: 11),
                   ),
                 ),
                 SizedBox(
-                  width: 6,
+                  width: 11,
                 ),
                 Container(
-                  color: Color(0xff262626),
+                  padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                  decoration: BoxDecoration(
+                    color: Color(0xff262626),
+                    borderRadius: BorderRadius.circular(
+                        5), // radius of 10// green as background color
+                  ),
                   child: Text(
                     "Zahle district",
                     style: TextStyle(
                         color: Color(
                           0xff818181,
                         ),
-                        fontSize: 12),
+                        fontSize: 11),
                   ),
-                )
+                ),
               ],
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 22,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
@@ -145,13 +157,17 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 22,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
             child: Center(
               child: Container(
+
+                padding: EdgeInsets.only(top: 10,bottom: 10),
                 decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(
+                      5),
                   color: blackColor,
                   border: Border.all(color: primaryColor, width: 1),
                 ),
@@ -164,119 +180,100 @@ class BusinessInfo extends StatelessWidget {
                     ),
                     Text(
                       "1000",
-                      style: TextStyle(fontSize: 14, color: whiteColor),
+                      style: TextStyle(fontSize: 12, color: whiteColor),
                     ),
-                    SizedBox(width: 30,),
-
+                    SizedBox(
+                      width: 25,
+                    ),
                     Text(
                       "|",
                       style: TextStyle(color: primaryColor),
                     ),
-                    SizedBox(width: 30,),
-
+                    SizedBox(
+                      width: 25,
+                    ),
                     SvgPicture.asset(SvgImg.RATE),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
                       "1000",
-                      style: TextStyle(fontSize: 14, color: whiteColor),
+                      style: TextStyle(fontSize: 12, color: whiteColor),
                     ),
-                    SizedBox(width: 30,),
-
+                    SizedBox(
+                      width: 25,
+                    ),
                     Text(
                       "|",
                       style: TextStyle(color: primaryColor),
                     ),
-                    SizedBox(width: 30,),
-
+                    SizedBox(
+                      width: 25,
+                    ),
                     SvgPicture.asset(SvgImg.PAPER),
                     SizedBox(
                       width: 5,
                     ),
                     Text(
                       "1000",
-                      style: TextStyle(fontSize: 14, color: whiteColor),
+                      style: TextStyle(fontSize: 12, color: whiteColor),
                     ),
-
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 25,),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 0.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Icon(Icons.phone,color: whiteColor,),
-                                SizedBox(width: 5,),
-                                Text("Call Now"),
-                              ],
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: primaryColor,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Row(
-                              children: [
-                                Icon(Icons.phone,color: whiteColor,),
-                                SizedBox(width: 5,),
-                                Text("Add review"),
-                              ],
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: primaryColor,
-                            ),
-                          ),
-                        ],
+          SizedBox(
+            height: 50,
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(SvgImg.PHONE,height: 20,color: whiteColor,),
+
+                      SizedBox(
+                        width: 5,
                       ),
-                    )
+                      Text("Call Now"),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.only(left: 15,right: 15),
+                    primary: primaryColor,
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(SvgImg.RATE,height: 20,),
+
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("Add review"),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.only(left: 15,right: 15),
+
+                    primary: primaryColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 25,)
         ],
       ),
     );
 
-    //           // Row(
-    //           //   children: [
-    //           //     ElevatedButton(
-    //           //       onPressed: () {},
-    //           //       child: Row(
-    //           //         children: [
-    //           //           Icon(Icons.phone,color: whiteColor,),
-    //           //           SizedBox(width: 5,),
-    //           //           Text("Call Now"),
-    //           //         ],
-    //           //       ),
-    //           //       style: ElevatedButton.styleFrom(
-    //           //         primary: primaryColor,
-    //           //       ),
-    //           //     ),
-    //           //     ElevatedButton(
-    //           //       onPressed: () {},
-    //           //       child: Row(
-    //           //         children: [
-    //           //           Icon(Icons.phone,color: whiteColor,),
-    //           //           SizedBox(width: 5,),
-    //           //           Text("Add review"),
-    //           //         ],
-    //           //       ),
-    //           //       style: ElevatedButton.styleFrom(
-    //           //         primary: primaryColor,
-    //           //       ),
-    //           //     ),
-    //           //   ],
-    //           // )
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
+
   }
 }

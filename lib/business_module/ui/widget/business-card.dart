@@ -5,13 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../business_card_info_module/ui/screen/business_card_info_screen.dart';
+import '../../../business_card_details_module/ui/screen/business_card_info_screen.dart';
 import '../../../utils/style/colors.dart';
 
 class BusinessCardScreen extends StatefulWidget {
   final BusinessCardModel businessCardModel;
-
-  // final String? text;
 
   BusinessCardScreen(
     this.businessCardModel,
@@ -22,32 +20,10 @@ class BusinessCardScreen extends StatefulWidget {
 }
 
 class _BusinessCardScreenState extends State<BusinessCardScreen> {
-  String? firstHalf;
-
-  String? secondHalf;
-
-  bool? flag = true;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //
-  //   if (widget.text!.length > 40) {
-  //     firstHalf = widget.text!.substring(0, 40);
-  //     secondHalf = widget.text!.substring(
-  //       40,
-  //       widget.text!.length,
-  //     );
-  //   } else {
-  //     firstHalf = widget.text;
-  //     secondHalf = "";
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => BusinessCardInfoScreen()),
@@ -96,16 +72,13 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                         SizedBox(
                           height: 7,
                         ),
-
                         Text(
                           widget.businessCardModel.subtitle ?? "",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                          style: TextStyle(fontSize: 10,color: whiteColor),
+                          style: TextStyle(fontSize: 10, color: whiteColor),
                           softWrap: true,
                         ),
-
-
                         SizedBox(
                           height: 4,
                         ),
@@ -116,7 +89,8 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                               style: TextStyle(color: hintText, fontSize: 9),
                             ),
                             SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.005),
+                                width:
+                                    MediaQuery.of(context).size.width * 0.005),
                             Icon(
                               Icons.location_on_outlined,
                               color: Colors.white60,
@@ -134,7 +108,6 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -146,8 +119,8 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                                 ),
                                 Text(
                                   "1000",
-                                  style:
-                                      TextStyle(color: whiteColor, fontSize: 11),
+                                  style: TextStyle(
+                                      color: whiteColor, fontSize: 11),
                                 ),
                               ],
                             ),
@@ -159,8 +132,8 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                                 ),
                                 Text(
                                   "1000",
-                                  style:
-                                      TextStyle(color: whiteColor, fontSize: 11),
+                                  style: TextStyle(
+                                      color: whiteColor, fontSize: 11),
                                 ),
                               ],
                             ),
@@ -172,8 +145,8 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                                 ),
                                 Text(
                                   "1000",
-                                  style:
-                                      TextStyle(color: whiteColor, fontSize: 11),
+                                  style: TextStyle(
+                                      color: whiteColor, fontSize: 11),
                                 ),
                               ],
                             )
