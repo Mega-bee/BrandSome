@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../follower_module/ui/screens/follower_list.dart';
 import '../../../utils/components/Seperator/seperator_doted.dart';
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/style/colors.dart';
 import '../widget/account_info.dart';
 import '../widget/add_business.dart';
@@ -31,69 +32,69 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height*0.08,
-                    width:MediaQuery.of(context).size.width*0.17,
+    //         Row(
+    //           children: [
+    //             Padding(
+    //               padding: const EdgeInsets.all(15.0),
+    //               child: Container(
+    //                 height: MediaQuery.of(context).size.height*0.08,
+    //                 width:MediaQuery.of(context).size.width*0.17,
+    //
+    //                 child: CircleAvatar(
+    //                   foregroundImage: AssetImage("assets/images/IMG_0095.JPG",),
+    //                   radius:120,
+    //
+    //                   backgroundColor: Colors.transparent,
+    //                 ),
+    //                 // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
+    //               )),
+    //             SizedBox(width: 50,),
+    //             Column(children: [
+    //               Text("20",style: TextStyle(color: Colors.white,)),
+    //               SizedBox(height: 3,
+    //               ),
+    //               Text("Post",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+    //             ],),
+    //             SizedBox(width: 50,),
+    //             Column(children: [
+    //               Text("2000",style: TextStyle(color: Colors.white,)),
+    //               SizedBox(height: 3,
+    //               ),
+    //               Text("Followers",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+    //             ],),
+    //             SizedBox(width: 50,),
+    //             Column(children: [
+    //               Text("200",style: TextStyle(color: Colors.white,)),
+    //               SizedBox(height: 3,
+    //               ),
+    //               Text("Following",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+    //             ],),
+    //
+    //         ]),
+    //         Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: Align(
+    //               alignment: Alignment.centerLeft,
+    //               child: Text("Christian Zakhour ",style: TextStyle(color:Colors.white,fontSize: 14,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
+    //         ),
+    //         Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: Align(
+    //               alignment: Alignment.centerLeft,
+    //               child: Text("- Flutter Mobile Developer",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
+    //         ),
+    //         Padding(
+    //           padding: const EdgeInsets.all(8.0),
+    //           child: Align(
+    //               alignment: Alignment.centerLeft,
+    //               child: Text("- Usek-Zahle",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
+    //         ),
+    //         SizedBox(
+    //           height: 10,
+    //         ),
+    // Container(color:Colors.white,height: 0.1,),
 
-                    child: CircleAvatar(
-                      foregroundImage: AssetImage("assets/images/IMG_0095.JPG",),
-                      radius:120,
 
-                      backgroundColor: Colors.transparent,
-                    ),
-                    // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
-                  )),
-                SizedBox(width: 50,),
-                Column(children: [
-                  Text("20",style: TextStyle(color: Colors.white,)),
-                  SizedBox(height: 3,
-                  ),
-                  Text("Post",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
-                ],),
-                SizedBox(width: 50,),
-                Column(children: [
-                  Text("2000",style: TextStyle(color: Colors.white,)),
-                  SizedBox(height: 3,
-                  ),
-                  Text("Followers",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
-                ],),
-                SizedBox(width: 50,),
-                Column(children: [
-                  Text("200",style: TextStyle(color: Colors.white,)),
-                  SizedBox(height: 3,
-                  ),
-                  Text("Following",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
-                ],),
-
-            ]),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Christian Zakhour ",style: TextStyle(color:Colors.white,fontSize: 14,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("- Flutter Mobile Developer",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("- Usek-Zahle",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            MySeparator(color:primaryColor,height: 0.2,
-
-            ),
             SizedBox(
               height: 30,
             ),
@@ -107,16 +108,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
               child: Padding(
                 padding: const EdgeInsets.only(
-                  left: 30.0,
+                  left: 20.0,
                   right: 30,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Icon(
+                      Icons.person,
+                      color: Color(0xffCCCCCC),
+                      size: 14,
+                    ),
+
                     Text(
                       "Account info",
                       style: StyleText.SettingsStyle,
                     ),
+                    SizedBox(width: 160,),
                     Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xffCCCCCC),
@@ -128,23 +136,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 20,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
-            SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.only(
-                left: 30.0,
+                left: 20.0,
                 right: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Icon(
+                    Icons.business,
+                    color: Color(0xffCCCCCC),
+                    size: 14,
+                  ),
                   Text("Business 1",
                       style: GoogleFonts.poppins(
                           textStyle: StyleText.SettingsStyle)),
+                  SizedBox(width: 160,),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color(0xffCCCCCC),
@@ -155,24 +164,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 20,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
-            SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.only(
-                left: 30.0,
+                left: 20.0,
                 right: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Icon(
+                    Icons.business,
+                    color: Color(0xffCCCCCC),
+                    size: 14,
+                  ),
                   Text(
                     "Business 2",
                     style: StyleText.SettingsStyle,
+
                   ),
+                  SizedBox(width: 160,),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color(0xffCCCCCC),
@@ -183,24 +194,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 20,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
-            SizedBox(
-              height: 20,
-            ),
             Padding(
               padding: const EdgeInsets.only(
-                left: 30.0,
+                left: 20.0,
                 right: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Icon(
+                    Icons.business,
+                    color: Color(0xffCCCCCC),
+                    size: 14,
+                  ),
                   Text(
                     "Business 3",
                     style: StyleText.SettingsStyle,
                   ),
+                  SizedBox(width: 160,),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
                     color: Color(0xffCCCCCC),
@@ -211,12 +223,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 20,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
-            SizedBox(
-              height: 20,
-            ),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -226,16 +233,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
               child: Padding(
                 padding: const EdgeInsets.only(
-                  left: 30.0,
+                  left: 20.0,
                   right: 30,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Icon(
+                      Icons.add_business,
+                      color: Color(0xffCCCCCC),
+                      size: 14,
+                    ),
+
                     Text(
                       "Businesses I follow",
                       style: StyleText.SettingsStyle,
                     ),
+                    SizedBox(width: 100,),
                     Icon(
                       Icons.arrow_forward_ios_rounded,
                       color: Color(0xffCCCCCC),
@@ -247,24 +261,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 20,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
-            SizedBox(
-              height: 10,
-            ),
             Padding(
               padding: const EdgeInsets.only(
-                left: 30.0,
+                left: 20.0,
                 right: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Icon(
+                    Icons.mode_edit,
+                    color: Color(0xffCCCCCC),
+                    size: 14,
+                  ),
                   Text(
                     "Theme",
                     style: StyleText.SettingsStyle,
                   ),
+                  SizedBox(width: 160,),
                   Transform.scale(
                     scale: 1,
                     child: Switch.adaptive(
@@ -284,26 +299,82 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 10,
             ),
-            MySeparator(color:primaryColor,height: 0.2,
 
-            ),
+    Container(color:Colors.white,height: 0.1,),
+
             SizedBox(
-              height: 50,
+              height: 10,
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddBusiness(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(child: Text("Add business",style: TextStyle(color: primaryColor),),onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+                builder: (context) => AddBusiness(),
+          ),
+        );
+      },),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: TextButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => CustomDeleteDialog(
+                        title: "Delete account",
+                        content: "",
+                        yesBtn: () {
+                          Navigator.pop(context);
+                        },
+                        noBtn: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    );
+                  },
+                  child: Text(
+                    "Delete account",
+                    style: TextStyle(
+                        color: primaryColor,
+
+                        ),
                   ),
-                );
-              },
-              child: Text("Add business"),
-              style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
-                  padding: EdgeInsets.fromLTRB(40, 20, 40, 20)),
+                ),
+              ),
             ),
+            SizedBox(height: 90,),
+            Container(color:Colors.white,height: 0.1,),
+            SizedBox(height: 5,),
+            Center(child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+              Icon(Icons.info_outlined,color: Colors.grey,size: 10,),
+              SizedBox(width: 10,),
+              Text("App Version 1.0.0",style: TextStyle(color: Colors.grey,fontSize: 10),),
+
+            ]),),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) => AddBusiness(),
+            //       ),
+            //     );
+            //   },
+            //   child: Text("Add business"),
+            //   style: ElevatedButton.styleFrom(
+            //       primary: primaryColor,
+            //       padding: EdgeInsets.fromLTRB(40, 20, 40, 20)),
+            // ),
             SizedBox(
               height: 100,
             )
