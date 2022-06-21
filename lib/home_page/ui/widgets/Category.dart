@@ -20,24 +20,36 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
 
     return InkWell(
+      splashColor: Colors.transparent,
       onTap: (){
 
         widget.onCardTAP();
       },
-      child: widget.category.selectedCard?Text(
-        widget.category.name!,
-        style: TextStyle(
+      child: widget.category.selectedCard?Column(
+        children:[ Text(
+          widget.category.name!,
+          style: TextStyle(
 
-          color: darkWhiteColor,
-          decoration:
-          TextDecoration.underline,
-          decorationColor: primaryColor,
-          decorationThickness: 3,
+            color: darkWhiteColor,
+            fontSize: 14
+
+
+
+          ),
         ),
-      ):Text(
+      SizedBox(height: 4,),
+      Center(
+        child: Container(
+          width: 55,
+          height: 2,
+          color: primaryColor,
+        ),
+      ),])
+      :Text(
         widget.category.name!,
         style: TextStyle(
           color: darkWhiteColor,
+          fontSize: 14,
 
         ),
       )
