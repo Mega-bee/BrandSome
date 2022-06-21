@@ -2,8 +2,11 @@ import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rolling_switch/rolling_switch.dart';
 
 import '../../../follower_module/ui/screens/follower_list.dart';
+import '../../../utils/components/custom_alert_dialog/theme_dialog/customThemeDialog.dart';
+import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../../utils/style/colors.dart';
 import '../widget/account_info.dart';
 import '../widget/add_business.dart';
@@ -23,7 +26,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: blackColor,
         title: Text("Settings"),
         centerTitle: true,
       ),

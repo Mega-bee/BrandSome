@@ -41,6 +41,10 @@ dependencies:
   google_fonts:
   flutter_svg:
   intl:
+  hive:
+  hive_flutter:
+  rolling_switch: ^0.0.2
+
 
 
 
