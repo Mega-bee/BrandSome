@@ -1,9 +1,16 @@
 import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 
 import 'navigation_bar/ui/screens/navigationBar.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: blackColor,
+    )
+  );
   runApp(const MyApp());
 }
 
@@ -13,11 +20,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+      return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BrandSome',
       theme: ThemeData(
         primarySwatch: primaryColor,
+        unselectedWidgetColor: primaryColor
       ),
       home: Navigation()
     );

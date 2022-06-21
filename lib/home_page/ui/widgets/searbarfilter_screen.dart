@@ -9,15 +9,14 @@ import 'filter_category_image_list.dart';
 import 'filter_service.dart';
 import 'filter_sub_category_image_list.dart';
 
-class SearchBarScreen extends StatefulWidget {
-  const SearchBarScreen({Key? key}) : super(key: key);
+class SearchBarFilterScreen extends StatefulWidget {
 
   @override
-  State<SearchBarScreen> createState() => _SearchBarScreenState();
+  State<SearchBarFilterScreen> createState() => _SearchBarFilterScreenState();
 }
 
-class _SearchBarScreenState extends State<SearchBarScreen> {
-  final searchbar = TextEditingController();
+class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
+  final searchbarFilter = TextEditingController();
   List<CategoryFilterModel> filter = [
     CategoryFilterModel(
         img: ImageAssetSports.BOXING,
@@ -93,18 +92,20 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.arrow_back_ios),
+                      icon: Icon(Icons.arrow_back),
                       color: Colors.white,
                     ),
                     Expanded(
                       child: TextField(
                         style: const TextStyle(fontSize: 12),
-                        controller: searchbar,
+                        controller: searchbarFilter,
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.search),
                           filled: true,
                           fillColor: Colors.white,
                           hintText: "Search for services",
+                          contentPadding: EdgeInsetsDirectional.only(start: 10,end: 10),
+
                           enabledBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(50)),

@@ -1,3 +1,4 @@
+import 'package:brandsome/business_card_details_module/model/business_card_model.dart';
 import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import '../../../follower_module/ui/screens/follower_list.dart';
 import '../../../utils/style/colors.dart';
 import '../widget/account_info.dart';
 import '../widget/add_business.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
@@ -15,6 +17,8 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  bool value = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,7 +130,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: 40,
             ),
             InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => Followers()),
@@ -167,10 +171,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     "Theme",
                     style: StyleText.SettingsStyle,
                   ),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: Color(0xffCCCCCC),
-                  ),
+                  Transform.scale(
+                    scale: 1,
+                    child: Switch.adaptive(
+                      activeColor: primaryColor,
+                        inactiveTrackColor: whiteColor,
+                        value: value,
+                        onChanged: (value) => setState(() {
+                              this.value = value;
+                            })),
+                  )
                 ],
               ),
             ),
@@ -189,7 +199,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   primary: primaryColor,
                   padding: EdgeInsets.fromLTRB(40, 20, 40, 20)),
             ),
-            SizedBox(height: 100,)
+            SizedBox(
+              height: 100,
+            )
           ],
         ),
       ),

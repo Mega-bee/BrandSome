@@ -4,13 +4,11 @@ class ImageAsset {
   static const FAV_ICON = ROOT +'fav.png';
   static const FILTER_ICON = ROOT +'filter.png';
   static const SPORT_IMAGE = ROOT +'Group 354.png';
-  static const PAPER_ICON = ROOT +'Icon ionic-ios-paper.png';
   static const PERSON_ICON = ROOT +'person.png';
   static const SORT_ICON = ROOT +'sort.png';
   static const SORT_AMOUNT_ICON = ROOT +'sort-amount-down.png';
   static const TEST_IMAGE = ROOT +'testImageCard.png';
   static const VIEWS_ICON = ROOT +'views.png';
-  static const MATERIAL_BUSINESS = ROOT +'material-business-center.png';
   static const CAMERA = ROOT +'camera.png';
   static const PIC = ROOT +'pic.png';
 }
@@ -52,6 +50,10 @@ class SvgImg {
   static const PERSON = ROOT +'Icon ionic-ios-person.svg';
   static const PHONE = ROOT +'Icon awesome-phone-alt.svg';
   static const RATING = ROOT +'rate.svg.';
+  static const MATERIAL_BUSINESS = ROOT +'Icon material-business-center.svg';
+  static const FILTER = ROOT +'Icon awesome-filter.svg';
+  static const SORT_BY = ROOT +'Icon awesome-sort-amount-down.svg';
+
 
 
 }

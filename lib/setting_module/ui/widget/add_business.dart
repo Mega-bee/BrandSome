@@ -1,11 +1,14 @@
+import 'package:brandsome/home_page/ui/widgets/searbarfilter_screen.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:brandsome/utils/style/colors.dart';
+import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' as i;
 
 import 'package:image_picker/image_picker.dart';
 
+import '../../model/add_location_model.dart';
 import 'add_location.dart';
 
 class AddBusiness extends StatefulWidget {
@@ -17,7 +20,7 @@ class AddBusiness extends StatefulWidget {
 
 class _AddBusinessState extends State<AddBusiness> {
   i.File? _pickImage;
-  final _formKeyBusiness= GlobalKey<FormState>();
+  final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
   final description = TextEditingController();
 
@@ -33,6 +36,8 @@ class _AddBusinessState extends State<AddBusiness> {
       print("Failed to pick image $e");
     }
   }
+
+  List<AddLocationModel> selectedLocation = [];
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,9 @@ class _AddBusinessState extends State<AddBusiness> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () {
                 showDialog(
@@ -140,15 +147,19 @@ class _AddBusinessState extends State<AddBusiness> {
                   Positioned(
                       top: 120,
                       left: 140,
-                      child: _pickImage==null?Icon(
-                        Icons.camera_alt,
-                        size: 80,
-                        color: whiteColor,
-                      ):Container())
+                      child: _pickImage == null
+                          ? Icon(
+                              Icons.camera_alt,
+                              size: 80,
+                              color: whiteColor,
+                            )
+                          : Container())
                 ],
               ),
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Form(
               key: _formKeyBusiness,
               child: Padding(
@@ -206,31 +217,75 @@ class _AddBusinessState extends State<AddBusiness> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    TextButton(onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AddLocationScreen()),
-                      );
-                    }, child: Padding(
-                      padding: const EdgeInsets.only(right: 38.0),
-                      child: Text("Add location",style: TextStyle(color: whiteColor),),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddLocationScreen()),
+                        ).then(
+                          (returnedLocation) {
+                            selectedLocation = returnedLocation;
+                            setState(() {});
+                          },
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 38.0),
+                        child: Text(
+                          "Add location",
+                          style: TextStyle(color: whiteColor),
+                        ),
+                      ),
                     ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Wrap(
+                      spacing: 13,
+                      runSpacing: 30,
+                      children: selectedLocation
+                          .map(
+                            (e) => Container(
+                              padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                              decoration: BoxDecoration(
+                                color: Color(0xff262626),
+                                borderRadius: BorderRadius.circular(
+                                    5), // radius of 10// green as background color
+                              ),
+                              child: Text(
+                                "${e.name}",
+                                style: TextStyle(
+                                    color: primaryColor, fontSize: 11),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                    SizedBox(
+                      height: 12,
                     ),
                     Divider(
-                      thickness:
-                      1,
+                      thickness: 1,
                       color: borderColor,
                     ),
                     SizedBox(height: 30),
-                    TextButton(onPressed: (){}, child: Text("Add services",style: TextStyle(color: whiteColor),),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
+                        );
+                      },
+                      child: Text(
+                        "Add services",
+                        style: TextStyle(color: whiteColor),
+                      ),
                     ),
                     Divider(
-                      thickness:
-                      1,
+                      thickness: 1,
                       color: borderColor,
                     ),
-
-
                   ],
                 ),
               ),

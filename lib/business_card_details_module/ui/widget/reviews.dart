@@ -1,14 +1,15 @@
 import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../model/review_model.dart';
 
 class ReviewScreen extends StatelessWidget {
   List<ReviewModel> reviews = [
     ReviewModel(
-      name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
-    ),
+        name: "Peter Tohme",
+        paragraph: "This app is very good i like it :)",
+        date: DateTime.now()),
     ReviewModel(
       name: "Peter Tohme",
       paragraph: "This app is very good i like it :)",
@@ -30,6 +31,8 @@ class ReviewScreen extends StatelessWidget {
       paragraph: "This app is very good i like it :)",
     ),
   ];
+  DateTime now = new DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -38,22 +41,38 @@ class ReviewScreen extends StatelessWidget {
           return Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
             child: Column(
-
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 29,
-                ),                Text(
-                  "${reviews[index].name}",
-                  style: TextStyle(fontSize: 14, color: whiteColor),
                 ),
-                SizedBox(height: 9,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${reviews[index].name}",
+                      style: TextStyle(fontSize: 14, color: whiteColor),
+                    ),
+                    Text(
+                      "${DateFormat.yMd().add_jm().format(
+                        DateTime.parse(
+                          now.toString(),
+                        ),
+                      )}",
+                      style: TextStyle(color: whiteColor,fontSize: 10),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 9,
+                ),
                 Text(
                   "${reviews[index].paragraph}",
                   style: TextStyle(fontSize: 9, color: whiteColor),
                 ),
-                SizedBox(height: 13,),
-
+                SizedBox(
+                  height: 13,
+                ),
               ],
             ),
           );

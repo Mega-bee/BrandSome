@@ -3,14 +3,20 @@ import 'package:brandsome/utils/style/text_style.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../liked_by_module/ui/screen/liked_by_screen.dart';
+import '../../../utils/components/custom_alert_dialog/CustomOtpVerificationDialog/CustomOtpVerificationDialog.dart';
+import '../../../utils/components/custom_alert_dialog/CustomVerificationDialog/CustomVerificationDialog.dart';
 import '../../model/post_model.dart';
 
 class BrandCards extends StatelessWidget {
-final postModel posts;
-BrandCards(this.posts);
+  final postModel posts;
+
+  BrandCards(this.posts);
+
   @override
   Widget build(BuildContext context) {
     return Column(
+
       children: [
         ListTile(
           leading: CircleAvatar(
@@ -18,11 +24,11 @@ BrandCards(this.posts);
           ),
           title: Text(
             "${posts.title}",
-            style: TextStyle(color: whiteColor,fontSize: 16),
+            style: TextStyle(color: whiteColor, fontSize: 16),
           ),
           subtitle: Text(
             "${posts.subTitle}",
-            style: TextStyle(color: Color(0xff898989),fontSize: 12),
+            style: TextStyle(color: Color(0xff898989), fontSize: 12),
           ),
         ),
         Card(
@@ -40,22 +46,47 @@ BrandCards(this.posts);
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.thumb_up_alt_outlined,
-                      color: whiteColor,
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => CustomVerificationDialog(
+                            title: "Verification",
+                            content: "",
+                            continueBtn: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => CustomOtpVerificationDialog(continueBtn: (){}, title: 'OTP verification', content: '',)),
+                              );
+                            },
+                          ),
+                        );
+                      },
+                      child: Icon(
+                        Icons.thumb_up_alt_outlined,
+                        color: whiteColor,
+                      ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
-                    Text(
-                      "${posts.titleTwo}",
-                      style: TextStyle(color: whiteColor,fontSize: 16),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LikeByScreen()),
+                        );
+                      },
+                      child: Text(
+                        "${posts.titleTwo}",
+                        style: TextStyle(color: whiteColor, fontSize: 16),
+                      ),
                     ),
                   ],
                 ),
               ),
               SizedBox(
-                height:6,
+                height: 6,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
@@ -75,7 +106,6 @@ BrandCards(this.posts);
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 4,
               ),
@@ -83,7 +113,7 @@ BrandCards(this.posts);
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   "${posts.paragraph}",
-                  style: TextStyle(color: Color(0xffDFDFDF),fontSize: 12),
+                  style: TextStyle(color: Color(0xffDFDFDF), fontSize: 12),
                 ),
               ),
               SizedBox(
@@ -93,11 +123,9 @@ BrandCards(this.posts);
                 thickness: 1,
                 color: Color(0xff171717),
               ),
-
               SizedBox(
                 height: 15,
               ),
-
             ],
           ),
         ),

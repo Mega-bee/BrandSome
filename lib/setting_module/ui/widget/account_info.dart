@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/style/colors.dart';
 
 class AccountInfoScreen extends StatefulWidget {
@@ -53,8 +54,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
             SizedBox(
               height: 200,
               child: Center(
-                child: Stack(
-                    children: [
+                child: Stack(children: [
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                     child: CircleAvatar(
@@ -63,8 +63,9 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                       child: CircleAvatar(
                           radius: 65,
                           backgroundColor: whiteColor,
-                          backgroundImage:
-                              _pickImage == null ? null : FileImage(_pickImage!)),
+                          backgroundImage: _pickImage == null
+                              ? null
+                              : FileImage(_pickImage!)),
                     ),
                   ),
                   Positioned(
@@ -89,7 +90,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Icon(
                                                   Icons.camera,
                                                   color: primaryColor,
@@ -112,7 +114,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: Icon(
                                                   Icons.image,
                                                   color: primaryColor,
@@ -237,7 +240,6 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                       style: TextStyle(color: hintText, fontSize: 15),
                       controller: Birthday,
                       decoration: InputDecoration(
-
                         // hintText: "username",
                         // hintStyle: TextStyle(color: Colors.white),
                         enabledBorder: UnderlineInputBorder(
@@ -253,24 +255,40 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                         // keyboardType: TextInputType.
                       ),
                     ),
-
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 30.0),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CustomDeleteDialog(
+                      title: "Delete account",
+                      content: "",
+                      yesBtn: () {
+                        Navigator.pop(context);
+                      },
+                      noBtn: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  );
+                },
                 child: Text(
                   "Delete account",
-                  style: TextStyle(color: primaryColor,fontSize: 13,fontWeight: FontWeight.w300),
+                  style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w300),
                 ),
               ),
-            ),
-            // SizedBox(height: 200,),
-
+            ), // SizedBox(height: 200,),
           ],
         ),
       ),

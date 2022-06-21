@@ -2,6 +2,7 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../../utils/style/colors.dart';
 import '../../../utils/style/text_style.dart';
 
@@ -249,7 +250,15 @@ class BusinessInfo extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => CustomReviewDialog(
+                        content: "",
+                        continueBtn: () {},
+                      ),
+                    );
+                  },
                   child: Row(
                     children: [
                       SvgPicture.asset(SvgImg.RATE,height: 20,),

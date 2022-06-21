@@ -1,4 +1,5 @@
 class AddLocationModel{
   String?name;
-  AddLocationModel({this.name});
+  bool value = false;
+  AddLocationModel({this.name,required this.value});
 }

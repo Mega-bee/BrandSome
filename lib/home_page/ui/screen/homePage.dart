@@ -4,11 +4,13 @@ import 'package:brandsome/utils/style/colors.dart';
 import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../../setting_module/ui/widget/add_business.dart';
 import '../../../utils/images/images.dart';
 import '../../model/post_model.dart';
 import '../widgets/BrandCard.dart';
 import '../widgets/notification_screen.dart';
-import '../widgets/searbar_screen.dart';
+import '../widgets/searbarfilter_screen.dart';
 import '../widgets/Category.dart';
 import '../widgets/subCategory.dart';
 
@@ -24,6 +26,10 @@ class _HomePageState extends State<HomePage>
   void onSelected(BuildContext context, item) {
     switch (item) {
       case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AddBusiness()),
+        );
         print("Clicking add business");
         break;
       case 1:
@@ -173,7 +179,7 @@ class _HomePageState extends State<HomePage>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchBarScreen()),
+                MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
               );
             },
             icon: Icon(Icons.search),
@@ -193,12 +199,10 @@ class _HomePageState extends State<HomePage>
                             children: [
                               Text(
                                 "Add Business",
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white,fontSize: 15),
                               ),
-                              ImageIcon(
-                                AssetImage(ImageAsset.MATERIAL_BUSINESS),
-                                color: Colors.white,
-                              ),
+                              SvgPicture.asset(SvgImg.MATERIAL_BUSINESS),
+
                             ],
                           ),
                           SizedBox(
@@ -216,14 +220,10 @@ class _HomePageState extends State<HomePage>
                         children: [
                           Text(
                             "Add post",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: Colors.white,fontSize: 15),
                           ),
-                          ImageIcon(
-                            AssetImage(
-                              ImageAsset.PAPER_ICON,
-                            ),
-                            color: Colors.white,
-                          ),
+                          SvgPicture.asset(SvgImg.PAPER,height: 25,),
+
                         ],
                       ),
                     ),
@@ -295,7 +295,7 @@ class _HomePageState extends State<HomePage>
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SearchBarScreen()),
+                  MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
                 );
               },
               child: Padding(
