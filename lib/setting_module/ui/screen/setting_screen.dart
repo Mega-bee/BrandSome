@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../follower_module/ui/screens/follower_list.dart';
+import '../../../utils/components/Seperator/seperator_doted.dart';
 import '../../../utils/style/colors.dart';
 import '../widget/account_info.dart';
 import '../widget/add_business.dart';
@@ -31,9 +32,73 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 120,
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height*0.08,
+                    width:MediaQuery.of(context).size.width*0.17,
+
+                    child: CircleAvatar(
+                      foregroundImage: AssetImage("assets/images/IMG_0095.JPG",),
+                      radius:120,
+
+                      backgroundColor: Colors.transparent,
+                    ),
+                    // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
+                  )),
+                SizedBox(width: 50,),
+                Column(children: [
+                  Text("20",style: TextStyle(color: Colors.white,)),
+                  SizedBox(height: 3,
+                  ),
+                  Text("Post",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+                ],),
+                SizedBox(width: 50,),
+                Column(children: [
+                  Text("2000",style: TextStyle(color: Colors.white,)),
+                  SizedBox(height: 3,
+                  ),
+                  Text("Followers",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+                ],),
+                SizedBox(width: 50,),
+                Column(children: [
+                  Text("200",style: TextStyle(color: Colors.white,)),
+                  SizedBox(height: 3,
+                  ),
+                  Text("Following",style: TextStyle(color: primaryColor,fontStyle: FontStyle.italic),),
+                ],),
+
+            ]),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Christian Zakhour ",style: TextStyle(color:Colors.white,fontSize: 14,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("- Flutter Mobile Developer",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("- Usek-Zahle",style: TextStyle(color:Colors.grey,fontSize: 10,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic),)),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 30,
+            ),
+
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -62,7 +127,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -83,7 +154,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -105,7 +182,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -127,7 +210,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 20,
             ),
             InkWell(
               onTap: () {
@@ -157,7 +246,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 20,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -185,7 +280,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.130,
+              height: 10,
+            ),
+            MySeparator(color:primaryColor,height: 0.2,
+
+            ),
+            SizedBox(
+              height: 50,
             ),
             ElevatedButton(
               onPressed: () {

@@ -39,9 +39,9 @@ class _HomePageState extends State<HomePage>
   }
 
   List<CategoryModel> categorys = [
-    CategoryModel(id: 1, name: "Personal", selectedCard: true),
-    CategoryModel(id: 2, name: "Properties", selectedCard: false),
-    CategoryModel(id: 3, name: "Cars", selectedCard: false),
+    CategoryModel(id: 1, name: "  Personal   ", selectedCard: true),
+    CategoryModel(id: 2, name: "  Properties  ", selectedCard: false),
+    CategoryModel(id: 3, name: "    Cars     ", selectedCard: false),
   ];
 
   List<subCategoryModel> subCat = [
@@ -245,7 +245,7 @@ class _HomePageState extends State<HomePage>
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
-            height: 40,
+            height: 50,
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: ListView.builder(
@@ -254,7 +254,7 @@ class _HomePageState extends State<HomePage>
                   itemCount: categorys.length,
                   itemBuilder: (context, index) {
                     return Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(10.0),
                         child: Category(categorys[index], () {
                           categorys.forEach((element) {
                             element.selectedCard = false;
@@ -266,7 +266,7 @@ class _HomePageState extends State<HomePage>
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 5,
           ),
           Container(
             height: 150,

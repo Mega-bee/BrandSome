@@ -1,4 +1,9 @@
+
+
+
+
 class LikedByModel{
   String? name;
-  LikedByModel({this.name});
+  String? image;
+  LikedByModel({this.name,this.image});
 }
