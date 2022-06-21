@@ -36,6 +36,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     }
   }
 
+  bool edit = false;
+
   @override
   Widget build(BuildContext context) {
     var mediaQueryHeight = MediaQuery.of(context).size.height;
@@ -43,6 +45,22 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsetsDirectional.only(end: 10.0),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  edit = true;
+                });
+              },
+              icon: Icon(
+                Icons.edit,
+                color: whiteColor,
+              ),
+            ),
+          ),
+        ],
         backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text("Account info"),
@@ -149,116 +167,258 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
               ),
             ),
 
-            Form(
-              key: _formKeyBusiness,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 38.0, right: 27.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Username",
-                      style: TextStyle(color: greyColor, fontSize: 13),
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
-                      controller: username,
-                      decoration: InputDecoration(
-                        // contentPadding: EdgeInsets.only(left: 20),
-                        // hintText: "username",
-                        // hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
+            !edit
+                ? Form(
+                    key: _formKeyBusiness,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          end: 38.0, start: 27.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Username",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            readOnly: true,
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: username,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
 
-                        // keyboardType: TextInputType.
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Phone number",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            readOnly: true,
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: phonenumber,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+
+                              // keyboardType: TextInputType.
+                            ),
+                            keyboardType: TextInputType.phone,
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Gender",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            readOnly: true,
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: gender,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Birthday",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            readOnly: true,
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: Birthday,
+                            decoration: InputDecoration(
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 30),
-                    Text(
-                      "Phone number",
-                      style: TextStyle(color: greyColor, fontSize: 13),
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
-                      controller: phonenumber,
-                      decoration: InputDecoration(
-                        // contentPadding: EdgeInsets.only(left: 20),
-                        // hintText: "username",
-                        // hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
+                  )
+                : Form(
+                    key: _formKeyBusiness,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          end: 38.0, start: 27.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Username",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: username,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
 
-                        // keyboardType: TextInputType.
-                      ),
-                      keyboardType: TextInputType.phone,
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      "Gender",
-                      style: TextStyle(color: greyColor, fontSize: 13),
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
-                      controller: gender,
-                      decoration: InputDecoration(
-                        // contentPadding: EdgeInsets.only(left: 20),
-                        // hintText: "username",
-                        // hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Phone number",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: phonenumber,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
 
-                        // keyboardType: TextInputType.
-                      ),
-                    ),
-                    SizedBox(height: 30),
-                    Text(
-                      "Birthday",
-                      style: TextStyle(color: greyColor, fontSize: 13),
-                    ),
-                    TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
-                      controller: Birthday,
-                      decoration: InputDecoration(
-                        // hintText: "username",
-                        // hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
-                        ),
+                              // keyboardType: TextInputType.
+                            ),
+                            keyboardType: TextInputType.phone,
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Gender",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: gender,
+                            decoration: InputDecoration(
+                              // contentPadding: EdgeInsets.only(left: 20),
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
 
-                        // keyboardType: TextInputType.
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                            "Birthday",
+                            style: TextStyle(color: greyColor, fontSize: 13),
+                          ),
+                          TextFormField(
+                            style: TextStyle(color: hintText, fontSize: 15),
+                            controller: Birthday,
+                            decoration: InputDecoration(
+                              // hintText: "username",
+                              // hintStyle: TextStyle(color: Colors.white),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: borderColor, width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: borderColor),
+                              ),
+
+                              // keyboardType: TextInputType.
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                edit=false;
+                              });
+                            },
+                            child: Text(
+                              "Save",
+                              style: TextStyle(
+                                  color: primaryColor,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w300),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
             SizedBox(
               height: 20,
             ),
