@@ -1,4 +1,3 @@
-import 'package:brandsome/business_card_details_module/model/business_card_model.dart';
 import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -270,11 +269,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     scale: 1,
                     child: Switch.adaptive(
                       activeColor: primaryColor,
-                        inactiveTrackColor: whiteColor,
-                        value: value,
-                        onChanged: (value) => setState(() {
-                              this.value = value;
-                            })),
+                      inactiveTrackColor: whiteColor,
+                      value: value,
+                      onChanged: (value) => setState(
+                        () {
+                          this.value = value;
+                        },
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -292,7 +294,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AddBusiness()),
+                  MaterialPageRoute(
+                    builder: (context) => AddBusiness(),
+                  ),
                 );
               },
               child: Text("Add business"),

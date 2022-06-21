@@ -299,7 +299,7 @@ class _HomePageState extends State<HomePage>
                 );
               },
               child: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsetsDirectional.only(end: 8.0,start: 10,top: 20,bottom: 13),
                 child: Text(
                   "Choose interests",
                   style: TextStyle(
