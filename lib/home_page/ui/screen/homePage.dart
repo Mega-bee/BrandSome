@@ -5,6 +5,7 @@ import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../hive/hive.dart';
 import '../../../setting_module/ui/widget/add_business.dart';
 import '../../../utils/images/images.dart';
 import '../../model/post_model.dart';
@@ -39,9 +40,9 @@ class _HomePageState extends State<HomePage>
   }
 
   List<CategoryModel> categorys = [
-    CategoryModel(id: 1, name: "  Personal   ", selectedCard: true),
-    CategoryModel(id: 2, name: "  Properties  ", selectedCard: false),
-    CategoryModel(id: 3, name: "    Cars     ", selectedCard: false),
+    CategoryModel(id: 1, name: "Personal", selectedCard: true),
+    CategoryModel(id: 2, name: "Properties", selectedCard: false),
+    CategoryModel(id: 3, name: "Cars", selectedCard: false),
   ];
 
   List<subCategoryModel> subCat = [
@@ -165,11 +166,14 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Text(
             "Brandsome",
-            style: TextStyle(color: primaryColor),
+            style: TextStyle(
+              color: ThemeHelper().getisDark() ? primaryColor : primaryColor,
+            ),
           ),
         ),
         actions: [
@@ -177,14 +181,20 @@ class _HomePageState extends State<HomePage>
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
+                MaterialPageRoute(
+                    builder: (context) => SearchBarFilterScreen()),
               );
             },
-            icon: Icon(Icons.search),
+            icon: Icon(
+              Icons.search,
+              color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+            ),
           ),
           PopupMenuButton(
-              color: Color(0xff262626),
-              icon: Icon(Icons.add_circle_outline),
+              icon: Icon(
+                Icons.add_circle_outline,
+                color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+              ),
               onSelected: (item) => onSelected(context, item),
               itemBuilder: (context) => [
                     PopupMenuItem(
@@ -197,16 +207,23 @@ class _HomePageState extends State<HomePage>
                             children: [
                               Text(
                                 "Add Business",
-                                style: TextStyle(color: Colors.white,fontSize: 15),
+                                style: TextStyle(fontSize: 15),
                               ),
-                              SvgPicture.asset(SvgImg.MATERIAL_BUSINESS),
-
+                              SvgPicture.asset(
+                                SvgImg.MATERIAL_BUSINESS,
+                                color: ThemeHelper().getisDark()
+                                    ? whiteColor
+                                    : primaryColor,
+                              ),
                             ],
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          Divider(thickness: 1, height: 2, color: whiteColor),
+                          Divider(
+                            thickness: 1,
+                            height: 2,
+                          ),
                         ],
                       ),
                     ),
@@ -218,10 +235,15 @@ class _HomePageState extends State<HomePage>
                         children: [
                           Text(
                             "Add post",
-                            style: TextStyle(color: Colors.white,fontSize: 15),
+                            style: TextStyle(fontSize: 15),
                           ),
-                          SvgPicture.asset(SvgImg.PAPER,height: 25,),
-
+                          SvgPicture.asset(
+                            SvgImg.PAPER,
+                            height: 25,
+                            color: ThemeHelper().getisDark()
+                                ? whiteColor
+                                : primaryColor,
+                          ),
                         ],
                       ),
                     ),
@@ -242,6 +264,9 @@ class _HomePageState extends State<HomePage>
       ),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SizedBox(
+            height: 20,
+          ),
           SizedBox(
             height: 50,
             child: Padding(
@@ -293,11 +318,13 @@ class _HomePageState extends State<HomePage>
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => SearchBarFilterScreen()),
                 );
               },
               child: Padding(
-                padding: const EdgeInsetsDirectional.only(end: 8.0,start: 10,top: 20,bottom: 13),
+                padding: const EdgeInsetsDirectional.only(
+                    end: 8.0, start: 10, top: 20, bottom: 13),
                 child: Text(
                   "Choose interests",
                   style: TextStyle(
@@ -313,7 +340,6 @@ class _HomePageState extends State<HomePage>
           ),
           Divider(
             thickness: 3,
-            color: Color(0xff171717),
           ),
           SizedBox(
             height: 12,

@@ -30,8 +30,7 @@ class _CategoryState extends State<Category> {
           widget.category.name!,
           style: TextStyle(
 
-            color: darkWhiteColor,
-            fontSize: 14
+            fontSize: 12
 
 
 
@@ -40,7 +39,7 @@ class _CategoryState extends State<Category> {
       SizedBox(height: 4,),
       Center(
         child: Container(
-          width: 55,
+          width: 80,
           height: 2,
           color: primaryColor,
         ),
@@ -48,8 +47,7 @@ class _CategoryState extends State<Category> {
       :Text(
         widget.category.name!,
         style: TextStyle(
-          color: darkWhiteColor,
-          fontSize: 14,
+          fontSize: 12,
 
         ),
       )

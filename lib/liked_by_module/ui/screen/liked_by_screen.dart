@@ -60,51 +60,53 @@ class _LikeByScreenState extends State<LikeByScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-        backgroundColor: blackColor,
-        appBar: AppBar(
-          elevation: 1,
-          shadowColor: Colors.white,
-          title: Text("Likes"),
+    return SingleChildScrollView(
+      child: Scaffold(
+        
           backgroundColor: blackColor,
-        ),
-        body: Container(
-          height: MediaQuery.of(context).size.height*0.8,
-          child: SingleChildScrollView(
-
-            child: SizedBox(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 30,),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children:[ Text("Liked by   :",style: TextStyle(color: darkWhiteColor,fontSize: 16,fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic
-                      ),),
-                        SizedBox(width: 240,),
-                        Text("${likes.length} people",style: TextStyle(color: primaryColor))
-
-                      ]),
-                    ),
-                    SizedBox(height: 15,),
-                    MySeparator(color: Colors.grey,height: 0.9,),
-                    SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: likes.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: LikesCard(likes[index]),
-                          );
-                        })]),
-            ),
+          appBar: AppBar(
+            elevation: 1,
+            shadowColor: Colors.white,
+            title: Text("Likes"),
+            backgroundColor: blackColor,
           ),
-        )
+          body: Container(
+            height: MediaQuery.of(context).size.height*0.8,
+            child: SingleChildScrollView(
 
+              child: SizedBox(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:[ Text("Liked by :",style: TextStyle(color: darkWhiteColor,fontSize: 16,fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic
+                        ),),
+                          SizedBox(width: 30,),
+                          Text("${likes.length} people",style: TextStyle(color: primaryColor))
+
+                        ]),
+                      ),
+                      SizedBox(height: 15,),
+                      MySeparator(color: Colors.grey,height: 0.9,),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: likes.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: LikesCard(likes[index]),
+                            );
+                          })]),
+              ),
+            ),
+          )
+
+      ),
     );  }
 }

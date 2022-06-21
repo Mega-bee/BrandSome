@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../hive/hive.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/style/colors.dart';
 
@@ -43,8 +44,17 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     var mediaQueryHeight = MediaQuery.of(context).size.height;
     var mediaQueryWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.black,
       appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 10.0),
@@ -56,14 +66,18 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
               },
               icon: Icon(
                 Icons.edit,
-                color: whiteColor,
+                color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
               ),
             ),
           ),
         ],
-        backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text("Account info"),
+        title: Text(
+          "Account info",
+          style: TextStyle(
+            color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -300,6 +314,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             style: TextStyle(color: greyColor, fontSize: 13),
                           ),
                           TextFormField(
+                            autofocus: false,
                             style: TextStyle(color: hintText, fontSize: 15),
                             controller: username,
                             decoration: InputDecoration(
@@ -326,6 +341,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             style: TextStyle(color: greyColor, fontSize: 13),
                           ),
                           TextFormField(
+                            autofocus: false,
                             style: TextStyle(color: hintText, fontSize: 15),
                             controller: phonenumber,
                             decoration: InputDecoration(
@@ -353,6 +369,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             style: TextStyle(color: greyColor, fontSize: 13),
                           ),
                           TextFormField(
+                            autofocus: false,
                             style: TextStyle(color: hintText, fontSize: 15),
                             controller: gender,
                             decoration: InputDecoration(
@@ -379,6 +396,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             style: TextStyle(color: greyColor, fontSize: 13),
                           ),
                           TextFormField(
+                            autofocus: false,
                             style: TextStyle(color: hintText, fontSize: 15),
                             controller: Birthday,
                             decoration: InputDecoration(
@@ -404,7 +422,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           TextButton(
                             onPressed: () {
                               setState(() {
-                                edit=false;
+                                edit = false;
                               });
                             },
                             child: Text(

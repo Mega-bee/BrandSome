@@ -1,11 +1,10 @@
-import 'package:brandsome/utils/style/colors.dart';
-import 'package:brandsome/utils/style/text_style.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../hive/hive.dart';
 import '../../../liked_by_module/ui/screen/liked_by_screen.dart';
 import '../../../utils/components/custom_alert_dialog/CustomOtpVerificationDialog/CustomOtpVerificationDialog.dart';
 import '../../../utils/components/custom_alert_dialog/CustomVerificationDialog/CustomVerificationDialog.dart';
+import '../../../utils/style/colors.dart';
 import '../../model/post_model.dart';
 
 class BrandCards extends StatelessWidget {
@@ -16,7 +15,6 @@ class BrandCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-
       children: [
         ListTile(
           leading: CircleAvatar(
@@ -24,7 +22,7 @@ class BrandCards extends StatelessWidget {
           ),
           title: Text(
             "${posts.title}",
-            style: TextStyle(color: whiteColor, fontSize: 16),
+            style: TextStyle(fontSize: 16),
           ),
           subtitle: Text(
             "${posts.subTitle}",
@@ -32,9 +30,7 @@ class BrandCards extends StatelessWidget {
           ),
         ),
         Card(
-          elevation: 5,
-          shadowColor: Color(0xff171717),
-          color: blackColor,
+          elevation: 0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -46,6 +42,9 @@ class BrandCards extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
                   children: [
+                    SizedBox(
+                      height: 50,
+                    ),
                     InkWell(
                       onTap: () {
                         showDialog(
@@ -56,7 +55,13 @@ class BrandCards extends StatelessWidget {
                             continueBtn: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => CustomOtpVerificationDialog(continueBtn: (){}, title: 'OTP verification', content: '',)),
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CustomOtpVerificationDialog(
+                                          continueBtn: () {},
+                                          title: 'OTP verification',
+                                          content: '',
+                                        )),
                               );
                             },
                           ),
@@ -64,22 +69,22 @@ class BrandCards extends StatelessWidget {
                       },
                       child: Icon(
                         Icons.thumb_up_alt_outlined,
-                        color: whiteColor,
                       ),
                     ),
                     SizedBox(
                       width: 5,
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => LikeByScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => LikeByScreen()),
                         );
                       },
                       child: Text(
                         "${posts.titleTwo}",
-                        style: TextStyle(color: whiteColor, fontSize: 16),
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
                   ],
@@ -94,14 +99,31 @@ class BrandCards extends StatelessWidget {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(
-                          text: 'Properties/ ',
-                          style: StyleText.categoryStyleGreyColor),
+                        text: 'Properties/ ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: ThemeHelper().getisDark()
+                              ? whiteColor
+                              : blackColor,
+                        ),
+                      ),
                       TextSpan(
-                          text: 'Appartments/ ',
-                          style: StyleText.categoryStyleGreyColor),
+                        text: 'Appartments/ ',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: ThemeHelper().getisDark()
+                              ? whiteColor
+                              : blackColor,
+                        ),
+                      ),
                       TextSpan(
                           text: 'Electricians',
-                          style: StyleText.categoryStyleUnderline)
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: ThemeHelper().getisDark()
+                                ? whiteColor
+                                : blackColor,
+                          ))
                     ],
                   ),
                 ),
@@ -113,7 +135,7 @@ class BrandCards extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   "${posts.paragraph}",
-                  style: TextStyle(color: Color(0xffDFDFDF), fontSize: 12),
+                  style: TextStyle(fontSize: 12),
                 ),
               ),
               SizedBox(
@@ -121,7 +143,6 @@ class BrandCards extends StatelessWidget {
               ),
               Divider(
                 thickness: 1,
-                color: Color(0xff171717),
               ),
               SizedBox(
                 height: 15,

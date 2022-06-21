@@ -3,6 +3,7 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../hive/hive.dart';
 import '../../../home_page/ui/widgets/notification_screen.dart';
 import '../../../home_page/ui/widgets/searbarfilter_screen.dart';
 import '../../../utils/style/colors.dart';
@@ -114,14 +115,15 @@ class _BusinessScreenState extends State<BusinessScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: blackColor,
+          elevation: 0,
           title: Padding(
             padding: const EdgeInsets.only(left: 10.0),
             child: Text(
               "Brandsome",
-              style: TextStyle(color: primaryColor),
+              style: TextStyle(
+                color: ThemeHelper().getisDark() ? primaryColor : primaryColor,
+              ),
             ),
           ),
           actions: [
@@ -132,7 +134,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   MaterialPageRoute(builder: (context) => SearchBarScreen()),
                 );
               },
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search,color: ThemeHelper().getisDark() ? whiteColor : primaryColor,),
             ),
             IconButton(
               onPressed: () {
@@ -141,10 +143,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
                 );
               },
-              icon: SvgPicture.asset(SvgImg.FILTER),
+              icon: SvgPicture.asset(SvgImg.FILTER,color:  ThemeHelper().getisDark() ? whiteColor : primaryColor,),
             ),
             PopupMenuButton(
-                color: Color(0xff262626),
                 icon: SvgPicture.asset(SvgImg.SORT_BY),
                 onSelected: (item) => onSelected(context, item),
                 itemBuilder: (context) =>
@@ -166,16 +167,15 @@ class _BusinessScreenState extends State<BusinessScreen> {
                             ),
                             Text(
                               "A-Z",
-                              style: TextStyle(color: Colors.white),
                             ),
                             Divider(
-                                thickness: 2, height: 2, color: whiteColor),
+                                thickness: 2, height: 2,),
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Divider(thickness: 1, height: 2, color: whiteColor),
+                        Divider(thickness: 1, height: 2, ),
                       ],
                     ),
                   ),
@@ -191,21 +191,21 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               AssetImage(
                                 ImageAsset.PERSON_ICON,
                               ),
-                              color: Colors.white,
+
                             ),
                             SizedBox(
                               width: 5,
                             ),
                             Text(
                               "Followers",
-                              style: TextStyle(color: Colors.white),
+
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Divider(thickness: 1, height: 2, color: whiteColor),
+                        Divider(thickness: 1, height: 2,),
                       ],
                     ),
                   ),
@@ -221,21 +221,21 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               AssetImage(
                                 ImageAsset.VIEWS_ICON,
                               ),
-                              color: Colors.white,
+
                             ),
                             SizedBox(
                               width: 5,
                             ),
                             Text(
                               "Views",
-                              style: TextStyle(color: Colors.white),
+
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Divider(thickness: 1, height: 2, color: whiteColor),
+                        Divider(thickness: 1, height: 2, ),
                       ],
                     ),
                   ),
@@ -253,14 +253,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                             ),
                             Text(
                               "Posts",
-                              style: TextStyle(color: Colors.white),
+
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Divider(thickness: 1, height: 2, color: whiteColor),
+                        Divider(thickness: 1, height: 2, ),
                       ],
                     ),
                   ),
@@ -276,21 +276,21 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               AssetImage(
                                 ImageAsset.FAV_ICON,
                               ),
-                              color: Colors.white,
+                              color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
                             ),
                             SizedBox(
                               width: 5,
                             ),
                             Text(
                               "Reviews",
-                              style: TextStyle(color: Colors.white),
+
                             ),
                           ],
                         ),
                         SizedBox(
                           height: 20,
                         ),
-                        Divider(thickness: 1, height: 2, color: whiteColor),
+                        Divider(thickness: 1, height: 2, ),
                       ],
                     ),
                   ),

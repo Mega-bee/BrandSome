@@ -4,6 +4,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../business_module/ui/screen/business.dart';
+import '../../../hive/hive.dart';
 import '../../../home_page/ui/screen/homePage.dart';
 import '../../../setting_module/ui/screen/setting_screen.dart';
 
@@ -33,8 +34,9 @@ class _NavigationState extends State<Navigation> {
       bottomNavigationBar: CurvedNavigationBar(
 
         animationDuration: Duration(milliseconds: 400),
-        color: Colors.black,
-        // buttonBackgroundColor: Color(0xff0ff1E1513),
+        color:ThemeHelper().getisDark() ? blackColor : whiteColor,
+        buttonBackgroundColor: ThemeHelper().getisDark() ? blackColor : blackColor,
+
         backgroundColor: Colors.transparent,
 
         height: 60,
@@ -47,17 +49,19 @@ class _NavigationState extends State<Navigation> {
         items: [
           Icon(
             Icons.home,
-            color: currentIndex == 0?primaryColor:whiteColor,
+            color: currentIndex == 0?ThemeHelper().getisDark() ? primaryColor : primaryColor:ThemeHelper().getisDark() ? whiteColor : blackColor,
             // color: ThemeHelper().getisDark() ? textColor : blackColor ,
           ),
           Icon(
-            FontAwesomeIcons.briefcase,
-             color:currentIndex == 1?primaryColor:whiteColor,
+            FontAwesomeIcons.briefcase,size: 20,
+            color: currentIndex == 1?ThemeHelper().getisDark() ? primaryColor : primaryColor:ThemeHelper().getisDark() ? whiteColor : blackColor,
+
             // color: ThemeHelper().getisDark() ? textColor : blackColor,
           ),
           Icon(
             Icons.settings,
-            color: currentIndex == 2?primaryColor:whiteColor,
+            color: currentIndex == 2?ThemeHelper().getisDark() ? primaryColor : primaryColor:ThemeHelper().getisDark() ? whiteColor : blackColor,
+
             // color: ThemeHelper().getisDark() ? textColor : blackColor,
           ),
 

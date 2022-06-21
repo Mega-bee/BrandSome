@@ -35,7 +35,7 @@ mainAxisAlignment: MainAxisAlignment.spaceBetween,
               )),
 
           Text(widget.likedByModel.name.toString(),style: TextStyle(color:Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
-          SizedBox(width: 110,),
+          SizedBox(width: 30,),
           Center(child: Text("Following",style: TextStyle(color:primaryColor,fontSize: 13,fontWeight: FontWeight.w300),))
 
 

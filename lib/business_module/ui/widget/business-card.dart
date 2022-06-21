@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../business_card_details_module/ui/screen/business_card_info_screen.dart';
+import '../../../hive/hive.dart';
 import '../../../utils/style/colors.dart';
 
 class BusinessCardScreen extends StatefulWidget {
@@ -33,7 +34,6 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
         padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10),
         child: Container(
           child: Card(
-            color: Color(0xff1E1513),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -57,7 +57,7 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                               children: [
                                 Icon(
                                   Icons.remove_red_eye_outlined,
-                                  color: whiteColor,
+
                                   size: 13,
                                 ),
                                 SizedBox(width: 3),
@@ -76,7 +76,7 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                           widget.businessCardModel.subtitle ?? "",
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                          style: TextStyle(fontSize: 10, color: whiteColor),
+                          style: TextStyle(fontSize: 10,),
                           softWrap: true,
                         ),
                         SizedBox(
@@ -86,14 +86,13 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                           children: [
                             Text(
                               widget.businessCardModel.titleTwo ?? "",
-                              style: TextStyle(color: hintText, fontSize: 9),
+                              style: TextStyle( fontSize: 9),
                             ),
                             SizedBox(
                                 width:
                                     MediaQuery.of(context).size.width * 0.005),
                             Icon(
                               Icons.location_on_outlined,
-                              color: Colors.white60,
                               size: 15,
                             ),
                             Padding(
@@ -113,40 +112,40 @@ class _BusinessCardScreenState extends State<BusinessCardScreen> {
                           children: [
                             Row(
                               children: [
-                                SvgPicture.asset(SvgImg.PERSON),
+                                SvgPicture.asset(SvgImg.PERSON,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
                                 SizedBox(
                                   width: 6,
                                 ),
                                 Text(
                                   "1000",
                                   style: TextStyle(
-                                      color: whiteColor, fontSize: 11),
+                                      fontSize: 11),
                                 ),
                               ],
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(SvgImg.RATE),
+                                SvgPicture.asset(SvgImg.RATE,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
                                 SizedBox(
                                   width: 6,
                                 ),
                                 Text(
                                   "1000",
                                   style: TextStyle(
-                                      color: whiteColor, fontSize: 11),
+                                       fontSize: 11),
                                 ),
                               ],
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(SvgImg.PAPER),
+                                SvgPicture.asset(SvgImg.PAPER,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
                                 SizedBox(
                                   width: 6,
                                 ),
                                 Text(
                                   "1000",
                                   style: TextStyle(
-                                      color: whiteColor, fontSize: 11),
+                                      fontSize: 11),
                                 ),
                               ],
                             )

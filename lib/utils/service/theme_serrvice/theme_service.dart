@@ -4,17 +4,13 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../hive/hive.dart';
 
-
-
-
 class AppThemeDataService {
   static final PublishSubject<ThemeData> _darkModeSubject =
       PublishSubject<ThemeData>();
 
   Stream<ThemeData> get darkModeStream => _darkModeSubject.stream;
 
-
-   ThemeHelper _themeHelper = ThemeHelper();
+  ThemeHelper _themeHelper = ThemeHelper();
 
   static Color get PrimaryColor {
     return Color.fromRGBO(33, 32, 156, 1);
@@ -31,17 +27,18 @@ class AppThemeDataService {
         primary: blackColor);
     if (dark == true) {
       return ThemeData(
-        appBarTheme:AppBarTheme(
-          color: blackColor ,
-        ),
-        scaffoldBackgroundColor:blackColor,
+          appBarTheme: AppBarTheme(
+            backgroundColor: blackColor,
+          ),
+          scaffoldBackgroundColor: blackColor,
           brightness: Brightness.dark,
           colorScheme: darkScheme,
-          useMaterial3: true,
+          // useMaterial3: true,
           primarySwatch: Colors.indigo,
           focusColor: PrimaryColor,
           textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(primary: Colors.white70)),
+            style: TextButton.styleFrom(primary: Colors.white70),
+          ),
           checkboxTheme: CheckboxThemeData(
             checkColor:
                 MaterialStateProperty.resolveWith((Set<MaterialState> states) {
@@ -81,41 +78,33 @@ class AppThemeDataService {
               color: Colors.white,
             ),
           ),
-
-          bottomNavigationBarTheme:BottomNavigationBarThemeData(
-              backgroundColor: primaryColor,
-          )
-
-      );
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            backgroundColor: primaryColor,
+          ));
     }
     return ThemeData(
-      appBarTheme:AppBarTheme(
-
-        color: whiteColor,
+      unselectedWidgetColor: primaryColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: whiteColor,
       ),
       scaffoldBackgroundColor: whiteColor,
-        brightness: Brightness.light,
-        //       primaryColor: PrimaryColor,
-        colorScheme: lightScheme,
-        useMaterial3: true,
-        //    colorScheme: lightScheme,
-        focusColor: PrimaryColor,
-        primarySwatch: Colors.indigo,
-        cardColor: Color.fromRGBO(245, 245, 245, 1),
+      brightness: Brightness.light,
+      colorScheme: lightScheme,
+      focusColor: PrimaryColor,
+      primarySwatch:primaryColor,
+      cardColor:whiteColor,
+      backgroundColor: whiteColor,
+      textTheme: TextTheme(button: TextStyle(color: Colors.white),),
+      fontFamily: 'Dubai',
+      timePickerTheme: TimePickerThemeData(
+        dialBackgroundColor: Color.fromRGBO(235, 235, 235, 1),
+        dayPeriodBorderSide:
+            BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
+      ),
 
-        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
-        textTheme: TextTheme(button: TextStyle(color: Colors.white)),
-        fontFamily: 'Dubai',
-        timePickerTheme: TimePickerThemeData(
-          dialBackgroundColor: Color.fromRGBO(235, 235, 235, 1),
-          dayPeriodBorderSide:
-              BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
-        ),
-
-
-        // bottomNavigationBarTheme:BottomNavigationBarThemeData(
-        // backgroundColor: customColor
-        // )
+      // bottomNavigationBarTheme:BottomNavigationBarThemeData(
+      // backgroundColor: customColor
+      // )
     );
   }
 
@@ -128,5 +117,4 @@ class AppThemeDataService {
     var activeTheme = await getActiveTheme();
     _darkModeSubject.add(activeTheme);
   }
-
 }
