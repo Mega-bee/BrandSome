@@ -44,6 +44,9 @@ dependencies:
   hive:
   hive_flutter:
   rolling_switch: ^0.0.2
+  flutter_bloc: ^7.3.3
+  http: ^0.13.4
+  equatable: ^2.0.3
 
 
 

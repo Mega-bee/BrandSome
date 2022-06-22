@@ -1,12 +1,63 @@
-class BusinessCardModel {
+class City {
   int? id;
-  String? title;
-  String? img;
-  String? subtitle;
-  String? titleTwo;
-  String? views;
-  String? km;
+  String? name;
 
-  BusinessCardModel(
-      {this.titleTwo, this.title, this.id, this.subtitle, this.views,this.img,this.km});
+  City({this.name, this.id});
+
+  City.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json["name"];
+  }
+}
+
+class BusinessResponse {
+  List<City>? city;
+  String? description;
+  int? viewCount;
+  int? postCount;
+  int? reviewCount;
+  int? followCount;
+  String? image;
+  int? id;
+  String? name;
+
+  BusinessResponse({
+    this.description,
+    this.viewCount,
+    this.postCount,
+    this.reviewCount,
+    this.followCount,
+    this.image,
+    this.id,
+    this.name,
+    this.city,
+  });
+
+  BusinessResponse.fromJson(Map<String, dynamic> json) {
+    description = json['description'];
+    viewCount = json['viewCount'];
+    postCount = json['postCount'];
+    reviewCount = json['reviewCount'];
+    followCount = json['followCount'];
+    image = json['image'];
+    id = json['id'];
+    name = json['name'];
+    city = List<City>.from(
+      json['cities'].map(
+        (e) => City.fromJson(e),
+      ),
+    );
+  }
+}
+
+class Rahaf {
+  int? id;
+  String? name;
+
+  Rahaf({this.id, this.name});
+
+  Rahaf.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json["name"];
+  }
 }

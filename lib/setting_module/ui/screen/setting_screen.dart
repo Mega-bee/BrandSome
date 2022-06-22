@@ -125,10 +125,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Icons.person,
                       size: 14,
                     ),
-                    Text("Account info",
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
+                    Text(
+                      "Account info",
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
                     SizedBox(
                       width: 160,
                     ),
@@ -289,19 +291,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Transform.scale(
                     scale: 1,
                     child: Switch.adaptive(
-                      activeColor: Theme.of(context).primaryColor,
-                      inactiveTrackColor: Colors.grey,
-                      value: value,
-                      onChanged: (value) {
-                        this.value = value;
-                        AppThemeDataService().switchDarkMode(value);
-                        setState(
-                              () {
-
-                          },
-                        );
-                      }
-                    ),
+                        activeColor: Theme.of(context).primaryColor,
+                        inactiveTrackColor: Colors.grey,
+                        value: value,
+                        onChanged: (value) {
+                          this.value = value;
+                          AppThemeDataService().switchDarkMode(value);
+                          setState(
+                            () {},
+                          );
+                        }),
                   )
                 ],
               ),
@@ -327,7 +326,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: TextButton(
                   child: Text(
                     "Add business",
-                    style: TextStyle(color: Theme.of(context).primaryColor,fontSize: 12),
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor, fontSize: 12),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -364,7 +364,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Text(
                     "Delete account",
                     style: TextStyle(
-                      color: Theme.of(context).primaryColor,fontSize: 12,
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 12,
                     ),
                   ),
                 ),

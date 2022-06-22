@@ -27,7 +27,7 @@ class _CategoryState extends State<MainCategoryCard> {
             widget.category.name!,
           ),
           SizedBox(
-            height: 4,
+            height: 2,
           ),
           Visibility(
             visible: widget.category.selectedCard,

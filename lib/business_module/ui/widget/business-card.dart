@@ -8,8 +8,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../business_card_details_module/ui/screen/business_card_info_screen.dart';
 import '../../../hive/hive.dart';
 import '../../../utils/style/colors.dart';
+
 class BusinessCard extends StatelessWidget {
-  final BusinessCardModel businessCardModel;
+  final BusinessResponse businessCardModel;
 
   BusinessCard(this.businessCardModel);
 
@@ -31,7 +32,11 @@ class BusinessCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Flexible(
-                  flex: 1, child: Image.asset(businessCardModel.img!)),
+                flex: 1,
+                child: Image.network(
+                  businessCardModel.image.toString(),
+                ),
+              ),
               Flexible(
                 flex: 2,
                 child: Padding(
@@ -43,7 +48,7 @@ class BusinessCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                           businessCardModel.title ?? "",
+                            businessCardModel.name ?? "",
                             style: StyleText.categoryStylefbusiness,
                           ),
                           Row(
@@ -54,7 +59,7 @@ class BusinessCard extends StatelessWidget {
                               ),
                               SizedBox(width: 3),
                               Text(
-                                businessCardModel.views ?? "",
+                                businessCardModel.viewCount.toString(),
                                 style: StyleText.categoryStyleviews,
                               ),
                             ],
@@ -65,10 +70,12 @@ class BusinessCard extends StatelessWidget {
                         height: 7,
                       ),
                       Text(
-                        businessCardModel.subtitle ?? "",
+                        businessCardModel.description ?? "",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
-                        style: TextStyle(fontSize: 10,),
+                        style: TextStyle(
+                          fontSize: 10,
+                        ),
                         softWrap: true,
                       ),
                       SizedBox(
@@ -76,13 +83,17 @@ class BusinessCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            businessCardModel.titleTwo ?? "",
-                            style: TextStyle( fontSize: 9),
-                          ),
+                          Wrap(
+                              children: businessCardModel.city!
+                                  .map(
+                                    (e) => Text(
+                                      "${e.name}",
+                                      style: TextStyle(fontSize: 9),
+                                    ),
+                                  )
+                                  .toList()),
                           SizedBox(
-                              width:
-                              MediaQuery.of(context).size.width * 0.005),
+                              width: MediaQuery.of(context).size.width * 0.005),
                           Icon(
                             Icons.location_on_outlined,
                             size: 15,
@@ -90,7 +101,7 @@ class BusinessCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: Text(
-                             businessCardModel.km ?? "",
+                              "5km",
                               style: StyleText.KM,
                             ),
                           ),
@@ -104,40 +115,52 @@ class BusinessCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              SvgPicture.asset(SvgImg.PERSON,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
+                              SvgPicture.asset(
+                                SvgImg.PERSON,
+                                color: ThemeHelper().getisDark()
+                                    ? whiteColor
+                                    : blackColor,
+                              ),
                               SizedBox(
                                 width: 6,
                               ),
                               Text(
-                                "1000",
-                                style: TextStyle(
-                                    fontSize: 11),
+                                "${businessCardModel.followCount}",
+                                style: TextStyle(fontSize: 11),
                               ),
                             ],
                           ),
                           Row(
                             children: [
-                              SvgPicture.asset(SvgImg.RATE,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
+                              SvgPicture.asset(
+                                SvgImg.RATE,
+                                color: ThemeHelper().getisDark()
+                                    ? whiteColor
+                                    : blackColor,
+                              ),
                               SizedBox(
                                 width: 6,
                               ),
                               Text(
-                                "1000",
-                                style: TextStyle(
-                                    fontSize: 11),
+                                "${businessCardModel.reviewCount}",
+                                style: TextStyle(fontSize: 11),
                               ),
                             ],
                           ),
                           Row(
                             children: [
-                              SvgPicture.asset(SvgImg.PAPER,color:ThemeHelper().getisDark() ? whiteColor : blackColor,),
+                              SvgPicture.asset(
+                                SvgImg.PAPER,
+                                color: ThemeHelper().getisDark()
+                                    ? whiteColor
+                                    : blackColor,
+                              ),
                               SizedBox(
                                 width: 6,
                               ),
                               Text(
-                                "1000",
-                                style: TextStyle(
-                                    fontSize: 11),
+                                "${businessCardModel.postCount}",
+                                style: TextStyle(fontSize: 11),
                               ),
                             ],
                           )

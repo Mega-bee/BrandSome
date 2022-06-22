@@ -1,5 +1,4 @@
-class subCategoryModel{
-
+class subCategoryModel {
   int? id;
   String? name;
   String? img;
@@ -7,10 +6,11 @@ class subCategoryModel{
   String? subName;
   bool selectedCard;
 
-  subCategoryModel({this.id,this.name,this.img,this.subName , this.selectedCard = false,this.unselectedImg});
-
+  subCategoryModel(
+      {this.id,
+      this.name,
+      this.img,
+      this.subName,
+      this.selectedCard = false,
+      this.unselectedImg});
 }
-
-
-
-
