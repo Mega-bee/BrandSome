@@ -4,53 +4,41 @@ import 'package:flutter/material.dart';
 import '../../../utils/style/text_style.dart';
 import '../../model/category_model.dart';
 
-class Category extends StatefulWidget {
+class MainCategoryCard extends StatefulWidget {
   final CategoryModel category;
   final Function onCardTAP;
 
-
-  Category(this.category,this.onCardTAP);
+  MainCategoryCard(this.category, this.onCardTAP);
 
   @override
-  State<Category> createState() => _CategoryState();
+  State<MainCategoryCard> createState() => _CategoryState();
 }
 
-class _CategoryState extends State<Category> {
+class _CategoryState extends State<MainCategoryCard> {
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
-      splashColor: Colors.transparent,
-      onTap: (){
-
-        widget.onCardTAP();
-      },
-      child: widget.category.selectedCard?Column(
-        children:[ Text(
-          widget.category.name!,
-          style: TextStyle(
-
-            fontSize: 12
-
-
-
+//        splashColor: Colors.transparent,
+        onTap: () {
+          widget.onCardTAP();
+        },
+        child: Column(children: [
+          Text(
+            widget.category.name!,
           ),
-        ),
-      SizedBox(height: 4,),
-      Center(
-        child: Container(
-          width: 80,
-          height: 2,
-          color: primaryColor,
-        ),
-      ),])
-      :Text(
-        widget.category.name!,
-        style: TextStyle(
-          fontSize: 12,
-
-        ),
-      )
-    );
+          SizedBox(
+            height: 4,
+          ),
+          Visibility(
+            visible: widget.category.selectedCard,
+            child: Center(
+              child: Container(
+                width: 80,
+                height: 2,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+        ]));
   }
 }

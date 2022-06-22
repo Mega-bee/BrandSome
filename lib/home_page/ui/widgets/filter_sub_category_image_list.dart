@@ -1,8 +1,6 @@
 import 'package:brandsome/home_page/model/filtrer_sub_category_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/choose_category_filter_model.dart';
-import '../../model/subCategory.dart';
 
 class FilterSubCategory extends StatefulWidget {
   final FilterSubCategoryModel filtersubcategory;

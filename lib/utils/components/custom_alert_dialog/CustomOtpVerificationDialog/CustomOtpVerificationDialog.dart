@@ -39,7 +39,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
               },
               child: Icon(
                 Icons.cancel,
-                color: primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -47,7 +47,6 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
             child: Text(
               widget.title,
               style: TextStyle(
-                  color: blackColor,
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   fontFamily: "BerlinSansFB"),
@@ -64,7 +63,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
               children: <TextSpan>[
                 TextSpan(
                     text: 'Enter the OTP you received to\n',
-                    style: TextStyle(color: darkWhiteColor, fontSize: 17),
+//                    style: TextStyle(color: darkWhiteColor, fontSize: 17),
                     children: [
                       WidgetSpan(
                         child: SizedBox(
@@ -74,7 +73,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
                     ]),
                 TextSpan(
                   text: '+961 0000000',
-                  style: TextStyle(color: blackColor, fontSize: 17),
+//                  style: TextStyle(color: blackColor, fontSize: 17),
                 )
               ],
             ),
@@ -110,7 +109,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
             },
             child: Text("Resend OTP"),
             style: ElevatedButton.styleFrom(
-                primary: primaryColor,
+                primary: Theme.of(context).primaryColor,
                 padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],

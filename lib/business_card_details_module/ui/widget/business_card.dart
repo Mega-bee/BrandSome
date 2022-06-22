@@ -43,7 +43,7 @@ class BusinessCard extends StatelessWidget {
                 style: TextStyle(color: whiteColor),
               ),
               PopupMenuButton(
-                  color: Color(0xff262626),
+
                   icon: Icon(
                     Icons.more_vert,
                     color: Colors.white,
@@ -165,7 +165,6 @@ class BusinessCard extends StatelessWidget {
         ),
         Card(
           elevation: 5,
-          shadowColor: Color(0xff171717),
           color: blackColor,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

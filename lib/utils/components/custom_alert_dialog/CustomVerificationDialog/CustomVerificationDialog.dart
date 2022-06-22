@@ -37,7 +37,7 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
                 },
                 child: Icon(
                   Icons.cancel,
-                  color: primaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
             ),
@@ -45,7 +45,7 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
               child: Text(
                 widget.title,
                 style: TextStyle(
-                    color: blackColor,
+//                    color: blackColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     fontFamily: "BerlinSansFB"),
@@ -63,24 +63,24 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
                 children: [
                   Text(
                     "Username",
-                    style: TextStyle(color: greyColor, fontSize: 10),
+//                    style: TextStyle(color: greyColor, fontSize: 10),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    style: TextStyle(color: hintText, fontSize: 15),
+//                    style: TextStyle(color: hintText, fontSize: 15),
                     controller: username,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: Theme.of(context).primaryColor,
                             width: 5,
                           ),
                         ),
                         hintText: 'Enter your username',
-                        hintStyle:
-                            TextStyle(fontSize: 12, color: darkWhiteColor),
+//                        hintStyle:
+//                            TextStyle(fontSize: 12, color: darkWhiteColor),
                         contentPadding: EdgeInsetsDirectional.only(
                             top: 10, bottom: 10, start: 10)),
                   ),
@@ -89,24 +89,24 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
                   ),
                   Text(
                     "Phone Number",
-                    style: TextStyle(color: greyColor, fontSize: 10),
+//                    style: TextStyle(color: greyColor, fontSize: 10),
                   ),
                   SizedBox(
                     height: 10,
                   ),
                   TextFormField(
-                    style: TextStyle(color: hintText, fontSize: 15),
+//                    style: TextStyle(color: hintText, fontSize: 15),
                     controller: phonenumber,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: primaryColor,
+                            color: Theme.of(context).primaryColor,
                             width: 5,
                           ),
                         ),
                         hintText: 'Enter your phone number',
-                        hintStyle:
-                            TextStyle(fontSize: 12, color: darkWhiteColor),
+//                        hintStyle:
+//                            TextStyle(fontSize: 12, color: darkWhiteColor),
                         contentPadding: EdgeInsetsDirectional.only(
                             top: 10, bottom: 10, start: 10)),
                   ),
@@ -122,7 +122,7 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
               },
               child: Text("Continue"),
               style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
+                  primary: Theme.of(context).primaryColor,
                   padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
             ),
           ],

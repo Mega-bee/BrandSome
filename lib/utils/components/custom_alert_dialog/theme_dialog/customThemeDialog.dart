@@ -25,12 +25,12 @@ class _CustomThemeDialog extends State<CustomThemeDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: ThemeHelper().getisDark() ? blackColor : primaryColor,
+//      backgroundColor: ThemeHelper().getisDark() ? blackColor : primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       title: Text(
         widget.title,
         style: TextStyle(
-            color: whiteColor,
+//            color: whiteColor,
             fontSize: 20,
             fontWeight: FontWeight.bold,
             fontFamily: "BerlinSansFB"),
@@ -42,7 +42,7 @@ class _CustomThemeDialog extends State<CustomThemeDialog> {
           Text(
             widget.content,
             style: TextStyle(
-              color: whiteColor,
+//              color: whiteColor,
               fontSize: 17,
               fontFamily: "BerlinSansFB",
             ),
@@ -65,7 +65,8 @@ class _CustomThemeDialog extends State<CustomThemeDialog> {
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         fontFamily: "BerlinSansFB",
-                        color: whiteColor),
+//                        color: whiteColor
+                    ),
                   )),
               TextButton(
                 onPressed: () {
@@ -73,7 +74,7 @@ class _CustomThemeDialog extends State<CustomThemeDialog> {
                 },
                 child: Text("Dark",
                     style: TextStyle(
-                      color: whiteColor,
+//                      color: whiteColor,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                       fontFamily: "BerlinSansFB",

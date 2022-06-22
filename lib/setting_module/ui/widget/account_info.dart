@@ -52,7 +52,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+            color: Theme.of(context).primaryColor,
           ),
         ),
         actions: [
@@ -66,7 +66,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
               },
               icon: Icon(
                 Icons.edit,
-                color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -74,9 +74,6 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
         centerTitle: true,
         title: Text(
           "Account info",
-          style: TextStyle(
-            color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
-          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -91,10 +88,10 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                     margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                     child: CircleAvatar(
                       radius: 66,
-                      backgroundColor: primaryColor,
+                      backgroundColor: Theme.of(context).primaryColor,
                       child: CircleAvatar(
                           radius: 65,
-                          backgroundColor: whiteColor,
+//                          backgroundColor: whiteColor,
                           backgroundImage: _pickImage == null
                               ? null
                               : FileImage(_pickImage!)),
@@ -109,7 +106,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  backgroundColor: whiteColor,
+//                                  backgroundColor: whiteColor,
                                   title: Text("Choose option"),
                                   content: SingleChildScrollView(
                                     child: ListBody(
@@ -118,7 +115,8 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                           onTap: () {
                                             pickImage(ImageSource.camera);
                                           },
-                                          splashColor: primaryColor,
+                                          splashColor: Theme.of(context).primaryColor,
+
                                           child: Row(
                                             children: [
                                               Padding(
@@ -126,7 +124,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                                     const EdgeInsets.all(8.0),
                                                 child: Icon(
                                                   Icons.camera,
-                                                  color: primaryColor,
+                                                  color: Theme.of(context).primaryColor,
                                                 ),
                                               ),
                                               Text(
@@ -142,7 +140,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                           onTap: () {
                                             pickImage(ImageSource.gallery);
                                           },
-                                          splashColor: primaryColor,
+                                          splashColor: Theme.of(context).primaryColor,
                                           child: Row(
                                             children: [
                                               Padding(
@@ -150,7 +148,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                                                     const EdgeInsets.all(8.0),
                                                 child: Icon(
                                                   Icons.image,
-                                                  color: primaryColor,
+                                                  color: Theme.of(context).primaryColor,
                                                 ),
                                               ),
                                               Text(
@@ -169,7 +167,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               });
                         },
                         elevation: 10,
-                        fillColor: primaryColor,
+                        fillColor: Theme.of(context).primaryColor,
                         child: Icon(
                           Icons.camera_alt_outlined,
                           color: Colors.white,
@@ -192,11 +190,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                         children: [
                           Text(
                             "Username",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle(color: Colors.grey, fontSize: 13),
                           ),
                           TextFormField(
                             readOnly: true,
-                            style: TextStyle(color: hintText, fontSize: 15),
+//                            style: TextStyle(color: hintText, fontSize: 15),
                             controller: username,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -461,7 +459,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                 child: Text(
                   "Delete account",
                   style: TextStyle(
-                      color: primaryColor,
+                      color: Theme.of(context).primaryColor,
                       fontSize: 13,
                       fontWeight: FontWeight.w300),
                 ),

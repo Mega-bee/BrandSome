@@ -33,7 +33,7 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
               },
               child: Icon(
                 Icons.cancel,
-                color: primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -49,7 +49,7 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
                 Text(
                   "Add review",
                   style: TextStyle(
-                      color: greyColor,
+//                      color: greyColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
@@ -59,12 +59,12 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
                 TextFormField(
                   minLines: 6,
                   maxLines: 12,
-                  style: TextStyle(color: hintText, fontSize: 15),
+//                  style: TextStyle(color: hintText, fontSize: 15),
                   controller: review,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: primaryColor,
+                          color: Theme.of(context).primaryColor,
                           width: 5,
                         ),
                       ),
@@ -86,7 +86,7 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
             },
             child: Text("Save review"),
             style: ElevatedButton.styleFrom(
-                primary: primaryColor,
+                primary: Theme.of(context).primaryColor,
                 padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],

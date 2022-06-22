@@ -51,7 +51,6 @@ class ReviewScreen extends StatelessWidget {
                   children: [
                     Text(
                       "${reviews[index].name}",
-                      style: TextStyle(fontSize: 14, color: whiteColor),
                     ),
                     Text(
                       "${DateFormat.yMd().add_jm().format(
@@ -59,7 +58,6 @@ class ReviewScreen extends StatelessWidget {
                           now.toString(),
                         ),
                       )}",
-                      style: TextStyle(color: whiteColor,fontSize: 10),
                     ),
                   ],
                 ),
@@ -68,7 +66,6 @@ class ReviewScreen extends StatelessWidget {
                 ),
                 Text(
                   "${reviews[index].paragraph}",
-                  style: TextStyle(fontSize: 9, color: whiteColor),
                 ),
                 SizedBox(
                   height: 13,

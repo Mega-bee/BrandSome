@@ -16,15 +16,13 @@ class BusinessInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 30,
+            height: 10,
           ),
-          Container(
-            width: double.infinity,
-            // height: 250,
-            child: Image.asset(
-              "assets/images/testImageCard.png",
-              fit: BoxFit.cover,
-            ),
+          Image.asset(
+            "assets/images/testImageCard.png",
+            fit: BoxFit.fill,
+            width: double.maxFinite,
+            height: MediaQuery.of(context).size.height *0.3,
           ),
           SizedBox(
             height: 30,
@@ -38,7 +36,7 @@ class BusinessInfo extends StatelessWidget {
                   onPressed: () {},
                   child: Text("Follow"),
                   style: ElevatedButton.styleFrom(
-                    primary: primaryColor,
+                    primary: Theme.of(context).primaryColor,
                     padding: EdgeInsets.only(right: 20, left: 20),
                   ),
                 ),
@@ -46,12 +44,10 @@ class BusinessInfo extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.remove_red_eye_outlined,
-                      color: whiteColor,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("1000",
-                          style: TextStyle(color: whiteColor, fontSize: 15)),
+                      child: Text("1000"),
                     ),
                   ],
                 ),
@@ -65,7 +61,6 @@ class BusinessInfo extends StatelessWidget {
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
             child: Text(
               "Healthcare/Sports",
-              style: TextStyle(color: whiteColor, fontSize: 16),
             ),
           ),
           SizedBox(
@@ -78,7 +73,7 @@ class BusinessInfo extends StatelessWidget {
                   Text(
                     "Personal Trainer ",
                     style: TextStyle(
-                        color: darkWhiteColor,
+
                         decoration: TextDecoration.underline),
                   ),
                   SizedBox(
@@ -87,7 +82,7 @@ class BusinessInfo extends StatelessWidget {
                   Text(
                     "Yoga",
                     style: TextStyle(
-                        color: darkWhiteColor,
+
                         decoration: TextDecoration.underline),
                   ),
                 ],
@@ -101,7 +96,7 @@ class BusinessInfo extends StatelessWidget {
               children: [
                 Icon(
                   Icons.location_on_outlined,
-                  color: primaryColor,
+                  color: Theme.of(context).primaryColor,
                 ),
                 SizedBox(
                   width: 9,
@@ -115,11 +110,6 @@ class BusinessInfo extends StatelessWidget {
                   ),
                   child: Text(
                     "Zahle",
-                    style: TextStyle(
-                        color: Color(
-                          0xff818181,
-                        ),
-                        fontSize: 11),
                   ),
                 ),
                 SizedBox(
@@ -128,17 +118,12 @@ class BusinessInfo extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
                   decoration: BoxDecoration(
-                    color: Color(0xff262626),
                     borderRadius: BorderRadius.circular(
                         5), // radius of 10// green as background color
                   ),
                   child: Text(
                     "Zahle district",
-                    style: TextStyle(
-                        color: Color(
-                          0xff818181,
-                        ),
-                        fontSize: 11),
+
                   ),
                 ),
               ],

@@ -27,14 +27,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          "Settings",
-          style: TextStyle(
-            color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+        elevation: 3,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Padding(
+          padding: const EdgeInsetsDirectional.only(start: 10.0),
+          child: Text(
+            "Settings",
+            style: Theme.of(context).textTheme.headline6,
           ),
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -278,7 +279,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.mode_edit,
                     size: 14,
                   ),
-                  Text("Theme",
+                  Text("Dark Mode",
                       style: TextStyle(
                         fontSize: 15,
                       )),
@@ -288,15 +289,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Transform.scale(
                     scale: 1,
                     child: Switch.adaptive(
-                      activeColor: primaryColor,
-                      inactiveTrackColor: whiteColor,
+                      activeColor: Theme.of(context).primaryColor,
+                      inactiveTrackColor: Colors.grey,
                       value: value,
-                      onChanged: (value) => setState(
-                        () {
-                          this.value = value;
-                          AppThemeDataService().switchDarkMode(value);
-                        },
-                      ),
+                      onChanged: (value) {
+                        this.value = value;
+                        AppThemeDataService().switchDarkMode(value);
+                        setState(
+                              () {
+
+                          },
+                        );
+                      }
                     ),
                   )
                 ],
@@ -307,7 +311,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
 
             Container(
-              color:  ThemeHelper().getisDark() ? whiteColor : blackColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
+
+//              color:  ThemeHelper().getisDark() ? whiteColor : blackColor,
               height: 0.1,
             ),
 
@@ -321,7 +327,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: TextButton(
                   child: Text(
                     "Add business",
-                    style: TextStyle(color: primaryColor,fontSize: 12),
+                    style: TextStyle(color: Theme.of(context).primaryColor,fontSize: 12),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -358,7 +364,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Text(
                     "Delete account",
                     style: TextStyle(
-                      color: primaryColor,fontSize: 12,
+                      color: Theme.of(context).primaryColor,fontSize: 12,
                     ),
                   ),
                 ),
@@ -368,7 +374,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: 90,
             ),
             Container(
-              color:  ThemeHelper().getisDark() ? whiteColor : blackColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
+//              color:  ThemeHelper().getisDark() ? whiteColor : blackColor,
               height: 0.1,
             ),
             SizedBox(

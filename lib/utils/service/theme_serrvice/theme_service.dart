@@ -1,19 +1,17 @@
-import 'package:brandsome/utils/style/colors.dart';
+import 'package:brandsome/hive/hive.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../../hive/hive.dart';
-
 class AppThemeDataService {
   static final PublishSubject<ThemeData> _darkModeSubject =
-      PublishSubject<ThemeData>();
+  PublishSubject<ThemeData>();
 
   Stream<ThemeData> get darkModeStream => _darkModeSubject.stream;
 
   ThemeHelper _themeHelper = ThemeHelper();
 
   static Color get PrimaryColor {
-    return Color.fromRGBO(33, 32, 156, 1);
+    return Colors.deepOrange;
   }
 
   ThemeData getActiveTheme() {
@@ -24,24 +22,20 @@ class AppThemeDataService {
         brightness: Brightness.dark,
         error: Colors.red[900],
         errorContainer: Colors.red[100],
-        primary: blackColor);
+        primary: Colors.grey[900]);
     if (dark == true) {
       return ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: blackColor,
-          ),
-          scaffoldBackgroundColor: blackColor,
+        primaryColor:PrimaryColor ,
           brightness: Brightness.dark,
           colorScheme: darkScheme,
-          // useMaterial3: true,
-          primarySwatch: Colors.indigo,
+          useMaterial3: true,
+          primarySwatch: Colors.deepOrange,
           focusColor: PrimaryColor,
           textButtonTheme: TextButtonThemeData(
-            style: TextButton.styleFrom(primary: Colors.white70),
-          ),
+              style: TextButton.styleFrom(primary: Colors.white70)),
           checkboxTheme: CheckboxThemeData(
             checkColor:
-                MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+            MaterialStateProperty.resolveWith((Set<MaterialState> states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{
                 MaterialState.pressed,
                 MaterialState.hovered,
@@ -53,7 +47,7 @@ class AppThemeDataService {
               return Colors.white;
             }),
             fillColor:
-                MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+            MaterialStateProperty.resolveWith((Set<MaterialState> states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{
                 MaterialState.pressed,
                 MaterialState.hovered,
@@ -62,50 +56,39 @@ class AppThemeDataService {
               if (states.any(interactiveStates.contains)) {
                 return Colors.black;
               }
-              return Colors.indigo;
+              return Colors.deepOrange;
             }),
           ),
           cardColor: Colors.grey[150],
-          fontFamily: 'Dubai',
-          elevatedButtonTheme: ElevatedButtonThemeData(
+           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25),
-            ),
-          )),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              )),
           textTheme: TextTheme(
             button: TextStyle(
               color: Colors.white,
             ),
-          ),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: primaryColor,
           ));
     }
     return ThemeData(
-      unselectedWidgetColor: primaryColor,
-      appBarTheme: AppBarTheme(
-        backgroundColor: whiteColor,
-      ),
-      scaffoldBackgroundColor: whiteColor,
-      brightness: Brightness.light,
-      colorScheme: lightScheme,
-      focusColor: PrimaryColor,
-      primarySwatch:primaryColor,
-      cardColor:whiteColor,
-      backgroundColor: whiteColor,
-      textTheme: TextTheme(button: TextStyle(color: Colors.white),),
-      fontFamily: 'Dubai',
-      timePickerTheme: TimePickerThemeData(
-        dialBackgroundColor: Color.fromRGBO(235, 235, 235, 1),
-        dayPeriodBorderSide:
-            BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
-      ),
-
-      // bottomNavigationBarTheme:BottomNavigationBarThemeData(
-      // backgroundColor: customColor
-      // )
-    );
+        brightness: Brightness.light,
+        //       primaryColor: PrimaryColor,
+        colorScheme: lightScheme,
+        useMaterial3: true,
+        //    colorScheme: lightScheme,
+        focusColor: PrimaryColor,
+        primarySwatch: Colors.deepOrange,
+        cardColor: Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
+        textTheme: TextTheme(button: TextStyle(color: Colors.white)),
+        fontFamily: 'Dubai',
+        timePickerTheme: TimePickerThemeData(
+          dialBackgroundColor: Color.fromRGBO(235, 235, 235, 1),
+          dayPeriodBorderSide:
+          BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
+        ));
   }
 
   void switchDarkMode(bool darkMode) async {

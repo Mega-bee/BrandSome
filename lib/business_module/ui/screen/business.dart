@@ -116,14 +116,13 @@ class _BusinessScreenState extends State<BusinessScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
+          elevation: 3,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsetsDirectional.only(start: 10.0),
             child: Text(
-              "Brandsome",
-              style: TextStyle(
-                color: ThemeHelper().getisDark() ? primaryColor : primaryColor,
-              ),
+              "BrandSome",
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           actions: [
@@ -134,7 +133,8 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   MaterialPageRoute(builder: (context) => SearchBarScreen()),
                 );
               },
-              icon: Icon(Icons.search,color: ThemeHelper().getisDark() ? whiteColor : primaryColor,),
+              icon: Icon(Icons.search,color:
+             Theme.of(context).primaryColor),
             ),
             IconButton(
               onPressed: () {
@@ -143,10 +143,10 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
                 );
               },
-              icon: SvgPicture.asset(SvgImg.FILTER,color:  ThemeHelper().getisDark() ? whiteColor : primaryColor,),
+              icon: SvgPicture.asset(SvgImg.FILTER,color:   Theme.of(context).primaryColor),
             ),
             PopupMenuButton(
-                icon: SvgPicture.asset(SvgImg.SORT_BY),
+                icon: SvgPicture.asset(SvgImg.SORT_BY, color:  Theme.of(context).primaryColor),
                 onSelected: (item) => onSelected(context, item),
                 itemBuilder: (context) =>
                 [
@@ -160,7 +160,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                           children: [
                             ImageIcon(
                               AssetImage(ImageAsset.SORT_ICON),
-                              color: Colors.white,
+                              color:  Theme.of(context).primaryColor
                             ),
                             SizedBox(
                               width: 5,
@@ -300,9 +300,11 @@ class _BusinessScreenState extends State<BusinessScreen> {
           ],
         ),
         body: ListView.builder(
+            physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()),
             itemCount: bcm.length,
             itemBuilder: (context, index) {
-              return BusinessCardScreen(
+              return BusinessCard(
                 bcm[index],
               );
             }));

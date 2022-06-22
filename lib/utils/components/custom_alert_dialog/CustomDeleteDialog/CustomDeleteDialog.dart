@@ -37,7 +37,6 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
               child: Text(
                 widget.title,
                 style: TextStyle(
-                    color: blackColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                     fontFamily: "BerlinSansFB"),
@@ -63,11 +62,10 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
                     onPressed: () {
                       widget.yesBtn();
                     },
-                    child: Text("  Yes  ",style: TextStyle(color: primaryColor,fontWeight: FontWeight.w400,fontSize: 12)),
+                    child: Text("  Yes  ",style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w400,fontSize: 12)),
                     style: ElevatedButton.styleFrom(
-                        primary: whiteColor,
-                        elevation: 0,
-                        side: BorderSide(color:primaryColor ),
+                         elevation: 0,
+                        side: BorderSide(color:Theme.of(context).primaryColor ),
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                   ElevatedButton(
@@ -76,7 +74,7 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
                     },
                     child: Text("Cancel",style: TextStyle(fontSize: 12),),
                     style: ElevatedButton.styleFrom(
-                        primary: primaryColor,
+//                        primary: primaryColor,
                         elevation: 0,
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),

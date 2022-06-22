@@ -166,14 +166,13 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
+        elevation: 3,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsetsDirectional.only(start: 10.0),
           child: Text(
-            "Brandsome",
-            style: TextStyle(
-              color: ThemeHelper().getisDark() ? primaryColor : primaryColor,
-            ),
+            "BrandSome",
+            style: Theme.of(context).textTheme.headline6,
           ),
         ),
         actions: [
@@ -187,13 +186,13 @@ class _HomePageState extends State<HomePage>
             },
             icon: Icon(
               Icons.search,
-              color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+              color:Theme.of(context).primaryColor
             ),
           ),
           PopupMenuButton(
               icon: Icon(
                 Icons.add_circle_outline,
-                color: ThemeHelper().getisDark() ? whiteColor : primaryColor,
+                  color:Theme.of(context).primaryColor
               ),
               onSelected: (item) => onSelected(context, item),
               itemBuilder: (context) => [
@@ -211,9 +210,7 @@ class _HomePageState extends State<HomePage>
                               ),
                               SvgPicture.asset(
                                 SvgImg.MATERIAL_BUSINESS,
-                                color: ThemeHelper().getisDark()
-                                    ? whiteColor
-                                    : primaryColor,
+                                color: Theme.of(context).primaryColor
                               ),
                             ],
                           ),
@@ -240,9 +237,7 @@ class _HomePageState extends State<HomePage>
                           SvgPicture.asset(
                             SvgImg.PAPER,
                             height: 25,
-                            color: ThemeHelper().getisDark()
-                                ? whiteColor
-                                : primaryColor,
+                            color: Theme.of(context).primaryColor,
                           ),
                         ],
                       ),
@@ -257,13 +252,16 @@ class _HomePageState extends State<HomePage>
                   MaterialPageRoute(builder: (context) => NotificationScreen()),
                 );
               },
-              icon: Icon(Icons.notifications_none),
+              icon: Icon(Icons.notifications_none,  color:Theme.of(context).primaryColor),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        physics: BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics()),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
           SizedBox(
             height: 20,
           ),
@@ -278,7 +276,7 @@ class _HomePageState extends State<HomePage>
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Category(categorys[index], () {
+                        child: MainCategoryCard(categorys[index], () {
                           categorys.forEach((element) {
                             element.selectedCard = false;
                           });
@@ -324,32 +322,25 @@ class _HomePageState extends State<HomePage>
               },
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(
-                    end: 8.0, start: 10, top: 20, bottom: 13),
+                    end: 8.0, start: 10,top: 5, bottom: 13),
                 child: Text(
                   "Choose interests",
                   style: TextStyle(
                       color: primaryColor,
-                      decoration: TextDecoration.underline,
-                      fontSize: 9),
+                      decoration: TextDecoration.underline),
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
           Divider(
             thickness: 3,
-          ),
-          SizedBox(
-            height: 12,
           ),
           ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: post.length,
               itemBuilder: (context, index) {
-                return BrandCards(post[index]);
+                return PostCard(post[index]);
               })
         ]),
       ),

@@ -17,53 +17,59 @@ class _FollowCardState extends State<FollowCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 20,top: 20),
-      child: ListTile(
-        // leading: Image.asset(ImageAsset.TEST_IMAGE),
-        leading:  CircleAvatar(
-          backgroundImage: AssetImage(ImageAsset.TEST_IMAGE,),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+      child: Column(
+        children: [
+          ListTile(
+            // leading: Image.asset(ImageAsset.TEST_IMAGE),
+            leading:  CircleAvatar(
+              backgroundImage: AssetImage(ImageAsset.TEST_IMAGE,),
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Walid Taktak",
-                  style: TextStyle(color: darkWhiteColor, fontSize: 16),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Walid Taktak",
+                     ),
+                    Text(
+                      "Healthcare/Sports",
+                      style: TextStyle(fontSize: 14),
+                     ),
+                  ],
                 ),
-                Text(
-                  "Healthcare/Sports",
-                  style: TextStyle(color: hintText, fontSize: 10),
-                ),
+                isSelected
+                    ? ElevatedButton(
+                        onPressed: () {
+                          isSelected = !isSelected;
+                          setState(() {
+
+                          });
+                        },
+                        child: Text("Follow",style: TextStyle(fontSize: 13),),
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).primaryColor,
+                        ),
+                      )
+                    : TextButton(
+                        onPressed: () {
+                          isSelected = !isSelected;
+                          setState(() {
+
+                          });
+                        },
+                        child: Text("Unfollow",style: TextStyle(fontSize: 13),),
+                        style: TextButton.styleFrom(
+                            // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
+                            side: BorderSide(color: Theme.of(context).primaryColor)),
+                      )
               ],
             ),
-            isSelected
-                ? ElevatedButton(
-                    onPressed: () {
-                      isSelected = !isSelected;
-                      setState(() {
-
-                      });
-                    },
-                    child: Text("Follow",style: TextStyle(fontSize: 13),),
-                    style: ElevatedButton.styleFrom(
-                      primary: primaryColor,
-                    ),
-                  )
-                : TextButton(
-                    onPressed: () {
-                      isSelected = !isSelected;
-                      setState(() {
-
-                      });
-                    },
-                    child: Text("Unfollow",style: TextStyle(fontSize: 13),),
-                    style: TextButton.styleFrom(
-                        // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
-                        side: BorderSide(color: primaryColor)),
-                  )
-          ],
-        ),
+          ),
+          Divider(height: 3,)
+        ],
       ),
     );
   }

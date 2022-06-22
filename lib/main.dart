@@ -9,10 +9,10 @@ import 'navigation_bar/ui/screens/navigationBar.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveSetUp.init();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    systemNavigationBarColor:
-        ThemeHelper().getisDark() ? blackColor : Colors.transparent,
-  ));
+//  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+//    systemNavigationBarColor:
+//        ThemeHelper().getisDark() ? blackColor : Colors.transparent,
+//  ));
   runApp(MyApp());
 }
 

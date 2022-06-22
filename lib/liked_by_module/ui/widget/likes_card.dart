@@ -16,29 +16,14 @@ class LikesCard extends StatefulWidget {
 class _LikesCardState extends State<LikesCard> {
   @override
   Widget build(BuildContext context) {
-    return  Row(
-mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children:[
-          Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Container(
-                height: MediaQuery.of(context).size.height*0.08,
-                width:MediaQuery.of(context).size.width*0.13,
-
-                child: CircleAvatar(
-                  foregroundImage: AssetImage("assets/images/${widget.likedByModel.image}",),
-                  radius:120,
-
-                  backgroundColor: Colors.transparent,
-                ),
-                // Text("C",style: TextStyle(fontSize: 50,color: Colors.white),),)
-              )),
-
-          Text(widget.likedByModel.name.toString(),style: TextStyle(color:Colors.white,fontSize: 18,fontWeight: FontWeight.bold),),
-          SizedBox(width: 30,),
-          Center(child: Text("Following",style: TextStyle(color:primaryColor,fontSize: 13,fontWeight: FontWeight.w300),))
-
-
-        ]);
+    return ListTile(
+      title: Text(widget.likedByModel.name.toString()),
+      leading:  CircleAvatar(
+        foregroundImage: AssetImage("assets/images/${widget.likedByModel.image}",),
+        radius:20,
+        backgroundColor: Colors.transparent,
+      ),
+      trailing:           Text("Following",style: TextStyle(color:primaryColor,fontSize: 13,fontWeight: FontWeight.w300),),
+    ) ;
   }
 }
