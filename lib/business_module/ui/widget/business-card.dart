@@ -24,18 +24,17 @@ class BusinessCard extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(8.0),
         child: Card(
 
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Flexible(
                 flex: 1,
                 child: Image.network(
-                  businessCardModel.image.toString(),height: 100,
+                  businessCardModel.image.toString(),
                 ),
               ),
               Flexible(
