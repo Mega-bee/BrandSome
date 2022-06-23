@@ -27,7 +27,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 3,
+        centerTitle: true,
+        elevation: 0,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
@@ -56,9 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   )),
               Column(
                 children: [
-                  Text("20",
-                      style: TextStyle(
-                      )),
+                  Text("20", style: TextStyle()),
                   SizedBox(
                     height: 3,
                   ),
@@ -71,9 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               Column(
                 children: [
-                  Text("2000",
-                      style: TextStyle(
-                      )),
+                  Text("2000", style: TextStyle()),
                   SizedBox(
                     height: 3,
                   ),
@@ -86,9 +83,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               Column(
                 children: [
-                  Text("200",
-                      style: TextStyle(
-                      )),
+                  Text("200", style: TextStyle()),
                   SizedBox(
                     height: 3,
                   ),
@@ -101,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ]),
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 22.0,top: 10),
+              padding: const EdgeInsetsDirectional.only(start: 22.0, top: 10),
               child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -115,9 +110,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 3,
             ),
-        Divider(
-          thickness: 2,
-        ),
+            Divider(
+              thickness: 2,
+            ),
             SizedBox(
               height: 30,
             ),
@@ -142,9 +137,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Text(
                       "Account info",
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
+                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF)),
                     ),
                     SizedBox(
                       width: 145,
@@ -172,9 +165,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: 14,
                   ),
                   Text("Business 1",
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
+                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
                   SizedBox(
                     width: 160,
                   ),
@@ -200,9 +191,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: 14,
                   ),
                   Text("Business 2",
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
+                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
                   SizedBox(
                     width: 160,
                   ),
@@ -228,9 +217,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     size: 14,
                   ),
                   Text("Business 3",
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
+                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
                   SizedBox(
                     width: 160,
                   ),
@@ -263,9 +250,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       size: 14,
                     ),
                     Text("Businesses I follow",
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
+                        style:
+                            TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
                     SizedBox(
                       width: 100,
                     ),
@@ -287,11 +273,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                   Text("Dark Mode",
-                      style: TextStyle(
-                        fontSize: 15,
-                      )),
+                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
                   SizedBox(
                     width: 160,
                   ),
@@ -315,9 +298,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 10,
             ),
-           Divider(
-             thickness: 2,
-           ),
+            Divider(
+              thickness: 2,
+            ),
             SizedBox(
               height: 10,
             ),
@@ -325,7 +308,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsetsDirectional.only(
                 start: 20.0,
                 end: 30,
-              ),              child: Align(
+              ),
+              child: Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   child: Text(
@@ -344,12 +328,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsetsDirectional.only(
                 start: 20.0,
                 end: 30,
-              ),              child: Align(
+              ),
+              child: Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
@@ -377,10 +361,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-
-         Divider(
-           thickness: 2,
-         ),
+            Divider(
+              thickness: 2,
+            ),
             SizedBox(
               height: 10,
             ),

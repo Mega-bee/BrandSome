@@ -1,5 +1,6 @@
 import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
+import '../../../hive/hive.dart';
 import '../widget/business info.dart';
 import '../widget/business posts.dart';
 import '../widget/reviews.dart';
@@ -18,21 +19,24 @@ class _BusinessCardInfoScreenState extends State<BusinessCardInfoScreen> with Ti
     late TabController tabController = TabController(length: 3, vsync: this);
     return Scaffold(
        appBar: AppBar(
-         elevation: 3,
+         centerTitle: true,
+         elevation: 0,
          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
          title: Padding(
            padding: const EdgeInsetsDirectional.only(start: 10.0),
            child: Text(
              "Bussines name",
-             style: Theme.of(context).textTheme.headline6,
            ),
          ),
       ),
       body: Column(
         children: [
+
           Container(
             color: Theme.of(context).cardColor,
             child: TabBar(
+              unselectedLabelColor: Color(0xffDFDFDF),
+              labelColor: primaryColor,
               controller: tabController,
               indicatorColor: Theme.of(context).primaryColor,
               tabs: [

@@ -42,11 +42,11 @@ class _AddBusinessState extends State<AddBusiness> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: blackColor,
       appBar: AppBar(
-        backgroundColor: blackColor,
-        title: Text("Add business"),
-        // centerTitle: true,
+        backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
+        title: Text("Add business",style: TextStyle(color: Colors.black),),
+        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+        centerTitle: true,
         actions: [
           Padding(
               padding: const EdgeInsets.only(right: 28.0),
@@ -73,7 +73,6 @@ class _AddBusinessState extends State<AddBusiness> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        backgroundColor: whiteColor,
                         title: Text("Choose option"),
                         content: SingleChildScrollView(
                           child: ListBody(
@@ -169,15 +168,12 @@ class _AddBusinessState extends State<AddBusiness> {
                   children: [
                     Text(
                       "Business Name",
-                      style: TextStyle(color: whiteColor, fontSize: 13),
+                      style: TextStyle( fontSize: 13),
                     ),
                     TextFormField(
                       style: TextStyle(color: hintText, fontSize: 15),
                       controller: business,
                       decoration: InputDecoration(
-                        // contentPadding: EdgeInsets.only(left: 20),
-                        // hintText: "username",
-                        // hintStyle: TextStyle(color: Colors.white),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: borderColor, width: 1),
                         ),
@@ -196,11 +192,11 @@ class _AddBusinessState extends State<AddBusiness> {
                       padding: const EdgeInsets.only(left: 2.0),
                       child: Text(
                         "Description",
-                        style: TextStyle(color: whiteColor, fontSize: 13),
+                        style: TextStyle(fontSize: 13),
                       ),
                     ),
                     TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
+                      style: TextStyle( fontSize: 15),
                       controller: description,
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
@@ -234,7 +230,6 @@ class _AddBusinessState extends State<AddBusiness> {
                         padding: const EdgeInsets.only(right: 38.0),
                         child: Text(
                           "Add location",
-                          style: TextStyle(color: whiteColor),
                         ),
                       ),
                     ),
@@ -256,7 +251,7 @@ class _AddBusinessState extends State<AddBusiness> {
                               child: Text(
                                 "${e.name}",
                                 style: TextStyle(
-                                    color: primaryColor, fontSize: 11),
+                                     fontSize: 11, color: Theme.of(context).primaryColor,),
                               ),
                             ),
                           )
@@ -279,7 +274,6 @@ class _AddBusinessState extends State<AddBusiness> {
                       },
                       child: Text(
                         "Add services",
-                        style: TextStyle(color: whiteColor),
                       ),
                     ),
                     Divider(

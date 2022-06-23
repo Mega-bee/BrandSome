@@ -20,4 +20,5 @@ MaterialColor hintText = MaterialColor(0xff9A9A9A, color);
 MaterialColor borderColor = MaterialColor(0xff707070, color);
 MaterialColor SettingTextColor = MaterialColor(0xffCCCCCC, color);
 MaterialColor darkWhiteColor = MaterialColor(0xffDFDFDF, color);
+MaterialColor darkerWhiteColor = MaterialColor(0xff818181, color);
 

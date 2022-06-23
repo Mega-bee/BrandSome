@@ -166,10 +166,16 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 3,
+        backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
         title: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 10.0),
-          child: Text("BrandSome", style: TextStyle(color: primaryColor)),
+          padding: EdgeInsetsDirectional.only(start: 10.0),
+          child: Text(
+            "BrandSome",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -177,7 +183,8 @@ class _HomePageState extends State<HomePage>
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => SearchBarFilterScreen()),
+                  builder: (context) => SearchBarFilterScreen(),
+                ),
               );
             },
             icon: Icon(

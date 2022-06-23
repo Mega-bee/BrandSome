@@ -8,30 +8,29 @@ class ReviewScreen extends StatelessWidget {
   List<ReviewModel> reviews = [
     ReviewModel(
         name: "Peter Tohme",
-        paragraph: "This app is very good i like it :)",
+        paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you",
         date: DateTime.now()),
     ReviewModel(
       name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
+      paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you",
     ),
     ReviewModel(
       name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
+      paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you",
     ),
     ReviewModel(
       name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
+      paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you",
     ),
     ReviewModel(
       name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
+      paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you",
     ),
     ReviewModel(
       name: "Peter Tohme",
-      paragraph: "This app is very good i like it :)",
+      paragraph: "This app is very good i like it , hello how are you , welcome to brandsome love you This app is very good i like it , hello how are you , welcome to brandsome love you",
     ),
   ];
-  DateTime now = new DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -50,14 +49,12 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${reviews[index].name}",style: TextStyle(fontSize: 14),
+                      "${reviews[index].name}",style: TextStyle(fontSize: 14,),
                     ),
                     Text(
-                      "${DateFormat.yMd().add_jm().format(
-                        DateTime.parse(
-                          now.toString(),
-                        ),
-                      )}",style: TextStyle(fontSize: 11),
+                      "${DateTime.now().toString().split('1').first
+
+                      }",style: TextStyle(fontSize: 8,color: Colors.grey),
                     ),
                   ],
                 ),
@@ -65,7 +62,7 @@ class ReviewScreen extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "${reviews[index].paragraph}",style: TextStyle(fontSize: 11),
+                  "${reviews[index].paragraph}",style: TextStyle(fontSize: 9,color: Colors.grey[300]),
                 ),
                 SizedBox(
                   height: 13,

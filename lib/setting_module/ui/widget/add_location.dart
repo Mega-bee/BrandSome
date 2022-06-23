@@ -151,20 +151,21 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: blackColor,
       appBar: AppBar(
-        backgroundColor: blackColor,
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         leading: IconButton(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back)),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).primaryColor,
+            )),
         actions: [
           Padding(
             padding: const EdgeInsets.all(18.0),
             child: IconButton(
               onPressed: () {
                 returnedLocation();
-
-
               },
               icon: Icon(
                 Icons.check,
@@ -204,10 +205,8 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.search,
-                          color: whiteColor,
                         ),
                         hintText: "Search for services",
-                        hintStyle: TextStyle(color: whiteColor),
                         contentPadding:
                             EdgeInsetsDirectional.only(start: 10, end: 10),
                         enabledBorder: OutlineInputBorder(
@@ -254,7 +253,6 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                             ),
                             Text(
                               "${loca[index].name}",
-                              style: TextStyle(color: whiteColor),
                             ),
                           ],
                         ),

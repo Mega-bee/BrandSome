@@ -37,7 +37,7 @@ class AppThemeDataService {
           primarySwatch: Colors.deepOrange,
           focusColor: PrimaryColor,
           textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(primary: Colors.white70)),
+              style: TextButton.styleFrom(primary: Colors.white)),
           checkboxTheme: CheckboxThemeData(
             checkColor:
             MaterialStateProperty.resolveWith((Set<MaterialState> states) {
@@ -70,24 +70,18 @@ class AppThemeDataService {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
-              )),
-          textTheme: TextTheme(
-            button: TextStyle(
-              color: Colors.white,
-            ),
-          ));
+              )));
+
     }
     return ThemeData(
-        appBarTheme: AppBarTheme(
-          color: whiteColor,
-        ),
+
         brightness: Brightness.light,
         //       primaryColor: PrimaryColor,
         colorScheme: lightScheme,
         useMaterial3: true,
         //    colorScheme: lightScheme,
         focusColor: PrimaryColor,
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: primaryColor,
         cardColor: Color.fromRGBO(245, 245, 245, 1),
         backgroundColor: Color.fromRGBO(236, 239, 241, 1),
         textTheme: TextTheme(button: TextStyle(color: Colors.white)),

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../../../hive/hive.dart';
+import '../../../home_page/model/choose_category_filter_model.dart';
+import '../../../home_page/model/filter_service_model.dart';
+import '../../../home_page/model/filtrer_sub_category_model.dart';
+import '../../../home_page/ui/widgets/filter_category_image_list.dart';
+import '../../../home_page/ui/widgets/filter_service.dart';
+import '../../../home_page/ui/widgets/filter_sub_category_image_list.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/style/colors.dart';
-import '../../model/choose_category_filter_model.dart';
-import '../../model/filter_service_model.dart';
-import '../../model/filtrer_sub_category_model.dart';
-import 'filter_category_image_list.dart';
-import 'filter_service.dart';
-import 'filter_sub_category_image_list.dart';
 
-class SearchBarFilterScreen extends StatefulWidget {
+
+class SearchBarFilterBusinessScreen extends StatefulWidget {
+
   @override
-  State<SearchBarFilterScreen> createState() => _SearchBarFilterScreenState();
+  State<SearchBarFilterBusinessScreen> createState() => _SearchBarFilterBusinessScreenState();
 }
 
-class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
+class _SearchBarFilterBusinessScreenState extends State<SearchBarFilterBusinessScreen> {
   final searchbarFilter = TextEditingController();
   List<CategoryFilterModel> filter = [
     CategoryFilterModel(
@@ -47,6 +49,7 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
         selectedCard: false),
   ];
 
+
   List<FilterServiceModel> service = [
     FilterServiceModel(
         img: ImageAssetSports.BOXING,
@@ -73,7 +76,6 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
         unselectedimg: ImageAssetUnselectedSports.KUNG_FU,
         selectedCard: false),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,58 +84,53 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 20,),
+              TextField(
+                cursorColor:
+                ThemeHelper().getisDark() ? whiteColor : blackColor,
+                style: const TextStyle(fontSize: 14),
+                controller: searchbarFilter,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    size: 18,
+                    color: ThemeHelper().getisDark()
+                        ? whiteColor
+                        : blackColor,
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.close,
+                      size: 18,
+                      color: ThemeHelper().getisDark()
+                          ? whiteColor
+                          : blackColor,
+                    ),
+                  ),
+                  filled: true,
+                  hintText: "Search for services",
+                  enabledBorder:  OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                      borderSide: BorderSide(
+                        width: 2,
+                        color: ThemeHelper().getisDark()
+                            ? Colors.black
+                            : Colors.white,
+                      )),
+                  border: OutlineInputBorder(
+                    borderSide: const BorderSide(),
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
+              ),
               Padding(
                 padding:
                     const EdgeInsets.only(left: 20.0, right: 25.0, top: 20.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextField(
-                        cursorColor:
-                            ThemeHelper().getisDark() ? whiteColor : blackColor,
-                        style: const TextStyle(fontSize: 14),
-                        controller: searchbarFilter,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.search,
-                            size: 18,
-                            color: ThemeHelper().getisDark()
-                                ? whiteColor
-                                : blackColor,
-                          ),
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: Icon(
-                              Icons.close,
-                              size: 18,
-                              color: ThemeHelper().getisDark()
-                                  ? whiteColor
-                                  : blackColor,
-                            ),
-                          ),
-                          filled: true,
-                          hintText: "Search for services",
-                          enabledBorder:  OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(50),
-                              ),
-                              borderSide: BorderSide(
-                                width: 2,
-                                color: ThemeHelper().getisDark()
-                                    ? Colors.black
-                                    : Colors.white,
-                              )),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(),
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
               ),
               SizedBox(
                 height: 30,
@@ -200,17 +197,19 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
                 ),
               ),
               Container(
-                child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
+                  child: GridView.builder(
+
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+
+                    ),
+                    itemCount: service.length,
+                    itemBuilder: (context, index) {
+                      return FilterService(service[index]);
+                    },
                   ),
-                  itemCount: service.length,
-                  itemBuilder: (context, index) {
-                    return FilterService(service[index]);
-                  },
-                ),
               )
             ],
           ),

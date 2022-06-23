@@ -15,38 +15,60 @@ class BusinessInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 10,
+            height: 24,
           ),
-          Image.asset(
-            "assets/images/testImageCard.png",
+          Image.network(
+            "https://www.insidesport.in/wp-content/uploads/2021/11/FBx-v7JXoAAkCzM-58.jpg",
             fit: BoxFit.fill,
-            width: double.maxFinite,
-            height: 250,
+            width: double.infinity,
+            height: 220,
           ),
           SizedBox(
             height: 30,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 ElevatedButton(
+
                   onPressed: () {},
-                  child: Text("Follow"),
+                  child: Text(
+                    "Follow",
+                    style: TextStyle(
+                        color: whiteColor,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14
+                    ),
+                  ),
                   style: ElevatedButton.styleFrom(
+
                     primary: Theme.of(context).primaryColor,
-                    padding: EdgeInsets.only(right: 20, left: 20),
+                    padding: EdgeInsetsDirectional.only(
+                      end: 30,
+                      top: 1,
+                      bottom: 1,
+                      start: 30,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
                 Row(
                   children: [
                     Icon(
                       Icons.remove_red_eye_outlined,
+                      size: 14,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("1000"),
+                      child: Text(
+                        "1000",
+                        style: TextStyle(fontSize: 12),
+                      ),
                     ),
                   ],
                 ),
@@ -54,26 +76,26 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 15,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
               "Healthcare/Sports",
+              style: TextStyle(fontSize: 15),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 14,
           ),
           Padding(
-              padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+              padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
               child: Row(
                 children: [
                   Text(
                     "Personal Trainer ",
                     style: TextStyle(
-
-                        decoration: TextDecoration.underline),
+                        decoration: TextDecoration.underline, fontSize: 10),
                   ),
                   SizedBox(
                     width: 10,
@@ -81,20 +103,20 @@ class BusinessInfo extends StatelessWidget {
                   Text(
                     "Yoga",
                     style: TextStyle(
-
-                        decoration: TextDecoration.underline),
+                        decoration: TextDecoration.underline, fontSize: 10),
                   ),
                 ],
               )),
           SizedBox(
-            height: 22,
+            height: 15,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: const EdgeInsetsDirectional.only(start: 17.0, end: 23.0),
             child: Row(
               children: [
                 Icon(
                   Icons.location_on_outlined,
+                  size: 18,
                   color: Theme.of(context).primaryColor,
                 ),
                 SizedBox(
@@ -109,6 +131,7 @@ class BusinessInfo extends StatelessWidget {
                   ),
                   child: Text(
                     "Zahle",
+                    style: TextStyle(color: darkerWhiteColor, fontSize: 12),
                   ),
                 ),
                 SizedBox(
@@ -117,12 +140,13 @@ class BusinessInfo extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
                   decoration: BoxDecoration(
+                    color: Color(0xff262626),
                     borderRadius: BorderRadius.circular(
                         5), // radius of 10// green as background color
                   ),
                   child: Text(
                     "Zahle district",
-
+                    style: TextStyle(color: darkerWhiteColor, fontSize: 12),
                   ),
                 ),
               ],
@@ -132,9 +156,9 @@ class BusinessInfo extends StatelessWidget {
             height: 22,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
-              "dolor sit amet, consetetur sadipscing",
+              "dolor sit amet, consetetur sadipscing wgf kbb bbi bhkb hbhb ib ibyib",
               style: TextStyle(
                 fontSize: 16,
                 color: Color(0xffDFDFDF),
@@ -145,63 +169,64 @@ class BusinessInfo extends StatelessWidget {
             height: 22,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Center(
               child: Container(
-
-                padding: EdgeInsets.only(top: 10,bottom: 10),
+                padding: EdgeInsets.only(top: 10, bottom: 10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                      5),
+                  borderRadius: BorderRadius.circular(5),
                   color: blackColor,
                   border: Border.all(color: primaryColor, width: 1),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    SvgPicture.asset(SvgImg.PERSON),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "1000",
-                      style: TextStyle(fontSize: 12, color: whiteColor),
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      "|",
-                      style: TextStyle(color: primaryColor),
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    SvgPicture.asset(SvgImg.RATE),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "1000",
-                      style: TextStyle(fontSize: 12, color: whiteColor),
-                    ),
-                    SizedBox(
-                      width: 25,
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          SvgImg.PERSON,
+                          color: Colors.white,
+                          height: 16,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("1000"),
+                      ],
                     ),
                     Text(
                       "|",
-                      style: TextStyle(color: primaryColor),
+                      style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    SvgPicture.asset(SvgImg.PAPER),
-                    SizedBox(
-                      width: 5,
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          SvgImg.RATE,
+                          color: Colors.white,
+                          height: 16,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("2000"),
+                      ],
                     ),
                     Text(
-                      "1000",
-                      style: TextStyle(fontSize: 12, color: whiteColor),
+                      "|",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          SvgImg.PAPER,
+                          color: Colors.white,
+                          height: 16,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("3000"),
+                      ],
                     ),
                   ],
                 ),
@@ -220,17 +245,26 @@ class BusinessInfo extends StatelessWidget {
                   onPressed: () {},
                   child: Row(
                     children: [
-                      SvgPicture.asset(SvgImg.PHONE,height: 20,color: whiteColor,),
-
-                      SizedBox(
-                        width: 5,
+                      SvgPicture.asset(
+                        SvgImg.PHONE,
+                        height: 20,
+                        color: whiteColor,
                       ),
-                      Text("Call Now"),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Call Now",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.only(left: 15,right: 15),
+                    padding: EdgeInsets.only(left: 30, right: 30),
                     primary: primaryColor,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
                 ElevatedButton(
@@ -245,28 +279,32 @@ class BusinessInfo extends StatelessWidget {
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(SvgImg.RATE,height: 20,),
-
-                      SizedBox(
-                        width: 5,
+                      SvgPicture.asset(
+                        SvgImg.RATING,
+                        height: 20,
                       ),
-                      Text("Add review"),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text("Add review", style: TextStyle(color: Colors.white)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.only(left: 15,right: 15),
-
+                    padding: EdgeInsets.only(left: 30, right: 30),
                     primary: primaryColor,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 25,)
+          SizedBox(
+            height: 25,
+          )
         ],
       ),
     );
-
-
   }
 }

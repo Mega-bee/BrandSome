@@ -26,6 +26,7 @@ class BusinessCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Card(
+
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           child: Row(
@@ -39,137 +40,137 @@ class BusinessCard extends StatelessWidget {
               ),
               Flexible(
                 flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            businessCardModel.name ?? "",
-                            style: StyleText.categoryStylefbusiness,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.remove_red_eye_outlined,
-                                size: 13,
-                              ),
-                              SizedBox(width: 3),
-                              Text(
-                                businessCardModel.viewCount.toString(),
-                                style: StyleText.categoryStyleviews,
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(
-                        businessCardModel.description ?? "",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
-                        style: TextStyle(
-                          fontSize: 10,
-                        ),
-                        softWrap: true,
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Wrap(
-                              children: businessCardModel.city!
-                                  .map(
-                                    (e) => Text(
-                                      "${e.name},",
-                                      style: TextStyle(fontSize: 9),
-                                    ),
-                                  )
-                                  .toList()),
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.005),
-                          Icon(
-                            Icons.location_on_outlined,
-                            size: 15,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text(
-                              "5km",
-                              style: StyleText.KM,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(start: 8.0,end: 8.0),
-                        child: Row(
+                child: Container(
+                  color: Color(0xff1E1513),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PERSON,
-                                  color: ThemeHelper().getisDark()
-                                      ? whiteColor
-                                      : blackColor,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${businessCardModel.followCount}",
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
+                            Text(
+                              businessCardModel.name ?? "",
+                              style: StyleText.categoryStylefbusiness,
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(
-                                  SvgImg.RATE,
-                                  color: ThemeHelper().getisDark()
-                                      ? whiteColor
-                                      : blackColor,
+                                Icon(
+                                  Icons.remove_red_eye_outlined,
+                                  size: 13,
                                 ),
-                                SizedBox(
-                                  width: 6,
-                                ),
+                                SizedBox(width: 3),
                                 Text(
-                                  "${businessCardModel.reviewCount}",
-                                  style: TextStyle(fontSize: 11),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PAPER,
-                                  color: ThemeHelper().getisDark()
-                                      ? whiteColor
-                                      : blackColor,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${businessCardModel.postCount}",
-                                  style: TextStyle(fontSize: 11),
+                                  businessCardModel.viewCount.toString(),
+                                  style: StyleText.categoryStyleviews,
                                 ),
                               ],
                             )
                           ],
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          businessCardModel.description ?? "",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Color(0xffDFDFDF),
+                          ),
+                          softWrap: true,
+                        ),
+                        SizedBox(
+                          height: 4,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on_outlined,
+                              size: 12,
+                              color:  Colors.grey,
+                            ),
+                            Wrap(
+                                children: businessCardModel.city!
+                                    .map(
+                                      (e) => Text(
+                                        "${e.name},",
+                                        style: TextStyle(fontSize: 9,color: Colors.grey),
+                                      ),
+                                    )
+                                    .toList()),
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.005),
+
+
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(start: 8.0,end: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    SvgImg.PERSON,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    "${businessCardModel.followCount}",
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    SvgImg.RATE,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    "${businessCardModel.reviewCount}",
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    SvgImg.PAPER,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
+                                  ),
+                                  SizedBox(
+                                    width: 6,
+                                  ),
+                                  Text(
+                                    "${businessCardModel.postCount}",
+                                    style: TextStyle(fontSize: 11),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )

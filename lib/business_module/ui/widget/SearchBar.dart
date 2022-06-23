@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../hive/hive.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/style/colors.dart';
 
@@ -14,7 +15,6 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: blackColor,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -25,29 +25,47 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                     const EdgeInsets.only(left: 20.0, right: 25.0, top: 20.0),
                 child: Row(
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(Icons.arrow_back_ios),
-                      color: Colors.white,
-                    ),
+
                     Expanded(
                       child: TextField(
-                        style: const TextStyle(fontSize: 12),
+                        cursorColor:
+                        ThemeHelper().getisDark() ? whiteColor : blackColor,
+                        style: const TextStyle(fontSize: 14),
                         controller: searchbar,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            size: 18,
+                            color: ThemeHelper().getisDark()
+                                ? whiteColor
+                                : blackColor,
+                          ),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: Icon(
+                              Icons.close,
+                              size: 18,
+                              color: ThemeHelper().getisDark()
+                                  ? whiteColor
+                                  : blackColor,
+                            ),
+                          ),
                           filled: true,
-                          fillColor: Colors.white,
                           hintText: "Search for services",
-                          enabledBorder: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(50)),
-                              borderSide:
-                                  BorderSide(width: 2, color: Colors.white)),
+                          enabledBorder:  OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(50),
+                              ),
+                              borderSide: BorderSide(
+                                width: 2,
+                                color: ThemeHelper().getisDark()
+                                    ? Colors.black
+                                    : Colors.white,
+                              )),
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
+                            borderSide: const BorderSide(),
                             borderRadius: BorderRadius.circular(50.0),
                           ),
                         ),

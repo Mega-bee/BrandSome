@@ -13,6 +13,7 @@ import '../../../network/WebUrl.dart';
 import '../../../utils/style/colors.dart';
 import '../widget/SearchBar.dart';
 import '../widget/business-card.dart';
+import '../widget/searbarfilter_business_screen.dart';
 
 class BusinessScreen extends StatefulWidget {
   const BusinessScreen({Key? key}) : super(key: key);
@@ -51,11 +52,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
         ..add(FetchData(Urls.GET_BUSINESS, requestType: RequestType.get)),
       child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             elevation: 0,
             title: Padding(
               padding: const EdgeInsetsDirectional.only(start: 10.0),
-
-              child: Text("BrandSome", style: TextStyle(color: primaryColor)),
+              child: Text("BrandSome",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  )),
             ),
             actions: [
               IconButton(
@@ -75,7 +79,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SearchBarFilterScreen()),
+                        builder: (context) => SearchBarFilterBusinessScreen()),
                   );
                 },
                 icon: SvgPicture.asset(
@@ -164,6 +168,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                                   ImageIcon(
                                     AssetImage(
                                       ImageAsset.VIEWS_ICON,
+
                                     ),
                                   ),
                                   SizedBox(
@@ -192,7 +197,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset(SvgImg.PAPER),
+                                  SvgPicture.asset(SvgImg.PAPER,color: ThemeHelper().getisDark()
+                                      ? whiteColor
+                                      : blackColor,),
                                   SizedBox(
                                     width: 5,
                                   ),
@@ -225,7 +232,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                                     ),
                                     color: ThemeHelper().getisDark()
                                         ? whiteColor
-                                        : primaryColor,
+                                        : blackColor,
                                   ),
                                   SizedBox(
                                     width: 5,
@@ -253,7 +260,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
               builder: (context, state) {
                 if (state is Loading) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: primaryColor,
+                    ),
                   );
                 } else if (state is ConnectionError) {
                   return ConnectionErrorScreen(
@@ -277,7 +286,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                     business.add(BusinessResponse.fromJson(item));
                   }
 
-                  return business != null
+                  return business.isNotEmpty
                       ? ListView.builder(
                           physics: BouncingScrollPhysics(
                               parent: AlwaysScrollableScrollPhysics()),
@@ -285,7 +294,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
-                                SizedBox(height: 10,),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 BusinessCard(
                                   business[index],
                                 ),
