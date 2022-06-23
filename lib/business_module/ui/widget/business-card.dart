@@ -34,7 +34,7 @@ class BusinessCard extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: Image.network(
-                  businessCardModel.image.toString(),
+                  businessCardModel.image.toString(),height: 100,
                 ),
               ),
               Flexible(
@@ -87,7 +87,7 @@ class BusinessCard extends StatelessWidget {
                               children: businessCardModel.city!
                                   .map(
                                     (e) => Text(
-                                      "${e.name}",
+                                      "${e.name},",
                                       style: TextStyle(fontSize: 9),
                                     ),
                                   )
@@ -110,61 +110,64 @@ class BusinessCard extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                SvgImg.PERSON,
-                                color: ThemeHelper().getisDark()
-                                    ? whiteColor
-                                    : blackColor,
-                              ),
-                              SizedBox(
-                                width: 6,
-                              ),
-                              Text(
-                                "${businessCardModel.followCount}",
-                                style: TextStyle(fontSize: 11),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                SvgImg.RATE,
-                                color: ThemeHelper().getisDark()
-                                    ? whiteColor
-                                    : blackColor,
-                              ),
-                              SizedBox(
-                                width: 6,
-                              ),
-                              Text(
-                                "${businessCardModel.reviewCount}",
-                                style: TextStyle(fontSize: 11),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                SvgImg.PAPER,
-                                color: ThemeHelper().getisDark()
-                                    ? whiteColor
-                                    : blackColor,
-                              ),
-                              SizedBox(
-                                width: 6,
-                              ),
-                              Text(
-                                "${businessCardModel.postCount}",
-                                style: TextStyle(fontSize: 11),
-                              ),
-                            ],
-                          )
-                        ],
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 8.0,end: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.PERSON,
+                                  color: ThemeHelper().getisDark()
+                                      ? whiteColor
+                                      : blackColor,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.followCount}",
+                                  style: TextStyle(fontSize: 11),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.RATE,
+                                  color: ThemeHelper().getisDark()
+                                      ? whiteColor
+                                      : blackColor,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.reviewCount}",
+                                  style: TextStyle(fontSize: 11),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.PAPER,
+                                  color: ThemeHelper().getisDark()
+                                      ? whiteColor
+                                      : blackColor,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.postCount}",
+                                  style: TextStyle(fontSize: 11),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),

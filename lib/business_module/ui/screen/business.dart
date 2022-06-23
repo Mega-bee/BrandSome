@@ -51,14 +51,11 @@ class _BusinessScreenState extends State<BusinessScreen> {
         ..add(FetchData(Urls.GET_BUSINESS, requestType: RequestType.get)),
       child: Scaffold(
           appBar: AppBar(
-            elevation: 3,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 0,
             title: Padding(
               padding: const EdgeInsetsDirectional.only(start: 10.0),
-              child: Text(
-                "BrandSome",
-                style: Theme.of(context).textTheme.headline6,
-              ),
+
+              child: Text("BrandSome", style: TextStyle(color: primaryColor)),
             ),
             actions: [
               IconButton(
@@ -68,7 +65,10 @@ class _BusinessScreenState extends State<BusinessScreen> {
                     MaterialPageRoute(builder: (context) => SearchBarScreen()),
                   );
                 },
-                icon: Icon(Icons.search, color: Theme.of(context).primaryColor),
+                icon: Icon(
+                  Icons.search,
+                  color: ThemeHelper().getisDark() ? whiteColor : blackColor,
+                ),
               ),
               IconButton(
                 onPressed: () {
@@ -78,12 +78,16 @@ class _BusinessScreenState extends State<BusinessScreen> {
                         builder: (context) => SearchBarFilterScreen()),
                   );
                 },
-                icon: SvgPicture.asset(SvgImg.FILTER,
-                    color: Theme.of(context).primaryColor),
+                icon: SvgPicture.asset(
+                  SvgImg.FILTER,
+                  color: ThemeHelper().getisDark() ? whiteColor : blackColor,
+                ),
               ),
               PopupMenuButton(
-                  icon: SvgPicture.asset(SvgImg.SORT_BY,
-                      color: Theme.of(context).primaryColor),
+                  icon: SvgPicture.asset(
+                    SvgImg.SORT_BY,
+                    color: ThemeHelper().getisDark() ? whiteColor : blackColor,
+                  ),
                   onSelected: (item) => onSelected(context, item),
                   itemBuilder: (context) => [
                         PopupMenuItem(
@@ -281,6 +285,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
+                                SizedBox(height: 10,),
                                 BusinessCard(
                                   business[index],
                                 ),
@@ -288,7 +293,10 @@ class _BusinessScreenState extends State<BusinessScreen> {
                             );
                           })
                       : Center(
-                          child: Text("No business to show",style: TextStyle(color: Colors.white),),
+                          child: Text(
+                            "No business to show",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         );
                 }
                 return Container();

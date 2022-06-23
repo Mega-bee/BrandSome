@@ -169,10 +169,7 @@ class _HomePageState extends State<HomePage>
         elevation: 3,
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
-          child: Text(
-            "BrandSome",
-            style:TextStyle(color: primaryColor)
-          ),
+          child: Text("BrandSome", style: TextStyle(color: primaryColor)),
         ),
         actions: [
           IconButton(
@@ -185,13 +182,13 @@ class _HomePageState extends State<HomePage>
             },
             icon: Icon(
               Icons.search,
-              color:Theme.of(context).primaryColor
+              color: ThemeHelper().getisDark() ? whiteColor : blackColor,
             ),
           ),
           PopupMenuButton(
               icon: Icon(
                 Icons.add_circle_outline,
-                  color:Theme.of(context).primaryColor
+                color: ThemeHelper().getisDark() ? whiteColor : blackColor,
               ),
               onSelected: (item) => onSelected(context, item),
               itemBuilder: (context) => [
@@ -209,7 +206,9 @@ class _HomePageState extends State<HomePage>
                               ),
                               SvgPicture.asset(
                                 SvgImg.MATERIAL_BUSINESS,
-                                color: Theme.of(context).primaryColor
+                                color: ThemeHelper().getisDark()
+                                    ? whiteColor
+                                    : blackColor,
                               ),
                             ],
                           ),
@@ -236,7 +235,9 @@ class _HomePageState extends State<HomePage>
                           SvgPicture.asset(
                             SvgImg.PAPER,
                             height: 25,
-                            color: Theme.of(context).primaryColor,
+                            color: ThemeHelper().getisDark()
+                                ? whiteColor
+                                : blackColor,
                           ),
                         ],
                       ),
@@ -251,16 +252,17 @@ class _HomePageState extends State<HomePage>
                   MaterialPageRoute(builder: (context) => NotificationScreen()),
                 );
               },
-              icon: Icon(Icons.notifications_none,  color:Theme.of(context).primaryColor),
+              icon: Icon(
+                Icons.notifications_none,
+                color: ThemeHelper().getisDark() ? whiteColor : blackColor,
+              ),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(
             height: 20,
           ),
@@ -321,7 +323,7 @@ class _HomePageState extends State<HomePage>
               },
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(
-                    end: 8.0, start: 10,top: 5, bottom: 13),
+                    end: 8.0, start: 10, top: 5, bottom: 13),
                 child: Text(
                   "Choose interests",
                   style: TextStyle(

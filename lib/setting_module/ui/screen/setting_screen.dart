@@ -58,7 +58,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text("20",
                       style: TextStyle(
-                        color: Colors.white,
                       )),
                   SizedBox(
                     height: 3,
@@ -74,7 +73,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text("2000",
                       style: TextStyle(
-                        color: Colors.white,
                       )),
                   SizedBox(
                     height: 3,
@@ -90,7 +88,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Text("200",
                       style: TextStyle(
-                        color: Colors.white,
                       )),
                   SizedBox(
                     height: 3,
@@ -110,7 +107,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   child: Text(
                     "Christian Zakhour ",
                     style: TextStyle(
-                        color: Colors.white,
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic),
