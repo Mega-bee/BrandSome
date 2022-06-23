@@ -37,12 +37,11 @@ class _BusinessScreenState extends State<BusinessScreen> {
 
   late DataLoaderBloc dataLoaderBloc;
 
-
   @override
   void initState() {
     dataLoaderBloc = DataLoaderBloc(Default());
-    dataLoaderBloc.add(FetchData(Urls.GET_BUSINESS,
-        requestType: RequestType.get));
+    dataLoaderBloc
+        .add(FetchData(Urls.GET_BUSINESS, requestType: RequestType.get));
   }
 
   @override
@@ -247,49 +246,53 @@ class _BusinessScreenState extends State<BusinessScreen> {
           ),
           body: BlocBuilder<DataLoaderBloc, GlobalState>(
               bloc: dataLoaderBloc,
-
               builder: (context, state) {
-            if (state is Loading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is ConnectionError) {
-              return ConnectionErrorScreen(
-                  errorMessage: 'connectionError',
-                  retry: () {
-                    BlocProvider.of<DataLoaderBloc>(context)
-                      ..add(FetchData(Urls.GET_BUSINESS,
-                          requestType: RequestType.get));
-                  });
-            } else if (state is Error) {
-              return ConnectionErrorScreen(
-                  errorMessage: state.errorMessage,
-                  retry: () {
-                    BlocProvider.of<DataLoaderBloc>(context)
-                      ..add(FetchData(Urls.GET_BUSINESS,
-                          requestType: RequestType.get));
-                  });
-            } else if (state is Successfully) {
-              for (var item in state.data) {
-                business.add(BusinessResponse.fromJson(item));
-              }
+                if (state is Loading) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is ConnectionError) {
+                  return ConnectionErrorScreen(
+                      errorMessage: 'connectionError',
+                      retry: () {
+                        BlocProvider.of<DataLoaderBloc>(context)
+                          ..add(FetchData(Urls.GET_BUSINESS,
+                              requestType: RequestType.get));
+                      });
+                } else if (state is Error) {
+                  return ConnectionErrorScreen(
+                      errorMessage: state.errorMessage,
+                      retry: () {
+                        BlocProvider.of<DataLoaderBloc>(context)
+                          ..add(FetchData(Urls.GET_BUSINESS,
+                              requestType: RequestType.get));
+                      });
+                } else if (state is Successfully) {
+                  business.clear();
+                  for (var item in state.data) {
+                    business.add(BusinessResponse.fromJson(item));
+                  }
 
-              return ListView.builder(
-                  physics: BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
-                  itemCount: business.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        BusinessCard(
-                          business[index],
-                        ),
-                      ],
-                    );
-                  });
-            }
-            return Container();
-          })),
+                  return business != null
+                      ? ListView.builder(
+                          physics: BouncingScrollPhysics(
+                              parent: AlwaysScrollableScrollPhysics()),
+                          itemCount: business.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                BusinessCard(
+                                  business[index],
+                                ),
+                              ],
+                            );
+                          })
+                      : Center(
+                          child: Text("No business to show",style: TextStyle(color: Colors.white),),
+                        );
+                }
+                return Container();
+              })),
     );
   }
 }

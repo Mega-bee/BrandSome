@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../../utils/style/colors.dart';
-import '../../../utils/style/text_style.dart';
 
 class BusinessInfo extends StatelessWidget {
   const BusinessInfo({Key? key}) : super(key: key);
@@ -22,7 +21,7 @@ class BusinessInfo extends StatelessWidget {
             "assets/images/testImageCard.png",
             fit: BoxFit.fill,
             width: double.maxFinite,
-            height: MediaQuery.of(context).size.height *0.3,
+            height: 250,
           ),
           SizedBox(
             height: 30,

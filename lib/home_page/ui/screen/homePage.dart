@@ -167,12 +167,11 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
           child: Text(
             "BrandSome",
-            style: Theme.of(context).textTheme.headline6,
+            style:TextStyle(color: primaryColor)
           ),
         ),
         actions: [

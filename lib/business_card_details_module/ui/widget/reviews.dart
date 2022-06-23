@@ -50,22 +50,22 @@ class ReviewScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${reviews[index].name}",
+                      "${reviews[index].name}",style: TextStyle(fontSize: 14),
                     ),
                     Text(
                       "${DateFormat.yMd().add_jm().format(
                         DateTime.parse(
                           now.toString(),
                         ),
-                      )}",
+                      )}",style: TextStyle(fontSize: 11),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 9,
+                  height: 20,
                 ),
                 Text(
-                  "${reviews[index].paragraph}",
+                  "${reviews[index].paragraph}",style: TextStyle(fontSize: 11),
                 ),
                 SizedBox(
                   height: 13,

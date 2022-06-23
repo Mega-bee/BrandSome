@@ -1,4 +1,5 @@
 import 'package:brandsome/hive/hive.dart';
+import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -25,6 +26,10 @@ class AppThemeDataService {
         primary: Colors.grey[900]);
     if (dark == true) {
       return ThemeData(
+        appBarTheme: AppBarTheme(
+          color: blackColor,
+        ),
+        scaffoldBackgroundColor: blackColor,
         primaryColor:PrimaryColor ,
           brightness: Brightness.dark,
           colorScheme: darkScheme,
@@ -59,7 +64,7 @@ class AppThemeDataService {
               return Colors.deepOrange;
             }),
           ),
-          cardColor: Colors.grey[150],
+          cardColor: blackColor,
            elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
@@ -73,6 +78,9 @@ class AppThemeDataService {
           ));
     }
     return ThemeData(
+        appBarTheme: AppBarTheme(
+          color: whiteColor,
+        ),
         brightness: Brightness.light,
         //       primaryColor: PrimaryColor,
         colorScheme: lightScheme,

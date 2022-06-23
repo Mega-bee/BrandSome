@@ -23,7 +23,7 @@ class _LikesCardState extends State<LikesCard> {
         radius:20,
         backgroundColor: Colors.transparent,
       ),
-      trailing:           Text("Following",style: TextStyle(color:primaryColor,fontSize: 13,fontWeight: FontWeight.w300),),
+      // trailing:           Text("Following",style: TextStyle(color:primaryColor,fontSize: 13,fontWeight: FontWeight.w300),),
     ) ;
   }
 }
