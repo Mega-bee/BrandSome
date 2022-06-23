@@ -281,7 +281,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 30,
             ),
             Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -291,10 +291,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.mode_edit,
-                    size: 14,
-                  ),
+
                   Text("Dark Mode",
                       style: TextStyle(
                         fontSize: 15,
@@ -329,14 +326,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
+              padding: const EdgeInsetsDirectional.only(
+                start: 20.0,
+                end: 30,
+              ),              child: Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   child: Text(
                     "Add business",
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontSize: 12),
+                        color: Theme.of(context).primaryColor, fontSize: 13),
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -349,9 +348,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
+
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
+              padding: const EdgeInsetsDirectional.only(
+                start: 20.0,
+                end: 30,
+              ),              child: Align(
                 alignment: Alignment.topLeft,
                 child: TextButton(
                   onPressed: () {
@@ -373,22 +375,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     "Delete account",
                     style: TextStyle(
                       color: Theme.of(context).primaryColor,
-                      fontSize: 12,
+                      fontSize: 13,
                     ),
                   ),
                 ),
               ),
             ),
+
+         Divider(
+           thickness: 2,
+         ),
             SizedBox(
-              height: 90,
-            ),
-            Container(
-              color: Theme.of(context).scaffoldBackgroundColor,
-//              color:  ThemeHelper().getisDark() ? whiteColor : blackColor,
-              height: 0.1,
-            ),
-            SizedBox(
-              height: 5,
+              height: 10,
             ),
             Center(
               child:
