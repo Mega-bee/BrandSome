@@ -13,6 +13,7 @@ class Urls {
 
   /*--------home-------------------*/
   static const GET_BUSINESS = BASE_API_BUSINESS + 'GetBusinesses';
+  static const GET_BUSINESS_DETAILS = BASE_API_BUSINESS + 'GetBusiness/';
 
   //
   // /*--------DEVICE-------------------*/

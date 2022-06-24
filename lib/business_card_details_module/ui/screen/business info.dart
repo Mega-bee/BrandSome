@@ -4,9 +4,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../../utils/style/colors.dart';
+import '../../model/business_info_model.dart';
 
 class BusinessInfo extends StatelessWidget {
-  const BusinessInfo({Key? key}) : super(key: key);
+  final  businessInfoModel;
+  BusinessInfo({required this.businessInfoModel});
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,7 @@ class BusinessInfo extends StatelessWidget {
             height: 24,
           ),
           Image.network(
-            "https://www.insidesport.in/wp-content/uploads/2021/11/FBx-v7JXoAAkCzM-58.jpg",
+            businessInfoModel.image.toString(),
             fit: BoxFit.fill,
             width: double.infinity,
             height: 220,
@@ -66,7 +69,7 @@ class BusinessInfo extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "1000",
+                        "${businessInfoModel.viewCount}",
                         style: TextStyle(fontSize: 12),
                       ),
                     ),
@@ -81,7 +84,7 @@ class BusinessInfo extends StatelessWidget {
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
-              "Healthcare/Sports",
+              "${businessInfoModel.type}",
               style: TextStyle(fontSize: 15),
             ),
           ),
@@ -91,21 +94,14 @@ class BusinessInfo extends StatelessWidget {
           Padding(
               padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
               child: Row(
-                children: [
-                  Text(
-                    "Personal Trainer ",
-                    style: TextStyle(
-                        decoration: TextDecoration.underline, fontSize: 10),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Yoga",
-                    style: TextStyle(
-                        decoration: TextDecoration.underline, fontSize: 10),
-                  ),
-                ],
+                children:businessInfoModel.services!.map<Widget>((e) =>  Text(
+                  "${e.name}",
+                  style: TextStyle(
+                      decoration: TextDecoration.underline, fontSize: 10,color: Colors.white),
+                ),).toList(),
+
+
+
               )),
           SizedBox(
             height: 15,
@@ -129,26 +125,29 @@ class BusinessInfo extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                         5), // radius of 10// green as background color
                   ),
-                  child: Text(
-                    "Zahle",
-                    style: TextStyle(color: darkerWhiteColor, fontSize: 12),
-                  ),
+                  child: Row(
+                      children: businessInfoModel.cities!.map<Widget>((e) => Text(
+                        "${e.name} ",
+                        style: TextStyle(color: darkerWhiteColor, fontSize: 12),
+                      ),).toList()
+                  )
                 ),
+
                 SizedBox(
                   width: 11,
                 ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                  decoration: BoxDecoration(
-                    color: Color(0xff262626),
-                    borderRadius: BorderRadius.circular(
-                        5), // radius of 10// green as background color
-                  ),
-                  child: Text(
-                    "Zahle district",
-                    style: TextStyle(color: darkerWhiteColor, fontSize: 12),
-                  ),
-                ),
+                // Container(
+                //   padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                //   decoration: BoxDecoration(
+                //     color: Color(0xff262626),
+                //     borderRadius: BorderRadius.circular(
+                //         5), // radius of 10// green as background color
+                //   ),
+                //   child: Text(
+                //     "Zahle district",
+                //     style: TextStyle(color: darkerWhiteColor, fontSize: 12),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -158,7 +157,7 @@ class BusinessInfo extends StatelessWidget {
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
-              "dolor sit amet, consetetur sadipscing wgf kbb bbi bhkb hbhb ib ibyib",
+              "${businessInfoModel.description}",
               style: TextStyle(
                 fontSize: 16,
                 color: Color(0xffDFDFDF),
@@ -191,7 +190,7 @@ class BusinessInfo extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("1000"),
+                        Text("${businessInfoModel.followCount}"),
                       ],
                     ),
                     Text(
@@ -208,7 +207,7 @@ class BusinessInfo extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("2000"),
+                        Text("${businessInfoModel.reviewCount}"),
                       ],
                     ),
                     Text(
@@ -225,7 +224,7 @@ class BusinessInfo extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("3000"),
+                        Text("${businessInfoModel.postCount}"),
                       ],
                     ),
                   ],

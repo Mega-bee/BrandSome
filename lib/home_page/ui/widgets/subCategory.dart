@@ -19,15 +19,15 @@ class _subCategoryState extends State<subCategory> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        widget.subcate.selectedCard = ! widget.subcate.selectedCard;
-        setState(() {
-
-        });
+        // widget.subcate.selectedCard = ! widget.subcate.selectedCard;
+        // setState(() {
+        //
+        // });
         // widget.onCardTAP();
       },
       child: Padding(
         padding: const EdgeInsets.all(6.0),
-        child:  widget.subcate.selectedCard?Image.asset(widget.subcate.img!): Image.asset(widget.subcate.unselectedImg!)
+        child:  Image.asset(widget.subcate.img!)
       ),
     );
 

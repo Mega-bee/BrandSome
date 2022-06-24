@@ -1,4 +1,4 @@
-import 'package:brandsome/business_module/model/business_card.dart';
+import 'package:brandsome/business_module/model/business_card_model.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,15 +20,16 @@ class BusinessCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => BusinessCardInfoScreen()),
+          MaterialPageRoute(builder: (context) => BusinessCardInfoScreen(title: businessCardModel.name,id: businessCardModel.id,)),
         );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-
           elevation: 5,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Row(
             children: [
               Flexible(
@@ -89,28 +90,29 @@ class BusinessCard extends StatelessWidget {
                             Icon(
                               Icons.location_on_outlined,
                               size: 12,
-                              color:  Colors.grey,
+                              color: Colors.grey,
                             ),
                             Wrap(
                                 children: businessCardModel.city!
                                     .map(
                                       (e) => Text(
                                         "${e.name},",
-                                        style: TextStyle(fontSize: 9,color: Colors.grey),
+                                        style: TextStyle(
+                                            fontSize: 9, color: Colors.grey),
                                       ),
                                     )
                                     .toList()),
                             SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.005),
-
-
+                                width:
+                                    MediaQuery.of(context).size.width * 0.005),
                           ],
                         ),
                         SizedBox(
                           height: 10,
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(start: 8.0,end: 8.0),
+                          padding: const EdgeInsetsDirectional.only(
+                              start: 8.0, end: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

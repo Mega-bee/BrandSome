@@ -94,7 +94,7 @@ class PostCard extends StatelessWidget {
                   ),
                   Text(
                     "Properties/Appartments/Electricians",
-                    style: TextStyle(fontSize: 12,fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 11,fontWeight: FontWeight.w500,color: Color(0xff666666)),
                   ),
 //                Padding(
 //                  padding: const EdgeInsets.only(left: 15.0),

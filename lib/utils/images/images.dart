@@ -53,6 +53,11 @@ class SvgImg {
   static const MATERIAL_BUSINESS = ROOT +'Icon material-business-center.svg';
   static const FILTER = ROOT +'Icon awesome-filter.svg';
   static const SORT_BY = ROOT +'Icon awesome-sort-amount-down.svg';
+  static const SORT_ALPGA_DOWN = ROOT +'sort-alpha-down.svg';
+  static const VIEWS = ROOT +'views.svg';
+  static const REVIEWS = ROOT +'reviews.svg';
+
+
 
 
 

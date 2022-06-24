@@ -50,14 +50,4 @@ class BusinessResponse {
   }
 }
 
-class Rahaf {
-  int? id;
-  String? name;
 
-  Rahaf({this.id, this.name});
-
-  Rahaf.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json["name"];
-  }
-}

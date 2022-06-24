@@ -209,13 +209,14 @@ class _HomePageState extends State<HomePage>
                             children: [
                               Text(
                                 "Add Business",
-                                style: TextStyle(fontSize: 15),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SvgPicture.asset(
                                 SvgImg.MATERIAL_BUSINESS,
                                 color: ThemeHelper().getisDark()
                                     ? whiteColor
                                     : blackColor,
+                      height: 20,
                               ),
                             ],
                           ),
@@ -237,14 +238,15 @@ class _HomePageState extends State<HomePage>
                         children: [
                           Text(
                             "Add post",
-                            style: TextStyle(fontSize: 15),
+                            style: TextStyle(fontSize: 12),
                           ),
                           SvgPicture.asset(
                             SvgImg.PAPER,
-                            height: 25,
+                            height: 20,
                             color: ThemeHelper().getisDark()
                                 ? whiteColor
                                 : blackColor,
+
                           ),
                         ],
                       ),

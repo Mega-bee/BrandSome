@@ -1,4 +1,4 @@
-import 'package:brandsome/business_module/model/business_card.dart';
+import 'package:brandsome/business_module/model/business_card_model.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,10 +102,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ImageIcon(AssetImage(ImageAsset.SORT_ICON),
-                                      color: Theme.of(context).primaryColor),
+                                  SvgPicture.asset(
+                                    SvgImg.SORT_ALPGA_DOWN,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
+                                  ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 7,
                                   ),
                                   Text(
                                     "A-Z",
@@ -134,13 +138,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ImageIcon(
-                                    AssetImage(
-                                      ImageAsset.PERSON_ICON,
-                                    ),
+                                  SvgPicture.asset(
+                                    SvgImg.PERSON,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
                                   ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 7,
                                   ),
                                   Text(
                                     "Followers",
@@ -165,14 +170,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ImageIcon(
-                                    AssetImage(
-                                      ImageAsset.VIEWS_ICON,
-
-                                    ),
+                                  SvgPicture.asset(
+                                    SvgImg.VIEWS,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
                                   ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 7,
                                   ),
                                   Text(
                                     "Views",
@@ -197,11 +202,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SvgPicture.asset(SvgImg.PAPER,color: ThemeHelper().getisDark()
-                                      ? whiteColor
-                                      : blackColor,),
+                                  SvgPicture.asset(
+                                    SvgImg.PAPER,
+                                    color: ThemeHelper().getisDark()
+                                        ? whiteColor
+                                        : blackColor,
+                                  ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 7,
                                   ),
                                   Text(
                                     "Posts",
@@ -226,16 +234,14 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  ImageIcon(
-                                    AssetImage(
-                                      ImageAsset.FAV_ICON,
-                                    ),
+                                  SvgPicture.asset(
+                                    SvgImg.REVIEWS,
                                     color: ThemeHelper().getisDark()
                                         ? whiteColor
                                         : blackColor,
                                   ),
                                   SizedBox(
-                                    width: 5,
+                                    width: 7,
                                   ),
                                   Text(
                                     "Reviews",
