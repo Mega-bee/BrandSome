@@ -1,18 +1,15 @@
 import 'package:brandsome/home_page/model/category_model.dart';
 import 'package:brandsome/home_page/model/subCategory.dart';
-import 'package:brandsome/utils/style/colors.dart';
-import 'package:brandsome/utils/style/text_style.dart';
+import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import '../../../hive/hive.dart';
 import '../../../setting_module/ui/widget/add_business.dart';
 import '../../../utils/images/images.dart';
 import '../../model/post_model.dart';
-import '../widgets/BrandCard.dart';
-import '../widgets/notification_screen.dart';
+import '../widgets/post_card.dart';
+import '../../../notification_module/notification_screen.dart';
 import '../widgets/searbarfilter_screen.dart';
-import '../widgets/Category.dart';
+import '../widgets/main_cate_card.dart';
 import '../widgets/subCategory.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,6 +35,17 @@ class _HomePageState extends State<HomePage>
         break;
     }
   }
+ late List<ItemModel> menuItems;
+
+
+  @override
+  void initState() {
+    menuItems = [
+      ItemModel('Add Bussines', Icons.card_travel),
+      ItemModel('Add Post', Icons.post_add),
+    ];
+    super.initState();
+  }
 
   List<CategoryModel> categorys = [
     CategoryModel(id: 1, name: "Personal", selectedCard: true),
@@ -45,33 +53,33 @@ class _HomePageState extends State<HomePage>
     CategoryModel(id: 3, name: "Cars", selectedCard: false),
   ];
 
-  List<subCategoryModel> subCat = [
-    subCategoryModel(
+  List<SubCategoryModel> subCat = [
+    SubCategoryModel(
         id: 1,
         img: ImageAssetSports.BOXING,
         unselectedImg: ImageAssetUnselectedSports.BOXING,
         selectedCard: false),
-    subCategoryModel(
+    SubCategoryModel(
         id: 2,
         img: ImageAssetSports.DRAWING,
         unselectedImg: ImageAssetUnselectedSports.DRAWING,
         selectedCard: false),
-    subCategoryModel(
+    SubCategoryModel(
         id: 3,
         img: ImageAssetSports.KUNG_FU,
         unselectedImg: ImageAssetUnselectedSports.KUNG_FU,
         selectedCard: false),
-    subCategoryModel(
+    SubCategoryModel(
         id: 4,
         img: ImageAssetSports.MUAY_THAI,
         unselectedImg: ImageAssetUnselectedSports.MUAY_THAI,
         selectedCard: false),
-    subCategoryModel(
+    SubCategoryModel(
         id: 5,
         img: ImageAssetSports.PERSONAL_TRAINER,
         unselectedImg: ImageAssetUnselectedSports.PERSONAL_TRAINER,
         selectedCard: false),
-    subCategoryModel(
+    SubCategoryModel(
         id: 6,
         img: ImageAssetSports.PING_PONG,
         unselectedImg: ImageAssetUnselectedSports.PING_PONG,
@@ -80,85 +88,67 @@ class _HomePageState extends State<HomePage>
 
   List<postModel> post = [
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
+        autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        imgTwo:[
+          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
+          'https://googleflutter.com/sample_image.jpg',
+          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+         ],
         paragraph:
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
+        autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        imgTwo:[
+          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        ],
         paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Peter",
-        subTitle: "Zahle, lebanon",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        autherImage: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:[
+          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        ],
         paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Peter",
-        subTitle: "Zahle, lebanon",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        autherImage: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:[
+          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        ],
         paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Peter",
-        subTitle: "Zahle, lebanon",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        autherImage: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:[
+          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        ],
         paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Peter",
-        subTitle: "Zahle, lebanon",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+        autherImage: ImageAsset.TEST_IMAGE,
+        title: "Peter Tohme",
+        subTitle: "Zahle",
+        imgTwo:[
+          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+
+        ],
         paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Peter",
-        subTitle: "Subtitle",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        imgOne: ImageAsset.TEST_IMAGE,
-        title: "Title",
-        subTitle: "Subtitle",
-        imgTwo:
-            "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
   ];
 
@@ -166,15 +156,12 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
-        elevation: 0,
-        title: Padding(
-          padding: EdgeInsetsDirectional.only(start: 10.0),
-          child: Text(
-            "BrandSome",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-            ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+         elevation: 5,
+        title: Text(
+          "BrandSome",
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
           ),
         ),
         actions: [
@@ -189,69 +176,10 @@ class _HomePageState extends State<HomePage>
             },
             icon: Icon(
               Icons.search,
-              color: ThemeHelper().getisDark() ? whiteColor : blackColor,
-            ),
+             ),
           ),
-          PopupMenuButton(
-              icon: Icon(
-                Icons.add_circle_outline,
-                color: ThemeHelper().getisDark() ? whiteColor : blackColor,
-              ),
-              onSelected: (item) => onSelected(context, item),
-              itemBuilder: (context) => [
-                    PopupMenuItem(
-                      padding: EdgeInsets.all(10),
-                      value: 0,
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Add Business",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              SvgPicture.asset(
-                                SvgImg.MATERIAL_BUSINESS,
-                                color: ThemeHelper().getisDark()
-                                    ? whiteColor
-                                    : blackColor,
-                      height: 20,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Divider(
-                            thickness: 1,
-                            height: 2,
-                          ),
-                        ],
-                      ),
-                    ),
-                    PopupMenuItem(
-                      padding: EdgeInsets.all(10),
-                      value: 1,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Add post",
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          SvgPicture.asset(
-                            SvgImg.PAPER,
-                            height: 20,
-                            color: ThemeHelper().getisDark()
-                                ? whiteColor
-                                : blackColor,
+          CustomMenuDropDown(mainIcon: Icons.add_circle_outline,menuItems: menuItems,),
 
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
@@ -262,8 +190,7 @@ class _HomePageState extends State<HomePage>
                 );
               },
               icon: Icon(
-                Icons.notifications_none,
-                color: ThemeHelper().getisDark() ? whiteColor : blackColor,
+                Icons.notifications_none
               ),
             ),
           ),
@@ -308,7 +235,7 @@ class _HomePageState extends State<HomePage>
                 itemBuilder: (context, index) {
                   return Container(
                       // width: MediaQuery.of(context).size.width * 0.400,
-                      child: subCategory(subCat[index], () {}
+                      child: SubCategoryCard(subCat[index], () {}
                           //   subCat.forEach((element) {
                           //     element.selectedCard = false;
                           //   });
@@ -336,7 +263,7 @@ class _HomePageState extends State<HomePage>
                 child: Text(
                   "Choose interests",
                   style: TextStyle(
-                      color: primaryColor,
+                      color: Theme.of(context).primaryColor,
                       decoration: TextDecoration.underline),
                 ),
               ),
@@ -356,4 +283,11 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
+}
+class ItemModel{
+  final String title;
+  final IconData icon;
+
+  ItemModel(this.title, this.icon);
+
 }

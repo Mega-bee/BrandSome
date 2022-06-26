@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -56,7 +52,7 @@ class ThemeHelper{
 
   bool getisDark() {
     if( box.get('theme') == null){
-      return false;
+      return true;
     }
     return box.get('theme');
   }

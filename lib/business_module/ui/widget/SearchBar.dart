@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../hive/hive.dart';
-import '../../../utils/images/images.dart';
-import '../../../utils/style/colors.dart';
-
 class SearchBarScreen extends StatefulWidget {
   @override
   State<SearchBarScreen> createState() => _SearchBarScreenState();
@@ -28,17 +24,12 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
 
                     Expanded(
                       child: TextField(
-                        cursorColor:
-                        ThemeHelper().getisDark() ? whiteColor : blackColor,
                         style: const TextStyle(fontSize: 14),
                         controller: searchbar,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search,
                             size: 18,
-                            color: ThemeHelper().getisDark()
-                                ? whiteColor
-                                : blackColor,
                           ),
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -47,9 +38,6 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                             icon: Icon(
                               Icons.close,
                               size: 18,
-                              color: ThemeHelper().getisDark()
-                                  ? whiteColor
-                                  : blackColor,
                             ),
                           ),
                           filled: true,
@@ -60,9 +48,6 @@ class _SearchBarScreenState extends State<SearchBarScreen> {
                               ),
                               borderSide: BorderSide(
                                 width: 2,
-                                color: ThemeHelper().getisDark()
-                                    ? Colors.black
-                                    : Colors.white,
                               )),
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(),

@@ -1,4 +1,3 @@
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../widget/followers_card.dart';

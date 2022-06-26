@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 import '../../model/subCategory.dart';
 
-class subCategory extends StatefulWidget {
-  final subCategoryModel subcate;
+class SubCategoryCard extends StatefulWidget {
+  final SubCategoryModel subcate;
   final Function onCardTAP;
 
 
-  subCategory(this.subcate, this.onCardTAP ,);
+  SubCategoryCard(this.subcate, this.onCardTAP ,);
 
   @override
-  State<subCategory> createState() => _subCategoryState();
+  State<SubCategoryCard> createState() => _subCategoryState();
 }
 
-class _subCategoryState extends State<subCategory> {
+class _subCategoryState extends State<SubCategoryCard> {
 
   @override
   Widget build(BuildContext context) {

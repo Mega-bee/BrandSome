@@ -1,7 +1,16 @@
+import 'dart:async';
+
+import 'package:brandsome/abstracts/module/rout_module.dart';
+import 'package:brandsome/business_module/business_module.dart';
+import 'package:brandsome/business_module/business_routes.dart';
+import 'package:brandsome/di/di_config.dart';
+import 'package:brandsome/navigation_bar/navigator_module.dart';
+import 'package:brandsome/navigation_bar/navigator_routes.dart';
+import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:injectable/injectable.dart';
 
 import 'hive/hive.dart';
 import 'navigation_bar/ui/screens/navigationBar.dart';
@@ -9,38 +18,74 @@ import 'navigation_bar/ui/screens/navigationBar.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveSetUp.init();
-//  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-//    systemNavigationBarColor:
-//        ThemeHelper().getisDark() ? blackColor : Colors.transparent,
-//  ));
-  runApp(MyApp());
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) async {
+    FlutterError.onError = (FlutterErrorDetails details) async {
+      Logger().error('Main', details.toString(), StackTrace.current);
+    };
+    await runZonedGuarded(() {
+      configureDependencies();
+      // Your App Here
+      runApp(getIt<MyApp>());
+    }, (error, stackTrace) {
+      new Logger().error(
+          'Main', error.toString() + stackTrace.toString(), StackTrace.current);
+    });
+  });
 }
 
+@injectable
 class MyApp extends StatefulWidget {
+  final AppThemeDataService _themeDataService;
+  final NavigatorModule _navigatorModule;
+  final BusinessModule _businessModule;
+
+  MyApp(
+      this._themeDataService,
+      this._navigatorModule,
+      this._businessModule);
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  late AppThemeDataService _appThemeDataService;
-
   late ThemeData activeThem;
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'BrandSome',
-        theme: activeThem,
-        home: Navigation());
+    return getConfiguredApp(RoutModule.RoutesMap);
   }
 
+  Widget getConfiguredApp(
+      Map<String, WidgetBuilder> fullRoutesList,
+      ) {
+    return  MaterialApp(
+//        scrollBehavior: MyCustomScrollBehavior(),
+      debugShowCheckedModeBanner: false,
+//      navigatorObservers: <NavigatorObserver>[observer],
+//        navigatorKey: GlobalVariable.navState,
+//        locale: Locale.fromSubtags(
+//          languageCode: lang,
+//        ),
+//        localizationsDelegates: [
+//          S.delegate,
+//          GlobalMaterialLocalizations.delegate,
+//          GlobalWidgetsLocalizations.delegate,
+//          GlobalCupertinoLocalizations.delegate,
+//        ],
+      theme: activeThem,
+//        supportedLocales: S.delegate.supportedLocales,
+      title: 'BrandSome',
+      routes: fullRoutesList,
+      initialRoute: NavRoutes.nav_rout,
+    );
+  }
   @override
   void initState() {
-    _appThemeDataService = AppThemeDataService();
-    activeThem = _appThemeDataService.getActiveTheme();
-    _appThemeDataService.darkModeStream.listen((event) {
+    activeThem = widget._themeDataService.getActiveTheme();
+    widget._themeDataService.darkModeStream.listen((event) {
       activeThem = event;
       setState(() {});
     });

@@ -1,15 +1,8 @@
-import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../follower_module/ui/screens/follower_list.dart';
-import '../../../hive/hive.dart';
-import '../../../utils/components/Seperator/seperator_doted.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-import '../../../utils/components/custom_alert_dialog/theme_dialog/customThemeDialog.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
-import '../../../utils/style/colors.dart';
 import '../widget/account_info.dart';
 import '../widget/add_business.dart';
 
@@ -27,8 +20,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
+        elevation: 5,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
@@ -64,7 +56,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Business",
                     style: TextStyle(
-                        color: primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
@@ -77,7 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Reviews",
                     style: TextStyle(
-                        color: primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
@@ -90,22 +82,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Followers",
                     style: TextStyle(
-                        color: primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
             ]),
             Padding(
               padding: const EdgeInsetsDirectional.only(start: 22.0, top: 10),
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "Christian Zakhour ",
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
-                  )),
+              child: Text(
+                "Christian Zakhour ",
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic),
+              ),
             ),
             SizedBox(
               height: 3,

@@ -1,12 +1,8 @@
 import 'dart:io' as i;
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-
-import '../../../hive/hive.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-import '../../../utils/style/colors.dart';
 
 class AccountInfoScreen extends StatefulWidget {
   const AccountInfoScreen({Key? key}) : super(key: key);
@@ -202,13 +198,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -217,11 +213,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Phone number",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             readOnly: true,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle(fontSize: 15),
                             controller: phonenumber,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -229,13 +225,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -245,11 +241,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Gender",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             readOnly: true,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: gender,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -257,13 +253,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -272,24 +268,24 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Birthday",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             readOnly: true,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: Birthday,
                             decoration: InputDecoration(
                               // hintText: "username",
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -309,11 +305,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                         children: [
                           Text(
                             "Username",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle(fontSize: 13),
                           ),
                           TextFormField(
                             autofocus: false,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: username,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -321,13 +317,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide(width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -336,11 +332,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Phone number",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             autofocus: false,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: phonenumber,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -348,13 +344,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -364,11 +360,11 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Gender",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             autofocus: false,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: gender,
                             decoration: InputDecoration(
                               // contentPadding: EdgeInsets.only(left: 20),
@@ -376,13 +372,13 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -391,24 +387,24 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                           SizedBox(height: 30),
                           Text(
                             "Birthday",
-                            style: TextStyle(color: greyColor, fontSize: 13),
+                            style: TextStyle( fontSize: 13),
                           ),
                           TextFormField(
                             autofocus: false,
-                            style: TextStyle(color: hintText, fontSize: 15),
+                            style: TextStyle( fontSize: 15),
                             controller: Birthday,
                             decoration: InputDecoration(
                               // hintText: "username",
                               // hintStyle: TextStyle(color: Colors.white),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: borderColor, width: 1),
+                                    BorderSide( width: 1),
                               ),
                               focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
                               border: UnderlineInputBorder(
-                                borderSide: BorderSide(color: borderColor),
+                                borderSide: BorderSide(),
                               ),
 
                               // keyboardType: TextInputType.
@@ -426,7 +422,7 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
                             child: Text(
                               "Save",
                               style: TextStyle(
-                                  color: primaryColor,
+                                  color: Theme.of(context).primaryColor,
                                   fontSize: 13,
                                   fontWeight: FontWeight.w300),
                             ),

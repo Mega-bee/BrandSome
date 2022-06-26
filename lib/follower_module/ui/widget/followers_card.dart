@@ -1,6 +1,4 @@
-import 'package:brandsome/liked_by_module/model/liked_by_model.dart';
 import 'package:brandsome/utils/images/images.dart';
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

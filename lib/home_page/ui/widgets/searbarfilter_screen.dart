@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../hive/hive.dart';
 import '../../../utils/images/images.dart';
-import '../../../utils/style/colors.dart';
 import '../../model/choose_category_filter_model.dart';
 import '../../model/filter_service_model.dart';
 import '../../model/filtrer_sub_category_model.dart';
@@ -89,17 +88,12 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
                   children: [
                     Expanded(
                       child: TextField(
-                        cursorColor:
-                            ThemeHelper().getisDark() ? whiteColor : blackColor,
                         style: const TextStyle(fontSize: 14),
                         controller: searchbarFilter,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.search,
                             size: 18,
-                            color: ThemeHelper().getisDark()
-                                ? whiteColor
-                                : blackColor,
                           ),
                           suffixIcon: IconButton(
                             onPressed: () {
@@ -108,9 +102,6 @@ class _SearchBarFilterScreenState extends State<SearchBarFilterScreen> {
                             icon: Icon(
                               Icons.close,
                               size: 18,
-                              color: ThemeHelper().getisDark()
-                                  ? whiteColor
-                                  : blackColor,
                             ),
                           ),
                           filled: true,

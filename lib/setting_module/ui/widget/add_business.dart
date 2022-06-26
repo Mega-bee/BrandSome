@@ -1,7 +1,4 @@
 import 'package:brandsome/home_page/ui/widgets/searbarfilter_screen.dart';
-import 'package:brandsome/utils/images/images.dart';
-import 'package:brandsome/utils/style/colors.dart';
-import 'package:brandsome/utils/style/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' as i;
@@ -56,7 +53,7 @@ class _AddBusinessState extends State<AddBusiness> {
                   },
                   icon: Icon(
                     Icons.check,
-                    color: primaryColor,
+                    color: Theme.of(context).primaryColor,
                     size: 30,
                   ))),
         ],
@@ -87,7 +84,7 @@ class _AddBusinessState extends State<AddBusiness> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Icon(
                                         Icons.camera,
-                                        color: primaryColor,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                     Text(
@@ -103,14 +100,14 @@ class _AddBusinessState extends State<AddBusiness> {
                                 onTap: () {
                                   pickImage(ImageSource.gallery);
                                 },
-                                splashColor: primaryColor,
+                                splashColor: Theme.of(context).primaryColor,
                                 child: Row(
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Icon(
                                         Icons.image,
-                                        color: primaryColor,
+                                        color: Theme.of(context).primaryColor,
                                       ),
                                     ),
                                     Text(
@@ -138,7 +135,7 @@ class _AddBusinessState extends State<AddBusiness> {
                             : AssetImage("") as ImageProvider,
                         fit: BoxFit.cover,
                       ),
-                      color: borderColor,
+
                     ),
                     width: 350,
                     height: 300,
@@ -150,7 +147,6 @@ class _AddBusinessState extends State<AddBusiness> {
                           ? Icon(
                               Icons.camera_alt,
                               size: 80,
-                              color: whiteColor,
                             )
                           : Container())
                 ],
@@ -171,17 +167,17 @@ class _AddBusinessState extends State<AddBusiness> {
                       style: TextStyle( fontSize: 13),
                     ),
                     TextFormField(
-                      style: TextStyle(color: hintText, fontSize: 15),
+                      style: TextStyle( fontSize: 15),
                       controller: business,
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
+                          borderSide: BorderSide( width: 1),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
+                          borderSide: BorderSide(),
                         ),
                         border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
+                          borderSide: BorderSide(),
                         ),
 
                         // keyboardType: TextInputType.
@@ -200,13 +196,13 @@ class _AddBusinessState extends State<AddBusiness> {
                       controller: description,
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor, width: 1),
+                          borderSide: BorderSide( width: 1),
                         ),
                         focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
+                          borderSide: BorderSide(),
                         ),
                         border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: borderColor),
+                          borderSide: BorderSide(),
                         ),
 
                         // keyboardType: TextInputType.
@@ -262,7 +258,7 @@ class _AddBusinessState extends State<AddBusiness> {
                     ),
                     Divider(
                       thickness: 1,
-                      color: borderColor,
+
                     ),
                     SizedBox(height: 30),
                     TextButton(
@@ -278,7 +274,7 @@ class _AddBusinessState extends State<AddBusiness> {
                     ),
                     Divider(
                       thickness: 1,
-                      color: borderColor,
+
                     ),
                   ],
                 ),

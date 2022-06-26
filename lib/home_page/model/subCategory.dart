@@ -1,4 +1,4 @@
-class subCategoryModel {
+class SubCategoryModel {
   int? id;
   String? name;
   String? img;
@@ -6,7 +6,7 @@ class subCategoryModel {
   String? subName;
   bool selectedCard;
 
-  subCategoryModel(
+  SubCategoryModel(
       {this.id,
       this.name,
       this.img,

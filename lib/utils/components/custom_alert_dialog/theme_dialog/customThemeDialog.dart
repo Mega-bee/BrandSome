@@ -1,9 +1,4 @@
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../hive/hive.dart';
-
-
 
 class CustomThemeDialog extends StatefulWidget {
   final String title;

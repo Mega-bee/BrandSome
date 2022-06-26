@@ -1,8 +1,7 @@
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../style/text_style.dart';
+
 
 class CustomOtpVerificationDialog extends StatefulWidget {
   final String title;

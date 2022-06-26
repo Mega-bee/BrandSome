@@ -1,14 +1,12 @@
+import 'package:brandsome/home_page/model/choose_category_filter_model.dart';
+import 'package:brandsome/home_page/model/filter_service_model.dart';
+import 'package:brandsome/home_page/model/filtrer_sub_category_model.dart';
+import 'package:brandsome/home_page/ui/widgets/filter_category_image_list.dart';
+import 'package:brandsome/home_page/ui/widgets/filter_service.dart';
+import 'package:brandsome/home_page/ui/widgets/filter_sub_category_image_list.dart';
+import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 
-import '../../../hive/hive.dart';
-import '../../../home_page/model/choose_category_filter_model.dart';
-import '../../../home_page/model/filter_service_model.dart';
-import '../../../home_page/model/filtrer_sub_category_model.dart';
-import '../../../home_page/ui/widgets/filter_category_image_list.dart';
-import '../../../home_page/ui/widgets/filter_service.dart';
-import '../../../home_page/ui/widgets/filter_sub_category_image_list.dart';
-import '../../../utils/images/images.dart';
-import '../../../utils/style/colors.dart';
 
 
 class SearchBarFilterBusinessScreen extends StatefulWidget {
@@ -86,17 +84,12 @@ class _SearchBarFilterBusinessScreenState extends State<SearchBarFilterBusinessS
             children: [
               SizedBox(height: 20,),
               TextField(
-                cursorColor:
-                ThemeHelper().getisDark() ? whiteColor : blackColor,
                 style: const TextStyle(fontSize: 14),
                 controller: searchbarFilter,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
                     Icons.search,
                     size: 18,
-                    color: ThemeHelper().getisDark()
-                        ? whiteColor
-                        : blackColor,
                   ),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -105,9 +98,6 @@ class _SearchBarFilterBusinessScreenState extends State<SearchBarFilterBusinessS
                     icon: Icon(
                       Icons.close,
                       size: 18,
-                      color: ThemeHelper().getisDark()
-                          ? whiteColor
-                          : blackColor,
                     ),
                   ),
                   filled: true,
@@ -118,9 +108,6 @@ class _SearchBarFilterBusinessScreenState extends State<SearchBarFilterBusinessS
                       ),
                       borderSide: BorderSide(
                         width: 2,
-                        color: ThemeHelper().getisDark()
-                            ? Colors.black
-                            : Colors.white,
                       )),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(),

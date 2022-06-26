@@ -1,8 +1,9 @@
 import 'package:brandsome/hive/hive.dart';
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
+@injectable
 class AppThemeDataService {
   static final PublishSubject<ThemeData> _darkModeSubject =
   PublishSubject<ThemeData>();
@@ -26,18 +27,17 @@ class AppThemeDataService {
         primary: Colors.grey[900]);
     if (dark == true) {
       return ThemeData(
-        appBarTheme: AppBarTheme(
-          color: blackColor,
-        ),
-        scaffoldBackgroundColor: blackColor,
-        primaryColor:PrimaryColor ,
+          appBarTheme: AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white)
+          ),
           brightness: Brightness.dark,
           colorScheme: darkScheme,
           useMaterial3: true,
           primarySwatch: Colors.deepOrange,
           focusColor: PrimaryColor,
+          primaryColor:PrimaryColor,
           textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(primary: Colors.white)),
+              style: TextButton.styleFrom(primary: Colors.white70)),
           checkboxTheme: CheckboxThemeData(
             checkColor:
             MaterialStateProperty.resolveWith((Set<MaterialState> states) {
@@ -61,29 +61,35 @@ class AppThemeDataService {
               if (states.any(interactiveStates.contains)) {
                 return Colors.black;
               }
-              return Colors.deepOrange;
+              return Colors.indigo;
             }),
           ),
-          cardColor: blackColor,
-           elevatedButtonTheme: ElevatedButtonThemeData(
+//          cardColor: Colors.grey[150],
+          fontFamily: 'Dubai',
+          elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
-              )));
-
+              )),
+          textTheme: TextTheme(
+            button: TextStyle(
+              color: Colors.white,
+            ),
+          ));
     }
     return ThemeData(
-
+      appBarTheme: AppBarTheme(
+        iconTheme: IconThemeData(color: Colors.black)
+      ),
         brightness: Brightness.light,
-        //       primaryColor: PrimaryColor,
+        primaryColor: PrimaryColor,
         colorScheme: lightScheme,
         useMaterial3: true,
-        //    colorScheme: lightScheme,
         focusColor: PrimaryColor,
-        primarySwatch: primaryColor,
-        cardColor: Color.fromRGBO(245, 245, 245, 1),
-        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
+        primarySwatch: Colors.deepOrange,
+//        cardColor: Color.fromRGBO(245, 245, 245, 1),
+//        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
         textTheme: TextTheme(button: TextStyle(color: Colors.white)),
         fontFamily: 'Dubai',
         timePickerTheme: TimePickerThemeData(
@@ -102,4 +108,5 @@ class AppThemeDataService {
     var activeTheme = await getActiveTheme();
     _darkModeSubject.add(activeTheme);
   }
+
 }

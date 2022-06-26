@@ -1,4 +1,3 @@
-import 'package:brandsome/utils/style/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/add_location_model.dart';
@@ -169,7 +168,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
               },
               icon: Icon(
                 Icons.check,
-                color: primaryColor,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),
@@ -212,7 +211,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(50)),
                             borderSide:
-                                BorderSide(width: 1, color: primaryColor)),
+                                BorderSide(width: 1, color: Theme.of(context).primaryColor)),
                         border: OutlineInputBorder(
                           borderSide: const BorderSide(color: Colors.grey),
                           borderRadius: BorderRadius.circular(50.0),
@@ -242,8 +241,7 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                         child: Row(
                           children: [
                             Checkbox(
-                              activeColor: primaryColor,
-                              checkColor: whiteColor,
+                              activeColor: Theme.of(context).primaryColor,
                               value: loca[index].value,
                               onChanged: (value) {
                                 setState(() {
@@ -262,7 +260,6 @@ class _AddLocationScreenState extends State<AddLocationScreen> {
                             start: 15.0, end: 15),
                         child: Divider(
                           thickness: 1,
-                          color: darkWhiteColor,
                         ),
                       ),
                       SizedBox(

@@ -1,11 +1,11 @@
 class postModel{
   int? id;
-  String? imgOne;
+  String? autherImage;
   String? title;
   String? titleTwo;
   String? subTitle;
-  String? imgTwo;
+  List<String>? imgTwo;
   String? paragraph;
 
-  postModel({this.id,this.imgOne,this.imgTwo,this.paragraph,this.subTitle,this.title,this.titleTwo});
+  postModel({this.id,this.autherImage,this.imgTwo,this.paragraph,this.subTitle,this.title,this.titleTwo});
 }
