@@ -39,18 +39,19 @@ class _FollowCardState extends State<FollowCard> {
                   ],
                 ),
                 isSelected
-                    ? ElevatedButton(
-                        onPressed: () {
-                          isSelected = !isSelected;
-                          setState(() {
+                    ? TextButton(
+                  onPressed: () {
+                    isSelected = !isSelected;
+                    setState(() {
 
-                          });
-                        },
-                        child: Text("Follow",style: TextStyle(fontSize: 13),),
-                        style: ElevatedButton.styleFrom(
-                          primary: Theme.of(context).primaryColor,
-                        ),
-                      )
+                    });
+                  },
+                  child: Text("Follow",),
+                  style: TextButton.styleFrom(
+                      backgroundColor:   Theme.of(context).primaryColor,
+                    // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
+                      side: BorderSide(color: Theme.of(context).primaryColor)),
+                )
                     : TextButton(
                         onPressed: () {
                           isSelected = !isSelected;
@@ -58,7 +59,7 @@ class _FollowCardState extends State<FollowCard> {
 
                           });
                         },
-                        child: Text("Unfollow",style: TextStyle(fontSize: 13),),
+                        child: Text("Unfollow",),
                         style: TextButton.styleFrom(
                             // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                             side: BorderSide(color: Theme.of(context).primaryColor)),

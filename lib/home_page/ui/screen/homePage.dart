@@ -1,13 +1,12 @@
+import 'package:brandsome/abstracts/model/menu_item.dart';
 import 'package:brandsome/home_page/model/category_model.dart';
 import 'package:brandsome/home_page/model/subCategory.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../setting_module/ui/widget/add_business.dart';
 import '../../../utils/images/images.dart';
-import '../../model/post_model.dart';
-import '../widgets/post_card.dart';
-import '../../../notification_module/notification_screen.dart';
+import '../../../posts_module/reponse/posts_reponse.dart';
+import '../../../posts_module/ui/widgets/post_card.dart';
 import '../widgets/searbarfilter_screen.dart';
 import '../widgets/main_cate_card.dart';
 import '../widgets/subCategory.dart';
@@ -21,28 +20,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  void onSelected(BuildContext context, item) {
-    switch (item) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => AddBusiness()),
-        );
-        print("Clicking add business");
-        break;
-      case 1:
-        print("Clicking add post");
-        break;
-    }
-  }
+
  late List<ItemModel> menuItems;
 
 
   @override
   void initState() {
     menuItems = [
-      ItemModel('Add Bussines', Icons.card_travel),
-      ItemModel('Add Post', Icons.post_add),
+      ItemModel('Add Bussines', Icons.card_travel,(){
+//        Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
+      }),
+      ItemModel('Add Post', Icons.post_add,(){}),
     ];
     super.initState();
   }
@@ -184,10 +172,7 @@ class _HomePageState extends State<HomePage>
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NotificationScreen()),
-                );
+
               },
               icon: Icon(
                 Icons.notifications_none
@@ -283,11 +268,4 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
-}
-class ItemModel{
-  final String title;
-  final IconData icon;
-
-  ItemModel(this.title, this.icon);
-
 }

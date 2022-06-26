@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
-import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
 import 'hive/hive.dart';
-import 'navigation_bar/ui/screens/navigationBar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

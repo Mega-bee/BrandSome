@@ -21,12 +21,9 @@ class _FilterSubCategoryState extends State<FilterSubCategory> {
       onTap: () {
         widget.onCardTAP();
       },
-      child: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: widget.filtersubcategory.selectedCard ? Image.asset(
-              widget.filtersubcategory.img!) : Image.asset(
-              widget.filtersubcategory.unselectedimg!)
-      ),
+      child: widget.filtersubcategory.selectedCard ? Image.asset(
+          widget.filtersubcategory.img!) : Image.asset(
+          widget.filtersubcategory.unselectedimg!),
     );
   }
 }

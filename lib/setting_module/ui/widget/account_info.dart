@@ -41,16 +41,12 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
     var mediaQueryWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).primaryColor,
-          ),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 5,
+        title: Text(
+          "Account Info",
         ),
+
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 10.0),
@@ -67,10 +63,6 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
             ),
           ),
         ],
-        centerTitle: true,
-        title: Text(
-          "Account info",
-        ),
       ),
       body: SingleChildScrollView(
         child: Column(

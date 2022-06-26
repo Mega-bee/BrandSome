@@ -1,7 +1,4 @@
 
-
-
-
 class LikedByModel{
   String? name;
   String? image;

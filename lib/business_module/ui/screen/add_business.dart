@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import 'dart:io' as i;
 
 import 'package:image_picker/image_picker.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../model/add_location_model.dart';
-import 'add_location.dart';
+import '../../../setting_module/model/add_location_model.dart';
+import '../../../setting_module/ui/widget/add_location.dart';
 
+@injectable
 class AddBusiness extends StatefulWidget {
-  const AddBusiness({Key? key}) : super(key: key);
+  const AddBusiness();
 
   @override
   State<AddBusiness> createState() => _AddBusinessState();
@@ -40,10 +42,11 @@ class _AddBusinessState extends State<AddBusiness> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor:  Theme.of(context).scaffoldBackgroundColor,
-        title: Text("Add business",style: TextStyle(color: Colors.black),),
-        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back,color: Colors.black,)),
-        centerTitle: true,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 5,
+        title: Text(
+          "Add business",
+        ),
         actions: [
           Padding(
               padding: const EdgeInsets.only(right: 28.0),
@@ -164,10 +167,8 @@ class _AddBusinessState extends State<AddBusiness> {
                   children: [
                     Text(
                       "Business Name",
-                      style: TextStyle( fontSize: 13),
                     ),
                     TextFormField(
-                      style: TextStyle( fontSize: 15),
                       controller: business,
                       decoration: InputDecoration(
                         enabledBorder: UnderlineInputBorder(

@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:list_tile_switch/list_tile_switch.dart';
 import '../../../follower_module/ui/screens/follower_list.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../widget/account_info.dart';
-import '../widget/add_business.dart';
+import '../../../business_module/ui/screen/add_business.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -22,18 +23,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         elevation: 5,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 10.0),
-          child: Text(
-            "Settings",
-            style: Theme.of(context).textTheme.headline6,
-          ),
+        title: Text(
+          "Settings",
+          style: TextStyle(color: Theme.of(context).primaryColor),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
               Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Container(
@@ -56,7 +55,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Business",
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor,
+                        fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
@@ -69,7 +69,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Reviews",
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor,
+                        fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
@@ -82,7 +83,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "Followers",
                     style: TextStyle(
-                        color: Theme.of(context).primaryColor, fontStyle: FontStyle.italic),
+                        color: Theme.of(context).primaryColor,
+                        fontStyle: FontStyle.italic),
                   ),
                 ],
               ),
@@ -127,7 +129,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     Text(
                       "Account info",
-                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF)),
                     ),
                     SizedBox(
                       width: 145,
@@ -154,8 +155,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.business,
                     size: 14,
                   ),
-                  Text("Business 1",
-                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
+                  Text(
+                    "Business 1",
+                  ),
                   SizedBox(
                     width: 160,
                   ),
@@ -180,8 +182,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.business,
                     size: 14,
                   ),
-                  Text("Business 2",
-                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
+                  Text(
+                    "Business 2",
+                  ),
                   SizedBox(
                     width: 160,
                   ),
@@ -206,8 +209,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Icons.business,
                     size: 14,
                   ),
-                  Text("Business 3",
-                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
+                  Text(
+                    "Business 3",
+                  ),
                   SizedBox(
                     width: 160,
                   ),
@@ -239,9 +243,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Icons.add_business,
                       size: 14,
                     ),
-                    Text("Businesses I follow",
-                        style:
-                            TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
+                    Text(
+                      "Businesses I follow",
+                    ),
                     SizedBox(
                       width: 100,
                     ),
@@ -255,35 +259,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(
               height: 30,
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 20.0,
-                end: 30,
+            ListTileSwitch(
+              value: Theme.of(context).brightness == Brightness.dark,
+              leading: Icon(
+                Theme.of(context).brightness == Brightness.dark
+                    ? Icons.nightlight_round_rounded
+                    : Icons.wb_sunny,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Dark Mode",
-                      style: TextStyle(fontSize: 15, color: Color(0xffDFDFDF))),
-                  SizedBox(
-                    width: 160,
-                  ),
-                  Transform.scale(
-                    scale: 1,
-                    child: Switch.adaptive(
-                        activeColor: Theme.of(context).primaryColor,
-                        inactiveTrackColor: Colors.grey,
-                        value: value,
-                        onChanged: (value) {
-                          this.value = value;
-                          AppThemeDataService().switchDarkMode(value);
-                          setState(
-                            () {},
-                          );
-                        }),
-                  )
-                ],
-              ),
+              onChanged: (mode) {
+//                      widget._themeDataService.switchDarkMode(mode);
+                AppThemeDataService().switchDarkMode(mode);
+              },
+              visualDensity: VisualDensity.comfortable,
+              switchType: SwitchType.cupertino,
+              switchActiveColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Text('Dark mode'),
             ),
             SizedBox(
               height: 10,

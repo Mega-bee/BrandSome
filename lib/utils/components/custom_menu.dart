@@ -1,4 +1,4 @@
-import 'package:brandsome/home_page/ui/screen/homePage.dart';
+import 'package:brandsome/abstracts/model/menu_item.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -31,22 +31,27 @@ class CustomMenuDropDown extends StatelessWidget {
                       (item) => GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: _controller.hideMenu,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(children: [
-                                Icon(
-                                  item.icon,
-                                ),
-                                SizedBox(width: 5,),
-                                Text(
-                                  item.title,
-                                ),
-                              ],),
-                            ),
-                            Divider(height: 3,thickness: 2,)
-                          ],
+                        child: InkWell(
+                          onTap: (){
+                            item.onTap();
+                          },
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(children: [
+                                  Icon(
+                                    item.icon,
+                                  ),
+                                  SizedBox(width: 5,),
+                                  Text(
+                                    item.title,
+                                  ),
+                                ],),
+                              ),
+                              Divider(height: 3,thickness: 2,)
+                            ],
+                          ),
                         ),
                       ),
                     )

@@ -1,8 +1,7 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/state_manager/business_list_bloc.dart';
-import 'package:brandsome/business_module/ui/widget/SearchBar.dart';
-import 'package:brandsome/business_module/ui/widget/searbarfilter_business_screen.dart';
+import 'searbarfilter_business_screen.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,10 +50,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SearchBarScreen()),
-                );
+
               },
               icon: Icon(
                 Icons.search,
