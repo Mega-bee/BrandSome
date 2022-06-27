@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
 import 'package:brandsome/di/di_config.dart';
+import 'package:brandsome/follower_module/follower_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
+import 'package:brandsome/setting_module/setting_module.dart';
 import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -38,11 +40,18 @@ class MyApp extends StatefulWidget {
   final AppThemeDataService _themeDataService;
   final NavigatorModule _navigatorModule;
   final BusinessModule _businessModule;
+  final SettingModule _settingModule;
+  final FollowerModule _followers;
+
+
 
   MyApp(
       this._themeDataService,
       this._navigatorModule,
-      this._businessModule);
+      this._businessModule,
+      this._settingModule,
+      this._followers
+      );
 
   @override
   State<MyApp> createState() => _MyAppState();

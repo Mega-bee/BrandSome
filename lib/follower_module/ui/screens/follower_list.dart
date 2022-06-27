@@ -1,15 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widget/followers_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import '../../../abstracts/states/state.dart';
+import '../../state_manager/follower.dart';
 
+
+@injectable
 class Followers extends StatefulWidget {
-  const Followers({Key? key}) : super(key: key);
+  final FollowersCubit cubit;
+  const Followers(this.cubit);
 
   @override
+
   State<Followers> createState() => _FollowersState();
 }
 
 class _FollowersState extends State<Followers> {
+  @override
+  void initState() {
+
+    widget.cubit.getFoll();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,32 +29,13 @@ class _FollowersState extends State<Followers> {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 5,
           title: Text(
-            "Flowers",
+            "Followers",
           ),
         ),
-        body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 38.0),
-            child: Text("You are following 100 businesses"),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 38.0, left: 38.0),
-            child: Divider(
-              thickness: 1,
-            ),
-          ),
-          ListView.builder(
-              shrinkWrap: true,
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return FollowCard();
-              })
-        ]));
+        body: BlocBuilder<FollowersCubit, States>(
+    bloc: widget.cubit,
+    builder: (context, state) {
+    return state.getUI(context);
+    }));
   }
 }

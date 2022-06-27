@@ -20,7 +20,8 @@ class _NavigationState extends State<NavigationScreen> {
   final screens = [
     HomePage(),
     getIt<BusinessScreen>(),
-    SettingsScreen(),
+    getIt<SettingsScreen>(),
+
   ];
 
   @override

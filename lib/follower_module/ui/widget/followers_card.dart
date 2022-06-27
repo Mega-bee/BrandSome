@@ -2,8 +2,11 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class FollowCard extends StatefulWidget {
+import '../../response/follower_response.dart';
 
+class FollowCard extends StatefulWidget {
+  final FollowersResp bussfol;
+  FollowCard({required this.bussfol});
   @override
   State<FollowCard> createState() => _FollowCardState();
 }
@@ -20,7 +23,7 @@ class _FollowCardState extends State<FollowCard> {
           ListTile(
             // leading: Image.asset(ImageAsset.TEST_IMAGE),
             leading:  CircleAvatar(
-              backgroundImage: AssetImage(ImageAsset.TEST_IMAGE,),
+              backgroundImage: NetworkImage(widget.bussfol.image.toString()),
             ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,10 +33,10 @@ class _FollowCardState extends State<FollowCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Walid Taktak",
+                      widget.bussfol.name.toString(),
                      ),
                     Text(
-                      "Healthcare/Sports",
+                      widget.bussfol.type.toString(),
                       style: TextStyle(fontSize: 14),
                      ),
                   ],
@@ -42,6 +45,7 @@ class _FollowCardState extends State<FollowCard> {
                     ? TextButton(
                   onPressed: () {
                     isSelected = !isSelected;
+
                     setState(() {
 
                     });
