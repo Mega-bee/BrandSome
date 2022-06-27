@@ -23,7 +23,7 @@ class BusinessCard extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsetsDirectional.only(start: 5,end: 5),
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(

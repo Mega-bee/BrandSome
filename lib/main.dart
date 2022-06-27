@@ -48,10 +48,6 @@ class MyApp extends StatefulWidget {
   final  LikedListModule _likedListModule;
   final SettingModule _settingModule;
   final FollowerModule _followersModule;
-
-
-
-
   final AuthorizationModule _authorizationModule;
 
 
