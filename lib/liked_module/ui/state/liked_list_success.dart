@@ -24,7 +24,7 @@ LikedListSuccess(this.likedmodel);
                      fontStyle: FontStyle.italic
                  ),),
 
-                   Text("likes.length people",style: TextStyle(color: Theme.of(context).primaryColor))
+                   Text("${likedmodel.length} people",style: TextStyle(color: Theme.of(context).primaryColor))
                  ]),
            ),
            Padding(

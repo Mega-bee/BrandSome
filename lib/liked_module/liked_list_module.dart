@@ -12,14 +12,14 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class  LikedListModule extends RoutModule {
-  final LikeByScreen likeByScreen;
+  final LikeByScreen _likeByScreen;
 
-  LikedListModule(this.likeByScreen,) {
+  LikedListModule(this._likeByScreen,) {
     RoutModule.RoutesMap.addAll(getRoutes());
   }
   Map<String, WidgetBuilder> getRoutes() {
     return {
-      LikedListRoute.LIKED_LIST: (context) => likeByScreen,
+      LikedListRoute.LIKED_LIST: (context) => _likeByScreen,
 
     };
   }

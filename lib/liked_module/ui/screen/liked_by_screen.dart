@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/components/Seperator/seperator_doted.dart';
-import '../../state_manager/business_list_bloc.dart';
+import '../../state_manager/liked_list_bloc.dart';
 
 @injectable
 class LikeByScreen extends StatefulWidget {

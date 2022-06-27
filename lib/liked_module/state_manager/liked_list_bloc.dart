@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../reponse/get_likes_list_response.dart';
-import '../repository/business_repository.dart';
+import '../repository/likes_list_repository.dart';
 import '../ui/state/liked_list_success.dart';
 
 

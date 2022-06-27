@@ -20,7 +20,7 @@ class Data {
  Data(
       { this.insideData,
       });
-  ///scnd data
+  ///inside data
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     insideData: json["data"],
   );

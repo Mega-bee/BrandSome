@@ -1,7 +1,7 @@
+import 'package:brandsome/liked_module/liked_list_route.dart';
 import 'package:brandsome/liked_module/ui/screen/liked_by_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../../../liked_module/liked_list_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomOtpVerificationDialog/CustomOtpVerificationDialog.dart';
 import '../../../utils/components/custom_alert_dialog/CustomVerificationDialog/CustomVerificationDialog.dart';
 import '../../reponse/posts_reponse.dart';
@@ -134,8 +134,11 @@ class _PostCardState extends State<PostCard> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, LikedListRoute.LIKED_LIST,arguments: widget.posts.id.toString());
-
+                          Navigator.pushNamed(
+                            context,
+                            LikedListRoute.LIKED_LIST,
+                            arguments: "2",
+                          );
                         },
                         child: Text(
                           "${widget.posts.titleTwo}",
