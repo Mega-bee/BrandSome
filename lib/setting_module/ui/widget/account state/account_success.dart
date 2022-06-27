@@ -58,100 +58,98 @@ class AccountSuccess extends States {
                     child: CircleAvatar(
                         radius: 65,
 //                          backgroundColor: whiteColor,
-                        backgroundImage: _pickImage == null
-                            ? null
-                            : FileImage(_pickImage!)),
+                        backgroundImage:NetworkImage(getacc.imageUrl.toString())
                   ),
                 ),
-                Positioned(
-                    top: 110,
-                    left: 95,
-                    child: RawMaterialButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-//                                  backgroundColor: whiteColor,
-                                title: Text("Choose option"),
-                                content: SingleChildScrollView(
-                                  child: ListBody(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          pickImage(ImageSource.camera);
-                                        },
-                                        splashColor: Theme
-                                            .of(context)
-                                            .primaryColor,
-
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                Icons.camera,
-                                                color: Theme
-                                                    .of(context)
-                                                    .primaryColor,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Camera",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          pickImage(ImageSource.gallery);
-                                        },
-                                        splashColor: Theme
-                                            .of(context)
-                                            .primaryColor,
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                              const EdgeInsets.all(8.0),
-                                              child: Icon(
-                                                Icons.image,
-                                                color: Theme
-                                                    .of(context)
-                                                    .primaryColor,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Gallery",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                      },
-                      elevation: 10,
-                      fillColor: Theme
-                          .of(context)
-                          .primaryColor,
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
-                    ))
-              ]),
+//                 Positioned(
+//                     top: 110,
+//                     left: 95,
+//                     child: RawMaterialButton(
+//                       onPressed: () {
+//                         showDialog(
+//                             context: context,
+//                             builder: (BuildContext context) {
+//                               return AlertDialog(
+// //                                  backgroundColor: whiteColor,
+//                                 title: Text("Choose option"),
+//                                 content: SingleChildScrollView(
+//                                   child: ListBody(
+//                                     children: [
+//                                       InkWell(
+//                                         onTap: () {
+//                                           pickImage(ImageSource.camera);
+//                                         },
+//                                         splashColor: Theme
+//                                             .of(context)
+//                                             .primaryColor,
+//
+//                                         child: Row(
+//                                           children: [
+//                                             Padding(
+//                                               padding:
+//                                               const EdgeInsets.all(8.0),
+//                                               child: Icon(
+//                                                 Icons.camera,
+//                                                 color: Theme
+//                                                     .of(context)
+//                                                     .primaryColor,
+//                                               ),
+//                                             ),
+//                                             Text(
+//                                               "Camera",
+//                                               style: TextStyle(
+//                                                 fontSize: 20,
+//                                               ),
+//                                             )
+//                                           ],
+//                                         ),
+//                                       ),
+//                                       InkWell(
+//                                         onTap: () {
+//                                           pickImage(ImageSource.gallery);
+//                                         },
+//                                         splashColor: Theme
+//                                             .of(context)
+//                                             .primaryColor,
+//                                         child: Row(
+//                                           children: [
+//                                             Padding(
+//                                               padding:
+//                                               const EdgeInsets.all(8.0),
+//                                               child: Icon(
+//                                                 Icons.image,
+//                                                 color: Theme
+//                                                     .of(context)
+//                                                     .primaryColor,
+//                                               ),
+//                                             ),
+//                                             Text(
+//                                               "Gallery",
+//                                               style: TextStyle(
+//                                                 fontSize: 20,
+//                                               ),
+//                                             )
+//                                           ],
+//                                         ),
+//                                       )
+//                                     ],
+//                                   ),
+//                                 ),
+//                               );
+//                             });
+//                       },
+//                       elevation: 10,
+//                       fillColor: Theme
+//                           .of(context)
+//                           .primaryColor,
+//                       child: Icon(
+//                         Icons.camera_alt_outlined,
+//                         color: Colors.white,
+//                       ),
+//                       padding: EdgeInsets.all(15.0),
+//                       shape: CircleBorder(),
+//                     ))
+                )]),
             ),
           ),
 
