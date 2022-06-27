@@ -1,15 +1,13 @@
+import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
 import '../../../abstracts/states/state.dart';
 import '../../../business_module/ui/screen/add_business.dart';
 import '../../../follower_module/Follower_route.dart';
-import '../../../follower_module/ui/screens/follower_list.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
-import '../../account_route.dart';
 import '../../response/settings_response.dart';
-import '../widget/account_info.dart';
 
 
 
@@ -116,7 +114,7 @@ class SettingSuccess extends States {
             InkWell(
               onTap: () {
                 Navigator.pushNamed(
-                    context, AccountRoutes.AccountttScreen
+                    context, SettingRoutes.Account_Screen
                 );
               },
               child: Padding(

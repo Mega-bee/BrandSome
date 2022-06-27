@@ -104,25 +104,25 @@ class _PostCardState extends State<PostCard> {
                       ),
                       InkWell(
                         onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => CustomVerificationDialog(
-                              title: "Verification",
-                              content: "",
-                              continueBtn: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          CustomOtpVerificationDialog(
-                                            continueBtn: () {},
-                                            title: 'OTP verification',
-                                            content: '',
-                                          )),
-                                );
-                              },
-                            ),
-                          );
+//                          showDialog(
+//                            context: context,
+//                            builder: (context) => CustomVerificationDialog(
+//                              title: "Verification",
+//                              content: "",
+//                              continueBtn: () {
+//                                Navigator.push(
+//                                  context,
+//                                  MaterialPageRoute(
+//                                      builder: (context) =>
+//                                          CustomOtpVerificationDialog(
+//                                            continueBtn: () {},
+//                                            title: 'OTP verification',
+//                                            content: '',
+//                                          )),
+//                                );
+//                              },
+//                            ),
+//                          );
                         },
                         child: Icon(
                           Icons.thumb_up_alt_outlined,

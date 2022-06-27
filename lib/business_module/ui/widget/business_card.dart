@@ -24,7 +24,7 @@ class BusinessCard extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsetsDirectional.only(start: 5,end: 5),
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -47,110 +47,106 @@ class BusinessCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                businessCardModel.name ?? "",
-                                style:Theme.of(context).textTheme.titleLarge,
-                              ),
-                              Row(
-                                children: [
-                                  Text(businessCardModel.viewCount.toString()),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Icon(
-                                    Icons.remove_red_eye_outlined,
-                                    size: 18,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 5,),
                           Text(
-                            businessCardModel.description ?? "",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-//                            softWrap: true,
-                           style:Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            height: 8,
+                            businessCardModel.name ?? "",
+                            style:Theme.of(context).textTheme.titleMedium,
                           ),
                           Row(
                             children: [
+                              Text(businessCardModel.viewCount.toString()),
+                              SizedBox(
+                                width: 5,
+                              ),
                               Icon(
-                                Icons.location_on_outlined,
+                                Icons.remove_red_eye_outlined,
                                 size: 18,
                               ),
-                              Wrap(
-                                  children: businessCardModel.city!
-                                      .map(
-                                        (e) => Text(
-                                          "${e.name},",
-                                          style:Theme.of(context).textTheme.overline,
-                                        ),
-                                      )
-                                      .toList()),
                             ],
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                                start: 8.0, end: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      SvgImg.PERSON,
-                                    ),
-                                    SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(
-                                      "${businessCardModel.followCount}",
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      SvgImg.RATE,
-                                    ),
-                                    SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(
-                                      "${businessCardModel.reviewCount}",
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      SvgImg.PAPER,
-                                    ),
-                                    SizedBox(
-                                      width: 6,
-                                    ),
-                                    Text(
-                                      "${businessCardModel.postCount}",
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
                         ],
                       ),
+                      SizedBox(height: 5,),
+                      Text(
+                        businessCardModel.description ?? "",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+//                            softWrap: true,
+                       style:Theme.of(context).textTheme.labelMedium,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on_outlined,
+                            size: 18,
+                          ),
+                          Wrap(
+                              children: businessCardModel.city!
+                                  .map(
+                                    (e) => Text(
+                                      "${e.name},",
+                                      style:Theme.of(context).textTheme.overline,
+                                    ),
+                                  )
+                                  .toList()),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(
+                            start: 8.0, end: 8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.PERSON,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.followCount}",
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.RATE,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.reviewCount}",
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  SvgImg.PAPER,
+                                ),
+                                SizedBox(
+                                  width: 6,
+                                ),
+                                Text(
+                                  "${businessCardModel.postCount}",
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

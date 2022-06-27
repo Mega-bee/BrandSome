@@ -2,16 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:list_tile_switch/list_tile_switch.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../business_module/request/bussines_filter_request.dart';
-import '../../../follower_module/ui/screens/follower_list.dart';
-import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-import '../../../utils/service/theme_serrvice/theme_service.dart';
-import '../../response/settings_response.dart';
 import '../../state_manager/setting.dart';
-import '../widget/account_info.dart';
-import '../../../business_module/ui/screen/add_business.dart';
+
 
 @injectable
 class SettingsScreen extends StatefulWidget {

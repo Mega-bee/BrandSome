@@ -19,11 +19,11 @@ class AuthPrefsHelper {
   var box = Hive.box('Authorization');
 
   void setToken(String username) {
-    box.put('apikey', username);
+    box.put('token', username);
   }
 
   String? getToken() {
-    return box.get('apikey');
+    return box.get('token');
   }
 
   Future<void> clearToken() async{

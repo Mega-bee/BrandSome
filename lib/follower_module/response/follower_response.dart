@@ -13,7 +13,7 @@ class FollowersResp {
     if (json['services'] != null) {
       services = <Services>[];
       json['services'].forEach((v) {
-        services!.add(new Services.fromJson(v));
+        services!.add( Services.fromJson(v));
       });
     }
     id = json['id'];
