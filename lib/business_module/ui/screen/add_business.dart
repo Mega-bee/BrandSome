@@ -264,10 +264,10 @@ class _AddBusinessState extends State<AddBusiness> {
                     SizedBox(height: 30),
                     TextButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
+                        // );
                       },
                       child: Text(
                         "Add services",

@@ -161,12 +161,12 @@ class _HomePageState extends State<HomePage>
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SearchBarFilterScreen(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => SearchBarFilterScreen(),
+              //   ),
+              // );
             },
             icon: Icon(
               Icons.search,
@@ -242,11 +242,11 @@ class _HomePageState extends State<HomePage>
             alignment: AlignmentDirectional.topEnd,
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SearchBarFilterScreen()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => SearchBarFilterScreen()),
+                // );
               },
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(
