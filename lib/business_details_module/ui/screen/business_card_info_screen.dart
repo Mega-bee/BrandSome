@@ -43,16 +43,16 @@ class _BusinessCardInfoScreenState extends State<BusinessCardInfoScreen>
 //        body:
 //        BlocBuilder<DataLoaderBloc, GlobalState>(
 //            bloc: dataLoaderBloc,
-//            builder: (context, state) {
-//              if (state is Loading) {
+//            builder: (context, account state) {
+//              if (account state is Loading) {
 //                return Center(
 //                  child: CircularProgressIndicator(
 //                    color: primaryColor,
 //                  ),
 //                );
-//              } else if (state is Successfully) {
+//              } else if (account state is Successfully) {
 //                BusinessInfoModel businessInfoModel =
-//                BusinessInfoModel.fromJson(state.data);
+//                BusinessInfoModel.fromJson(account state.data);
 //                print("Dateee:  ${businessInfoModel.reviews!.map((e) => Text(e.createdDate.toString())).toList()}");
 //
 //                return Column(
