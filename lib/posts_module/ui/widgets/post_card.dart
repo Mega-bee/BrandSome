@@ -1,6 +1,7 @@
 import 'package:brandsome/liked_module/ui/screen/liked_by_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../../liked_module/liked_list_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomOtpVerificationDialog/CustomOtpVerificationDialog.dart';
 import '../../../utils/components/custom_alert_dialog/CustomVerificationDialog/CustomVerificationDialog.dart';
 import '../../reponse/posts_reponse.dart';
@@ -133,11 +134,8 @@ class _PostCardState extends State<PostCard> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LikeByScreen()),
-                          );
+                          Navigator.pushNamed(context, LikedListRoute.LIKED_LIST,arguments: widget.posts.id.toString());
+
                         },
                         child: Text(
                           "${widget.posts.titleTwo}",

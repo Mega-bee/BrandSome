@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
+import '../../reponse/business_response.dart';
 
 class BusinessInfo extends StatelessWidget {
-  final  businessInfoModel;
+  final BusinessInfoResponse businessInfoModel;
   BusinessInfo({required this.businessInfoModel});
 
 
@@ -299,5 +300,11 @@ class BusinessInfo extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  Widget getUI(BuildContext context) {
+    // TODO: implement getUI
+    throw UnimplementedError();
   }
 }

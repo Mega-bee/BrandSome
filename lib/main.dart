@@ -11,7 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 
+import 'business_details_module/business_details_module.dart';
+import 'business_details_module/reponse/business_response.dart';
 import 'hive/hive.dart';
+import 'liked_module/liked_list_module.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,11 +41,16 @@ class MyApp extends StatefulWidget {
   final AppThemeDataService _themeDataService;
   final NavigatorModule _navigatorModule;
   final BusinessModule _businessModule;
+  final  BusinessDetailsModule _businessDetailsModule;
+  final  LikedListModule _likedListModule;
 
   MyApp(
       this._themeDataService,
       this._navigatorModule,
-      this._businessModule);
+      this._businessModule,
+      this._businessDetailsModule,
+      this._likedListModule,
+      );
 
   @override
   State<MyApp> createState() => _MyAppState();

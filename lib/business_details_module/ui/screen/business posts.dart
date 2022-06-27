@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../utils/images/images.dart';
-import '../../model/business_info_model.dart';
+import '../../reponse/business_response.dart';
 
 
 class BusinessPosts extends StatefulWidget {
