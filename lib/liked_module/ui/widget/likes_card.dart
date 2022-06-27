@@ -1,6 +1,7 @@
-import 'package:brandsome/liked_module/model/liked_by_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../reponse/get_likes_list_response.dart';
 
 class LikesCard extends StatefulWidget {
   final LikedByModel likedByModel;

@@ -4,6 +4,8 @@ class Urls {
   static const String DOMAIN = 'https://brandsome.azurewebsites.net';
 
   static const String BASE_API_BUSINESS = DOMAIN + '/api/Businesses/';
+  static const String BASE_API_FILTER = DOMAIN + '/api/Interests/';
+  static const String BASE_API_POSTS = DOMAIN + '/api/Posts/';
   static const String BSE_API_SETTINGS = DOMAIN + '/api/Accounts/';
 
 
@@ -17,6 +19,8 @@ class Urls {
   /*--------home-------------------*/
   static const GET_BUSINESS = BASE_API_BUSINESS + 'GetBusinesses';
   static const GET_BUSINESS_DETAILS = BASE_API_BUSINESS + 'GetBusiness/';
+  static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
+  static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
 
   //
   /*--------Settings-------------------*/

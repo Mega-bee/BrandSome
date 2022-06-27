@@ -1,4 +1,4 @@
-class BusinessInfoModel {
+class BusinessInfoResponse {
   String? type;
   String? phoneNumber;
 
@@ -17,24 +17,24 @@ class BusinessInfoModel {
   int? id;
   String? name;
 
-  BusinessInfoModel(
+  BusinessInfoResponse(
       {this.type,
-      this.phoneNumber,
-      this.posts,
-      this.reviews,
-      this.isUserBusiness,
-      this.services,
-      this.cities,
-      this.description,
-      this.viewCount,
-      this.postCount,
-      this.reviewCount,
-      this.followCount,
-      this.image,
-      this.id,
-      this.name});
+        this.phoneNumber,
+        this.posts,
+        this.reviews,
+        this.isUserBusiness,
+        this.services,
+        this.cities,
+        this.description,
+        this.viewCount,
+        this.postCount,
+        this.reviewCount,
+        this.followCount,
+        this.image,
+        this.id,
+        this.name});
 
-  BusinessInfoModel.fromJson(Map<String, dynamic> json) {
+  BusinessInfoResponse.fromJson(Map<String, dynamic> json) {
     type = json['type'];
     phoneNumber = json['phoneNumber'];
     if (json['posts'] != null) {
@@ -116,14 +116,14 @@ class Posts {
 
   Posts(
       {this.id,
-      this.name,
-      this.profileImage,
-      this.postMedia,
-      this.description,
-      this.likeCount,
-      this.isLiked,
-      this.city,
-      this.type});
+        this.name,
+        this.profileImage,
+        this.postMedia,
+        this.description,
+        this.likeCount,
+        this.isLiked,
+        this.city,
+        this.type});
 
   Posts.fromJson(Map<String, dynamic> json) {
     id = json['id'];

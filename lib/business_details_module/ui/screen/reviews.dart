@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../utils/helpers/date_converter.dart';
-import '../../model/business_info_model.dart';
+import '../../reponse/business_response.dart';
 
 class ReviewScreen extends StatelessWidget {
   final List<Reviews> review;

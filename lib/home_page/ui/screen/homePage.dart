@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage>
 
   List<postModel> post = [
     postModel(
+      id: 1,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -88,6 +89,7 @@ class _HomePageState extends State<HomePage>
             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
+      id: 2,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -98,6 +100,7 @@ class _HomePageState extends State<HomePage>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
+      id: 3,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -108,6 +111,7 @@ class _HomePageState extends State<HomePage>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
+      id: 4,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -118,6 +122,7 @@ class _HomePageState extends State<HomePage>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
+      id: 5,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -128,6 +133,7 @@ class _HomePageState extends State<HomePage>
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
         titleTwo: "Liked by 28 visitors"),
     postModel(
+      id: 6,
         autherImage: ImageAsset.TEST_IMAGE,
         title: "Peter Tohme",
         subTitle: "Zahle",
@@ -155,12 +161,12 @@ class _HomePageState extends State<HomePage>
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SearchBarFilterScreen(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => SearchBarFilterScreen(),
+              //   ),
+              // );
             },
             icon: Icon(
               Icons.search,
@@ -236,11 +242,11 @@ class _HomePageState extends State<HomePage>
             alignment: AlignmentDirectional.topEnd,
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SearchBarFilterScreen()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //       builder: (context) => SearchBarFilterScreen()),
+                // );
               },
               child: Padding(
                 padding: const EdgeInsetsDirectional.only(

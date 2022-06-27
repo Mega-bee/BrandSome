@@ -1,3 +1,4 @@
+import 'package:brandsome/liked_module/liked_list_route.dart';
 import 'package:brandsome/liked_module/ui/screen/liked_by_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -133,10 +134,10 @@ class _PostCardState extends State<PostCard> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushNamed(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => LikeByScreen()),
+                            LikedListRoute.LIKED_LIST,
+                            arguments: "2",
                           );
                         },
                         child: Text(

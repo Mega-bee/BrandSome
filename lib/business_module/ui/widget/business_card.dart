@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../business_details_module/business_details_route.dart';
+
 class BusinessCard extends StatelessWidget {
   final BusinessResponse businessCardModel;
 
@@ -14,17 +16,14 @@ class BusinessCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-              builder: (context) => BusinessCardInfoScreen(
-                    title: businessCardModel.name,
-                    id: businessCardModel.id,
-                  )),
+          BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+          arguments: businessCardModel.id.toString(),
         );
       },
       child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 5,end: 5),
+        padding: const EdgeInsets.all(8.0),
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(
@@ -37,7 +36,10 @@ class BusinessCard extends StatelessWidget {
                 fit: FlexFit.tight,
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.network(businessCardModel.image ?? '',fit: BoxFit.fill,),
+                  child: Image.network(
+                    businessCardModel.image ?? '',
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
               Flexible(
@@ -74,83 +76,83 @@ class BusinessCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
 //                            softWrap: true,
-                       style:Theme.of(context).textTheme.labelMedium,
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.location_on_outlined,
-                            size: 18,
+                           style:Theme.of(context).textTheme.labelMedium,
                           ),
-                          Wrap(
-                              children: businessCardModel.city!
-                                  .map(
-                                    (e) => Text(
-                                      "${e.name},",
-                                      style:Theme.of(context).textTheme.overline,
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on_outlined,
+                                size: 18,
+                              ),
+                              Wrap(
+                                  children: businessCardModel.city!
+                                      .map(
+                                        (e) => Text(
+                                          "${e.name},",
+                                          style:Theme.of(context).textTheme.overline,
+                                        ),
+                                      )
+                                      .toList()),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(
+                                start: 8.0, end: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      SvgImg.PERSON,
                                     ),
-                                  )
-                                  .toList()),
+                                    SizedBox(
+                                      width: 6,
+                                    ),
+                                    Text(
+                                      "${businessCardModel.followCount}",
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      SvgImg.RATE,
+                                    ),
+                                    SizedBox(
+                                      width: 6,
+                                    ),
+                                    Text(
+                                      "${businessCardModel.reviewCount}",
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                      SvgImg.PAPER,
+                                    ),
+                                    SizedBox(
+                                      width: 6,
+                                    ),
+                                    Text(
+                                      "${businessCardModel.postCount}",
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
                         ],
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(
-                            start: 8.0, end: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PERSON,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${businessCardModel.followCount}",
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.RATE,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${businessCardModel.reviewCount}",
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PAPER,
-                                ),
-                                SizedBox(
-                                  width: 6,
-                                ),
-                                Text(
-                                  "${businessCardModel.postCount}",
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
                   ),
                 ),
-              )
             ],
           ),
         ),

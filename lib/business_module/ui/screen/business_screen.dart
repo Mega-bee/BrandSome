@@ -1,4 +1,5 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/state_manager/business_list_bloc.dart';
 import 'searbarfilter_business_screen.dart';
@@ -58,10 +59,9 @@ class _BusinessScreenState extends State<BusinessScreen> {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => SearchBarFilterBusinessScreen()),
+                   BusinessRoutes.SEARCH_BUSINESS,
                 );
               },
               icon: Icon(FontAwesomeIcons.filter,size: 18,),
