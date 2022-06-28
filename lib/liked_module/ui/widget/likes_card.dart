@@ -18,7 +18,7 @@ class _LikesCardState extends State<LikesCard> {
     return ListTile(
       title: Text(widget.likedByModel.name.toString()),
       leading:  CircleAvatar(
-        foregroundImage: AssetImage("assets/images/${widget.likedByModel.image}",),
+        foregroundImage: NetworkImage("${widget.likedByModel.image}",),
         radius:20,
         backgroundColor: Colors.transparent,
       ),

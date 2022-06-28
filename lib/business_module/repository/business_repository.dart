@@ -16,7 +16,7 @@ class BusinessRepository {
   Future<WebServiceResponse?> getBusiness(BusinessFilterRequest request) async {
 //    var token = await _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
-      Urls.GET_BUSINESS,
+      Urls.GET_BUSINESS,queryParams:request.toJson()
 //      headers: {'Authorization': 'Bearer ' + '$token'},
     );
     if (response == null) return null;
