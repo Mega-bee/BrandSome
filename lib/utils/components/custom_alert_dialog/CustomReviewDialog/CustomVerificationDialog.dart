@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class CustomReviewDialog extends StatefulWidget {
   final String content;
   final Function continueBtn;
+  var review = TextEditingController();
 
   CustomReviewDialog({
     required this.content,
     required this.continueBtn,
+     required this.review,
   });
 
   @override
@@ -15,7 +17,7 @@ class CustomReviewDialog extends StatefulWidget {
 }
 
 class _CustomReviewDialog extends State<CustomReviewDialog> {
-  final review = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
                   minLines: 6,
                   maxLines: 12,
 //                  style: TextStyle(color: hintText, fontSize: 15),
-                  controller: review,
+                  controller: widget.review,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
                         borderSide: BorderSide(

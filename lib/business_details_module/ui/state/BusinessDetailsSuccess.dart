@@ -46,7 +46,9 @@ class BusinessDetailsSuccess extends States{
             child: TabBarView(
               controller: tabController,
               children: [
-                BusinessInfo(businessInfoModel: businessInfoModel),
+                BusinessInfo(businessInfoModel: businessInfoModel, onNumberClick: (number){
+                  screenState.ClickCall(number);
+                },),
                 BusinessPosts(businessInfoModel: businessInfoModel.posts??[]),
                 ReviewScreen(review: businessInfoModel.reviews??[]),
               ],

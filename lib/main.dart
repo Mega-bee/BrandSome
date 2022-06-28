@@ -4,6 +4,7 @@ import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/follower_module/follower_module.dart';
+import 'package:brandsome/global_variable.dart';
 import 'package:brandsome/module_auth/authoriazation_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
@@ -80,6 +81,7 @@ class _MyAppState extends State<MyApp> {
       Map<String, WidgetBuilder> fullRoutesList,
       ) {
     return  MaterialApp(
+      navigatorKey: GlobalVariable.navState,
 //        scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
 //      navigatorObservers: <NavigatorObserver>[observer],

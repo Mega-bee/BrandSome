@@ -1,16 +1,21 @@
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../reponse/business_response.dart';
+import '../../request/add_review_request.dart';
 
 class BusinessInfo extends StatelessWidget {
   final BusinessInfoResponse businessInfoModel;
-  BusinessInfo({required this.businessInfoModel});
-
+  final Function onNumberClick;
+  BusinessInfo({required this.businessInfoModel,required this.onNumberClick});
 
   @override
+
+  CustomReviewDialog? customReviewDialog;
+
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -237,7 +242,9 @@ class BusinessInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed:  () async {
+                    onNumberClick(businessInfoModel.phoneNumber);
+                  },
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -267,7 +274,14 @@ class BusinessInfo extends StatelessWidget {
                       context: context,
                       builder: (context) => CustomReviewDialog(
                         content: "",
-                        continueBtn: () {},
+                        continueBtn: () {
+                          AddReviewRequest(Bussinessid:businessInfoModel.id.toString() ,
+                          Description: customReviewDialog!.review.toString(),
+
+                          );
+
+                        },
+                        review:TextEditingController()
                       ),
                     );
                   },

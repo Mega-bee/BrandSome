@@ -16,7 +16,11 @@ class BusnessDetailsScreen extends StatefulWidget {
 
 class BusnessDetailsScreenState extends State<BusnessDetailsScreen> with SingleTickerProviderStateMixin{
   String? id = "-1";
+  ClickCall(String? number){
+    widget._businessListDetailsCubit.PostCall(this , id,number);
 
+
+  }
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments;
