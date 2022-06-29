@@ -12,30 +12,47 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class BusinessScreen extends StatefulWidget {
-  final BusinessListCubit _cubit;
-  const BusinessScreen(this._cubit);
+  final BusinessListCubit cubit;
+
+  const BusinessScreen(this.cubit);
 
   @override
   State<BusinessScreen> createState() => _BusinessScreenState();
 }
 
 class _BusinessScreenState extends State<BusinessScreen> {
- late BusinessFilterRequest request ;
+  late BusinessFilterRequest request;
+
   void onSelected(BuildContext context, item) {
     switch (item) {
       case 0:
-        print("Clicking add business");
+        request = BusinessFilterRequest(sortBy: "A-Z");
+        widget.cubit.getBusinessList(request);
         break;
       case 1:
-        print("Clicking add post");
+        request = BusinessFilterRequest(sortBy: "FollowCount");
+        widget.cubit.getBusinessList(request);
+        break;
+      case 2:
+        request = BusinessFilterRequest(sortBy: "ReviewCount");
+        widget.cubit.getBusinessList(request);
+        break;
+      case 3:
+        request = BusinessFilterRequest(sortBy: "PostCount");
+        widget.cubit.getBusinessList(request);
+        break;
+      case 4:
+        request = BusinessFilterRequest(sortBy: "ViewCount");
+        widget.cubit.getBusinessList(request);
         break;
     }
   }
 
   @override
   void initState() {
-   request = BusinessFilterRequest();
-    widget._cubit.getBusinessList(request);
+    request = BusinessFilterRequest();
+    widget.cubit.getBusinessList(request);
+
   }
 
   @override
@@ -50,9 +67,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
               )),
           actions: [
             IconButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               icon: Icon(
                 Icons.search,
               ),
@@ -61,10 +76,13 @@ class _BusinessScreenState extends State<BusinessScreen> {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                   BusinessRoutes.SEARCH_BUSINESS,
+                  BusinessRoutes.SEARCH_BUSINESS,
                 );
               },
-              icon: Icon(FontAwesomeIcons.filter,size: 18,),
+              icon: Icon(
+                FontAwesomeIcons.filter,
+                size: 18,
+              ),
             ),
             PopupMenuButton(
                 icon: Icon(Icons.sort),
@@ -102,6 +120,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
                             ),
                           ],
                         ),
+
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
@@ -129,8 +148,10 @@ class _BusinessScreenState extends State<BusinessScreen> {
                               thickness: 1,
                               height: 2,
                             ),
+
                           ],
                         ),
+
                       ),
                       PopupMenuItem(
                         padding: EdgeInsets.all(10),
@@ -223,7 +244,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
           ],
         ),
         body: BlocBuilder<BusinessListCubit, States>(
-            bloc: widget._cubit,
+            bloc: widget.cubit,
             builder: (context, state) {
               return state.getUI(context);
             }));

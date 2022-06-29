@@ -19,7 +19,7 @@ class FilterSearchModel {
 }
 
 class SubCategories {
-  List<Services>? services;
+  List<ServicesCat>? services;
   int? id;
   String? name;
 
@@ -27,9 +27,9 @@ class SubCategories {
 
   SubCategories.fromJson(Map<String, dynamic> json) {
     if (json['services'] != null) {
-      services = <Services>[];
+      services = <ServicesCat>[];
       json['services'].forEach((v) {
-        services!.add(new Services.fromJson(v));
+        services!.add(new ServicesCat.fromJson(v));
       });
     }
     id = json['id'];
@@ -38,13 +38,13 @@ class SubCategories {
 
 }
 
-class Services {
+class ServicesCat {
   int? id;
   String? name;
 
-  Services({this.id, this.name});
+  ServicesCat({this.id, this.name});
 
-  Services.fromJson(Map<String, dynamic> json) {
+  ServicesCat.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
   }

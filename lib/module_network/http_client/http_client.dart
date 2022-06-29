@@ -16,7 +16,7 @@ class ApiClient {
 
   Future<WebServiceResponse?> get(
     String url, {
-    Map<String, String>? queryParams,
+    Map<String, dynamic>? queryParams,
     Map<String, String>? headers,
   }) async {
     try {
