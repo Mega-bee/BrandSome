@@ -8,26 +8,25 @@ import 'package:brandsome/business_module/ui/state/business_list_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../repository/filter_category_response.dart';
-import '../ui/state/get_category_success.dart';
+import '../request/create_business_request.dart';
 
 @injectable
-class GetCategoryListCubit extends Cubit<States> {
+class AddBusinessCubit extends Cubit<States> {
   final BusinessRepository _businessRepository;
 
-  GetCategoryListCubit(this._businessRepository) : super(LoadingState());
+  AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
-  getCategoryList() {
-    _businessRepository.getAllCategory().then((value) {
+  addBusinessList(CreateBusinessRequest request,) {
+    _businessRepository.addBusiness(request).then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getCategoryList()));
+        emit(ErrorState(errorMessage: 'Connection error', retry: addBusinessList(request)));
       }
       else if (value.code == 200){
-        List<FilterSearchModel> filt = [];
+        List<BusinessResponse> bus = [];
         for (var item in value.data.insideData) {
-          filt.add(FilterSearchModel.fromJson(item));
+          bus.add(BusinessResponse.fromJson(item));
         }
-        emit(GetCategorySuccess(filt));
+        emit(BusinessListSuccess(business: bus));
       }
     });
   }

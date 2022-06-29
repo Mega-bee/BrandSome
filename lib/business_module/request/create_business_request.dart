@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:dio/dio.dart';
 
-class BusinessFilterRequest {
+class CreateBusinessRequest {
   final String? BusinessDescription;
   final String? BusinessName;
   final String? BusinessPhoneNumber;
@@ -11,7 +11,7 @@ class BusinessFilterRequest {
   final int? id;
   final MultipartFile? images;
 
-  BusinessFilterRequest(
+  CreateBusinessRequest(
       {this.id,
       this.cities,
       this.services,
