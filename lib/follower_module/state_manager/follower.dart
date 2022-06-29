@@ -19,7 +19,9 @@ class FollowersCubit extends Cubit<States> {
   getFoll() {
     _getAccountFollowers.getFollowers().then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getFoll()));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getFoll();
+        }));
       }
       else if (value.code == 200){
         List<FollowersResp> fol = [];

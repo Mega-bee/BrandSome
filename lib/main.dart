@@ -13,9 +13,7 @@ import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
-
 import 'business_details_module/business_details_module.dart';
-import 'business_details_module/reponse/business_response.dart';
 import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
 
@@ -80,6 +78,7 @@ class _MyAppState extends State<MyApp> {
       Map<String, WidgetBuilder> fullRoutesList,
       ) {
     return  MaterialApp(
+//      navigatorKey: GlobalVariable.navState,
 //        scrollBehavior: MyCustomScrollBehavior(),
       debugShowCheckedModeBanner: false,
 //      navigatorObservers: <NavigatorObserver>[observer],

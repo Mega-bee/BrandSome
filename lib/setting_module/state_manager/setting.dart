@@ -19,7 +19,9 @@ class SettingCubit extends Cubit<States> {
   getSetting() {
     _getAccountSetting.getSet().then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getSetting()));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getSetting();
+        }));
       }
       else if (value.code == 200){
 

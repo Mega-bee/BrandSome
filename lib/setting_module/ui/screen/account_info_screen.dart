@@ -1,12 +1,8 @@
-import 'dart:io' as i;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-import '../../state_manager/account.dart';
+import '../../state_manager/account_state_manager.dart';
 
 @injectable
 class AccountInfoScreen extends StatefulWidget {

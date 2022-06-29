@@ -1,14 +1,24 @@
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../reponse/business_response.dart';
+import '../../request/add_review_request.dart';
 
 class BusinessInfo extends StatelessWidget {
   final BusinessInfoResponse businessInfoModel;
-  BusinessInfo({required this.businessInfoModel});
+  final Function onNumberClick;
+  final Function onReviewClick;
 
+  BusinessInfo(
+      {required this.businessInfoModel,
+      required this.onNumberClick,
+      required this.onReviewClick});
+
+  CustomReviewDialog? customReviewDialog;
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +43,14 @@ class BusinessInfo extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 ElevatedButton(
-
                   onPressed: () {},
                   child: Text(
                     "Follow",
-                    style: TextStyle(
-                        fontWeight: FontWeight.normal,
-                        fontSize: 14
-                    ),
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
                   ),
                   style: ElevatedButton.styleFrom(
-
                     primary: Theme.of(context).primaryColor,
                     padding: EdgeInsetsDirectional.only(
                       end: 30,
@@ -92,14 +97,15 @@ class BusinessInfo extends StatelessWidget {
           Padding(
               padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
               child: Row(
-                children:businessInfoModel.services!.map<Widget>((e) =>  Text(
-                  "${e.name}",
-                  style: TextStyle(
-                      decoration: TextDecoration.underline, fontSize: 10,color: Colors.white),
-                ),).toList(),
-
-
-
+                children: businessInfoModel.services!
+                    .map<Widget>(
+                      (e) => Text(
+                        "${e.name}",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,),
+                      ),
+                    )
+                    .toList(),
               )),
           SizedBox(
             height: 15,
@@ -117,18 +123,20 @@ class BusinessInfo extends StatelessWidget {
                   width: 9,
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                        5), // radius of 10// green as background color
-                  ),
-                  child: Row(
-                      children: businessInfoModel.cities!.map<Widget>((e) => Text(
-                        "${e.name} ",
-                        style: TextStyle(fontSize: 12),
-                      ),).toList()
-                  )
-                ),
+                    padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          5), // radius of 10// green as background color
+                    ),
+                    child: Row(
+                        children: businessInfoModel.cities!
+                            .map<Widget>(
+                              (e) => Text(
+                                "${e.name} ",
+                                style: TextStyle(fontSize: 12),
+                              ),
+                            )
+                            .toList())),
 
                 SizedBox(
                   width: 11,
@@ -171,7 +179,8 @@ class BusinessInfo extends StatelessWidget {
                 padding: EdgeInsets.only(top: 10, bottom: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(color: Theme.of(context).primaryColor, width: 1),
+                  border: Border.all(
+                      color: Theme.of(context).primaryColor, width: 1),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -237,7 +246,9 @@ class BusinessInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    onNumberClick(businessInfoModel.phoneNumber);
+                  },
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -261,36 +272,41 @@ class BusinessInfo extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => CustomReviewDialog(
-                        content: "",
-                        continueBtn: () {},
-                      ),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        SvgImg.RATING,
-                        height: 20,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text("Add review", style: TextStyle(color: Colors.white)),
-                    ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.only(left: 30, right: 30),
-                    primary: Theme.of(context).primaryColor,
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
-                ),
+                 ElevatedButton(
+                   onPressed: () {
+                     showDialog(
+                       context: context,
+                       builder: (context) =>
+                            CustomReviewDialog(
+                            continueBtn: (reviewText) {
+                              Navigator.pop(context);
+                              onReviewClick(AddReviewRequest(
+                                Bussinessid: businessInfoModel.id.toString(),
+                                Description: reviewText,
+                              ));
+                            }));
+                     // );
+                   },
+                   child: Row(
+                     children: [
+                       SvgPicture.asset(
+                         SvgImg.RATING,
+                         height: 20,
+                       ),
+                       SizedBox(
+                         width: 10,
+                       ),
+                       Text("Add review", style: TextStyle(color: Colors.white)),
+                     ],
+                   ),
+                   style: ElevatedButton.styleFrom(
+                     padding: EdgeInsets.only(left: 30, right: 30),
+                     primary: Theme.of(context).primaryColor,
+                     shape: RoundedRectangleBorder(
+                         side: BorderSide(width: 1, color: Colors.transparent),
+                         borderRadius: BorderRadius.circular(4)),
+                   ),
+                 ),
               ],
             ),
           ),
@@ -302,9 +318,4 @@ class BusinessInfo extends StatelessWidget {
     );
   }
 
-  @override
-  Widget getUI(BuildContext context) {
-    // TODO: implement getUI
-    throw UnimplementedError();
-  }
 }

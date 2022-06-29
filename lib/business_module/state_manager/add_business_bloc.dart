@@ -19,7 +19,9 @@ class AddBusinessCubit extends Cubit<States> {
   addBusinessList(CreateBusinessRequest request,) {
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: addBusinessList(request)));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          addBusinessList(request);
+        }));
       }
       else if (value.code == 200){
         List<BusinessResponse> bus = [];

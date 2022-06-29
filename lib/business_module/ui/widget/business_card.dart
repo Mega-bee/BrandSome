@@ -1,4 +1,3 @@
-import 'package:brandsome/business_details_module/ui/screen/business_card_info_screen.dart';
 import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/cupertino.dart';

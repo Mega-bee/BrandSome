@@ -4,15 +4,15 @@ class HelperBusinessSort{
   static String getBusinessSortString(BusinessSortEnum? status) {
     switch (status) {
       case BusinessSortEnum.REVIEWS:
-        return 'reviews';
+        return 'ReviewCount';
       case BusinessSortEnum.VIEWS:
-        return 'views';
+        return 'ViewCount';
       case BusinessSortEnum.A_Z:
-        return 'A_Z';
+        return 'A-Z';
       case BusinessSortEnum.FOLLOWERS:
-        return 'follwers';
+        return 'FollowCount';
       case BusinessSortEnum.POSTS:
-        return 'follwers';
+        return 'PostCount';
       default:
         return '';
     }

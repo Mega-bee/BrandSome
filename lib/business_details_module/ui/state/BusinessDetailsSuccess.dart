@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
 import '../../reponse/business_response.dart';
-import '../screen/business info.dart';
+import '../screen/business_info.dart';
 import '../screen/business posts.dart';
 import '../screen/business_details.dart';
 
-class BusinessDetailsSuccess extends States{
+class BusinessDetailsSuccess extends States {
   final BusnessDetailsScreenState screenState;
   final BusinessInfoResponse businessInfoModel;
   BusinessDetailsSuccess(this.screenState,this.businessInfoModel);
+
   late TabController tabController = TabController(length: 3, vsync: screenState);
 
   @override
@@ -46,7 +47,13 @@ class BusinessDetailsSuccess extends States{
             child: TabBarView(
               controller: tabController,
               children: [
-                BusinessInfo(businessInfoModel: businessInfoModel),
+                BusinessInfo(businessInfoModel: businessInfoModel, onNumberClick: (number){
+                  screenState.clickCall(number);
+                },
+                onReviewClick: (request){
+                  screenState.createReview(request);
+                },
+                ),
                 BusinessPosts(businessInfoModel: businessInfoModel.posts??[]),
                 ReviewScreen(review: businessInfoModel.reviews??[]),
               ],

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -21,7 +20,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   bool value = false;
   @override
   void initState() {
-
     widget.cubit.getSetting();
   }
   @override

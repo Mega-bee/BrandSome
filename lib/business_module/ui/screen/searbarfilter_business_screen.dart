@@ -1,11 +1,4 @@
-import 'package:brandsome/home_page/model/choose_category_filter_model.dart';
-import 'package:brandsome/home_page/model/filter_service_model.dart';
-import 'package:brandsome/home_page/model/filtrer_sub_category_model.dart';
-import 'package:brandsome/home_page/ui/widgets/filter_category_image_list.dart';
-import 'package:brandsome/home_page/ui/widgets/filter_service.dart';
-import 'package:brandsome/home_page/ui/widgets/filter_sub_category_image_list.dart';
 import 'package:brandsome/utils/components/costom_search.dart';
-import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';

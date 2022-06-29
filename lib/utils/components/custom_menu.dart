@@ -2,12 +2,17 @@ import 'package:brandsome/abstracts/model/menu_item.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 
-class CustomMenuDropDown extends StatelessWidget {
+class CustomMenuDropDown extends StatefulWidget {
   final List<ItemModel> menuItems;
   final IconData mainIcon;
 
   CustomMenuDropDown({required this.menuItems, required this.mainIcon});
 
+  @override
+  State<CustomMenuDropDown> createState() => _CustomMenuDropDownState();
+}
+
+class _CustomMenuDropDownState extends State<CustomMenuDropDown> {
   CustomPopupMenuController _controller = CustomPopupMenuController();
 
   @override
@@ -15,7 +20,7 @@ class CustomMenuDropDown extends StatelessWidget {
     return CustomPopupMenu(
       child: Padding(
         padding: const EdgeInsetsDirectional.only(start: 8, end: 15),
-        child: Icon(mainIcon),
+        child: Icon(widget.mainIcon),
       ),
       menuBuilder: () => Padding(
         padding: const EdgeInsetsDirectional.only(start: 8,end: 10),
@@ -26,32 +31,32 @@ class CustomMenuDropDown extends StatelessWidget {
             child: IntrinsicWidth(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: menuItems
+                children: widget.menuItems
                     .map(
-                      (item) => GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: _controller.hideMenu,
-                        child: InkWell(
-                          onTap: (){
-                            item.onTap();
-                          },
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(children: [
-                                  Icon(
-                                    item.icon,
-                                  ),
-                                  SizedBox(width: 5,),
-                                  Text(
-                                    item.title,
-                                  ),
-                                ],),
-                              ),
-                              Divider(height: 3,thickness: 2,)
-                            ],
-                          ),
+                      (item) => InkWell(
+                        onTap: (){
+                          _controller.hideMenu();
+                          setState(() {
+
+                          });
+//                           Navigator.pop(context);
+                          item.onTap();
+
+                        },
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(children: [
+                               item.icon,
+                                SizedBox(width: 5,),
+                                Text(
+                                  item.title,
+                                ),
+                              ],),
+                            ),
+                            Divider(height: 3,thickness: 2,)
+                          ],
                         ),
                       ),
                     )

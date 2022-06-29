@@ -17,7 +17,9 @@ class BusinessListCubit extends Cubit<States> {
   getBusinessList(BusinessFilterRequest request) {
     _businessRepository.getBusiness(request).then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getBusinessList(request)));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getBusinessList(request);
+        }));
       }
       else if (value.code == 200){
         List<BusinessResponse> bus = [];

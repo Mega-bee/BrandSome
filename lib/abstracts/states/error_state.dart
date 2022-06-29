@@ -24,7 +24,7 @@ class ErrorState extends States {
           ),
           RaisedButton(
               onPressed: () {
-                retry();
+//                retry();
               },
               child:const Text(
                 'Retry',

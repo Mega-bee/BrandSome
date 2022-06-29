@@ -1,13 +1,12 @@
+import 'package:brandsome/business_module/ui/screen/business_screen.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
+import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../business_module/ui/screen/business_screen.dart';
-
-import '../../../setting_module/ui/screen/setting_screen.dart';
 
 @injectable
 class NavigationScreen extends StatefulWidget {

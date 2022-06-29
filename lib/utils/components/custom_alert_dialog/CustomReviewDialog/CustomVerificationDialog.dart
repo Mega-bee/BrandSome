@@ -1,21 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomReviewDialog extends StatefulWidget {
-  final String content;
+class CustomReviewDialog extends StatelessWidget {
   final Function continueBtn;
+  CustomReviewDialog({required this.continueBtn});
 
-  CustomReviewDialog({
-    required this.content,
-    required this.continueBtn,
-  });
-
-  @override
-  State<CustomReviewDialog> createState() => _CustomReviewDialog();
-}
-
-class _CustomReviewDialog extends State<CustomReviewDialog> {
-  final review = TextEditingController();
+  TextEditingController review = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +48,6 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
                 TextFormField(
                   minLines: 6,
                   maxLines: 12,
-//                  style: TextStyle(color: hintText, fontSize: 15),
                   controller: review,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -67,9 +56,6 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
                           width: 5,
                         ),
                       ),
-                      // hintText: 'Enter your username',
-                      // hintStyle:
-                      //     TextStyle(fontSize: 12, color: darkWhiteColor),
                       contentPadding: EdgeInsetsDirectional.only(
                           top: 10, bottom: 10, start: 10)),
                 ),
@@ -81,7 +67,7 @@ class _CustomReviewDialog extends State<CustomReviewDialog> {
           ),
           ElevatedButton(
             onPressed: () {
-              widget.continueBtn();
+              continueBtn(review.text);
             },
             child: Text("Save review"),
             style: ElevatedButton.styleFrom(

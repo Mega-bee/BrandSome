@@ -1,7 +1,7 @@
 class BusinessFilterRequest {
 
   // final List<int>? services;
- final String? sortBy;
+   String? sortBy;
 
   BusinessFilterRequest({this.sortBy});
 

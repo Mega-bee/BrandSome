@@ -20,7 +20,9 @@ class GetCategoryListCubit extends Cubit<States> {
   getCategoryList() {
     _businessRepository.getAllCategory().then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getCategoryList()));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getCategoryList();
+        }));
       }
       else if (value.code == 200){
         List<FilterSearchModel> filt = [];

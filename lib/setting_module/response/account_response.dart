@@ -23,15 +23,7 @@ class Account {
     birthDate = json['birthDate'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['userName'] = this.userName;
-    data['phoneNumber'] = this.phoneNumber;
-    data['imageUrl'] = this.imageUrl;
-    data['gender'] = this.gender;
-    data['genderId'] = this.genderId;
-    data['birthDate'] = this.birthDate;
-    return data;
-  }
+
+
 }
 

@@ -19,7 +19,9 @@ class LikedListCubit extends Cubit<States> {
   getLikesList(String? id) {
     _likedList.getLikedPosts(id).then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: getLikesList(id)));
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getLikesList(id);
+        }));
       }
       else if (value.code == 200){
 

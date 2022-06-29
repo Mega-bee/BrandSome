@@ -1,7 +1,7 @@
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
-import 'package:brandsome/setting_module/ui/widget/account_info.dart';
+import 'ui/screen/account_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 

@@ -49,6 +49,7 @@ class ApiClient {
       );
       return _processResponse(response);
     } catch (e) {
+      _logger.info(tag, 'e');
       if (e is DioError) {
         DioError err = e;
         if (err.response != null) {
@@ -88,6 +89,7 @@ class ApiClient {
           client.options.headers['Authorization'] = headers['Authorization'];
         }
       }
+      _logger.info(tag, 'Headers hello: ' + jsonEncode(headers));
       // client.options.headers['Access-Control-Allow-Origin'] = '*';
       if (!kIsWeb) {
 //        client.interceptors.add(performanceInterceptor);
@@ -95,7 +97,7 @@ class ApiClient {
       var response = await client.post(
         url,
         queryParameters: queryParams,
-        data: json.encode(payLoad),
+        data: FormData.fromMap(payLoad),
       );
       return _processResponse(response);
     } catch (e) {
@@ -139,14 +141,14 @@ class ApiClient {
           client.options.headers['Authorization'] = headers['Authorization'];
         }
       }
-      //  client.options.headers['Access-Control-Allow-Origin'] = '*';
+       //  client.options.headers['Access-Control-Allow-Origin'] = '*';
       if (!kIsWeb) {
 //        client.interceptors.add(performanceInterceptor);
       }
       var response = await client.put(
         url,
         queryParameters: queryParams,
-        data: json.encode(payLoad),
+        data:FormData.fromMap(payLoad),
         options: Options(headers: headers),
       );
       return _processResponse(response);

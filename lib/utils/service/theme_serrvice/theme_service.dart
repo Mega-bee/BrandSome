@@ -23,8 +23,7 @@ class AppThemeDataService {
         seedColor: PrimaryColor,
         brightness: Brightness.dark,
         error: Colors.red[900],
-        errorContainer: Colors.red[100],
-        primary: Colors.grey[900]);
+        errorContainer: Colors.red[100],);
     if (dark == true) {
       return ThemeData(
           appBarTheme: AppBarTheme(
@@ -61,7 +60,7 @@ class AppThemeDataService {
               if (states.any(interactiveStates.contains)) {
                 return Colors.black;
               }
-              return Colors.indigo;
+              return Colors.deepOrange;
             }),
           ),
 //          cardColor: Colors.grey[150],
@@ -88,8 +87,8 @@ class AppThemeDataService {
         useMaterial3: true,
         focusColor: PrimaryColor,
         primarySwatch: Colors.deepOrange,
-//        cardColor: Color.fromRGBO(245, 245, 245, 1),
-//        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
+        cardColor: Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
         textTheme: TextTheme(button: TextStyle(color: Colors.white)),
         fontFamily: 'Dubai',
         timePickerTheme: TimePickerThemeData(

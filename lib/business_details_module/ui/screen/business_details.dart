@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
-import '../../../business_module/state_manager/business_list_bloc.dart';
-import '../../state_manager/business_list_bloc.dart';
+import '../../request/add_review_request.dart';
+import '../../state_manager/business_details_state_manager.dart';
 
 @injectable
 class BusnessDetailsScreen extends StatefulWidget {
@@ -14,8 +14,19 @@ class BusnessDetailsScreen extends StatefulWidget {
   State<BusnessDetailsScreen> createState() => BusnessDetailsScreenState();
 }
 
-class BusnessDetailsScreenState extends State<BusnessDetailsScreen> with SingleTickerProviderStateMixin{
+class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
+    with TickerProviderStateMixin{
   String? id = "-1";
+
+  clickCall(String? number){
+    widget._businessListDetailsCubit.PostCall(this , id,number);
+  }
+  createReview(AddReviewRequest request){
+    widget._businessListDetailsCubit.createReview(request,this);
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +38,9 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen> with SingleT
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        elevation: 0,
-        backgroundColor: Theme
-            .of(context)
-            .scaffoldBackgroundColor,
-        title: Padding(
-          padding: const EdgeInsetsDirectional.only(start: 10.0),
-          child: Text(
-            "Business Details",
-          ),
+        elevation: 5,
+        title: Text(
+          "Business Details",
         ),
       ),
       body:  BlocBuilder<BusinessListDetailsCubit, States>(

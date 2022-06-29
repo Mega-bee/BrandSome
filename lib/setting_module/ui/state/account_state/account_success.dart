@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import '../../../../abstracts/states/state.dart';
 import '../../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../response/account_response.dart';
-import 'dart:io' as i;
 
 
 
@@ -15,7 +14,7 @@ class AccountSuccess extends States {
 
   AccountSuccess({required this.getacc});
 
-  i.File? _pickImage;
+//  i.File? _pickImage;
   final _formKeyBusiness = GlobalKey<FormState>();
   final username = TextEditingController();
 
@@ -24,16 +23,16 @@ class AccountSuccess extends States {
   final Birthday = TextEditingController();
 
   Future pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = i.File(image.path);
-      // setState(() {
-      //   this._pickImage = imageTemporary;
-      // });
-    } on PlatformException catch (e) {
-      print("Failed to pick image $e");
-    }
+//    try {
+//      final image = await ImagePicker().pickImage(source: source);
+//      if (image == null) return;
+//      final imageTemporary = i.File(image.path);
+//      setState(() {
+//        this._pickImage = imageTemporary;
+//      });
+//    } on PlatformException catch (e) {
+//      print("Failed to pick image $e");
+//    }
   }
 
   bool edit = false;

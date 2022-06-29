@@ -1,8 +1,11 @@
+import 'package:brandsome/abstracts/model/menu_item.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/business_routes.dart';
+import 'package:brandsome/business_module/helper/enum_sort.dart';
+import 'package:brandsome/business_module/helper/helper_sort_business.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/state_manager/business_list_bloc.dart';
-import 'searbarfilter_business_screen.dart';
+import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,35 +25,45 @@ class BusinessScreen extends StatefulWidget {
 
 class _BusinessScreenState extends State<BusinessScreen> {
   late BusinessFilterRequest request;
-
-  void onSelected(BuildContext context, item) {
-    switch (item) {
-      case 0:
-        request = BusinessFilterRequest(sortBy: "A-Z");
-        widget.cubit.getBusinessList(request);
-        break;
-      case 1:
-        request = BusinessFilterRequest(sortBy: "FollowCount");
-        widget.cubit.getBusinessList(request);
-        break;
-      case 2:
-        request = BusinessFilterRequest(sortBy: "ReviewCount");
-        widget.cubit.getBusinessList(request);
-        break;
-      case 3:
-        request = BusinessFilterRequest(sortBy: "PostCount");
-        widget.cubit.getBusinessList(request);
-        break;
-      case 4:
-        request = BusinessFilterRequest(sortBy: "ViewCount");
-        widget.cubit.getBusinessList(request);
-        break;
-    }
-  }
+  late List<ItemModel> menuItems;
 
   @override
   void initState() {
     request = BusinessFilterRequest();
+    menuItems = [
+      ItemModel('A-Z', SvgPicture.asset(
+        SvgImg.SORT_ALPGA_DOWN,
+      ),(){
+        request.sortBy = HelperBusinessSort.getBusinessSortString(BusinessSortEnum.A_Z);
+        widget.cubit.getBusinessList(request);
+      }),
+
+      ItemModel('Followers', SvgPicture.asset(
+        SvgImg.SORT_ALPGA_DOWN,
+      ),(){
+        request.sortBy = HelperBusinessSort.getBusinessSortString(BusinessSortEnum.FOLLOWERS);
+        widget.cubit.getBusinessList(request);
+      }),
+      ItemModel('Reviwes', SvgPicture.asset(
+        SvgImg.SORT_ALPGA_DOWN,
+      ),(){
+        request.sortBy = HelperBusinessSort.getBusinessSortString(BusinessSortEnum.REVIEWS);
+        widget.cubit.getBusinessList(request);
+      }),
+      ItemModel('Posts', SvgPicture.asset(
+        SvgImg.SORT_ALPGA_DOWN,
+      ),(){
+        request.sortBy = HelperBusinessSort.getBusinessSortString(BusinessSortEnum.POSTS);
+        widget.cubit.getBusinessList(request);
+      }),
+      ItemModel('Views', SvgPicture.asset(
+        SvgImg.SORT_ALPGA_DOWN,
+      ),(){
+        request.sortBy = HelperBusinessSort.getBusinessSortString(BusinessSortEnum.VIEWS);
+        widget.cubit.getBusinessList(request);
+      }),
+
+    ];
     widget.cubit.getBusinessList(request);
 
   }
@@ -84,163 +97,163 @@ class _BusinessScreenState extends State<BusinessScreen> {
                 size: 18,
               ),
             ),
-            PopupMenuButton(
-                icon: Icon(Icons.sort),
-                onSelected: (item) => onSelected(context, item),
-                itemBuilder: (context) => [
-                      PopupMenuItem(
-                        padding: EdgeInsets.all(10),
-                        value: 0,
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.SORT_ALPGA_DOWN,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  "A-Z",
-                                ),
-                                Divider(
-                                  thickness: 2,
-                                  height: 2,
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 2,
-                            ),
-                          ],
-                        ),
+            CustomMenuDropDown(mainIcon:Icons.sort,menuItems: menuItems,),
 
-                      ),
-                      PopupMenuItem(
-                        padding: EdgeInsets.all(10),
-                        value: 1,
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PERSON,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  "Followers",
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 2,
-                            ),
-
-                          ],
-                        ),
-
-                      ),
-                      PopupMenuItem(
-                        padding: EdgeInsets.all(10),
-                        value: 2,
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.VIEWS,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  "Views",
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      PopupMenuItem(
-                        padding: EdgeInsets.all(10),
-                        value: 3,
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.PAPER,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  "Posts",
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      PopupMenuItem(
-                        padding: EdgeInsets.all(10),
-                        value: 4,
-                        child: Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SvgPicture.asset(
-                                  SvgImg.REVIEWS,
-                                ),
-                                SizedBox(
-                                  width: 7,
-                                ),
-                                Text(
-                                  "Reviews",
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Divider(
-                              thickness: 1,
-                              height: 2,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ]),
+//            PopupMenuButton(
+//                icon: Icon(Icons.sort),
+//                onSelected: (item) => onSelected(context, item),
+//                itemBuilder: (context) => [
+//                      PopupMenuItem(
+//                        padding: EdgeInsets.all(10),
+//                        value: 0,
+//                        child: Column(
+//                          children: [
+//                            Row(
+//                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//
+//                                SizedBox(
+//                                  width: 7,
+//                                ),
+//                                Text(
+//                                  "",
+//                                ),
+//                                Divider(
+//                                  thickness: 2,
+//                                  height: 2,
+//                                ),
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: 20,
+//                            ),
+//                            Divider(
+//                              thickness: 1,
+//                              height: 2,
+//                            ),
+//                          ],
+//                        ),
+//
+//                      ),
+//                      PopupMenuItem(
+//                        padding: EdgeInsets.all(10),
+//                        value: 1,
+//                        child: Column(
+//                          children: [
+//                            Row(
+//                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//                                SvgPicture.asset(
+//                                  SvgImg.PERSON,
+//                                ),
+//                                SizedBox(
+//                                  width: 7,
+//                                ),
+//                                Text(
+//                                  "Followers",
+//                                ),
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: 20,
+//                            ),
+//                            Divider(
+//                              thickness: 1,
+//                              height: 2,
+//                            ),
+//
+//                          ],
+//                        ),
+//
+//                      ),
+//                      PopupMenuItem(
+//                        padding: EdgeInsets.all(10),
+//                        value: 2,
+//                        child: Column(
+//                          children: [
+//                            Row(
+//                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//                                SvgPicture.asset(
+//                                  SvgImg.VIEWS,
+//                                ),
+//                                SizedBox(
+//                                  width: 7,
+//                                ),
+//                                Text(
+//                                  "Views",
+//                                ),
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: 20,
+//                            ),
+//                            Divider(
+//                              thickness: 1,
+//                              height: 2,
+//                            ),
+//                          ],
+//                        ),
+//                      ),
+//                      PopupMenuItem(
+//                        padding: EdgeInsets.all(10),
+//                        value: 3,
+//                        child: Column(
+//                          children: [
+//                            Row(
+//                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//                                SvgPicture.asset(
+//                                  SvgImg.PAPER,
+//                                ),
+//                                SizedBox(
+//                                  width: 7,
+//                                ),
+//                                Text(
+//                                  "Posts",
+//                                ),
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: 20,
+//                            ),
+//                            Divider(
+//                              thickness: 1,
+//                              height: 2,
+//                            ),
+//                          ],
+//                        ),
+//                      ),
+//                      PopupMenuItem(
+//                        padding: EdgeInsets.all(10),
+//                        value: 4,
+//                        child: Column(
+//                          children: [
+//                            Row(
+//                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                              children: [
+//                                SvgPicture.asset(
+//                                  SvgImg.REVIEWS,
+//                                ),
+//                                SizedBox(
+//                                  width: 7,
+//                                ),
+//                                Text(
+//                                  "Reviews",
+//                                ),
+//                              ],
+//                            ),
+//                            SizedBox(
+//                              height: 20,
+//                            ),
+//                            Divider(
+//                              thickness: 1,
+//                              height: 2,
+//                            ),
+//                          ],
+//                        ),
+//                      ),
+//                    ]),
           ],
         ),
         body: BlocBuilder<BusinessListCubit, States>(
