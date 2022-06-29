@@ -48,7 +48,11 @@ class BusinessDetailsSuccess extends States{
               children: [
                 BusinessInfo(businessInfoModel: businessInfoModel, onNumberClick: (number){
                   screenState.ClickCall(number);
-                },),
+                },
+                onReviewClick: (request){
+                  screenState.CreateReview(request);
+                },
+                ),
                 BusinessPosts(businessInfoModel: businessInfoModel.posts??[]),
                 ReviewScreen(review: businessInfoModel.reviews??[]),
               ],

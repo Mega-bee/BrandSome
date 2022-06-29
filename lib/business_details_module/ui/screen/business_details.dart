@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
 import '../../../business_module/state_manager/business_list_bloc.dart';
+import '../../request/add_review_request.dart';
 import '../../state_manager/business_list_bloc.dart';
 
 @injectable
@@ -20,6 +21,9 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen> with SingleT
     widget._businessListDetailsCubit.PostCall(this , id,number);
 
 
+  }
+  CreateReview(AddReviewRequest request){
+    widget._businessListDetailsCubit.CreateReview(request,this);
   }
   @override
   Widget build(BuildContext context) {

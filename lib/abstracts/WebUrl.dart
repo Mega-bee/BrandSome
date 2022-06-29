@@ -20,7 +20,7 @@ class Urls {
   static const GET_BUSINESS = BASE_API_BUSINESS + 'GetBusinesses';
   static const GET_BUSINESS_DETAILS = BASE_API_BUSINESS + 'GetBusiness/';
   static const PHONE_CLICK = BASE_API_BUSINESS + 'RegisterNewPhoneClick/';
-  static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview/';
+  static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview';
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
 
@@ -28,6 +28,7 @@ class Urls {
   /*--------Settings-------------------*/
   static const ACCOUNTS_SETTINGS =BSE_API_SETTINGS + 'GetAccountSetings';
   static const GETPROFILE =BSE_API_SETTINGS + 'GetProfile';
+  static const UPDATE_PROFILE =BSE_API_SETTINGS + 'UpdateProfile';
   static const GETFOLLOWEDBUSINESSES =BSE_API_SETTINGS + 'GetFollowedBusinessses';
 
 }

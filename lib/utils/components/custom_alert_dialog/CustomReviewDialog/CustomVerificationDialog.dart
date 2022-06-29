@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CustomReviewDialog extends StatefulWidget {
   final String content;
   final Function continueBtn;
-  var review = TextEditingController();
+  TextEditingController review = TextEditingController();
 
   CustomReviewDialog({
     required this.content,

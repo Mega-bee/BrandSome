@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
 import 'package:brandsome/utils/logger/logger.dart';
 import 'package:dio/dio.dart';
@@ -86,8 +87,11 @@ class ApiClient {
         if (headers['Authorization'] != null) {
           _logger.info(tag, 'Adding Auth Header');
           client.options.headers['Authorization'] = headers['Authorization'];
+          client.options.contentType = ContentType("application","x-www-form-urlencoded") as String;
+
         }
       }
+      _logger.info(tag, 'Headers hello: ' + jsonEncode(headers));
       // client.options.headers['Access-Control-Allow-Origin'] = '*';
       if (!kIsWeb) {
 //        client.interceptors.add(performanceInterceptor);

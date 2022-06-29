@@ -52,14 +52,14 @@ class BusinessListDetailsCubit extends Cubit<States> {
       throw 'Could not launch $url';
     }
   }
-  CreateReview(AddReviewRequest request) {
+  CreateReview(AddReviewRequest request,BusnessDetailsScreenState screenState) {
     _businessRepositoryDetails.AddReview(request).then((value) {
       if (value == null) {
         emit(ErrorState(
-            errorMessage: 'Connection error', retry: CreateReview(request)));
+            errorMessage: 'Connection error', retry: CreateReview(request,screenState)));
       }
       else if (value!.code == 200) {
-        Navigator.pop(BusnessDetailsScreenState().context);
+        Navigator.pop(screenState.context);
       }
     });
   }
