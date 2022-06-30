@@ -1,7 +1,7 @@
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 
-import '../../../business_module/repository/filter_category_response.dart';
+import '../../../business_module/reponse/filter_category_response.dart';
 import '../../model/choose_category_filter_model.dart';
 import '../../model/filtrer_sub_category_model.dart';
 import '../../model/subCategory.dart';

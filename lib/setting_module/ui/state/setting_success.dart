@@ -1,3 +1,4 @@
+import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
@@ -243,11 +244,9 @@ class SettingSuccess extends States {
                       color: Theme.of(context).primaryColor, fontSize: 13),
                 ),
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => AddBusiness(),
-                    ),
+                      BusinessRoutes.ADD_BUSINESS
                   );
                 },
               ),

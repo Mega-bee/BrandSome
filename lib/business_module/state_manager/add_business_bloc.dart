@@ -4,6 +4,7 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:brandsome/business_module/repository/business_repository.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
+import 'package:brandsome/business_module/ui/state/add_business_state/add_business_init.dart';
 import 'package:brandsome/business_module/ui/state/business_list_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -16,11 +17,11 @@ class AddBusinessCubit extends Cubit<States> {
 
   AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
-  addBusinessList(CreateBusinessRequest request,) {
+  addBusiness(CreateBusinessRequest request,) {
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){
         emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          addBusinessList(request);
+          addBusiness(request);
         }));
       }
       else if (value.code == 200){

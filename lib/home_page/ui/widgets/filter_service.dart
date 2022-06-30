@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../business_module/repository/filter_category_response.dart';
+import '../../../business_module/reponse/filter_category_response.dart';
 import '../../model/filter_service_model.dart';
 import '../../model/subCategory.dart';
 

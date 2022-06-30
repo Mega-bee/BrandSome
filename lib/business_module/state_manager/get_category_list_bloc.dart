@@ -8,7 +8,7 @@ import 'package:brandsome/business_module/ui/state/business_list_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../repository/filter_category_response.dart';
+import '../reponse/filter_category_response.dart';
 import '../ui/state/get_category_success.dart';
 
 @injectable

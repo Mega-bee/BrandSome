@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../home_page/ui/widgets/filter_category_image_list.dart';
 import '../../../home_page/ui/widgets/filter_sub_category_image_list.dart';
-import '../../repository/filter_category_response.dart';
+import '../../reponse/filter_category_response.dart';
 
 class GetCategorySuccess extends States {
  final List<FilterSearchModel> filter;
