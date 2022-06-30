@@ -1,5 +1,6 @@
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
@@ -22,17 +23,27 @@ class SettingSuccess extends States {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Padding(
                 padding: EdgeInsets.all(15.0),
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.08,
-                  width: MediaQuery.of(context).size.width * 0.20,
-                  child: CircleAvatar(
-                    foregroundImage: NetworkImage(
-                      getaccsetting.imageUrl.toString(),
-                    ),
-                    radius: 60,
-                    backgroundColor: Colors.transparent,
-                  ),
-                )),
+                child:
+
+                    Container(
+                      width: 80,
+                      height: 80,
+                      child: CachedNetworkImage(
+                        imageUrl: getaccsetting.imageUrl.toString(),
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                                ),
+                          ),
+                        ),
+                        placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),),
+
             Column(
               children: [
                 Text(
@@ -101,7 +112,7 @@ class SettingSuccess extends States {
           ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, SettingRoutes.Account_Screen);
+              Navigator.pushNamed(context, SettingRoutes.Account_Screen,);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -132,7 +143,7 @@ class SettingSuccess extends States {
             height: 30,
           ),
           Container(
-            height: 65,
+            height: 125,
             child: ListView.builder(
 
                 // physics:const BouncingScrollPhysics(

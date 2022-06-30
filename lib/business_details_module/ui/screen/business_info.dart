@@ -240,6 +240,77 @@ class BusinessInfo extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
+          businessInfoModel.isUserBusiness! ?
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    onNumberClick(businessInfoModel.phoneNumber);
+                  },
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SvgImg.PHONE,
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Edit Business",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.only(left: 30, right: 30),
+                    primary: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomReviewDialog(
+                                continueBtn: (reviewText) {
+                                  Navigator.pop(context);
+                                  onReviewClick(AddReviewRequest(
+                                    Bussinessid: businessInfoModel.id.toString(),
+                                    Description: reviewText,
+                                  ));
+                                }));
+                    // );
+                  },
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SvgImg.RATING,
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text("Add review", style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.only(left: 30, right: 30),
+                    primary: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                ),
+              ],
+            ),
+          ):
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
             child: Row(
@@ -310,6 +381,8 @@ class BusinessInfo extends StatelessWidget {
               ],
             ),
           ),
+
+
           SizedBox(
             height: 25,
           )

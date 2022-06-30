@@ -36,6 +36,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
   PostCall(BusnessDetailsScreenState screenstate,String? id,String? number) {
     _businessRepositoryDetails.PostCall(id).then((value) {
        if (value!.code == 200){
+
          launchUrl("tel://${number}.");
       }
     });
@@ -57,10 +58,12 @@ class BusinessListDetailsCubit extends Cubit<States> {
       if (value == null) {
         emit(ErrorState(
             errorMessage: 'Connection error', retry:(){
-        createReview(request,screenState);
+          getBusinessDetails(screenState,request.Bussinessid);
+
         }));
       }
       else if (value.code == 200) {
+        print('review add successfully');
         getBusinessDetails(screenState,request.Bussinessid);
       }
     });

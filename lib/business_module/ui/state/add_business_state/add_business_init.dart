@@ -3,10 +3,13 @@ import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../request/create_business_request.dart';
+
 class AddBusinessInit extends States{
   final AddBusinessState _addBusinessState;
+  final CreateBusinessRequest createBusinessRequest;
 
-  AddBusinessInit(this._addBusinessState);
+  AddBusinessInit(this._addBusinessState,this.createBusinessRequest);
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();

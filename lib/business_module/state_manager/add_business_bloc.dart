@@ -25,12 +25,10 @@ class AddBusinessCubit extends Cubit<States> {
         }));
       }
       else if (value.code == 200){
-        List<BusinessResponse> bus = [];
-        for (var item in value.data.insideData) {
-          bus.add(BusinessResponse.fromJson(item));
+
         }
-        emit(BusinessListSuccess(business: bus));
-      }
+        // emit(BusinessListSuccess(business: bus));
+
     });
   }
 }
