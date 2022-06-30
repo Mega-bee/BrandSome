@@ -4,8 +4,10 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:brandsome/business_module/repository/business_repository.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
+import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/business_module/ui/state/add_business_state/add_business_init.dart';
 import 'package:brandsome/business_module/ui/state/business_list_success.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,19 +19,16 @@ class AddBusinessCubit extends Cubit<States> {
 
   AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
-  addBusiness(CreateBusinessRequest request,) {
+  addBusiness(CreateBusinessRequest request,AddBusinessState businessState) {
+    emit(LoadingState());
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){
         emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          addBusiness(request);
+          addBusiness(request,businessState);
         }));
       }
       else if (value.code == 200){
-        List<BusinessResponse> bus = [];
-        for (var item in value.data.insideData) {
-          bus.add(BusinessResponse.fromJson(item));
-        }
-        emit(BusinessListSuccess(business: bus));
+        Navigator.pop(businessState.context);
       }
     });
   }

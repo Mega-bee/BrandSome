@@ -1,4 +1,5 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_module/request/create_business_request.dart';
 import 'package:brandsome/business_module/state_manager/add_business_bloc.dart';
 import 'package:brandsome/business_module/ui/state/add_business_state/add_business_init.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class AddBusiness extends StatefulWidget {
 
 class AddBusinessState extends State<AddBusiness> {
   i.File? image;
-
+  late CreateBusinessRequest  request;
 
   Future  pickImage(ImageSource source) async {
     try {
@@ -46,7 +47,9 @@ class AddBusinessState extends State<AddBusiness> {
       });
     }
   }
-
+addBusinessRequest(){
+    widget._addBusinessCubit.addBusiness(request,this);
+}
 
   @override
   void initState() {
@@ -68,7 +71,7 @@ class AddBusinessState extends State<AddBusiness> {
               padding: const EdgeInsets.only(right: 28.0),
               child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    addBusinessRequest();
                   },
                   icon: Icon(
                     Icons.check,

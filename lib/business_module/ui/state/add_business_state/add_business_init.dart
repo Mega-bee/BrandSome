@@ -5,15 +5,18 @@ import 'package:image_picker/image_picker.dart';
 
 class AddBusinessInit extends States{
   final AddBusinessState _addBusinessState;
-
-  AddBusinessInit(this._addBusinessState);
+  AddBusinessInit(this._addBusinessState,);
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
   final description = TextEditingController();
 
+
+
   @override
   Widget getUI(BuildContext context) {
+    _addBusinessState.request.BusinessDescription = description.text;
+    _addBusinessState.request.BusinessName = business.text;
 
     return SingleChildScrollView(
       child: Column(
@@ -56,6 +59,7 @@ class AddBusinessInit extends States{
                             InkWell(
                               onTap: () {
                                 _addBusinessState.pickImage(ImageSource.gallery).then((value) {
+                                  _addBusinessState.request.images = value;
 
                                 });
                               },

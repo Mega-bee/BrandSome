@@ -2,13 +2,13 @@
 import 'package:dio/dio.dart';
 
 class CreateBusinessRequest {
-  final String? BusinessDescription;
-  final String? BusinessName;
-  final String? BusinessPhoneNumber;
-  final List<int>? services;
-  final List<int>? cities;
-  final int? id;
-  final MultipartFile? images;
+   String? BusinessDescription;
+   String? BusinessName;
+   String? BusinessPhoneNumber;
+   List<int>? services;
+   List<int>? cities;
+   int? id;
+   MultipartFile? images;
 
   CreateBusinessRequest(
       {this.id,
