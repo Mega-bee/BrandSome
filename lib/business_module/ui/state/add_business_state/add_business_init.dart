@@ -53,7 +53,7 @@ class AddBusinessInit extends States {
                       fit: BoxFit.cover,
                       width: 150,height: 150
                   ) :
-                  Image.network("https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" ?? '',fit: BoxFit.cover,width: 150,height: 150,),
+                  Image.network("https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",fit: BoxFit.cover,width: 150,height: 150,),
 
                 ),
               ),

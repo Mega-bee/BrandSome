@@ -81,7 +81,7 @@ class ApiClient {
     ));
     try {
       _logger.info(tag, 'Requesting Post to: ' + url);
-      _logger.info(tag, 'POST: ' + jsonEncode(payLoad));
+      // _logger.info(tag, 'POST: ' + jsonEncode(payLoad));
       _logger.info(tag, 'Headers: ' + jsonEncode(headers));
       if (headers != null) {
         if (headers['Authorization'] != null) {
