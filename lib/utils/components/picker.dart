@@ -1,35 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
-
-
 class CustomCupertinoPicker extends StatefulWidget {
   String label;
   TextInputType inputType;
-  List<String> items=[
-    "MALE",
-    "FEMALE",
-    "RATHER NOT TO SAY"
-  ];
+  List<String> items = ["MALE", "FEMALE", "RATHER NOT TO SAY"];
 
   int selectedValue;
-
 
   TextEditingController controller = TextEditingController();
 
   CustomCupertinoPicker(
-      { required this.label,
-        required this.inputType,
-        required this.items,
-        this.selectedValue = 0,
-        required this.controller});
+      {required this.label,
+      required this.inputType,
+      required this.items,
+      this.selectedValue = 0,
+      required this.controller});
 
   @override
   State<CustomCupertinoPicker> createState() => _CustomCupertinoPickerState();
 }
-
 
 class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
   FocusNode _focusNode = FocusNode();
@@ -39,9 +29,9 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
       items.add(
         Center(
             child: Text(
-              widget.items[i].toString(),
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            )),
+          widget.items[i].toString(),
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        )),
       );
     }
     return items;
@@ -49,20 +39,11 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
 
   @override
   void dispose() {
-    // widget.controller.dispose();
-
     super.dispose();
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
   }
 
   void showPicker(BuildContext ctx) {
     showCupertinoModalPopup(
-
         context: ctx,
         builder: (_) {
           return Column(
@@ -70,10 +51,9 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color:Theme.of(context).scaffoldBackgroundColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   border: Border(
                     bottom: BorderSide(
-                      color: Color(0xffE6E4EA),
                       width: 0.25,
                     ),
                   ),
@@ -82,31 +62,20 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     CupertinoButton(
-
                       child: Text(
                         "Pick " + widget.label.toLowerCase(),
                         style: TextStyle(
-                            color: Theme.of(context).primaryColor, fontWeight: FontWeight.w300),
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w300),
                       ),
-
                       onPressed: () {
-
-
-
-
-
-
                         if (widget.label == 'Gender') {
-
-
-
                           Navigator.of(context).pop();
                         }
                       },
                       padding: EdgeInsets.symmetric(
                         horizontal: 16.0,
                         vertical: 5.0,
-
                       ),
                     ),
                   ],
@@ -114,8 +83,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
               ),
               Container(
                 height: 250,
-                child:  CupertinoPicker(
-
+                child: CupertinoPicker(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   onSelectedItemChanged: (value) {
                     setState(() {
@@ -123,13 +91,11 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
 
                       widget.selectedValue = value;
                       widget.controller.text =
-                      widget.items[widget.selectedValue];
+                          widget.items[widget.selectedValue];
                     });
-
                   },
-
                   scrollController: FixedExtentScrollController(
-                      initialItem: widget.selectedValue-1),
+                      initialItem: widget.selectedValue - 1),
                   itemExtent: 40.0,
                   children: [...buildItems()],
                 ),
@@ -143,55 +109,35 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     return Container(
-
-      height: MediaQuery.of(context).size.height/11,
+      height: MediaQuery.of(context).size.height / 11,
       // margin: EdgeInsets.only(bottom: 5),
       // padding: EdgeInsets.all(12),
       // decoration: BoxDecoration(
       //     color: Colors.white, //white
       //     borderRadius: BorderRadius.all(Radius.circular(45))),
       child: TextFormField(
-
-
-
         decoration: InputDecoration(
-
-
-          suffixIcon:Icon(
+          suffixIcon: Icon(
             Icons.keyboard_arrow_down,
             color: Theme.of(context).primaryColor,
             size: 24,
-          ) ,
-
+          ),
           alignLabelWithHint: true,
-          hintStyle: TextStyle(
-              fontFamily: 'BerlinSansFB',
-              fontSize: _focusNode.hasFocus ? 20 : 18.0,//I believe the size difference here is 6.0 to account padding
-              color:
-              _focusNode.hasFocus ? Color(0xFF3F5521) : Colors.grey),
           hintText: widget.label,
           filled: true,
-          fillColor: Theme.of(context).scaffoldBackgroundColor,
-
-          border: OutlineInputBorder(
-            borderRadius:
-            BorderRadius.all(Radius.circular(12)),
-
-            borderSide:
-             BorderSide(
-              color: Colors.red,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-
-            borderRadius: BorderRadius.circular(5.0),
-            borderSide: const BorderSide(
-              color: Color(0xFF3F5521),
-            ),
-          ),
+//          fillColor: Theme.of(context).scaffoldBackgroundColor,
+//          border: OutlineInputBorder(
+//            borderRadius: BorderRadius.all(Radius.circular(12)),
+//            borderSide: BorderSide(
+//              color: Colors.red,
+//            ),
+//          ),
+//          focusedBorder: OutlineInputBorder(
+//            borderRadius: BorderRadius.circular(5.0),
+//            borderSide: const BorderSide(
+//            ),
+//          ),
         ),
-        style: TextStyle(color: Colors.white),
-
         focusNode: _focusNode,
         controller: widget.controller,
         onTap: () {
@@ -200,8 +146,8 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
         },
         readOnly: true,
         keyboardType: this.widget.inputType,
-
       ),
     );
   }
 }
+

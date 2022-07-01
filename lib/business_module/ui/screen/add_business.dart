@@ -1,14 +1,10 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_module/request/create_business_request.dart';
 import 'package:brandsome/business_module/state_manager/add_business_bloc.dart';
 import 'package:brandsome/business_module/ui/state/add_business_state/add_business_init.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:io' as i;
-
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
-import '../../../setting_module/model/add_location_model.dart';
 
 @injectable
 class AddBusiness extends StatefulWidget {
@@ -21,37 +17,25 @@ class AddBusiness extends StatefulWidget {
 }
 
 class AddBusinessState extends State<AddBusiness> {
-  i.File? image;
+  late CreateBusinessRequest request;
 
+//  List<AddLocationResponse> selectedLocation = [];
 
-  Future  pickImage(ImageSource source) async {
-    try {
-      final image = await ImagePicker().pickImage(source: source);
-      if (image == null) return;
-      final imageTemporary = i.File(image.path);
-      setState(() {
-        this.image = imageTemporary;
-      });
-    } on PlatformException catch (e) {
-      print("Failed to pick image $e");
+  void refresh() {
+    if (mounted) {
+      setState(() {});
     }
   }
 
-  List<AddLocationModel> selectedLocation = [];
-
-  void refresh(){
-    if(mounted){
-      setState(() {
-
-      });
-    }
+  addBusinessRequest() {
+    widget._addBusinessCubit.addBusiness(request, this);
   }
-
 
   @override
   void initState() {
     super.initState();
-    // widget._addBusinessCubit.emit(AddBusinessInit();
+    request = CreateBusinessRequest(cities: []);
+    widget._addBusinessCubit.emit(AddBusinessInit(this));
   }
 
   @override
@@ -68,7 +52,7 @@ class AddBusinessState extends State<AddBusiness> {
               padding: const EdgeInsets.only(right: 28.0),
               child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    addBusinessRequest();
                   },
                   icon: Icon(
                     Icons.check,

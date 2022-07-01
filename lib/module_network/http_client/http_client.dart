@@ -127,7 +127,7 @@ class ApiClient {
   }) async {
     try {
       _logger.info(tag, 'Requesting PUT to: ' + url);
-      _logger.info(tag, 'PUT: ' + jsonEncode(payLoad));
+//      _logger.info(tag, 'PUT: ' + jsonEncode(payLoad));
       _logger.info(tag, 'Headers: ' + jsonEncode(headers));
       Dio client = Dio(BaseOptions(
         sendTimeout: 60000,
