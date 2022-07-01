@@ -2,20 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../response/account_response.dart';
+import '../../response/settings_response.dart';
 import '../../state_manager/account_state_manager.dart';
+import '../state/account_state/account_edit_init.dart';
 
 @injectable
 class AccountInfoScreen extends StatefulWidget {
   final AccountCubit cubit;
+
   AccountInfoScreen(this.cubit);
 
   @override
-  State<AccountInfoScreen> createState() => _AccountInfoScreenState();
+  State<AccountInfoScreen> createState() => AccountInfoScreenState();
 }
 
-class _AccountInfoScreenState extends State<AccountInfoScreen> {
+class AccountInfoScreenState extends State<AccountInfoScreen> {
 
+void Refrech(){
+  if (mounted){
+    setState(() {
 
+    });
+  }
+}
   @override
 
   void initState() {
@@ -40,9 +50,14 @@ class _AccountInfoScreenState extends State<AccountInfoScreen> {
             padding: const EdgeInsetsDirectional.only(end: 10.0),
             child: IconButton(
               onPressed: () {
-                setState(() {
-                  edit = true;
-                });
+
+               widget.cubit.emit(EditAccountInit(
+                 screenState: this,
+                  onSaveClick:  (request){
+                    widget.cubit.UpdateProfile(request);
+               }
+
+               ));
               },
               icon: Icon(
                 Icons.edit,

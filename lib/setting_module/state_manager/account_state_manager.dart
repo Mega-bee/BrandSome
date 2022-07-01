@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../request/update_profile_request.dart';
 import '../response/account_response.dart';
+import '../ui/state/account_state/account_edit_init.dart';
 
 @injectable
 class AccountCubit extends Cubit<States> {
@@ -27,9 +28,12 @@ class AccountCubit extends Cubit<States> {
     });
   }
 
-  UpdateProfile(UpdateProfileRequest request) {
+  UpdateProfile(UpdateProfileRequest request,) {
+    emit(LoadingState());
     _getAccoun.UpdateAcc(request).then((value) {
-      if (value!.code == 200) {}
+      if (value!.code == 200) {
+        getAccount();
+      }
     });
   }
 }

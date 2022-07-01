@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 
 class UpdateProfileRequest {
 
-  final int? genderId;
+  final String? genderId;
   final String? Username;
-  final DateTime? Birthday;
+  final String? Birthday;
   final MultipartFile? ImageFile;
   final String? PhoneNumber;
 

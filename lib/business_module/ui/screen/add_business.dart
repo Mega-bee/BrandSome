@@ -54,7 +54,7 @@ addBusinessRequest(){
   @override
   void initState() {
     super.initState();
-    widget._addBusinessCubit.emit(AddBusinessInit(this));
+    // widget._addBusinessCubit.emit(AddBusinessInit();
   }
 
   @override

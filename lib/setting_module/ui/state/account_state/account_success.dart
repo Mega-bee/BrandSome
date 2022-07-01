@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +15,7 @@ class AccountSuccess extends States {
 
   AccountSuccess({required this.getacc});
 
-//  i.File? _pickImage;
+
   final _formKeyBusiness = GlobalKey<FormState>();
   final username = TextEditingController();
 
@@ -22,18 +23,7 @@ class AccountSuccess extends States {
   final gender = TextEditingController();
   final Birthday = TextEditingController();
 
-  Future pickImage(ImageSource source) async {
-//    try {
-//      final image = await ImagePicker().pickImage(source: source);
-//      if (image == null) return;
-//      final imageTemporary = i.File(image.path);
-//      setState(() {
-//        this._pickImage = imageTemporary;
-//      });
-//    } on PlatformException catch (e) {
-//      print("Failed to pick image $e");
-//    }
-  }
+
 
   bool edit = false;
 
@@ -48,107 +38,23 @@ class AccountSuccess extends States {
             child: Center(
               child: Stack(children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-                  child: CircleAvatar(
-                    radius: 66,
-                    backgroundColor: Theme
-                        .of(context)
-                        .primaryColor,
-                    child: CircleAvatar(
-                        radius: 65,
-//                          backgroundColor: whiteColor,
-                        backgroundImage:NetworkImage(getacc.imageUrl.toString())
+                width: 130,
+                height: 130,
+                child: CachedNetworkImage(
+                  imageUrl: getacc.imageUrl.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-//                 Positioned(
-//                     top: 110,
-//                     left: 95,
-//                     child: RawMaterialButton(
-//                       onPressed: () {
-//                         showDialog(
-//                             context: context,
-//                             builder: (BuildContext context) {
-//                               return AlertDialog(
-// //                                  backgroundColor: whiteColor,
-//                                 title: Text("Choose option"),
-//                                 content: SingleChildScrollView(
-//                                   child: ListBody(
-//                                     children: [
-//                                       InkWell(
-//                                         onTap: () {
-//                                           pickImage(ImageSource.camera);
-//                                         },
-//                                         splashColor: Theme
-//                                             .of(context)
-//                                             .primaryColor,
-//
-//                                         child: Row(
-//                                           children: [
-//                                             Padding(
-//                                               padding:
-//                                               const EdgeInsets.all(8.0),
-//                                               child: Icon(
-//                                                 Icons.camera,
-//                                                 color: Theme
-//                                                     .of(context)
-//                                                     .primaryColor,
-//                                               ),
-//                                             ),
-//                                             Text(
-//                                               "Camera",
-//                                               style: TextStyle(
-//                                                 fontSize: 20,
-//                                               ),
-//                                             )
-//                                           ],
-//                                         ),
-//                                       ),
-//                                       InkWell(
-//                                         onTap: () {
-//                                           pickImage(ImageSource.gallery);
-//                                         },
-//                                         splashColor: Theme
-//                                             .of(context)
-//                                             .primaryColor,
-//                                         child: Row(
-//                                           children: [
-//                                             Padding(
-//                                               padding:
-//                                               const EdgeInsets.all(8.0),
-//                                               child: Icon(
-//                                                 Icons.image,
-//                                                 color: Theme
-//                                                     .of(context)
-//                                                     .primaryColor,
-//                                               ),
-//                                             ),
-//                                             Text(
-//                                               "Gallery",
-//                                               style: TextStyle(
-//                                                 fontSize: 20,
-//                                               ),
-//                                             )
-//                                           ],
-//                                         ),
-//                                       )
-//                                     ],
-//                                   ),
-//                                 ),
-//                               );
-//                             });
-//                       },
-//                       elevation: 10,
-//                       fillColor: Theme
-//                           .of(context)
-//                           .primaryColor,
-//                       child: Icon(
-//                         Icons.camera_alt_outlined,
-//                         color: Colors.white,
-//                       ),
-//                       padding: EdgeInsets.all(15.0),
-//                       shape: CircleBorder(),
-//                     ))
-                )]),
+              ),]),
             ),
           ),
 
@@ -252,6 +158,7 @@ class AccountSuccess extends States {
                     style: TextStyle(fontSize: 15),
                     controller: Birthday,
                     decoration: InputDecoration(
+
                       // hintText: "username",
                       // hintStyle: TextStyle(color: Colors.white),
                       enabledBorder: UnderlineInputBorder(
