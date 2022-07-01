@@ -22,7 +22,7 @@ class AddBusinessInit extends States{
   Widget getUI(BuildContext context) {
     _addBusinessState.request.BusinessDescription = description.text;
     _addBusinessState.request.BusinessName = business.text;
-    _addBusinessState.request.cities = selected;
+//    _addBusinessState.request.cities = selected;
 
 
     return SingleChildScrollView(
