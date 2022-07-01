@@ -27,12 +27,12 @@ class GetCategorySuccess extends States {
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: filter.length,
-                  itemBuilder: (context, index) {
+                  itemBuilder: (context, index1) {
                     return Column(
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(5.0),
-                          child: FilterCategory(filter[index], () {
+                          child: FilterCategory(filter[index1], () {
                             // filter.forEach((element) {
                             //   element.selectedCard = false;
                             // });
@@ -46,14 +46,14 @@ class GetCategorySuccess extends States {
                       child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
-                            itemCount: filter[index].subCategories!.length,
-                            itemBuilder: (context, index) {
+                            itemCount: filter[index1].subCategories!.length,
+                            itemBuilder: (context, index2) {
                               return Column(
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(5.0),
                                     child: FilterSubCategory(
-                                        filter[index].subCategories ?? [], () {
+                                        filter[index1].subCategories ?? [], () {
                                       // subfilter.forEach((element) {
                                       //   element.selectedCard = false;
                                       // });
@@ -62,22 +62,23 @@ class GetCategorySuccess extends States {
                                     }),
                                   ),
                                   SizedBox(height: 30,),
-
-                                  Container(
-                                    height:200,
-                                    child: GridView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      // shrinkWrap: true,
-                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-
-                                      ),
-                                      itemCount: filter[index].subCategories![index].services!.length,
-                                      itemBuilder: (context, index) {
-                                        return FilterService(filter[index].subCategories![index].services??[]);
-                                      },
-                                    ),
-                                  )],
+                                  //
+                                  // Container(
+                                  //   height:200,
+                                  //   child: GridView.builder(
+                                  //     physics: NeverScrollableScrollPhysics(),
+                                  //     shrinkWrap: true,
+                                  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  //       crossAxisCount: 2,
+                                  //
+                                  //     ),
+                                  //     itemCount: filter[index1].subCategories![index2].services!.length,
+                                  //     itemBuilder: (context, index) {
+                                  //       return Container();
+                                  //     },
+                                  //   ),
+                                  // )
+                                ],
                               );
 
                             }),

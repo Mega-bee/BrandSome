@@ -45,6 +45,7 @@ dependencies:
   hive_flutter:
   rolling_switch: ^0.0.2
   flutter_bloc: ^7.3.3
+  flutter_launcher_icons:
 
   equatable: ^2.0.3
   timeago:
@@ -68,6 +69,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo/logo.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -95,6 +101,7 @@ flutter:
     - assets/images/socialMedia/
     - assets/images/svg/
     - assets/images/unselectedSports/
+    - assets/images/logo/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

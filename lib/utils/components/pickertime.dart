@@ -115,16 +115,18 @@ class _DatePickerState extends State<DatePicker> {
               filled: true,
               fillColor: Theme.of(context).scaffoldBackgroundColor,
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.0),
+                borderRadius: BorderRadius.circular(1.0),
                 borderSide:  BorderSide(
-                  color: Theme.of(context).primaryColor
+                  width: 0,
+                  color: Colors.grey,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
 
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide:  BorderSide(
-                    color:Theme.of(context).primaryColor
+                    width: 0,
+                    color:Colors.grey
                   ))),
           style: const TextStyle(
               color: Colors.white,

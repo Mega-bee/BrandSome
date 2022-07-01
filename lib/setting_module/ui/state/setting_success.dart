@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../business_details_module/business_details_route.dart';
+import '../../../business_module/reponse/business_response.dart';
 import '../../../business_module/ui/screen/add_business.dart';
 import '../../../follower_module/Follower_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
@@ -13,6 +15,8 @@ import '../../response/settings_response.dart';
 
 class SettingSuccess extends States {
   final GetAccountSetting getaccsetting;
+
+
   SettingSuccess({required this.getaccsetting});
 
   @override
@@ -149,35 +153,45 @@ class SettingSuccess extends States {
                 // physics:const BouncingScrollPhysics(
                 //     parent: AlwaysScrollableScrollPhysics()),
                 itemCount: getaccsetting.businesses!.length,
+
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 30,
-                    ),
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.business,
-                            size: 14,
-                          ),
-                          Text(
-                            getaccsetting.businesses![index].name.toString(),
-                          ),
-                          SizedBox(
-                            width: 160,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                          ),
-                        ],
+                  return InkWell(
+                    onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+                      arguments: getaccsetting.businesses![index].id.toString(),
+                    );
+                  },
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20.0,
+                        right: 30,
                       ),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ]),
+                      child: Column(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(
+                              Icons.business,
+                              size: 14,
+                            ),
+                            Text(
+                              getaccsetting.businesses![index].name.toString(),
+                            ),
+                            SizedBox(
+                              width: 160,
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        )
+                      ]),
+                    ),
                   );
                 }),
           ),

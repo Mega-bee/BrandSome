@@ -140,6 +140,7 @@ class EditAccountInit extends States {
                                                               if (pickedFile ==
                                                                   null) return;
                                                               _pickImage = File(pickedFile.path) ;
+
                                                               imageForUpload =
                                                               await MultipartFile
                                                                   .fromFile(
@@ -191,29 +192,38 @@ class EditAccountInit extends States {
                 readOnly: true,
               ),
               SizedBox(height: 30),
+              DatePicker(
+                controller: birthday,
+                label: "Date Of Birth",
+                read: true,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               ListTile(
                 title: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(right: 20),
                   child: Text(
-                    'Gender',
-                  ),
+                      'Gender',
+                    ),
                 ),
-                subtitle: Flex(
-//                  runSpacing: 50,
-                  direction: Axis.horizontal,
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Theme.of(context).cardColor,
-                        ),
+
+                subtitle:
+                Column(
+                  children:[
+                    SizedBox(height: 20,),
+                    Flex(
+
+
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
                         child: RadioListTile(
                           dense: true,
                           activeColor: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          title: Text('Male'),
+                          title: Text('Male',style: TextStyle(fontSize: 12),),
                           value: 1,
                           groupValue: genderID,
                           onChanged: (int? v) {
@@ -222,29 +232,10 @@ class EditAccountInit extends States {
                           },
                         ),
                       ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Theme.of(context).cardColor,
-                        ),
-                        child: RadioListTile(
-                          dense: true,
-                          activeColor: Theme.of(context).primaryColor,
-                          title: Text('Female'),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          value: 2,
-                          groupValue: genderID,
-                          onChanged: (int? v) {
-                            genderID = v;
-                            screenState.refresh();
-                          },
-                        ),
-                      ),
-                    ),
+
+
+
+
 
 //                    Expanded(
 //                      child: Container(
@@ -266,18 +257,103 @@ class EditAccountInit extends States {
 //                        ),
 //                      ),
 //                    ),
-                  ],
-                ),
-              ),
+                    ],
+                  ),
+                    Flex(
+
+                      direction: Axis.horizontal,
+                      children: [
+                        Expanded(
+                          child: RadioListTile(
+                            dense: true,
+                            activeColor: Theme.of(context).primaryColor,
+                            title: Text('Female',style: TextStyle(fontSize: 12),),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            value: 2,
+                            groupValue: genderID,
+                            onChanged: (int? v) {
+                              genderID = v;
+                              screenState.refresh();
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 30),
+
+
+
+
+//                    Expanded(
+//                      child: Container(
+//                        decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(10),
+//                          color: Theme.of(context).cardColor,
+//                        ),
+//                        child: RadioListTile(
+//                          activeColor: Theme.of(context).primaryColor,
+//                          title: Text('Other'),
+//                          shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(10)),
+//                          value: 3,
+//                          groupValue: genderID,
+//                          onChanged: (int? v) {
+//                            genderID =  v;
+//                            screenState.refresh();
+//                          },
+//                        ),
+//                      ),
+//                    ),
+                      ],
+                    ),
+                    Flex(
+
+                      direction: Axis.horizontal,
+                      children: [
+                        Expanded(
+                          child: RadioListTile(
+                            dense: true,
+                            activeColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            title: Text('Rather not to say',style: TextStyle(fontSize: 12),),
+                            value: 3,
+                            groupValue: genderID,
+                            onChanged: (int? v) {
+                              genderID = v;
+                              screenState.refresh();
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 30),
+
+
+
+
+//                    Expanded(
+//                      child: Container(
+//                        decoration: BoxDecoration(
+//                          borderRadius: BorderRadius.circular(10),
+//                          color: Theme.of(context).cardColor,
+//                        ),
+//                        child: RadioListTile(
+//                          activeColor: Theme.of(context).primaryColor,
+//                          title: Text('Other'),
+//                          shape: RoundedRectangleBorder(
+//                              borderRadius: BorderRadius.circular(10)),
+//                          value: 3,
+//                          groupValue: genderID,
+//                          onChanged: (int? v) {
+//                            genderID =  v;
+//                            screenState.refresh();
+//                          },
+//                        ),
+//                      ),
+//                    ),
+                      ],
+                    ),
+                ]),),
               SizedBox(height: 30),
-              DatePicker(
-                controller: birthday,
-                label: "Date Of Birth",
-                read: true,
-              ),
-              SizedBox(
-                height: 20,
-              ),
+
               TextButton(
                 onPressed: () {
                   onSaveClick(UpdateProfileRequest(
@@ -289,13 +365,16 @@ class EditAccountInit extends States {
                     ImageFile: imageForUpload,
                   ));
                 },
-                child: Text(
-                  "Save",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.w300),
+                child: Center(
+                  child: Text(
+                    "Save",
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.w300),
+                  ),
                 ),
               ),
+              SizedBox(height: 70,)
             ],
           ),
         ),

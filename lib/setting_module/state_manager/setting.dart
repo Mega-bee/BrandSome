@@ -4,6 +4,7 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../business_module/reponse/business_response.dart';
 import '../../business_module/request/bussines_filter_request.dart';
 import '../repository/setting_repository.dart';
 import '../response/settings_response.dart';
@@ -27,6 +28,7 @@ class SettingCubit extends Cubit<States> {
 
         GetAccountSetting sett =
         GetAccountSetting.fromJson(value.data.insideData);
+
         emit(SettingSuccess(getaccsetting:sett));
       }
     });

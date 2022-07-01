@@ -35,6 +35,7 @@ class _SearchBarFilterBusinessScreenState extends State<SearchBarFilterBusinessS
               child: CustomSearch(hintText: 'Search for service'),
             ),
 
+
             BlocBuilder<GetCategoryListCubit, States>(
                 bloc: widget._getCategoryListCubit,
                 builder: (context, state) {
