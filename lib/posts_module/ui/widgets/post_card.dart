@@ -1,15 +1,12 @@
-import 'package:brandsome/liked_module/liked_list_route.dart';
-import 'package:brandsome/liked_module/ui/screen/liked_by_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/components/custom_alert_dialog/CustomOtpVerificationDialog/CustomOtpVerificationDialog.dart';
-import '../../../utils/components/custom_alert_dialog/CustomVerificationDialog/CustomVerificationDialog.dart';
 import '../../reponse/posts_reponse.dart';
 
 class PostCard extends StatefulWidget {
   final postModel posts;
+  final Function onLikeTap;
 
-  PostCard(this.posts);
+  PostCard({required this.posts ,required this.onLikeTap } );
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -98,53 +95,26 @@ class _PostCardState extends State<PostCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 25,
-                      ),
-                      InkWell(
-                        onTap: () {
-//                          showDialog(
-//                            context: context,
-//                            builder: (context) => CustomVerificationDialog(
-//                              title: "Verification",
-//                              content: "",
-//                              continueBtn: () {
-//                                Navigator.push(
-//                                  context,
-//                                  MaterialPageRoute(
-//                                      builder: (context) =>
-//                                          CustomOtpVerificationDialog(
-//                                            continueBtn: () {},
-//                                            title: 'OTP verification',
-//                                            content: '',
-//                                          )),
-//                                );
-//                              },
-//                            ),
-//                          );
-                        },
-                        child: Icon(
+                  InkWell(
+                    onTap: (){
+                      widget.onLikeTap();
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Icon(
                           Icons.thumb_up_alt_outlined,
                         ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            LikedListRoute.LIKED_LIST,
-                            arguments: "2",
-                          );
-                        },
-                        child: Text(
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
                           "${widget.posts.titleTwo}",
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 10,

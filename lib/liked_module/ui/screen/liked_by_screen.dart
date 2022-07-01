@@ -1,9 +1,7 @@
-import 'package:brandsome/liked_module/ui/widget/likes_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../utils/components/Seperator/seperator_doted.dart';
 import '../../state_manager/liked_list_bloc.dart';
 
 @injectable
@@ -36,11 +34,21 @@ class _LikeByScreenState extends State<LikeByScreen> {
             ),
           ),
         ),
-        body:  BlocBuilder<LikedListCubit, States>(
+        body:  BlocConsumer<LikedListCubit, States>(
             bloc: widget.likedListCubit,
+
             builder: (context, state) {
-              return state.getUI(context);
-            }),
+              if(!state.lis) {
+                return state.getUI(context);
+              }
+              return Container();
+            },
+          listener: (context, state){
+            if(state.lis) {
+                showDialog(context: context, builder: (context) => state.getAlert(context));
+            }
+          },
+        ),
 
     );  }
 }

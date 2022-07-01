@@ -1,9 +1,5 @@
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_details_module/ui/screen/business_details.dart';
-import 'package:brandsome/business_module/business_routes.dart';
-import 'package:brandsome/business_module/ui/screen/add_business.dart';
-import 'package:brandsome/business_module/ui/screen/business_screen.dart';
-import 'package:brandsome/business_module/ui/screen/searbarfilter_business_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 

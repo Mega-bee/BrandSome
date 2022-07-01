@@ -17,7 +17,7 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationState extends State<NavigationScreen> {
   int currentIndex = 0;
   final screens = [
-    HomePage(),
+    getIt<HomePage>(),
     getIt<BusinessScreen>(),
     getIt<SettingsScreen>(),
 

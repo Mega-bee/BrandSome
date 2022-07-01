@@ -10,10 +10,14 @@ import '../screen/business_details.dart';
 class BusinessDetailsSuccess extends States {
   final BusnessDetailsScreenState screenState;
   final BusinessInfoResponse businessInfoModel;
-  BusinessDetailsSuccess(this.screenState,this.businessInfoModel);
+  BusinessDetailsSuccess(this.screenState,this.businessInfoModel) : super(false);
 
   late TabController tabController = TabController(length: 3, vsync: screenState);
-
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
+  }
   @override
   Widget getUI(BuildContext context) {
     return  Column(

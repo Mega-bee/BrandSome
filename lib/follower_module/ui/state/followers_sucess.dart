@@ -7,7 +7,7 @@ import '../widget/followers_card.dart';
 class FollowersSuccess extends States {
   final List<FollowersResp> bussfollowers;
 
-  FollowersSuccess({required this.bussfollowers});
+  FollowersSuccess({required this.bussfollowers}) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
@@ -37,5 +37,11 @@ class FollowersSuccess extends States {
             );
           })
     ]);
+  }
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

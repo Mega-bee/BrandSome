@@ -8,7 +8,7 @@ import '../widget/likes_card.dart';
 class LikedListSuccess extends States {
   final List <LikedByModel> likedmodel;
 
-  LikedListSuccess(this.likedmodel);
+  LikedListSuccess(this.likedmodel) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
@@ -54,5 +54,10 @@ class LikedListSuccess extends States {
     );
   }
 
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
+  }
 
 }

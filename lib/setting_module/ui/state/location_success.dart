@@ -10,7 +10,7 @@ class LocationSuccess extends States{
   final List<AddLocationResponse> loca;
   final  AddLocationScreenState addLocationScreenState;
 
-  LocationSuccess(this.loca,this.addLocationScreenState);
+  LocationSuccess(this.loca,this.addLocationScreenState) : super(false);
   final searchLocation = TextEditingController();
 
   @override
@@ -117,5 +117,9 @@ class LocationSuccess extends States{
      ),
    );
   }
-
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
+  }
 }

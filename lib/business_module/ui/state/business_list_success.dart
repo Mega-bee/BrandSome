@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class BusinessListSuccess extends States {
   final List<BusinessResponse> business;
-  BusinessListSuccess({required this.business});
+  BusinessListSuccess({required this.business}) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
@@ -25,5 +25,11 @@ class BusinessListSuccess extends States {
             ],
           );
         });
+  }
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

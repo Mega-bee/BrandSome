@@ -1,0 +1,67 @@
+import 'package:brandsome/abstracts/states/loading_state.dart';
+import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/home_page/ui/screen/homePage.dart';
+import 'package:brandsome/home_page/ui/state/homepage_success.dart';
+import 'package:brandsome/liked_module/liked_list_route.dart';
+import 'package:brandsome/module_auth/repository/auth_repository.dart';
+import 'package:brandsome/module_auth/request/otp_request.dart';
+import 'package:brandsome/module_auth/service/auth_service.dart';
+import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
+import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
+import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+
+@injectable
+class HomePageCubit extends Cubit<States> {
+  final AuthService _authService;
+  final AuthRepository _authRepository;
+
+  HomePageCubit(this._authService, this._authRepository)
+      : super(LoadingState());
+
+  getToLikeList(HomePageScreenState screenState) {
+    if (_authService.isLoggedIn) {
+      Navigator.pushNamed(
+        screenState.context,
+        LikedListRoute.LIKED_LIST,
+        arguments: "2",
+      );
+    } else {
+      emit(RequestOtpState(screenState));
+    }
+  }
+
+  void requestOtp(HomePageScreenState screenState, OtpRequest request) {
+    emit(LoadingAlertState());
+    _authRepository.requestOtp(request).then((value) {
+      if (value == null) {
+        emit(ErrorAlertState('Somtheing error'));
+      } else if (value.code == 200) {
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number, screenState: screenState));
+      } else if (value.code != 200) {
+        Navigator.pop(screenState.context);
+        emit(ErrorAlertState(value.errorMessage));
+      }
+    });
+  }
+
+  void verifyOtp(HomePageScreenState screenState,VerifyOtpRequest request) {
+    emit(LoadingAlertState());
+    _authRepository.verifyOtp(request).then((value) {
+      if(value == null){
+        emit(ErrorAlertState('Somtheing error'));
+      }else if(value.code == 200){
+
+      }else if (value.code != 200){
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
+      }
+    });
+  }
+}

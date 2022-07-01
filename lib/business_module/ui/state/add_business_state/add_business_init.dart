@@ -8,7 +8,7 @@ class AddBusinessInit extends States {
   final AddBusinessState addBusinessState;
   AddBusinessInit(
     this.addBusinessState,
-  );
+  ) : super(false);
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
@@ -222,5 +222,10 @@ class AddBusinessInit extends States {
         ],
       ),
     );
+  }
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

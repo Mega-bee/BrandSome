@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 
 class HiveSetUp {
   static Future<void> init() async {
@@ -15,6 +16,7 @@ class HiveSetUp {
 
   }
 }
+@injectable
 class AuthPrefsHelper {
   var box = Hive.box('Authorization');
 
@@ -29,7 +31,14 @@ class AuthPrefsHelper {
   Future<void> clearToken() async{
     await box.clear();
   }
-
+  bool isSignedIn() {
+    try {
+      String? uid = getToken();
+      return uid != null;
+    } catch (e) {
+      return false;
+    }
+  }
 
 }
 class LanguageHelper{

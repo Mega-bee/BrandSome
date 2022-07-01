@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../../utils/components/pickertime.dart';
 import '../../../request/update_profile_request.dart';
 import '../../../response/account_response.dart';
@@ -19,7 +18,7 @@ class EditAccountInit extends States {
 
   EditAccountInit(this.model,
       {required this.onSaveClick, required this.screenState})
-      : super() {
+      : super(false) {
     phoneNumber.text = model.phoneNumber ?? '';
     gender.text = model.gender ?? '';
     username.text = model.userName ?? '';
@@ -302,14 +301,9 @@ class EditAccountInit extends States {
       ),
     );
   }
-
-}
-class MyClip extends CustomClipper<Rect> {
-  Rect getClip(Size size) {
-    return Rect.fromLTRB(15 , 15 , 15 , 15);
-  }
-
-  bool shouldReclip(oldClipper) {
-    return false;
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

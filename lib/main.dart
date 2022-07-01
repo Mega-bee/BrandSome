@@ -1,9 +1,10 @@
 import 'dart:async';
-
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
+import 'package:brandsome/categories_module/categories_module.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/follower_module/follower_module.dart';
+import 'package:brandsome/home_page/home_module.dart';
 import 'package:brandsome/module_auth/authoriazation_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
@@ -46,7 +47,9 @@ class MyApp extends StatefulWidget {
   final  LikedListModule _likedListModule;
   final SettingModule _settingModule;
   final FollowerModule _followersModule;
-  final AuthorizationModule _authorizationModule;
+//  final AuthorizationModule _authorizationModule;/
+  final CategoryModule _categoryModule;
+  final HomeModule _homeModule;
 
 
 
@@ -59,7 +62,9 @@ class MyApp extends StatefulWidget {
       this._likedListModule,
       this._settingModule,
       this._followersModule,
-      this._authorizationModule
+//      this._authorizationModule,
+      this._categoryModule,
+      this._homeModule
       );
 
   @override

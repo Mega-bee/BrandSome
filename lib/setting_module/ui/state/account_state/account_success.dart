@@ -7,7 +7,7 @@ import '../../../../utils/components/custom_alert_dialog/CustomDeleteDialog/Cust
 
 class AccountSuccess extends States {
   final AccountResponse accountModel;
-  AccountSuccess({required this.accountModel});
+  AccountSuccess({required this.accountModel}) : super(false);
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
@@ -108,5 +108,12 @@ class AccountSuccess extends States {
         ],
       ),
     );
+  }
+
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

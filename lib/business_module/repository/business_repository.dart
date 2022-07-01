@@ -26,13 +26,7 @@ class BusinessRepository {
     return response;
   }
 
-  Future<WebServiceResponse?> getAllCategory() async {
-    WebServiceResponse? response = await _apiClient.get(
-      Urls.GET_FILTER,
-    );
-    if (response == null) return null;
-    return response;
-  }
+
 
   Future<WebServiceResponse?> addBusiness(
       CreateBusinessRequest request,

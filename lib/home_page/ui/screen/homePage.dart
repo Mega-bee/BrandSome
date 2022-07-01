@@ -1,29 +1,38 @@
 import 'package:brandsome/abstracts/model/menu_item.dart';
-import 'package:brandsome/home_page/model/category_model.dart';
-import 'package:brandsome/home_page/model/subCategory.dart';
+import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/home_page/state_manager/home_page_state_manager.dart';
+import 'package:brandsome/home_page/ui/state/homepage_success.dart';
+import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/images/images.dart';
-import '../../../posts_module/reponse/posts_reponse.dart';
-import '../../../posts_module/ui/widgets/post_card.dart';
-import '../widgets/searbarfilter_screen.dart';
-import '../widgets/main_cate_card.dart';
-import '../widgets/subCategory.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final HomePageCubit cubit;
+  const HomePage({ required this.cubit});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => HomePageScreenState();
 }
 
-class _HomePageState extends State<HomePage>
+class HomePageScreenState extends State<HomePage>
     with SingleTickerProviderStateMixin {
 
  late List<ItemModel> menuItems;
 
 
+ goToLikes(){
+   widget.cubit.getToLikeList(this);
+ }
+ requestOtp(OtpRequest request){
+   widget.cubit.requestOtp(this ,request);
+ }
+ verifyOtp(VerifyOtpRequest request){
+   widget.cubit.verifyOtp(this ,request);
+ }
   @override
   void initState() {
     menuItems = [
@@ -32,119 +41,9 @@ class _HomePageState extends State<HomePage>
       }),
       ItemModel('Add Post', Icon(Icons.post_add),(){}),
     ];
+    widget.cubit.emit(HomePageSuccess(this));
     super.initState();
   }
-
-  List<CategoryModel> categorys = [
-    CategoryModel(id: 1, name: "Personal", selectedCard: true),
-    CategoryModel(id: 2, name: "Properties", selectedCard: false),
-    CategoryModel(id: 3, name: "Cars", selectedCard: false),
-  ];
-
-  List<SubCategoryModel> subCat = [
-    SubCategoryModel(
-        id: 1,
-        img: ImageAssetSports.BOXING,
-        unselectedImg: ImageAssetUnselectedSports.BOXING,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 2,
-        img: ImageAssetSports.DRAWING,
-        unselectedImg: ImageAssetUnselectedSports.DRAWING,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 3,
-        img: ImageAssetSports.KUNG_FU,
-        unselectedImg: ImageAssetUnselectedSports.KUNG_FU,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 4,
-        img: ImageAssetSports.MUAY_THAI,
-        unselectedImg: ImageAssetUnselectedSports.MUAY_THAI,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 5,
-        img: ImageAssetSports.PERSONAL_TRAINER,
-        unselectedImg: ImageAssetUnselectedSports.PERSONAL_TRAINER,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 6,
-        img: ImageAssetSports.PING_PONG,
-        unselectedImg: ImageAssetUnselectedSports.PING_PONG,
-        selectedCard: false),
-  ];
-
-  List<postModel> post = [
-    postModel(
-      id: 1,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-//          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
-//          'https://googleflutter.com/sample_image.jpg',
-          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-         ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-      id: 2,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-      id: 3,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-      id: 4,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-      id: 5,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-      id: 6,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo:[
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-
-        ],
-        paragraph:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -187,91 +86,28 @@ class _HomePageState extends State<HomePage>
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(
-            height: 20,
-          ),
-          SizedBox(
-            height: 50,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15.0),
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: categorys.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: MainCategoryCard(categorys[index], () {
-                          categorys.forEach((element) {
-                            element.selectedCard = false;
-                          });
-                          categorys[index].selectedCard = true;
-                          setState(() {});
-                        }));
-                  }),
-            ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Container(
-            height: 150,
-            child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: subCat.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                      // width: MediaQuery.of(context).size.width * 0.400,
-                      child: SubCategoryCard(subCat[index], () {}
-                          //   subCat.forEach((element) {
-                          //     element.selectedCard = false;
-                          //   });
-                          // subCat[index].selectedCard = true;
-                          // setState(() {
-                          //
-                          // });
-                          // }
-                          ));
-                }),
-          ),
-          Align(
-            alignment: AlignmentDirectional.topEnd,
-            child: InkWell(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //       builder: (context) => SearchBarFilterScreen()),
-                // );
-              },
-              child: Padding(
-                padding: const EdgeInsetsDirectional.only(
-                    end: 8.0, start: 10, top: 5, bottom: 13),
-                child: Text(
-                  "Choose interests",
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      decoration: TextDecoration.underline),
-                ),
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 3,
-          ),
-          ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: post.length,
-              itemBuilder: (context, index) {
-                return PostCard(post[index]);
-              })
-        ]),
-      ),
+        body: BlocConsumer<HomePageCubit, States>(
+          bloc: widget.cubit,
+          buildWhen: (previous, current) => !current.lis,
+          listenWhen: (previous, current) => current.lis,
+          builder: (context, state) {
+            print(state);
+            print('builderr');
+            if (!state.lis) {
+              return state.getUI(context);
+            }
+            return Container();
+          },
+          listener: (context, state) {
+            print(state);
+            print('in Lisssennnerrr');
+            if (state.lis) {
+              showDialog(
+                  context: context,
+                  builder: (context) => state.getAlert(context));
+            }
+          },
+        )
     );
   }
 }

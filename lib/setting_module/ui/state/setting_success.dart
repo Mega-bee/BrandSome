@@ -1,11 +1,11 @@
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
+import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
 import '../../../abstracts/states/state.dart';
-import '../../../business_module/ui/screen/add_business.dart';
 import '../../../follower_module/Follower_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
@@ -13,37 +13,37 @@ import '../../response/settings_response.dart';
 
 class SettingSuccess extends States {
   final GetAccountSetting getaccsetting;
-  SettingSuccess({required this.getaccsetting});
+  final SettingsScreenState _settingsScreenState ;
+  SettingSuccess(this._settingsScreenState, {required this.getaccsetting}) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: ListView(
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Padding(
-                padding: EdgeInsets.all(15.0),
-                child:
-
-                    Container(
-                      width: 80,
-                      height: 80,
-                      child: CachedNetworkImage(
-                        imageUrl: getaccsetting.imageUrl.toString(),
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                                ),
-                          ),
-                        ),
-                        placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+              padding: EdgeInsets.all(15.0),
+              child: Container(
+                width: 80,
+                height: 80,
+                child: CachedNetworkImage(
+                  imageUrl: getaccsetting.imageUrl.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
-                    ),),
-
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
+            ),
             Column(
               children: [
                 Text(
@@ -91,14 +91,13 @@ class SettingSuccess extends States {
               ],
             ),
           ]),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(start: 22.0, top: 10),
+          Center(
             child: Text(
               "${getaccsetting.name} ",
               style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           SizedBox(
@@ -107,12 +106,12 @@ class SettingSuccess extends States {
           Divider(
             thickness: 2,
           ),
-          SizedBox(
-            height: 30,
-          ),
           InkWell(
             onTap: () {
-              Navigator.pushNamed(context, SettingRoutes.Account_Screen,);
+              Navigator.pushNamed(
+                context,
+                SettingRoutes.Account_Screen,
+              );
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -122,15 +121,18 @@ class SettingSuccess extends States {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.person,
-                    size: 14,
-                  ),
-                  Text(
-                    "Account info",
-                  ),
-                  SizedBox(
-                    width: 145,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Account info",
+                      ),
+                    ],
                   ),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -139,50 +141,42 @@ class SettingSuccess extends States {
               ),
             ),
           ),
-          SizedBox(
-            height: 30,
+          Divider(
+            thickness: 2,
           ),
-          Container(
-            height: 125,
-            child: ListView.builder(
-
-                // physics:const BouncingScrollPhysics(
-                //     parent: AlwaysScrollableScrollPhysics()),
-                itemCount: getaccsetting.businesses!.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 20.0,
-                      right: 30,
-                    ),
-                    child: Column(children: [
+          ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: getaccsetting.businesses!.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                      start: 20.0, end: 30, bottom: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(
                             Icons.business,
-                            size: 14,
+                          ),
+                          SizedBox(
+                            width: 10,
                           ),
                           Text(
                             getaccsetting.businesses![index].name.toString(),
                           ),
-                          SizedBox(
-                            width: 160,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                          ),
                         ],
                       ),
-                      SizedBox(
-                        height: 20,
-                      )
-                    ]),
-                  );
-                }),
-          ),
-          SizedBox(
-            height: 20,
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                      ),
+                    ],
+                  ),
+                );
+              }),
+          Divider(
+            thickness: 2,
           ),
           InkWell(
             onTap: () {
@@ -196,15 +190,18 @@ class SettingSuccess extends States {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.add_business,
-                    size: 14,
-                  ),
-                  Text(
-                    "Businesses I follow",
-                  ),
-                  SizedBox(
-                    width: 100,
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.add_business,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Businesses I follow",
+                      ),
+                    ],
                   ),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -212,9 +209,6 @@ class SettingSuccess extends States {
                 ],
               ),
             ),
-          ),
-          SizedBox(
-            height: 30,
           ),
           ListTileSwitch(
             value: Theme.of(context).brightness == Brightness.dark,
@@ -255,10 +249,7 @@ class SettingSuccess extends States {
                       color: Theme.of(context).primaryColor, fontSize: 13),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                      BusinessRoutes.ADD_BUSINESS
-                  );
+                  Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
                 },
               ),
             ),
@@ -324,5 +315,11 @@ class SettingSuccess extends States {
         ],
       ),
     );
+  }
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

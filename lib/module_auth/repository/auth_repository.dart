@@ -20,4 +20,13 @@ class AuthRepository {
     return response;
   }
 
+
+  Future<WebServiceResponse?> verifyOtp( VerifyOtpRequest request) async {
+    WebServiceResponse? response = await _apiClient.post(
+        Urls.VERIFY_OTP,
+        request.toJson()
+    );
+    if (response == null) return null;
+    return response;
+  }
 }

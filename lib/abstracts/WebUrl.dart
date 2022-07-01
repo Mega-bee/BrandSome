@@ -13,8 +13,8 @@ class Urls {
   // static const String BASE_API_PATIENTS = DOMAIN + '/api/Patients';
   // static const String BASE_API_NOTIFICATIONS=DOMAIN+'/api/Notifications';
 //  /*--------Auth-------------------*/
-   static const REQUEST_OTP = BSE_API_SETTINGS + '/RequestOtp';
-   static const VERIFY_OTP = BSE_API_SETTINGS + '/VerifyOtp';
+   static const REQUEST_OTP = BSE_API_SETTINGS + 'RequestOtp';
+   static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
 
 
   /*--------home-------------------*/

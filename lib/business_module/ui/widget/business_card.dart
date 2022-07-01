@@ -37,7 +37,8 @@ class BusinessCard extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   child: Image.network(
                     businessCardModel.image ?? '',
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
+                    height: 120,
                   ),
                 ),
               ),

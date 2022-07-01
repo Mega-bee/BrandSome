@@ -1,3 +1,4 @@
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -13,15 +14,19 @@ class SettingsScreen extends StatefulWidget {
 
   @override
 
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingsScreen> createState() => SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreenState extends State<SettingsScreen> {
   bool value = false;
   @override
   void initState() {
-    widget.cubit.getSetting();
+    widget.cubit.getSetting(this);
   }
+  void goToLogin(){
+    widget.cubit.emit( RequestOtpState(this));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +39,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
 
-        body: BlocBuilder<SettingCubit, States>(
-            bloc: widget.cubit,
-            builder: (context, state) {
+        body: BlocConsumer<SettingCubit, States>(
+          bloc: widget.cubit,
+          buildWhen: (previous, current) => !current.lis,
+          listenWhen: (previous, current) => current.lis,
+          builder: (context, state) {
+            print(state);
+            print('builderr');
+            if (!state.lis) {
               return state.getUI(context);
-            })
+            }
+            return Container();
+          },
+          listener: (context, state) {
+            print(state);
+            print('in Lisssennnerrr');
+            if (state.lis) {
+              showDialog(
+                  context: context,
+                  builder: (context) => state.getAlert(context));
+            }
+          },
+        )
     );
   }
 }

@@ -14,3 +14,19 @@ class OtpRequest{
 
 
 }
+class VerifyOtpRequest{
+  String? number;
+  String? otp;
+
+  VerifyOtpRequest({required this.otp ,required this.number } );
+
+
+  Map<String, dynamic> toJson() {
+    return {
+      'phoneNumber': this.number,
+      'otp': this.otp,
+    };
+  }
+
+
+}

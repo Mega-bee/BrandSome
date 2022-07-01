@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ErrorState extends States {
   final String errorMessage;
   final Function retry;
- ErrorState({required this.errorMessage,required this.retry});
+ ErrorState({required this.errorMessage,required this.retry}) : super(false);
   @override
   Widget getUI(BuildContext context) {
     return  SingleChildScrollView(
@@ -37,5 +37,11 @@ class ErrorState extends States {
         ],
       ),
     );
+  }
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }

@@ -5,6 +5,7 @@ import 'package:brandsome/business_module/helper/enum_sort.dart';
 import 'package:brandsome/business_module/helper/helper_sort_business.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/state_manager/business_list_bloc.dart';
+import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
               onPressed: () {
                 Navigator.pushNamed(
                   context,
-                  BusinessRoutes.SEARCH_BUSINESS,
+                    CategoriesRoutes.CATEGORY_LIST_SCREEN
                 );
               },
               icon: Icon(

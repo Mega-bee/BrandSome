@@ -1,3 +1,4 @@
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -43,16 +44,14 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
             "Account Info",
           ),
           actions: [
-             Padding(
+            Padding(
               padding: const EdgeInsetsDirectional.only(end: 10.0),
               child: IconButton(
                 onPressed: () {
-                  widget.cubit.emit(EditAccountInit(
-                    accountModel,
-                      screenState: this,
-                      onSaveClick: (request) {
-                        widget.cubit.updateProfile(this,request);
-                      }));
+                  widget.cubit.emit(EditAccountInit(accountModel,
+                      screenState: this, onSaveClick: (request) {
+                    widget.cubit.updateProfile(this, request);
+                  }));
                 },
                 icon: Icon(
                   Icons.edit,
@@ -62,10 +61,27 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
             ),
           ],
         ),
-        body: BlocBuilder<AccountCubit, States>(
-            bloc: widget.cubit,
-            builder: (context, state) {
+        body: BlocConsumer<AccountCubit, States>(
+          bloc: widget.cubit,
+          buildWhen: (previous, current) => !current.lis,
+          listenWhen: (previous, current) => current.lis,
+          builder: (context, state) {
+            print(state);
+            print('builderr');
+            if (!state.lis) {
               return state.getUI(context);
-            }));
+            }
+            return Container();
+          },
+          listener: (context, state) {
+            print(state);
+            print('in Lisssennnerrr');
+            if (state.lis) {
+              showDialog(
+                  context: context,
+                  builder: (context) => state.getAlert(context));
+            }
+          },
+        ));
   }
 }

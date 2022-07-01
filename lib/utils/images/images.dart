@@ -11,6 +11,7 @@ class ImageAsset {
   static const VIEWS_ICON = ROOT +'views.png';
   static const CAMERA = ROOT +'camera.png';
   static const PIC = ROOT +'pic.png';
+  static const CAT = ROOT +'cat.png';
 }
 
 ///sport images

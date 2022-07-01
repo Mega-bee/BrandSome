@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class EmptyDataState extends States {
   final String image;
   final String message;
-  EmptyDataState({required this.image,required this.message});
+  EmptyDataState({required this.image,required this.message}) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
@@ -29,5 +29,11 @@ class EmptyDataState extends States {
         ),
       ),
     );
+  }
+
+  @override
+  Widget getAlert(BuildContext context) {
+    // TODO: implement getAlert
+    throw UnimplementedError();
   }
 }
