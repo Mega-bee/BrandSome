@@ -35,7 +35,7 @@ class AddBusinessState extends State<AddBusiness> {
   void initState() {
     super.initState();
     request = CreateBusinessRequest(cities: []);
-    widget._addBusinessCubit.emit(AddBusinessInit(this));
+    widget._addBusinessCubit.emit(AddBusinessInit(this,this));
   }
 
   @override

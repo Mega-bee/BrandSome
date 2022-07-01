@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/setting_module/response/add_location_response.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
   final AddBusinessState addBusinessState;
   AddBusinessInit(
-    this.addBusinessState,
+    this.addBusinessState,this.state
   );
 
   final _formKeyBusiness = GlobalKey<FormState>();
@@ -15,12 +20,19 @@ class AddBusinessInit extends States {
   final description = TextEditingController();
   final phoneNumber = TextEditingController();
   List<AddLocationResponse> selected = [];
+  AddBusinessState state;
+  File? _pickImage;
+  MultipartFile? imageForUpload;
+
+
+
 
   @override
   Widget getUI(BuildContext context) {
     addBusinessState.request.businessDescription = description.text;
     addBusinessState.request.businessName = business.text;
     addBusinessState.request.businessPhoneNumber = phoneNumber.text;
+    addBusinessState.request.images = imageForUpload;
     addBusinessState.request.services = [1, 2];
 
     return SingleChildScrollView(
@@ -28,6 +40,129 @@ class AddBusinessInit extends States {
         children: [
           SizedBox(
             height: 20,
+          ),
+          Center(
+            child: Stack(children: [
+              Container(
+                margin:
+                EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20.0),
+                  child:_pickImage != null ?  Image.file(
+                       _pickImage!,
+                      fit: BoxFit.cover,
+                      width: 150,height: 150
+                  ) :
+                  Image.network("https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" ?? '',fit: BoxFit.cover,width: 150,height: 150,),
+
+                ),
+              ),
+              Positioned(
+                  top: 130,
+                  left: 110,
+                  child: RawMaterialButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(25),
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: double.maxFinite,
+                                            child: TextButton(
+                                                style: TextButton.styleFrom(
+                                                    shape:
+                                                    StadiumBorder()),
+                                                onPressed: () async {
+                                                  Navigator.pop(context);
+                                                  await ImageCropHelper
+                                                      .pickImageFromCamera()
+                                                      .then(
+                                                          (pickedFile) async {
+
+                                                        if (pickedFile ==
+                                                            null) return;
+                                                        _pickImage = File(pickedFile.path) ;
+                                                        imageForUpload =
+                                                        await MultipartFile
+                                                            .fromFile(
+                                                            pickedFile
+                                                                .path);
+
+                                                        state
+                                                            .refresh();
+                                                      });
+                                                },
+                                                child: Text('Camera')),
+                                          ),
+                                          Divider(
+                                            indent: 16,
+                                            endIndent: 16,
+                                            color: Theme.of(context)
+                                                .backgroundColor,
+                                            thickness: 2.5,
+                                          ),
+                                          SizedBox(
+                                            width: double.maxFinite,
+                                            child: TextButton(
+                                                style: TextButton.styleFrom(
+                                                    shape:
+                                                    StadiumBorder()),
+                                                onPressed: () async {
+                                                  Navigator.pop(context);
+                                                  await ImageCropHelper
+                                                      .pickImageFromGallery()
+                                                      .then(
+                                                          (pickedFile) async {
+
+                                                        if (pickedFile ==
+                                                            null) return;
+                                                        _pickImage = File(pickedFile.path) ;
+                                                        imageForUpload =
+                                                        await MultipartFile
+                                                            .fromFile(
+                                                            pickedFile
+                                                                .path);
+
+                                                        state
+                                                            .refresh();
+                                                      });
+                                                },
+                                                child: Text('Gallery')),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    elevation: 10,
+                    fillColor: Theme.of(context).primaryColor,
+                    child: Icon(
+                      Icons.camera_alt_outlined,
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(15.0),
+                    shape: CircleBorder(),
+                  ))
+            ]),
           ),
 //           InkWell(
 //             onTap: () {
@@ -148,6 +283,7 @@ class AddBusinessInit extends States {
                     "Business Phone",
                   ),
                   TextFormField(
+                    keyboardType: TextInputType.phone,
                     controller: phoneNumber,
                   ),
                   SizedBox(height: 30),
