@@ -26,6 +26,8 @@ class AppThemeDataService {
         errorContainer: Colors.red[100],);
     if (dark == true) {
       return ThemeData(
+        cardColor: Colors.black,
+        scaffoldBackgroundColor: Colors.black,
           appBarTheme: AppBarTheme(
               iconTheme: IconThemeData(color: Colors.white)
           ),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
@@ -149,29 +150,38 @@ class SettingSuccess extends States {
               shrinkWrap: true,
               itemCount: getaccsetting.businesses!.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsetsDirectional.only(
-                      start: 20.0, end: 30, bottom: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.business,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            getaccsetting.businesses![index].name.toString(),
-                          ),
-                        ],
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                      ),
-                    ],
+                return InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(
+                      context,
+                      BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+                      arguments: getaccsetting.businesses![index].id.toString(),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                        start: 20.0, end: 30, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.business,
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              getaccsetting.businesses![index].name.toString(),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }),
@@ -309,9 +319,14 @@ class SettingSuccess extends States {
               ),
             ]),
           ),
+
+          SizedBox(
+            height: 10,
+          ),
+          Image.asset("assets/images/megabeelogo.png",width: 90,height: 90,),
           SizedBox(
             height: 100,
-          )
+          ),
         ],
       ),
     );

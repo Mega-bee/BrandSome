@@ -33,7 +33,6 @@ class AddBusinessInit extends States {
     addBusinessState.request.businessPhoneNumber = phoneNumber.text;
     addBusinessState.request.images = imageForUpload;
     addBusinessState.request.services = [1, 2];
-
     return SingleChildScrollView(
       child: Column(
         children: [
