@@ -9,7 +9,7 @@ import 'dart:io' as i;
 
 import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
-import '../../../setting_module/model/add_location_model.dart';
+import '../../../setting_module/response/add_location_response.dart';
 
 @injectable
 class AddBusiness extends StatefulWidget {
@@ -38,7 +38,7 @@ class AddBusinessState extends State<AddBusiness> {
     }
   }
 
-  List<AddLocationModel> selectedLocation = [];
+  List<AddLocationResponse> selectedLocation = [];
 
   void refresh(){
     if(mounted){

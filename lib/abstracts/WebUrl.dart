@@ -7,6 +7,7 @@ class Urls {
   static const String BASE_API_FILTER = DOMAIN + '/api/Interests/';
   static const String BASE_API_POSTS = DOMAIN + '/api/Posts/';
   static const String BSE_API_SETTINGS = DOMAIN + '/api/Accounts/';
+  static const String BSE_API_LOCATION = DOMAIN + '/api/General/';
 
 
   // static const String BASE_API_PATIENTS = DOMAIN + '/api/Patients';
@@ -31,5 +32,6 @@ class Urls {
   static const GETPROFILE =BSE_API_SETTINGS + 'GetProfile';
   static const UPDATE_PROFILE =BSE_API_SETTINGS + 'UpdateProfile';
   static const GETFOLLOWEDBUSINESSES =BSE_API_SETTINGS + 'GetFollowedBusinessses';
+  static const GETLOCATION =BSE_API_LOCATION + 'GetCities';
 
 }

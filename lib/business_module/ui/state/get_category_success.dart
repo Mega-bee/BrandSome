@@ -2,6 +2,7 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:flutter/material.dart';
 
 import '../../../home_page/ui/widgets/filter_category_image_list.dart';
+import '../../../home_page/ui/widgets/filter_service.dart';
 import '../../../home_page/ui/widgets/filter_sub_category_image_list.dart';
 import '../../reponse/filter_category_response.dart';
 
@@ -60,10 +61,23 @@ class GetCategorySuccess extends States {
                                       // setState(() {});
                                     }),
                                   ),
+                                  SizedBox(height: 30,),
 
+                                  Container(
+                                    height:200,
+                                    child: GridView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      // shrinkWrap: true,
+                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
 
-
-                                ],
+                                      ),
+                                      itemCount: filter[index].subCategories![index].services!.length,
+                                      itemBuilder: (context, index) {
+                                        return FilterService(filter[index].subCategories![index].services??[]);
+                                      },
+                                    ),
+                                  )],
                               );
 
                             }),
