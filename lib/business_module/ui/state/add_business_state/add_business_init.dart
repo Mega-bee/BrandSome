@@ -1,29 +1,27 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
+import 'package:brandsome/setting_module/response/add_location_response.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
-import '../../../../di/di_config.dart';
-import '../../../../setting_module/response/add_location_response.dart';
-import '../../../../setting_module/ui/screen/add_location.dart';
-
-class AddBusinessInit extends States{
-  final AddBusinessState _addBusinessState;
-  AddBusinessInit(this._addBusinessState,);
+class AddBusinessInit extends States {
+  final AddBusinessState addBusinessState;
+  AddBusinessInit(
+    this.addBusinessState,
+  );
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
   final description = TextEditingController();
+  final phoneNumber = TextEditingController();
   List<AddLocationResponse> selected = [];
-
 
   @override
   Widget getUI(BuildContext context) {
-    _addBusinessState.request.BusinessDescription = description.text;
-    _addBusinessState.request.BusinessName = business.text;
-//    _addBusinessState.request.cities = selected;
-
+    addBusinessState.request.businessDescription = description.text;
+    addBusinessState.request.businessName = business.text;
+    addBusinessState.request.businessPhoneNumber = phoneNumber.text;
+    addBusinessState.request.services = [1, 2];
 
     return SingleChildScrollView(
       child: Column(
@@ -137,95 +135,70 @@ class AddBusinessInit extends States{
                   ),
                   TextFormField(
                     controller: business,
-                    decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide( width: 1),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-
-                      // keyboardType: TextInputType.
-                    ),
                   ),
                   SizedBox(height: 30),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 2.0),
-                    child: Text(
-                      "Description",
-                      style: TextStyle(fontSize: 13),
-                    ),
+                  Text(
+                    "Description",
                   ),
                   TextFormField(
-                    style: TextStyle( fontSize: 15),
                     controller: description,
-                    decoration: InputDecoration(
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide( width: 1),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(),
-                      ),
-
-                      // keyboardType: TextInputType.
-                    ),
+                  ),
+                  SizedBox(height: 30),
+                  Text(
+                    "Business Phone",
+                  ),
+                  TextFormField(
+                    controller: phoneNumber,
                   ),
                   SizedBox(height: 30),
                   TextButton(
                     onPressed: () {
                       print("Pushed to location");
-                      Navigator.pushNamed(context, BusinessRoutes.ADD_LOCATION).then((returnedLocation) {
-                        selected = returnedLocation as List<AddLocationResponse>;
+                      Navigator.pushNamed(context, BusinessRoutes.ADD_LOCATION)
+                          .then((returnedLocation) {
+                        selected =
+                            returnedLocation as List<AddLocationResponse>;
                         selected.forEach((element) {
-                          _addBusinessState.request.cities!.add(element.id??0);
+                          addBusinessState.request.cities.add(element.id ?? 0);
                         });
-                        _addBusinessState.refresh();
+                        addBusinessState.refresh();
                       });
-
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 38.0),
-                      child: Text(
-                        "Add location",
-                      ),
+                    child: Text(
+                      "Add location",
                     ),
                   ),
                   SizedBox(
                     height: 12,
                   ),
-                 Wrap(
-                   spacing: 13,
-                   runSpacing: 30,
-                   children: selected
-                       .map(
-                         (e) => Container(
-                       padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                       decoration: BoxDecoration(
-                         color: Color(0xff262626),
-                         borderRadius: BorderRadius.circular(
-                             5), // radius of 10// green as background color
-                       ),
-                       child: Text(
-                         "${e.name}",
-                         style: TextStyle(
-                           fontSize: 11, color: Theme.of(context).primaryColor,),
-                       ),
-                     ),
-                   )
-                       .toList(),
-                 ),
+                  Wrap(
+                    spacing: 13,
+                    runSpacing: 30,
+                    children: selected
+                        .map(
+                          (e) => Container(
+                            padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(
+                                  5), // radius of 10// green as background color
+                            ),
+                            child: Text(
+                              "${e.name}",
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ),
                   SizedBox(
                     height: 12,
                   ),
                   Divider(
-                    thickness: 1,
-
+                    thickness: 3,
                   ),
                   SizedBox(height: 30),
                   TextButton(
@@ -241,7 +214,6 @@ class AddBusinessInit extends States{
                   ),
                   Divider(
                     thickness: 1,
-
                   ),
                 ],
               ),

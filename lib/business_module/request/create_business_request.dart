@@ -2,31 +2,30 @@
 import 'package:dio/dio.dart';
 
 class CreateBusinessRequest {
-   String? BusinessDescription;
-   String? BusinessName;
-   String? BusinessPhoneNumber;
+   String? businessDescription;
+   String? businessName;
+   String? businessPhoneNumber;
    List<int>? services;
-   List<int>? cities;
-   int? id;
+   List<int>  cities;
+
    MultipartFile? images;
 
   CreateBusinessRequest(
-      {this.id,
-      this.cities,
+      {
+      required this.cities,
       this.services,
-      this.BusinessDescription,
-      this.BusinessName,
-      this.BusinessPhoneNumber,
+      this.businessDescription,
+      this.businessName,
+      this.businessPhoneNumber,
       this.images});
 
   Map<String, dynamic> toJson() {
     return {
-      'BusinessDescription': this.BusinessDescription,
-      'BusinessName': this.BusinessName,
-      'BusinessPhoneNumber': this.BusinessPhoneNumber,
+      'BusinessDescription': this.businessDescription,
+      'BusinessName': this.businessName,
+      'BusinessPhoneNumber': this.businessPhoneNumber,
       'Cities': this.cities,
       'Services': this.services,
-      'Id': this.id,
       'ImageFile': this.images,
     };
   }

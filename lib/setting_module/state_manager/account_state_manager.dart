@@ -2,12 +2,12 @@ import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/setting_module/repository/account_repository.dart';
+import 'package:brandsome/setting_module/ui/screen/account_info_screen.dart';
 import 'package:brandsome/setting_module/ui/state/account_state/account_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../request/update_profile_request.dart';
 import '../response/account_response.dart';
-import '../ui/state/account_state/account_edit_init.dart';
 
 @injectable
 class AccountCubit extends Cubit<States> {
@@ -15,24 +15,34 @@ class AccountCubit extends Cubit<States> {
 
   AccountCubit(this._getAccoun) : super(LoadingState());
 
-  getAccount() {
+  getAccount(AccountInfoScreenState screenState) {
+    emit(LoadingState());
     _getAccoun.getAcc().then((value) {
       if (value == null) {
-        emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          getAccount();
-        }));
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getAccount(screenState);
+            }));
       } else if (value.code == 200) {
-        Account acc = Account.fromJson(value.data.insideData);
-        emit(AccountSuccess(getacc: acc));
+        screenState.accountModel =
+            AccountResponse.fromJson(value.data.insideData);
+        emit(AccountSuccess(accountModel: screenState.accountModel));
       }
     });
   }
 
-  UpdateProfile(UpdateProfileRequest request,) {
+  updateProfile(
+    AccountInfoScreenState screenState,
+    UpdateProfileRequest request,
+  ) {
     emit(LoadingState());
     _getAccoun.UpdateAcc(request).then((value) {
-      if (value!.code == 200) {
-        getAccount();
+      if(value == null){
+        emit(ErrorState(errorMessage: 'errrorr', retry: (){}));
+      }
+   else if (value.code == 200) {
+        getAccount(screenState);
       }
     });
   }

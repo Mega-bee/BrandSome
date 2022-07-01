@@ -18,60 +18,54 @@ class AccountInfoScreen extends StatefulWidget {
 }
 
 class AccountInfoScreenState extends State<AccountInfoScreen> {
+ late  AccountResponse accountModel;
 
-void Refrech(){
-  if (mounted){
-    setState(() {
 
-    });
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
   }
-}
+
   @override
-
   void initState() {
-
-    widget.cubit.getAccount();
+    accountModel = AccountResponse();
+    widget.cubit.getAccount(this);
   }
+
   @override
   Widget build(BuildContext context) {
-    bool edit = false;
-    var mediaQueryHeight = MediaQuery.of(context).size.height;
-    var mediaQueryWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 5,
-        title: Text(
-          "Account Info",
-        ),
-
-        actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: 10.0),
-            child: IconButton(
-              onPressed: () {
-
-               widget.cubit.emit(EditAccountInit(
-                 screenState: this,
-                  onSaveClick:  (request){
-                    widget.cubit.UpdateProfile(request);
-               }
-
-               ));
-              },
-              icon: Icon(
-                Icons.edit,
-                color: Theme.of(context).primaryColor,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          elevation: 5,
+          title: Text(
+            "Account Info",
+          ),
+          actions: [
+             Padding(
+              padding: const EdgeInsetsDirectional.only(end: 10.0),
+              child: IconButton(
+                onPressed: () {
+                  widget.cubit.emit(EditAccountInit(
+                    accountModel,
+                      screenState: this,
+                      onSaveClick: (request) {
+                        widget.cubit.updateProfile(this,request);
+                      }));
+                },
+                icon: Icon(
+                  Icons.edit,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-      body: BlocBuilder<AccountCubit, States>(
-          bloc: widget.cubit,
-          builder: (context, state) {
-            return state.getUI(context);
-          })
-    );
+          ],
+        ),
+        body: BlocBuilder<AccountCubit, States>(
+            bloc: widget.cubit,
+            builder: (context, state) {
+              return state.getUI(context);
+            }));
   }
 }

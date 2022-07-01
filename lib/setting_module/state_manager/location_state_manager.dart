@@ -1,13 +1,9 @@
 import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/setting_module/repository/account_repository.dart';
-import 'package:brandsome/setting_module/ui/state/account_state/account_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../repository/location_repository.dart';
-import '../request/update_profile_request.dart';
-import '../response/account_response.dart';
 import '../response/add_location_response.dart';
 import '../ui/screen/add_location.dart';
 import '../ui/state/location_success.dart';
@@ -19,6 +15,7 @@ class LocationCubit extends Cubit<States> {
   LocationCubit(this._locationRepository) : super(LoadingState());
 
   getLocation(AddLocationScreenState state) {
+    emit(LoadingState());
     _locationRepository.getLocation().then((value) {
       if (value == null) {
         emit(ErrorState(errorMessage: 'Connection error', retry: (){
