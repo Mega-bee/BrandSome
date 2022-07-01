@@ -21,6 +21,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   bool value = false;
   @override
   void initState() {
+    super.initState();
     widget.cubit.getSetting(this);
   }
   void goToLogin(){

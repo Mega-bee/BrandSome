@@ -25,6 +25,7 @@ class CategorySuccess extends States {
   List<SubCategoryModel> subsCa = [];
   List<ServiceModel> serviceCa = [];
 
+
   int mainCaId = -1;
   int subCaId = -1;
 
@@ -86,7 +87,9 @@ class CategorySuccess extends States {
                 itemCount: serviceCa.length,
                 itemBuilder: (context, index) {
                   return CategoryCard(
-                    onCardTap: () {},
+                    onCardTap: () {
+                      screenState.selectedServiceCa.add(serviceCa[index]);
+                    },
                     catId: serviceCa[index].id ?? 0,
                     catName: serviceCa[index].name ?? '',
                     isSlecteced: false,

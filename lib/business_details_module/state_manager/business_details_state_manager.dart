@@ -1,6 +1,13 @@
 import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/module_auth/repository/auth_repository.dart';
+import 'package:brandsome/module_auth/request/otp_request.dart';
+import 'package:brandsome/module_auth/service/auth_service.dart';
+import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
+import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
+import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
+import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -14,8 +21,10 @@ import '../ui/state/BusinessDetailsSuccess.dart';
 @injectable
 class BusinessListDetailsCubit extends Cubit<States> {
   final BusinessRepositoryDetails _businessRepositoryDetails;
+  final AuthRepository _authRepository;
+  final AuthService _authService;
 
-  BusinessListDetailsCubit(this._businessRepositoryDetails) : super(LoadingState());
+  BusinessListDetailsCubit(this._businessRepositoryDetails, this._authRepository, this._authService) : super(LoadingState());
 
   getBusinessDetails(BusnessDetailsScreenState screenstate,String? id) {
     emit(LoadingState());
@@ -52,7 +61,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
     }
   }
 
-  createReview(AddReviewRequest request,BusnessDetailsScreenState screenState) {
+void  createReview(AddReviewRequest request,BusnessDetailsScreenState screenState) {
     emit(LoadingState());
     _businessRepositoryDetails.AddReview(request).then((value) {
       if (value == null) {
@@ -65,6 +74,44 @@ class BusinessListDetailsCubit extends Cubit<States> {
       else if (value.code == 200) {
         print('review add successfully');
         getBusinessDetails(screenState,request.Bussinessid);
+      }
+    });
+  }
+
+  bool checkIfLogged(){
+   return _authService.isLoggedIn;
+  }
+
+  void requestOtp(BusnessDetailsScreenState screenState, OtpRequest request) {
+    emit(LoadingAlertState());
+    _authRepository.requestOtp(request).then((value) {
+      if (value == null) {
+        emit(ErrorAlertState('Somtheing error'));
+      } else if (value.code == 200) {
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number, screenState: screenState));
+      } else if (value.code != 200) {
+        Navigator.pop(screenState.context);
+        emit(ErrorAlertState(value.errorMessage));
+      }
+    });
+  }
+
+  void verifyOtp(BusnessDetailsScreenState screenState,VerifyOtpRequest request) {
+    emit(LoadingAlertState());
+    _authRepository.verifyOtp(request).then((value) {
+      if(value == null){
+        emit(ErrorAlertState('Somtheing error'));
+      }else if(value.code == 200){
+        Navigator.pop(screenState.context);
+        String token =  value.data.insideData;
+        _authService.setToken(token);
+        Navigator.pushNamedAndRemoveUntil(screenState.context, NavRoutes.nav_rout, (route) => false);
+      }else if (value.code != 200){
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
       }
     });
   }

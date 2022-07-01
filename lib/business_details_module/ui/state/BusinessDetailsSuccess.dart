@@ -1,4 +1,6 @@
+import 'package:brandsome/business_details_module/request/add_review_request.dart';
 import 'package:brandsome/business_details_module/ui/screen/reviews.dart';
+import 'package:brandsome/utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
@@ -10,29 +12,28 @@ import '../screen/business_details.dart';
 class BusinessDetailsSuccess extends States {
   final BusnessDetailsScreenState screenState;
   final BusinessInfoResponse businessInfoModel;
-  BusinessDetailsSuccess(this.screenState,this.businessInfoModel) : super(false);
+  BusinessDetailsSuccess(this.screenState, this.businessInfoModel)
+      : super(false);
 
-  late TabController tabController = TabController(length: 3, vsync: screenState);
+  late TabController tabController =
+      TabController(length: 3, vsync: screenState);
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
     throw UnimplementedError();
   }
+
   @override
   Widget getUI(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         Container(
-          color: Theme
-              .of(context)
-              .cardColor,
+          color: Theme.of(context).cardColor,
           child: TabBar(
             // unselectedLabelColor: Color(0xffDFDFDF),
             // labelColor: primaryColor,
             controller: tabController,
-            indicatorColor: Theme
-                .of(context)
-                .primaryColor,
+            indicatorColor: Theme.of(context).primaryColor,
             tabs: [
               Tab(
                 text: "Info",
@@ -51,15 +52,30 @@ class BusinessDetailsSuccess extends States {
             child: TabBarView(
               controller: tabController,
               children: [
-                BusinessInfo(businessInfoModel: businessInfoModel, onNumberClick: (number){
-                  screenState.clickCall(number);
-                },
-                onReviewClick: (request){
-                  screenState.createReview(request);
-                },
+                BusinessInfo(
+                  businessInfoModel: businessInfoModel,
+                  onNumberClick: (number) {
+                    screenState.clickCall(number);
+                  },
+                  onReviewClick: () {
+                    if(screenState.checkIfLogin()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomReviewDialog(continueBtn: (reviewText) {
+                              Navigator.pop(context);
+                              screenState.createReview(AddReviewRequest(
+                                Bussinessid: businessInfoModel.id.toString(),
+                                Description: reviewText,
+                              ));
+                            }));
+                    }else{
+                      screenState.loginFirst();
+                    }
+                  },
                 ),
-                BusinessPosts(businessInfoModel: businessInfoModel.posts??[]),
-                ReviewScreen(review: businessInfoModel.reviews??[]),
+                BusinessPosts(businessInfoModel: businessInfoModel.posts ?? []),
+                ReviewScreen(review: businessInfoModel.reviews ?? []),
               ],
             ),
           ),
@@ -68,5 +84,3 @@ class BusinessDetailsSuccess extends States {
     );
   }
 }
-
-

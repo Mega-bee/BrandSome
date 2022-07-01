@@ -30,6 +30,7 @@ class _BusinessScreenState extends State<BusinessScreen> {
 
   @override
   void initState() {
+    super.initState();
     request = BusinessFilterRequest();
     menuItems = [
       ItemModel('A-Z', SvgPicture.asset(

@@ -34,7 +34,7 @@ class AddBusinessState extends State<AddBusiness> {
   @override
   void initState() {
     super.initState();
-    request = CreateBusinessRequest(cities: []);
+    request = CreateBusinessRequest(cities: [],services: []);
     widget._addBusinessCubit.emit(AddBusinessInit(this));
   }
 
@@ -42,7 +42,7 @@ class AddBusinessState extends State<AddBusiness> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 5,
         title: Text(
           "Add business",

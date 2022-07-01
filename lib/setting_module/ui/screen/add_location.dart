@@ -37,14 +37,8 @@ returnedLocation() {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // leading: IconButton(
-        //     onPressed: () {},
-        //     icon: Icon(
-        //       Icons.arrow_back,
-        //       color: Theme.of(context).primaryColor,
-        //     )),
+        elevation: 5,
+        title: Text('Select Location'),
         actions: [
           Padding(
             padding: const EdgeInsets.all(18.0),
@@ -61,7 +55,6 @@ returnedLocation() {
         ],
       ),
       body: BlocBuilder<LocationCubit, States>(
-
           bloc: widget.locationCubit,
           builder: (context, state) {
             return state.getUI(context);

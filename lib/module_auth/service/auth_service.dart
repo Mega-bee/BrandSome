@@ -12,4 +12,10 @@ class AuthService {
 
   bool get isLoggedIn => _prefsHelper.isSignedIn();
 
+  setToken(String  token){
+    _prefsHelper.setToken(token);
+  }
+  String? getToken( ){
+   return _prefsHelper.getToken();
+  }
 }

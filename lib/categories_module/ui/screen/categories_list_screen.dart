@@ -16,12 +16,15 @@ class CategoryListScreen extends StatefulWidget {
 
 class CategoryListScreenState extends State<CategoryListScreen> {
   final searchbarFilter = TextEditingController();
-
+  List<ServiceModel> selectedServiceCa = [];
   @override
   void initState() {
     widget._getCategoryListCubit.getCategoryList(this);
   }
-
+  returnedService() {
+    print("selectedLocation${selectedServiceCa}");
+    Navigator.pop(context, selectedServiceCa);
+  }
 
   void refresh(){
     if(mounted){
@@ -36,6 +39,20 @@ class CategoryListScreenState extends State<CategoryListScreen> {
       appBar: AppBar(
         title: Text('Select category'),
         elevation: 5,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: IconButton(
+              onPressed: () {
+                returnedService();
+              },
+              icon: Icon(
+                Icons.check,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

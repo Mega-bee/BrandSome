@@ -5,7 +5,7 @@ class CreateBusinessRequest {
    String? businessDescription;
    String? businessName;
    String? businessPhoneNumber;
-   List<int>? services;
+   List<int>  services;
    List<int>  cities;
 
    MultipartFile? images;
@@ -13,7 +13,7 @@ class CreateBusinessRequest {
   CreateBusinessRequest(
       {
       required this.cities,
-      this.services,
+     required this.services,
       this.businessDescription,
       this.businessName,
       this.businessPhoneNumber,

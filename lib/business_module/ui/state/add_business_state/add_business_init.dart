@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
+import 'package:brandsome/categories_module/categories_routes.dart';
+import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:brandsome/setting_module/response/add_location_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class AddBusinessInit extends States {
   final description = TextEditingController();
   final phoneNumber = TextEditingController();
   List<AddLocationResponse> selected = [];
+  List<ServiceModel> services = [];
   File? _pickImage;
   MultipartFile? imageForUpload;
 
@@ -32,9 +35,9 @@ class AddBusinessInit extends States {
     addBusinessState.request.businessName = business.text;
     addBusinessState.request.businessPhoneNumber = phoneNumber.text;
     addBusinessState.request.images = imageForUpload;
-    addBusinessState.request.services = [1, 2];
-    return SingleChildScrollView(
-      child: Column(
+    return ListView(
+      physics:const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics()),
         children: [
           SizedBox(
             height: 20,
@@ -284,7 +287,7 @@ class AddBusinessInit extends States {
                     keyboardType: TextInputType.phone,
                     controller: phoneNumber,
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 10),
                   TextButton(
                     onPressed: () {
                       print("Pushed to location");
@@ -313,48 +316,78 @@ class AddBusinessInit extends States {
                           (e) => Container(
                             padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
                             decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
+                              color: Theme.of(context).primaryColor,
                               borderRadius: BorderRadius.circular(
                                   5), // radius of 10// green as background color
                             ),
                             child: Text(
                               "${e.name}",
                               style: TextStyle(
-                                fontSize: 11,
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).scaffoldBackgroundColor,
                               ),
                             ),
                           ),
                         )
                         .toList(),
                   ),
+                  Divider(
+                    thickness: 3,
+                    height: 2,
+                  ),
+
+                  TextButton(
+                    onPressed: () {
+                      print("Pushed to service");
+                      Navigator.pushNamed(context, CategoriesRoutes.CATEGORY_LIST_SCREEN)
+                          .then((returnedService) {
+                        services =
+                        returnedService as List<ServiceModel>;
+                        services.forEach((element) {
+                          addBusinessState.request.services.add(element.id ?? 0);
+                        });
+                        addBusinessState.refresh();
+                      });
+                    },
+                    child: Text(
+                      "Add Service",
+                    ),
+                  ),
                   SizedBox(
                     height: 12,
                   ),
-                  Divider(
-                    thickness: 3,
-                  ),
-                  SizedBox(height: 30),
-                  TextButton(
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => SearchBarFilterScreen()),
-                      // );
-                    },
-                    child: Text(
-                      "Add services",
-                    ),
+                  Wrap(
+                    spacing: 13,
+                    runSpacing: 30,
+                    children: services
+                        .map(
+                          (e) => Container(
+                        padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.circular(
+                              5), // radius of 10// green as background color
+                        ),
+                        child: Text(
+                          "${e.name}",
+                          style: TextStyle(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                          ),
+                        ),
+                      ),
+                    )
+                        .toList(),
                   ),
                   Divider(
                     thickness: 1,
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                 ],
               ),
             ),
           ),
         ],
-      ),
     );
   }
   @override

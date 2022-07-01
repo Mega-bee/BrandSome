@@ -167,7 +167,7 @@ class HomePageSuccess extends States {
               itemCount: subCat.length,
               itemBuilder: (context, index) {
                 return CategoryCard(
-                  isSlecteced: true,
+                  isSlecteced: false,
                   catName: 'personal',
                   onCardTap: () {},
                   catId: -1,

@@ -1,4 +1,5 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
+import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 import '../../abstracts/WebUrl.dart';
@@ -7,13 +8,13 @@ import '../request/update_profile_request.dart';
 @injectable
 class AccountRepository {
   final ApiClient _apiClient;
-//  final AuthService _authService;
+  final AuthService _authService;
 
-  AccountRepository(this._apiClient);
+  AccountRepository(this._apiClient, this._authService);
 
   Future<WebServiceResponse?> getAcc() async {
-    var token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ2hyaXN0aWFuX3pha2hvdXIiLCJVSUQiOiJmM2RkMmU1OS0zNmRmLTRmNWItODJiNC0yNDI4MzljYjkxNTYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImYzZGQyZTU5LTM2ZGYtNGY1Yi04MmI0LTI0MjgzOWNiOTE1NiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJuYmYiOjE2NTYzMTk3NDEsImV4cCI6MTY4Nzg1NTc0MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.m8Wst-HkqSbxDFE3A0-jETm34QF4c845Gq_whXvVGG8';
+    var token = _authService.getToken();
+
     WebServiceResponse? response = await _apiClient.get(
       Urls.GETPROFILE,
       headers: {'Authorization': 'Bearer ' + '$token'},
@@ -23,10 +24,9 @@ class AccountRepository {
   }
 
   Future<WebServiceResponse?> UpdateAcc(UpdateProfileRequest request) async {
-    var token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiQ2hyaXN0aWFuX3pha2hvdXIiLCJVSUQiOiJmM2RkMmU1OS0zNmRmLTRmNWItODJiNC0yNDI4MzljYjkxNTYiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImYzZGQyZTU5LTM2ZGYtNGY1Yi04MmI0LTI0MjgzOWNiOTE1NiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJuYmYiOjE2NTYzMTk3NDEsImV4cCI6MTY4Nzg1NTc0MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.m8Wst-HkqSbxDFE3A0-jETm34QF4c845Gq_whXvVGG8';
+    var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.put(
-      Urls.UPDATE_PROFILE ,
+      Urls.UPDATE_PROFILE,
       request.toJson(),
       headers: {'Authorization': 'Bearer ' + '$token'},
     );

@@ -1,3 +1,5 @@
+import 'package:brandsome/module_auth/request/otp_request.dart';
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -9,24 +11,38 @@ import '../../state_manager/business_details_state_manager.dart';
 @injectable
 class BusnessDetailsScreen extends StatefulWidget {
   final BusinessListDetailsCubit _businessListDetailsCubit;
-  BusnessDetailsScreen( this._businessListDetailsCubit);
+  BusnessDetailsScreen(this._businessListDetailsCubit);
   @override
   State<BusnessDetailsScreen> createState() => BusnessDetailsScreenState();
 }
 
 class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
-    with TickerProviderStateMixin{
+    with TickerProviderStateMixin {
   String? id = "-1";
 
-  clickCall(String? number){
-    widget._businessListDetailsCubit.PostCall(this , id,number);
-  }
-  createReview(AddReviewRequest request){
-    widget._businessListDetailsCubit.createReview(request,this);
+  clickCall(String? number) {
+    widget._businessListDetailsCubit.PostCall(this, id, number);
   }
 
+  createReview(AddReviewRequest request) {
+    widget._businessListDetailsCubit.createReview(request, this);
+  }
 
+  bool checkIfLogin() {
+    return widget._businessListDetailsCubit.checkIfLogged();
+  }
 
+  requestOtp(OtpRequest request) {
+    widget._businessListDetailsCubit.requestOtp(this, request);
+  }
+
+  verifyOtp(VerifyOtpRequest request) {
+    widget._businessListDetailsCubit.verifyOtp(this, request);
+  }
+
+  loginFirst() {
+    widget._businessListDetailsCubit.emit(RequestOtpState(this));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +52,34 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
       widget._businessListDetailsCubit.getBusinessDetails(this, id);
     }
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 5,
-        title: Text(
-          "Business Details",
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 5,
+          title: Text(
+            "Business Details",
+          ),
         ),
-      ),
-      body:  BlocBuilder<BusinessListDetailsCubit, States>(
+        body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,
+          buildWhen: (previous, current) => !current.lis,
+          listenWhen: (previous, current) => current.lis,
           builder: (context, state) {
-            return state.getUI(context);
-          }),
-    );
+            print(state);
+            print('builderr');
+            if (!state.lis) {
+              return state.getUI(context);
+            }
+            return Container();
+          },
+          listener: (context, state) {
+            print(state);
+            print('in Lisssennnerrr');
+            if (state.lis) {
+              showDialog(
+                  context: context,
+                  builder: (context) => state.getAlert(context));
+            }
+          },
+        ));
   }
-
-
 }

@@ -1,4 +1,5 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/utils/components/costom_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -19,53 +20,10 @@ class LocationSuccess extends States{
      child: Column(
        children: [
          Padding(
-           padding:
-           const EdgeInsets.only(left: 20.0, right: 25.0, top: 20.0),
-           child: Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               Container(
-                 width: 350,
-                 child: TextField(
-                   // onChanged: (searchService) {
-                   //   searchService = searchService.toLowerCase();
-                   //   print(searchService);
-                   //
-                   //   loca = location
-                   //       .where(
-                   //         (string) => string.name!.toLowerCase().contains(
-                   //       searchService.toLowerCase(),
-                   //     ),
-                   //   )
-                   //       .toList();
-                   //   setState(() {});
-                   // },
-                   style: const TextStyle(fontSize: 12),
-                   controller: searchLocation,
-                   decoration: InputDecoration(
-                     prefixIcon: Icon(
-                       Icons.search,
-                     ),
-                     hintText: "Search for services",
-                     contentPadding:
-                     EdgeInsetsDirectional.only(start: 10, end: 10),
-                     enabledBorder: OutlineInputBorder(
-                         borderRadius: BorderRadius.all(Radius.circular(50)),
-                         borderSide:
-                         BorderSide(width: 1, color: Theme.of(context).primaryColor)),
-                     border: OutlineInputBorder(
-                       borderSide: const BorderSide(color: Colors.grey),
-                       borderRadius: BorderRadius.circular(50.0),
-                     ),
-                   ),
-                 ),
-               )
-             ],
-           ),
+           padding: const EdgeInsets.all(10.0),
+           child: CustomSearch(hintText: 'Search for location'),
          ),
-         SizedBox(
-           height: 30,
-         ),
+
          ListView.builder(
              physics: NeverScrollableScrollPhysics(),
              shrinkWrap: true,
@@ -74,9 +32,6 @@ class LocationSuccess extends States{
                return Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
-                   SizedBox(
-                     height: 35,
-                   ),
                    Padding(
                      padding: const EdgeInsetsDirectional.only(start: 15.0),
                      child: Row(
@@ -104,7 +59,7 @@ class LocationSuccess extends States{
                      padding: const EdgeInsetsDirectional.only(
                          start: 15.0, end: 15),
                      child: Divider(
-                       thickness: 1,
+                       thickness: 3,
                      ),
                    ),
                    SizedBox(
