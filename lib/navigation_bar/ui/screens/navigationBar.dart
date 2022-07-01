@@ -33,7 +33,7 @@ class _NavigationState extends State<NavigationScreen> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         animationDuration: Duration(milliseconds: 400),
-        color: Theme.of(context).bottomAppBarColor,
+        color: Colors.black87,
         buttonBackgroundColor: Theme.of(context).primaryColor,
         backgroundColor: Colors.transparent,
         height: 60,

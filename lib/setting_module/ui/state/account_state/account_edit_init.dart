@@ -228,7 +228,7 @@ final username = TextEditingController();
 
 
               // events: address.regular.events,
-              selectedValue: 0,
+              selectedValue: 3,
               inputType: TextInputType.text,
               controller:gender, items: [
               "male",
