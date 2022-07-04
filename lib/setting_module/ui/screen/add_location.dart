@@ -32,6 +32,7 @@ returnedLocation() {
   Navigator.pop(context, selectedLocation);
 }
 
+List<AddLocationResponse> loca1 = [];
 
   @override
   Widget build(BuildContext context) {

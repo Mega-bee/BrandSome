@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 
 import '../reponse/get_likes_list_response.dart';
 import '../repository/likes_list_repository.dart';
+import '../ui/screen/liked_by_screen.dart';
 import '../ui/state/liked_list_success.dart';
 
 
@@ -16,11 +17,11 @@ class LikedListCubit extends Cubit<States> {
 
   LikedListCubit(this._likedList) : super(LoadingState());
 
-  getLikesList(String? id) {
+  getLikesList(String? id,LikeByScreenState state) {
     _likedList.getLikedPosts(id).then((value) {
       if(value == null){
         emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          getLikesList(id);
+          getLikesList(id,state);
         }));
       }
       else if (value.code == 200){
@@ -29,7 +30,8 @@ class LikedListCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           likes.add(LikedByModel.fromJson(item));
         }
-        emit(LikedListSuccess(likes));
+        state.likedmodel1 = likes;
+        emit(LikedListSuccess(likes,state));
       }
     });
   }

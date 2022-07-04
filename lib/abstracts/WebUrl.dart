@@ -10,8 +10,7 @@ class Urls {
   static const String BSE_API_LOCATION = DOMAIN + '/api/General/';
 
 
-  // static const String BASE_API_PATIENTS = DOMAIN + '/api/Patients';
-  // static const String BASE_API_NOTIFICATIONS=DOMAIN+'/api/Notifications';
+
 //  /*--------Auth-------------------*/
    static const REQUEST_OTP = BSE_API_SETTINGS + 'RequestOtp';
    static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
@@ -25,6 +24,7 @@ class Urls {
   static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview';
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
+  static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
 
   //
   /*--------Settings-------------------*/
