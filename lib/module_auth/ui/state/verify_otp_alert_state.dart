@@ -65,7 +65,7 @@ class VerifyOtpState extends States{
                      ),
                    ]),
                TextSpan(
-                 text: '+961 0000000',
+                 text: '+961 ${phoneNumber}',
 //                  style: TextStyle(color: blackColor, fontSize: 17),
                )
              ],
