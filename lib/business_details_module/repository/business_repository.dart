@@ -5,6 +5,8 @@ import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../request/is_follow.dart';
+
 @injectable
 class BusinessRepositoryDetails {
   final ApiClient _apiClient;
@@ -28,6 +30,18 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.post(
       Urls.PHONE_CLICK + "$id",
       {},
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> IsFollow(String? id,IsFollower request) async {
+    var token =   _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.IS_FOLLOW + "$id",
+      request.toJson()
+      ,
       headers: {'Authorization': 'Bearer ' + '$token'},
     );
     if (response == null) return null;

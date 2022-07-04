@@ -7,20 +7,33 @@ import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomV
 import '../../reponse/business_response.dart';
 import '../../request/add_review_request.dart';
 
-class BusinessInfo extends StatelessWidget {
+class BusinessInfo extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;
   final Function onNumberClick;
   final Function onReviewClick;
+  final Function onFollow;
+  bool isFollow;
+
 
   BusinessInfo(
       {required this.businessInfoModel,
       required this.onNumberClick,
-      required this.onReviewClick});
+      required this.onReviewClick,
+      required this.onFollow,
+        this.isFollow=false,
+      });
 
+  @override
+  State<BusinessInfo> createState() => _BusinessInfoState();
+}
+
+class _BusinessInfoState extends State<BusinessInfo> {
   CustomReviewDialog? customReviewDialog;
+
   TextEditingController controller = TextEditingController();
 
   @override
+
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -30,49 +43,97 @@ class BusinessInfo extends StatelessWidget {
             height: 24,
           ),
           Image.network(
-            businessInfoModel.image.toString(),
+            widget.businessInfoModel.image.toString(),
             fit: BoxFit.fill,
             width: double.infinity,
             height: 220,
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           Padding(
             padding: EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+
                 ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Follow",
-                    style:
-                        TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+
+                  onPressed: () {
+
+setState(() {
+  widget.isFollow=!widget.isFollow;
+});
+widget.onFollow(widget.isFollow);
+                  },
+                  child:
+                  !widget.isFollow?
+                  Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Text(
+                      "  Follow  " ,
+                      style:
+                          TextStyle(fontWeight: FontWeight.normal,color:Colors.white),
+                    ),
+                  ):
+                  Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: Text(
+                      "Unfollow",
+                      style:
+                      TextStyle(fontWeight: FontWeight.normal,color: Theme.of(context).primaryColor),
+                    ),
                   ),
-                  style: ElevatedButton.styleFrom(
+
+
+                  style:
+                  widget.isFollow?
+                  ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    padding: EdgeInsetsDirectional.only(
+                      end: 20,
+
+
+                      start: 20,
+                    ),
+
+                    shape:
+
+                    RoundedRectangleBorder(
+                        side: BorderSide(width: 1,color:Theme.of(context).primaryColor),
+                        borderRadius: BorderRadius.circular(4))
+
+                    ,
+                  ):
+                  ElevatedButton.styleFrom(
                     primary: Theme.of(context).primaryColor,
                     padding: EdgeInsetsDirectional.only(
-                      end: 30,
-                      top: 1,
-                      bottom: 1,
-                      start: 30,
+                      end: 20,
+
+
+                      start: 20,
                     ),
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 1, color: Colors.transparent),
-                        borderRadius: BorderRadius.circular(4)),
-                  ),
+
+                    shape:
+
+                    RoundedRectangleBorder(
+                        side: BorderSide(width: 0,color:Colors.transparent),
+                        borderRadius: BorderRadius.circular(4))
+
+                    ,
+                  )
+                  ,
                 ),
                 Row(
                   children: [
                     Icon(
                       Icons.remove_red_eye_outlined,
-                      size: 14,
+                      size: 18,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "${businessInfoModel.viewCount}",
+                        "${widget.businessInfoModel.viewCount}",
                         style: TextStyle(fontSize: 12),
                       ),
                     ),
@@ -82,22 +143,22 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
-              "${businessInfoModel.type}",
+              "${widget.businessInfoModel.type}",
               style: TextStyle(fontSize: 15),
             ),
           ),
           SizedBox(
-            height: 14,
+            height: 10,
           ),
           Padding(
               padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
               child: Row(
-                children: businessInfoModel.services!
+                children: widget.businessInfoModel.services!
                     .map<Widget>(
                       (e) => Text(
                         "${e.name}",
@@ -108,7 +169,7 @@ class BusinessInfo extends StatelessWidget {
                     .toList(),
               )),
           SizedBox(
-            height: 15,
+            height: 10,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 17.0, end: 23.0),
@@ -119,21 +180,29 @@ class BusinessInfo extends StatelessWidget {
                   size: 18,
                   color: Theme.of(context).primaryColor,
                 ),
-                SizedBox(
-                  width: 9,
-                ),
+
                 Container(
-                    padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                    padding: EdgeInsets.fromLTRB(1, 3, 15, 3),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
                           5), // radius of 10// green as background color
                     ),
                     child: Row(
-                        children: businessInfoModel.cities!
+                      mainAxisAlignment: MainAxisAlignment.center,
+                        children: widget.businessInfoModel.cities!
                             .map<Widget>(
-                              (e) => Text(
-                                "${e.name} ",
-                                style: TextStyle(fontSize: 12),
+                              (e) => Container(
+                                height: 30,
+                                width: 80,
+                                child: Card(
+                                  color: Colors.grey[900],
+                                  child: Center(
+                                    child: Text(
+                                      "${e.name} ",
+                                      style: TextStyle(fontSize: 12,color: Colors.grey[500]),
+                                    ),
+                                  ),
+                                ),
                               ),
                             )
                             .toList())),
@@ -157,12 +226,12 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 22,
+            height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
-              "${businessInfoModel.description}",
+              "${widget.businessInfoModel.description}",
               style: TextStyle(
                 fontSize: 16,
                 color: Color(0xffDFDFDF),
@@ -170,7 +239,7 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 22,
+            height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
@@ -190,12 +259,13 @@ class BusinessInfo extends StatelessWidget {
                         SvgPicture.asset(
                           SvgImg.PERSON,
                           color: Colors.white,
-                          height: 16,
+                          height: 20,
+
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Text("${businessInfoModel.followCount}"),
+                        Text("${widget.businessInfoModel.followCount}"),
                       ],
                     ),
                     Text(
@@ -207,12 +277,12 @@ class BusinessInfo extends StatelessWidget {
                         SvgPicture.asset(
                           SvgImg.RATE,
                           color: Colors.white,
-                          height: 16,
+                          height: 20,
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Text("${businessInfoModel.reviewCount}"),
+                        Text("${widget.businessInfoModel.reviewCount}"),
                       ],
                     ),
                     Text(
@@ -224,12 +294,12 @@ class BusinessInfo extends StatelessWidget {
                         SvgPicture.asset(
                           SvgImg.PAPER,
                           color: Colors.white,
-                          height: 16,
+                          height: 20,
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Text("${businessInfoModel.postCount}"),
+                        Text("${widget.businessInfoModel.postCount}"),
                       ],
                     ),
                   ],
@@ -238,16 +308,16 @@ class BusinessInfo extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 36.0, end: 36.0),
+            padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    onNumberClick(businessInfoModel.phoneNumber);
+                    widget.onNumberClick(widget.businessInfoModel.phoneNumber);
                   },
                   child: Row(
                     children: [
@@ -274,7 +344,7 @@ class BusinessInfo extends StatelessWidget {
                 ),
                  ElevatedButton(
                    onPressed: () {
-                     onReviewClick();
+                     widget.onReviewClick();
                      // );
                    },
                    child: Row(
@@ -309,5 +379,4 @@ class BusinessInfo extends StatelessWidget {
       ),
     );
   }
-
 }
