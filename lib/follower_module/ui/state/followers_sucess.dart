@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../request/follow_request.dart';
 import '../../response/follower_response.dart';
+import '../screens/follower_list.dart';
 import '../widget/followers_card.dart';
 
 class FollowersSuccess extends States {
   final List<FollowersResp> bussfollowers;
-
-  FollowersSuccess({required this.bussfollowers}) : super(false);
+  FollowersState followers;
+  FollowersSuccess({required this.bussfollowers,required this.followers}) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
@@ -33,6 +35,9 @@ class FollowersSuccess extends States {
           itemCount: bussfollowers.length,
           itemBuilder: (context, index) {
             return FollowCard(
+              onFollowClick: (int id,isSelected){
+                followers.follow(FollowRequest(isFollow:isSelected), id.toString());
+              },
               bussfol: bussfollowers[index],
             );
           })

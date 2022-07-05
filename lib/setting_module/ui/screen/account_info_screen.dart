@@ -19,8 +19,7 @@ class AccountInfoScreen extends StatefulWidget {
 }
 
 class AccountInfoScreenState extends State<AccountInfoScreen> {
- late  AccountResponse accountModel;
-
+  late AccountResponse accountModel;
 
   void refresh() {
     if (mounted) {

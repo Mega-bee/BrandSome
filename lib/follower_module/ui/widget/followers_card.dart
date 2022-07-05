@@ -6,13 +6,14 @@ import '../../response/follower_response.dart';
 
 class FollowCard extends StatefulWidget {
   final FollowersResp bussfol;
-  FollowCard({required this.bussfol});
+  final Function onFollowClick;
+  FollowCard({required this.bussfol,required this.onFollowClick});
   @override
   State<FollowCard> createState() => _FollowCardState();
 }
 
 class _FollowCardState extends State<FollowCard> {
-  bool isSelected = false;
+  bool isSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +42,15 @@ class _FollowCardState extends State<FollowCard> {
                      ),
                   ],
                 ),
-                isSelected
+                !isSelected
                     ? TextButton(
                   onPressed: () {
                     isSelected = !isSelected;
-
                     setState(() {
-
                     });
+                    widget.onFollowClick(widget.bussfol.id,isSelected);
+
+
                   },
                   child: Text("Follow",),
                   style: TextButton.styleFrom(
@@ -60,8 +62,9 @@ class _FollowCardState extends State<FollowCard> {
                         onPressed: () {
                           isSelected = !isSelected;
                           setState(() {
-
                           });
+                          widget.onFollowClick(widget.bussfol.id,isSelected);
+
                         },
                         child: Text("Unfollow",),
                         style: TextButton.styleFrom(
