@@ -105,47 +105,13 @@ class SettingSuccess extends States {
           SizedBox(
             height: 3,
           ),
+
           Divider(
             thickness: 2,
           ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                SettingRoutes.Account_Screen,
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(
-                start: 20.0,
-                end: 30,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Account info",
-                      ),
-                    ],
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_rounded,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Divider(
-            thickness: 2,
-          ),
+
+          SizedBox(height: 20,),
+
           ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -161,20 +127,36 @@ class SettingSuccess extends States {
                   },
                   child: Padding(
                     padding: const EdgeInsetsDirectional.only(
-                        start: 20.0, end: 30, bottom: 10),
+                        start: 18.0, end: 30, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            Icon(
-                              Icons.business,
+                            Container(
+                              width: 30,
+                              height: 30,
+                              child: CachedNetworkImage(
+                                imageUrl:  getaccsetting.businesses![index].image.toString(),
+                                imageBuilder: (context, imageProvider) => Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    image: DecorationImage(
+                                      image: imageProvider,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                placeholder: (context, url) => CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => Icon(Icons.error),
+                              ),
                             ),
+
                             SizedBox(
-                              width: 10,
+                              width: 27,
                             ),
                             Text(
-                              getaccsetting.businesses![index].name.toString(),
+                              getaccsetting.businesses![index].name.toString(),style: TextStyle(fontSize: 16)
                             ),
                           ],
                         ),
@@ -186,8 +168,95 @@ class SettingSuccess extends States {
                   ),
                 );
               }),
+
+          SizedBox(height: 20,),
           Divider(
             thickness: 2,
+          ),
+          SizedBox(
+            height: 15,
+          ),
+          InkWell(
+            onTap: () {
+
+            },
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 18.0,
+                end: 30,
+              ),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset(
+                        "assets/images/bees-removebg-preview.png",
+
+
+                        height: 30,width: 30,
+                      ),
+                      SizedBox(
+                        width: 27,
+                      ),
+                      Text(
+                        "Your Bees",style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Divider(
+            thickness: 2,
+          ),
+          SizedBox(height: 20,),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                SettingRoutes.Account_Screen,
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(
+                start: 18.0,
+                end: 30,
+              ),
+
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.person,
+                      ),
+                      SizedBox(
+                        width: 27,
+                      ),
+                      Text(
+                        "Account info",style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 15,
           ),
           InkWell(
             onTap: () {
@@ -195,7 +264,7 @@ class SettingSuccess extends States {
             },
             child: Padding(
               padding: const EdgeInsets.only(
-                left: 20.0,
+                left: 18.0,
                 right: 30,
               ),
               child: Row(
@@ -207,10 +276,10 @@ class SettingSuccess extends States {
                         Icons.add_business,
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 27,
                       ),
                       Text(
-                        "Businesses I follow",
+                        "Businesses I follow",style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -221,8 +290,12 @@ class SettingSuccess extends States {
               ),
             ),
           ),
+          SizedBox(
+            height: 5,
+          ),
           ListTileSwitch(
             value: Theme.of(context).brightness == Brightness.dark,
+
             leading: Icon(
               Theme.of(context).brightness == Brightness.dark
                   ? Icons.nightlight_round_rounded
@@ -232,10 +305,15 @@ class SettingSuccess extends States {
 //                      widget._themeDataService.switchDarkMode(mode);
               AppThemeDataService().switchDarkMode(mode);
             },
+
             visualDensity: VisualDensity.comfortable,
             switchType: SwitchType.cupertino,
-            switchActiveColor: Theme.of(context).scaffoldBackgroundColor,
-            title: Text('Dark mode'),
+            switchActiveColor: Colors.grey,
+
+            title: Padding(
+              padding: const EdgeInsets.only(right: 100),
+              child: Text('Dark mode',style: TextStyle(fontSize: 16)),
+            ),
           ),
           SizedBox(
             height: 10,
@@ -265,39 +343,39 @@ class SettingSuccess extends States {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsetsDirectional.only(
-              start: 20.0,
-              end: 30,
-            ),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: TextButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => CustomDeleteDialog(
-                      title: "Delete account",
-                      content: "",
-                      yesBtn: () {
-                        Navigator.pop(context);
-                      },
-                      noBtn: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  );
-                },
-                child: Text(
-                  "Delete account",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 13,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsetsDirectional.only(
+          //     start: 20.0,
+          //     end: 30,
+          //   ),
+          //   child: Align(
+          //     alignment: Alignment.topLeft,
+          //     child: TextButton(
+          //       onPressed: () {
+          //         showDialog(
+          //           context: context,
+          //           builder: (context) => CustomDeleteDialog(
+          //             title: "Delete account",
+          //             content: "",
+          //             yesBtn: () {
+          //               Navigator.pop(context);
+          //             },
+          //             noBtn: () {
+          //               Navigator.pop(context);
+          //             },
+          //           ),
+          //         );
+          //       },
+          //       child: Text(
+          //         "Delete account",
+          //         style: TextStyle(
+          //           color: Theme.of(context).primaryColor,
+          //           fontSize: 13,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Divider(
             thickness: 2,
           ),

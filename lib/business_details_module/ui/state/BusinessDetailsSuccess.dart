@@ -15,10 +15,12 @@ class BusinessDetailsSuccess extends States {
   final BusinessInfoResponse businessInfoModel;
   final bool islogged;
 
+
   BusinessDetailsSuccess(
     this.screenState,
     this.businessInfoModel,
       this.islogged,
+
   ) : super(false);
 
   late TabController tabController =
@@ -61,6 +63,7 @@ class BusinessDetailsSuccess extends States {
                 controller: tabController,
                 children: [
                   BusinessInfo(
+
                     isLoggedin: islogged,
                     businessInfoModel: businessInfoModel,
                     onNumberClick: (number) {

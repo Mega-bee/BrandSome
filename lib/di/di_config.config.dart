@@ -36,11 +36,11 @@ import '../liked_module/repository/likes_list_repository.dart' as _i16;
 import '../liked_module/state_manager/liked_list_bloc.dart' as _i17;
 import '../liked_module/ui/screen/liked_by_screen.dart' as _i32;
 import '../main.dart' as _i47;
-import '../module_auth/repository/auth_repository.dart' as _i9;
-import '../module_auth/service/auth_service.dart' as _i10;
-import '../module_network/http_client/http_client.dart' as _i8;
-import '../navigation_bar/navigator_module.dart' as _i7;
-import '../navigation_bar/ui/screens/navigationBar.dart' as _i6;
+import '../module_auth/repository/auth_repository.dart' as _i10;
+import '../module_auth/service/auth_service.dart' as _i5;
+import '../module_network/http_client/http_client.dart' as _i9;
+import '../navigation_bar/navigator_module.dart' as _i8;
+import '../navigation_bar/ui/screens/navigationBar.dart' as _i7;
 import '../setting_module/repository/account_repository.dart' as _i21;
 import '../setting_module/repository/location_repository.dart' as _i18;
 import '../setting_module/repository/setting_repository.dart' as _i19;
@@ -51,7 +51,7 @@ import '../setting_module/state_manager/setting.dart' as _i35;
 import '../setting_module/ui/screen/account_info_screen.dart' as _i38;
 import '../setting_module/ui/screen/add_location.dart' as _i40;
 import '../setting_module/ui/screen/setting_screen.dart' as _i36;
-import '../utils/logger/logger.dart' as _i5;
+import '../utils/logger/logger.dart' as _i6;
 import '../utils/service/theme_serrvice/theme_service.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
 
@@ -62,45 +62,46 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   gh.factory<_i3.AppThemeDataService>(() => _i3.AppThemeDataService());
   gh.factory<_i4.AuthPrefsHelper>(() => _i4.AuthPrefsHelper());
-  gh.factory<_i5.Logger>(() => _i5.Logger());
-  gh.factory<_i6.NavigationScreen>(() => _i6.NavigationScreen());
-  gh.factory<_i7.NavigatorModule>(
-      () => _i7.NavigatorModule(get<_i6.NavigationScreen>()));
-  gh.factory<_i8.ApiClient>(() => _i8.ApiClient(get<_i5.Logger>()));
-  gh.factory<_i9.AuthRepository>(
-      () => _i9.AuthRepository(get<_i8.ApiClient>()));
-  gh.factory<_i10.AuthService>(() =>
-      _i10.AuthService(get<_i4.AuthPrefsHelper>(), get<_i9.AuthRepository>()));
+  gh.factory<_i5.ImeiService>(() => _i5.ImeiService());
+  gh.factory<_i6.Logger>(() => _i6.Logger());
+  gh.factory<_i7.NavigationScreen>(() => _i7.NavigationScreen());
+  gh.factory<_i8.NavigatorModule>(
+      () => _i8.NavigatorModule(get<_i7.NavigationScreen>()));
+  gh.factory<_i9.ApiClient>(() => _i9.ApiClient(get<_i6.Logger>()));
+  gh.factory<_i10.AuthRepository>(
+      () => _i10.AuthRepository(get<_i9.ApiClient>()));
+  gh.factory<_i5.AuthService>(() =>
+      _i5.AuthService(get<_i4.AuthPrefsHelper>(), get<_i10.AuthRepository>()));
   gh.factory<_i11.BusinessRepository>(() =>
-      _i11.BusinessRepository(get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      _i11.BusinessRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i12.BusinessRepositoryDetails>(() =>
-      _i12.BusinessRepositoryDetails(
-          get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      _i12.BusinessRepositoryDetails(get<_i9.ApiClient>(),
+          get<_i5.AuthService>(), get<_i5.ImeiService>()));
   gh.factory<_i13.CategoryRepository>(() =>
-      _i13.CategoryRepository(get<_i8.ApiClient>(), get<_i10.AuthService>()));
-  gh.factory<_i14.FilterRepo>(() => _i14.FilterRepo(get<_i8.ApiClient>()));
+      _i13.CategoryRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i14.FilterRepo>(() => _i14.FilterRepo(get<_i9.ApiClient>()));
   gh.factory<_i15.HomePageCubit>(() =>
-      _i15.HomePageCubit(get<_i10.AuthService>(), get<_i9.AuthRepository>()));
+      _i15.HomePageCubit(get<_i5.AuthService>(), get<_i10.AuthRepository>()));
   gh.factory<_i16.LikedList>(
-      () => _i16.LikedList(get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      () => _i16.LikedList(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i17.LikedListCubit>(
       () => _i17.LikedListCubit(get<_i16.LikedList>()));
   gh.factory<_i18.LocationRepository>(
-      () => _i18.LocationRepository(get<_i8.ApiClient>()));
+      () => _i18.LocationRepository(get<_i9.ApiClient>()));
   gh.factory<_i19.SettingRepository>(() =>
-      _i19.SettingRepository(get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      _i19.SettingRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i20.SettingRepository>(() =>
-      _i20.SettingRepository(get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      _i20.SettingRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i21.AccountRepository>(() =>
-      _i21.AccountRepository(get<_i8.ApiClient>(), get<_i10.AuthService>()));
+      _i21.AccountRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i22.AddBusinessCubit>(
       () => _i22.AddBusinessCubit(get<_i11.BusinessRepository>()));
   gh.factory<_i23.BusinessListCubit>(
       () => _i23.BusinessListCubit(get<_i11.BusinessRepository>()));
   gh.factory<_i24.BusinessListDetailsCubit>(() => _i24.BusinessListDetailsCubit(
       get<_i12.BusinessRepositoryDetails>(),
-      get<_i9.AuthRepository>(),
-      get<_i10.AuthService>()));
+      get<_i10.AuthRepository>(),
+      get<_i5.AuthService>()));
   gh.factory<_i25.BusinessScreen>(
       () => _i25.BusinessScreen(get<_i23.BusinessListCubit>()));
   gh.factory<_i26.BusnessDetailsScreen>(
@@ -123,12 +124,12 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i34.LocationCubit(get<_i18.LocationRepository>()));
   gh.factory<_i35.SettingCubit>(() => _i35.SettingCubit(
       get<_i19.SettingRepository>(),
-      get<_i10.AuthService>(),
-      get<_i9.AuthRepository>()));
+      get<_i5.AuthService>(),
+      get<_i10.AuthRepository>()));
   gh.factory<_i36.SettingsScreen>(
       () => _i36.SettingsScreen(get<_i35.SettingCubit>()));
-  gh.factory<_i37.AccountCubit>(() => _i37.AccountCubit(
-      get<_i21.AccountRepository>(), get<_i10.AuthService>()));
+  gh.factory<_i37.AccountCubit>(() =>
+      _i37.AccountCubit(get<_i21.AccountRepository>(), get<_i5.AuthService>()));
   gh.factory<_i38.AccountInfoScreen>(
       () => _i38.AccountInfoScreen(get<_i37.AccountCubit>()));
   gh.factory<_i39.AddBusiness>(
@@ -149,7 +150,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i46.FollowerModule(get<_i43.Followers>()));
   gh.factory<_i47.MyApp>(() => _i47.MyApp(
       get<_i3.AppThemeDataService>(),
-      get<_i7.NavigatorModule>(),
+      get<_i8.NavigatorModule>(),
       get<_i42.BusinessModule>(),
       get<_i41.BusinessDetailsModule>(),
       get<_i33.LikedListModule>(),

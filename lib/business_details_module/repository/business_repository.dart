@@ -1,6 +1,7 @@
 import 'package:brandsome/abstracts/WebUrl.dart';
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
 import 'package:brandsome/business_details_module/request/add_review_request.dart';
+
 import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
@@ -11,8 +12,9 @@ import '../request/is_follow.dart';
 class BusinessRepositoryDetails {
   final ApiClient _apiClient;
   final AuthService _authService;
+  final ImeiService _imeiService;
 
-  BusinessRepositoryDetails(this._apiClient, this._authService);
+  BusinessRepositoryDetails(this._apiClient, this._authService,this._imeiService);
 
   Future<WebServiceResponse?> getBusinessDetails(String? id) async {
     var token =   _authService.getToken();
@@ -43,6 +45,19 @@ class BusinessRepositoryDetails {
       request.toJson()
       ,
       headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+  Future<WebServiceResponse?> IMEI(String? id,) async {
+    var token =   _authService.getToken();
+    var Imei = await  _imeiService.initPlatformState();
+
+
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.BUSINESS_VIEW + "$id",
+      {},
+      headers: {'Authorization': 'Bearer ' + '$token','imei':'$Imei'},
     );
     if (response == null) return null;
     return response;

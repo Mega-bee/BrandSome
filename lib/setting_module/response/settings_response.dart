@@ -32,11 +32,14 @@ class GetAccountSetting {
 class Businesses {
   int? id;
   String? name;
+  String? image;
+
 
   Businesses({this.id, this.name});
 
   Businesses.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    image =json['image'];
   }
 }

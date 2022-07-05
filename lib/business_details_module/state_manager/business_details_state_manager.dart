@@ -41,11 +41,19 @@ class BusinessListDetailsCubit extends Cubit<States> {
       }
       else if (value.code == 200){
         BusinessInfoResponse businessInfoModel = BusinessInfoResponse.fromJson(value.data.insideData);
-        emit(BusinessDetailsSuccess(screenstate,businessInfoModel,checkIfLogged()));
+        emit(BusinessDetailsSuccess(screenstate,businessInfoModel,checkIfLogged(),));
       }
     });
   }
 
+void ImeiView(BusnessDetailsScreenState screenstate,String? id){
+    _businessRepositoryDetails.IMEI(id).then((value) {
+      if (value!.code == 200){
+        print("Imeiiiii seuccess");
+      }
+    }
+    );
+}
 
   PostCall(BusnessDetailsScreenState screenstate,String? id,String? number) {
     _businessRepositoryDetails.PostCall(id).then((value) {

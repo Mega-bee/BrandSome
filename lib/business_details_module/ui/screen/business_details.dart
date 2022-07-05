@@ -1,3 +1,4 @@
+
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +58,14 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
         id = args["id"] as String;
         name = args["name"] as String;
         widget._businessListDetailsCubit.getBusinessDetails(this, id);
+        widget._businessListDetailsCubit.ImeiView(this, id);
       }
 
     }
     return Scaffold(
-      appBar: AppBar(title: Text(name!),),
+      appBar: AppBar(title: Text(name!),
+
+      ),
 
         body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,

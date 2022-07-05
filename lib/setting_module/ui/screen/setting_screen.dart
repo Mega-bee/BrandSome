@@ -36,7 +36,7 @@ class SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           "Settings",
-          style: TextStyle(color: Theme.of(context).primaryColor),
+          style: TextStyle(color: Colors.white),
         ),
       ),
 
