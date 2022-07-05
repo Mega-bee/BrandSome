@@ -323,7 +323,7 @@ class SettingSuccess extends States {
           SizedBox(
             height: 10,
           ),
-          Image.asset("assets/images/megabeelogo.png",width: 90,height: 90,),
+          Image.asset("assets/images/megabeelogo.png",width: 40,height: 30,),
           SizedBox(
             height: 100,
           ),

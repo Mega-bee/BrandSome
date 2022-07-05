@@ -18,7 +18,9 @@ class BusinessCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
-          arguments: businessCardModel.id.toString(),
+          arguments: businessCardModel.id.toString()
+
+          ,
         );
       },
       child: Padding(

@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../../abstracts/states/state.dart';
 import '../../request/add_review_request.dart';
+import '../../request/is_follow.dart';
 import '../../state_manager/business_details_state_manager.dart';
 
 @injectable
@@ -26,6 +27,9 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
 
   createReview(AddReviewRequest request) {
     widget._businessListDetailsCubit.createReview(request, this);
+  }
+  isfollowing(IsFollower request){
+    widget._businessListDetailsCubit.IsFollow(this, request,id);
   }
 
   bool checkIfLogin() {
@@ -52,13 +56,7 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
       widget._businessListDetailsCubit.getBusinessDetails(this, id);
     }
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 5,
-          title: Text(
-            "Business Details",
-          ),
-        ),
+
         body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,
           buildWhen: (previous, current) => !current.lis,
