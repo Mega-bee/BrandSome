@@ -113,7 +113,7 @@ class RequestOtpState extends States{
                Navigator.pop(context);
                screenState.requestOtp(OtpRequest(userName: username.text, number: phonenumber.text));
              },
-             child: Text("Continue"),
+             child: Text("Continue",style: TextStyle(color: Colors.white),),
              style: ElevatedButton.styleFrom(
                  primary: Theme.of(context).primaryColor,
                  padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),

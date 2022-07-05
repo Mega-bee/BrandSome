@@ -34,23 +34,30 @@ class _BusinessPostsState extends State<BusinessPosts> {
           return Column(
             children: [
               SizedBox(
-                height: 29,
+                height: 20,
               ),
               ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      widget.businessInfoModel[index].profileImage.toString()),
+                leading: Container(
+
+                  width: 40,
+                  height: 40,
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        widget.businessInfoModel[index].profileImage.toString(),),
+                  ),
                 ),
+                // The
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      widget.businessInfoModel[index].name.toString(),
+                     "${widget.businessInfoModel[index].name.toString()}",
                     ),
                     PopupMenuButton(
                         icon: Icon(
                           Icons.more_vert,
                           color: Colors.white,
+                          size: 20,
                         ),
                         onSelected: (item) => onSelected(context, item),
                         itemBuilder: (context) => [
@@ -103,13 +110,19 @@ class _BusinessPostsState extends State<BusinessPosts> {
                                   ],
                                 ),
                               ),
-                            ])
+                            ]),
+
                   ],
                 ),
+
+
+
                 subtitle: Text(
                   widget.businessInfoModel[index].city.toString(),
+                  style: TextStyle(fontSize: 11),
                 ),
               ),
+              SizedBox(height: 10,),
               Card(
                 elevation: 5,
                 child: Column(
