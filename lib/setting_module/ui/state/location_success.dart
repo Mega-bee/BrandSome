@@ -8,12 +8,13 @@ import '../../response/add_location_response.dart';
 import '../screen/add_location.dart';
 
 class LocationSuccess extends States{
-  final List<AddLocationResponse> loca;
+    List<AddLocationResponse> loca;
+
   final  AddLocationScreenState addLocationScreenState;
 
   LocationSuccess(this.loca,this.addLocationScreenState) : super(false);
-  final searchLocation = TextEditingController();
 
+  final searchLocation = TextEditingController();
   @override
   Widget getUI(BuildContext context) {
    return SingleChildScrollView(
@@ -21,13 +22,27 @@ class LocationSuccess extends States{
        children: [
          Padding(
            padding: const EdgeInsets.all(10.0),
-           child: CustomSearch(hintText: 'Search for location'),
+           child: CustomSearch(hintText: 'Search for location', onChanged: (searchText) {
+             searchText = searchText.toLowerCase();
+             print(searchText);
+             print("search test");
+
+             addLocationScreenState.loca1 = loca
+                 .where(
+                   (string) =>
+                   string.name!.toLowerCase().contains(
+                     searchText.toLowerCase(),
+                   ),
+             )
+                 .toList();
+             addLocationScreenState.refrech();
+           },),
          ),
 
          ListView.builder(
              physics: NeverScrollableScrollPhysics(),
              shrinkWrap: true,
-             itemCount: loca.length,
+             itemCount: addLocationScreenState.loca1.length,
              itemBuilder: (context, index) {
                return Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,13 +53,13 @@ class LocationSuccess extends States{
                        children: [
                          Checkbox(
                            activeColor: Theme.of(context).primaryColor,
-                           value: loca[index].value,
+                           value: addLocationScreenState.loca1[index].value,
                            onChanged: (value) {
-                               loca[index].value = value!;
+                             addLocationScreenState.loca1[index].value = value!;
                                addLocationScreenState.refrech();
                                if(value){
                                  print("Cities selected");
-                                 addLocationScreenState.selectedLocation.add(loca[index]);
+                                 addLocationScreenState.selectedLocation.add(addLocationScreenState.loca1[index]);
 
                                }
                            },
