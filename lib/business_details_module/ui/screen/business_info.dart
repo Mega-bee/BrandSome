@@ -1,3 +1,4 @@
+import 'package:brandsome/business_details_module/business_details_route.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -136,9 +137,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       (e) => Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          "${ e.name }",
+                          "${e.name}",
                           style: TextStyle(
-                          decoration: TextDecoration.underline,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -295,19 +296,26 @@ class _BusinessInfoState extends State<BusinessInfo> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    widget.onNumberClick(widget.businessInfoModel.phoneNumber);
+                    widget.businessInfoModel.isUserBusiness!
+                        ? Navigator.pushNamed(context, BusinessDetailsRoutes.BUSINESS_UPDATE_SCREEN,arguments:widget.businessInfoModel)
+                        : widget.onNumberClick(
+                            widget.businessInfoModel.phoneNumber);
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        SvgImg.PHONE,
-                        height: 20,
-                      ),
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(Icons.security_update_good_sharp)
+                          : SvgPicture.asset(
+                              SvgImg.PHONE,
+                              height: 20,
+                            ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
-                        "Call Now",
+                        widget.businessInfoModel.isUserBusiness!
+                            ? "Update"
+                            : "Call Now",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -322,19 +330,27 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    widget.onReviewClick();
+                    widget.businessInfoModel.isUserBusiness!
+                        ? Container()
+                        : widget.onReviewClick();
                     // );
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        SvgImg.RATING,
-                        height: 20,
-                      ),
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(Icons.delete)
+                          : SvgPicture.asset(
+                              SvgImg.RATING,
+                              height: 20,
+                            ),
                       SizedBox(
                         width: 10,
                       ),
-                      Text("Add review", style: TextStyle(color: Colors.white)),
+                      Text(
+                          widget.businessInfoModel.isUserBusiness!
+                              ? "Delete"
+                              : "Add review",
+                          style: TextStyle(color: Colors.white)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
