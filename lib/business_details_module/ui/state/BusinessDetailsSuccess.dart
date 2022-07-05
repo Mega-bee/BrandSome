@@ -14,9 +14,10 @@ class BusinessDetailsSuccess extends States {
   final BusnessDetailsScreenState screenState;
   final BusinessInfoResponse businessInfoModel;
 
-
-  BusinessDetailsSuccess(this.screenState, this.businessInfoModel,)
-      : super(false);
+  BusinessDetailsSuccess(
+    this.screenState,
+    this.businessInfoModel,
+  ) : super(false);
 
   late TabController tabController =
       TabController(length: 3, vsync: screenState);
@@ -33,7 +34,7 @@ class BusinessDetailsSuccess extends States {
         centerTitle: true,
         elevation: 5,
         title: Text(
-            businessInfoModel.name.toString(),
+          businessInfoModel.name.toString(),
         ),
       ),
       body: Column(
@@ -45,8 +46,8 @@ class BusinessDetailsSuccess extends States {
               // labelColor: primaryColor,
               controller: tabController,
               indicatorColor: Theme.of(context).primaryColor,
-              unselectedLabelColor:Colors.white,
-              labelColor:Theme.of(context).primaryColor,
+              unselectedLabelColor: Colors.white,
+              labelColor: Theme.of(context).primaryColor,
               tabs: [
                 Tab(
                   text: "Info",
@@ -66,36 +67,35 @@ class BusinessDetailsSuccess extends States {
                 controller: tabController,
                 children: [
                   BusinessInfo(
-
                     businessInfoModel: businessInfoModel,
                     onNumberClick: (number) {
                       screenState.clickCall(number);
                     },
                     onReviewClick: () {
-                      if(screenState.checkIfLogin()) {
+                      if (screenState.checkIfLogin()) {
                         showDialog(
-                          context: context,
-                          builder: (context) =>
-                              CustomReviewDialog(continueBtn: (reviewText) {
-                                Navigator.pop(context);
-                                screenState.createReview(AddReviewRequest(
-                                  Bussinessid: businessInfoModel.id.toString(),
-                                  Description: reviewText,
-                                ));
-                              }));
-                      }else{
+                            context: context,
+                            builder: (context) =>
+                                CustomReviewDialog(continueBtn: (reviewText) {
+                                  Navigator.pop(context);
+                                  screenState.createReview(AddReviewRequest(
+                                    Bussinessid:
+                                        businessInfoModel.id.toString(),
+                                    Description: reviewText,
+                                  ));
+                                }));
+                      } else {
                         screenState.loginFirst();
                       }
-                    }, onFollow: (rahaf){
+                    },
+                    onFollow: (rahaf) {
                       screenState.isfollowing(IsFollower(
                         isFollow: rahaf,
                       ));
-
-
-
-                  },
+                    },
                   ),
-                  BusinessPosts(businessInfoModel: businessInfoModel.posts ?? []),
+                  BusinessPosts(
+                      businessInfoModel: businessInfoModel.posts ?? []),
                   ReviewScreen(review: businessInfoModel.reviews ?? []),
                 ],
               ),

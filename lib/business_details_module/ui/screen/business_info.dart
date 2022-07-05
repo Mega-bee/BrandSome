@@ -1,39 +1,29 @@
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-import '../../../utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import '../../reponse/business_response.dart';
-import '../../request/add_review_request.dart';
 
 class BusinessInfo extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;
   final Function onNumberClick;
   final Function onReviewClick;
   final Function onFollow;
-  bool isFollow;
 
-
-  BusinessInfo(
-      {required this.businessInfoModel,
-      required this.onNumberClick,
-      required this.onReviewClick,
-      required this.onFollow,
-        this.isFollow=false,
-      });
+  BusinessInfo({
+    required this.businessInfoModel,
+    required this.onNumberClick,
+    required this.onReviewClick,
+    required this.onFollow,
+  });
 
   @override
   State<BusinessInfo> createState() => _BusinessInfoState();
 }
 
 class _BusinessInfoState extends State<BusinessInfo> {
-  CustomReviewDialog? customReviewDialog;
-
   TextEditingController controller = TextEditingController();
 
   @override
-
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -56,73 +46,56 @@ class _BusinessInfoState extends State<BusinessInfo> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 ElevatedButton(
-
                   onPressed: () {
-
-setState(() {
-  widget.isFollow=!widget.isFollow;
-});
-widget.onFollow(widget.isFollow);
+                    widget.businessInfoModel.isFollow =
+                        !widget.businessInfoModel.isFollow!;
+                    setState(() {});
+                    widget.onFollow(widget.businessInfoModel.isFollow);
                   },
-                  child:
-                  !widget.isFollow?
-                  Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: Text(
-                      "  Follow  " ,
-                      style:
-                          TextStyle(fontWeight: FontWeight.normal,color:Colors.white),
-                    ),
-                  ):
-                  Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: Text(
-                      "Unfollow",
-                      style:
-                      TextStyle(fontWeight: FontWeight.normal,color: Theme.of(context).primaryColor),
-                    ),
-                  ),
-
-
-                  style:
-                  widget.isFollow?
-                  ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    padding: EdgeInsetsDirectional.only(
-                      end: 20,
-
-
-                      start: 20,
-                    ),
-
-                    shape:
-
-                    RoundedRectangleBorder(
-                        side: BorderSide(width: 1,color:Theme.of(context).primaryColor),
-                        borderRadius: BorderRadius.circular(4))
-
-                    ,
-                  ):
-                  ElevatedButton.styleFrom(
-                    primary: Theme.of(context).primaryColor,
-                    padding: EdgeInsetsDirectional.only(
-                      end: 20,
-
-
-                      start: 20,
-                    ),
-
-                    shape:
-
-                    RoundedRectangleBorder(
-                        side: BorderSide(width: 0,color:Colors.transparent),
-                        borderRadius: BorderRadius.circular(4))
-
-                    ,
-                  )
-                  ,
+                  child: widget.businessInfoModel.isFollow!
+                      ? Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Text(
+                            "Unfollow",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Text(
+                            "  Follow  ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                color: Colors.white),
+                          ),
+                        ),
+                  style: widget.businessInfoModel.isFollow!
+                      ? ElevatedButton.styleFrom(
+                          primary: Colors.black,
+                          padding: EdgeInsetsDirectional.only(
+                            end: 20,
+                            start: 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius: BorderRadius.circular(4)),
+                        )
+                      : ElevatedButton.styleFrom(
+                          primary: Theme.of(context).primaryColor,
+                          padding: EdgeInsetsDirectional.only(
+                            end: 20,
+                            start: 20,
+                          ),
+                          shape: RoundedRectangleBorder(
+                              side: BorderSide(
+                                  width: 0, color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(4)),
+                        ),
                 ),
                 Row(
                   children: [
@@ -160,10 +133,14 @@ widget.onFollow(widget.isFollow);
               child: Row(
                 children: widget.businessInfoModel.services!
                     .map<Widget>(
-                      (e) => Text(
-                        "${e.name}",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,),
+                      (e) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "${ e.name }",
+                          style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          ),
+                        ),
                       ),
                     )
                     .toList(),
@@ -188,7 +165,7 @@ widget.onFollow(widget.isFollow);
                           5), // radius of 10// green as background color
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: widget.businessInfoModel.cities!
                             .map<Widget>(
                               (e) => Container(
@@ -199,7 +176,9 @@ widget.onFollow(widget.isFollow);
                                   child: Center(
                                     child: Text(
                                       "${e.name} ",
-                                      style: TextStyle(fontSize: 12,color: Colors.grey[500]),
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey[500]),
                                     ),
                                   ),
                                 ),
@@ -260,7 +239,6 @@ widget.onFollow(widget.isFollow);
                           SvgImg.PERSON,
                           color: Colors.white,
                           height: 20,
-
                         ),
                         SizedBox(
                           width: 5,
@@ -342,36 +320,34 @@ widget.onFollow(widget.isFollow);
                         borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
-                 ElevatedButton(
-                   onPressed: () {
-                     widget.onReviewClick();
-                     // );
-                   },
-                   child: Row(
-                     children: [
-                       SvgPicture.asset(
-                         SvgImg.RATING,
-                         height: 20,
-                       ),
-                       SizedBox(
-                         width: 10,
-                       ),
-                       Text("Add review", style: TextStyle(color: Colors.white)),
-                     ],
-                   ),
-                   style: ElevatedButton.styleFrom(
-                     padding: EdgeInsets.only(left: 30, right: 30),
-                     primary: Theme.of(context).primaryColor,
-                     shape: RoundedRectangleBorder(
-                         side: BorderSide(width: 1, color: Colors.transparent),
-                         borderRadius: BorderRadius.circular(4)),
-                   ),
-                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    widget.onReviewClick();
+                    // );
+                  },
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        SvgImg.RATING,
+                        height: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text("Add review", style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.only(left: 30, right: 30),
+                    primary: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 1, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(4)),
+                  ),
+                ),
               ],
             ),
           ),
-
-
           SizedBox(
             height: 25,
           )

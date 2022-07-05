@@ -16,6 +16,7 @@ class BusinessInfoResponse {
   String? image;
   int? id;
   String? name;
+  bool? isFollow;
 
   BusinessInfoResponse(
       {this.type,
@@ -32,7 +33,9 @@ class BusinessInfoResponse {
         this.followCount,
         this.image,
         this.id,
-        this.name});
+        this.name,
+        this.isFollow = false
+      });
 
   BusinessInfoResponse.fromJson(Map<String, dynamic> json) {
     type = json['type'];
@@ -70,6 +73,7 @@ class BusinessInfoResponse {
     image = json['image'];
     id = json['id'];
     name = json['name'];
+    isFollow = false;
   }
 }
 
@@ -169,12 +173,5 @@ class Services {
   Services.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    return data;
   }
 }
