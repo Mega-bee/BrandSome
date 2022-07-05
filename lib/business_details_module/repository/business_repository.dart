@@ -39,7 +39,7 @@ class BusinessRepositoryDetails {
     var token =   _authService.getToken();
 
     WebServiceResponse? response = await _apiClient.post(
-      Urls.IS_FOLLOW + "$id",
+      Urls.FOLLOW_UNFOLLOW + "$id",
       request.toJson()
       ,
       headers: {'Authorization': 'Bearer ' + '$token'},

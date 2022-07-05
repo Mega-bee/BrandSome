@@ -21,7 +21,6 @@ class Urls {
   static const CREATE_BUSINESS = BASE_API_BUSINESS + 'CreateBusiness';
   static const GET_BUSINESS_DETAILS = BASE_API_BUSINESS + 'GetBusiness/';
   static const PHONE_CLICK = BASE_API_BUSINESS + 'RegisterNewPhoneClick/';
-  static const IS_FOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
   static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview';
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
