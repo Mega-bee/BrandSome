@@ -41,10 +41,11 @@ class BusinessListDetailsCubit extends Cubit<States> {
       }
       else if (value.code == 200){
         BusinessInfoResponse businessInfoModel = BusinessInfoResponse.fromJson(value.data.insideData);
-        emit(BusinessDetailsSuccess(screenstate,businessInfoModel,));
+        emit(BusinessDetailsSuccess(screenstate,businessInfoModel,checkIfLogged()));
       }
     });
   }
+
 
   PostCall(BusnessDetailsScreenState screenstate,String? id,String? number) {
     _businessRepositoryDetails.PostCall(id).then((value) {
@@ -58,6 +59,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
   IsFollow(BusnessDetailsScreenState screenState,IsFollower request,String? id ) {
     _businessRepositoryDetails.IsFollow(id,request).then((value) {
       if (value!.code == 200){
+
         Fluttertoast.showToast(msg: "You Are Followed");
         print("is foloowowowowowowowowowowowowowowoowowow");
 

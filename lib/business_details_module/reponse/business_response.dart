@@ -34,7 +34,7 @@ class BusinessInfoResponse {
         this.image,
         this.id,
         this.name,
-        this.isFollow = false
+        this.isFollow ,
       });
 
   BusinessInfoResponse.fromJson(Map<String, dynamic> json) {
@@ -73,7 +73,7 @@ class BusinessInfoResponse {
     image = json['image'];
     id = json['id'];
     name = json['name'];
-    isFollow = false;
+    isFollow = json['isFollowed'];
   }
 }
 

@@ -12,6 +12,7 @@ class ImageAsset {
   static const CAMERA = ROOT +'camera.png';
   static const PIC = ROOT +'pic.png';
   static const CAT = ROOT +'cat.png';
+  static const MEGABEE = ROOT +'megabeelogo.png';
 }
 
 ///sport images

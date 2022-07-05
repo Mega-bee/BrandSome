@@ -9,6 +9,7 @@ import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
+import '../../../utils/images/images.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../response/settings_response.dart';
 
@@ -323,7 +324,7 @@ class SettingSuccess extends States {
           SizedBox(
             height: 10,
           ),
-          Image.asset("assets/images/megabeelogo.png",width: 40,height: 30,),
+          Image.asset(ImageAsset.MEGABEE,width: 15,height: 12,),
           SizedBox(
             height: 100,
           ),
