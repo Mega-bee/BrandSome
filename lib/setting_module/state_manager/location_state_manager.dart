@@ -26,6 +26,7 @@ class LocationCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           loca.add(AddLocationResponse.fromJson(item));
         }
+        state.loca1 = loca;
         emit(LocationSuccess(loca,state));
       }
     });
