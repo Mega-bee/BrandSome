@@ -16,7 +16,7 @@ class AddBusinessCubit extends Cubit<States> {
 
   AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
-  addBusiness(CreateBusinessRequest request,AddBusinessState businessState) {
+  addBusiness(AddBusinessRequest request,AddBusinessState businessState) {
     emit(LoadingState());
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){

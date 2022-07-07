@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 
-class CreateBusinessRequest {
+class AddBusinessRequest {
    String? businessDescription;
    String? businessName;
    String? businessPhoneNumber;
@@ -10,7 +10,7 @@ class CreateBusinessRequest {
 
    MultipartFile? images;
 
-  CreateBusinessRequest(
+   AddBusinessRequest(
       {
       required this.cities,
      required this.services,

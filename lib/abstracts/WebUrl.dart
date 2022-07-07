@@ -28,6 +28,7 @@ class Urls {
 
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
+  static const CREATE_POSTS = BASE_API_POSTS + 'CreatePost';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
 
   //

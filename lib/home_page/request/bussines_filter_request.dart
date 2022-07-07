@@ -1,15 +1,23 @@
-// class BusinessFilterRequest {
-//
-//   final List<int>? services;
-//  final String? sortBy;
-//
-//   BusinessFilterRequest({ this.services, this.sortBy});
-//
-//   Map<String, dynamic> toJson() {
-//     return {
-//       'sortBy': this.sortBy,
-//       'services': this.services,
-//     };
-//   }
-//
-// }
+import 'package:dio/dio.dart';
+
+class CreateBusinessRequest {
+
+int?cityId;
+int?id;
+int?serviceId;
+String?description;
+MultipartFile?media;
+
+  CreateBusinessRequest({this.id,this.description,this.cityId,this.media,this.serviceId});
+
+  Map<String, dynamic> toJson() {
+    return {
+      "CityId":this.cityId,
+      "Description": this.description,
+      "Media":this.media,
+      "ServiceId":this.serviceId,
+      "Id":this.id,
+    };
+  }
+
+}

@@ -17,7 +17,7 @@ class AddBusiness extends StatefulWidget {
 }
 
 class AddBusinessState extends State<AddBusiness> {
-  late CreateBusinessRequest request;
+  late AddBusinessRequest request;
 
 //  List<AddLocationResponse> selectedLocation = [];
 
@@ -34,7 +34,7 @@ class AddBusinessState extends State<AddBusiness> {
   @override
   void initState() {
     super.initState();
-    request = CreateBusinessRequest(cities: [],services: []);
+    request = AddBusinessRequest(cities: [],services: []);
     widget._addBusinessCubit.emit(AddBusinessInit(this));
   }
 

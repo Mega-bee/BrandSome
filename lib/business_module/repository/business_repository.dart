@@ -25,7 +25,7 @@ class BusinessRepository {
     return response;
   }
 
-  Future<WebServiceResponse?> addBusiness(CreateBusinessRequest request) async {
+  Future<WebServiceResponse?> addBusiness(AddBusinessRequest request) async {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.post(
       Urls.CREATE_BUSINESS,
