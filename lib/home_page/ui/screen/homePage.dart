@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../response/home_page.dart';
+
 @injectable
 class HomePage extends StatefulWidget {
   final HomePageCubit cubit;
@@ -35,14 +37,15 @@ class HomePageScreenState extends State<HomePage>
  }
   @override
   void initState() {
+    super.initState();
     menuItems = [
       ItemModel('Add Bussines', Icon(Icons.card_travel),(){
 //        Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
       }),
       ItemModel('Add Post', Icon(Icons.post_add),(){}),
     ];
-    widget.cubit.emit(HomePageSuccess(this));
-    super.initState();
+    widget.cubit.getHome(this);
+
   }
 
   @override

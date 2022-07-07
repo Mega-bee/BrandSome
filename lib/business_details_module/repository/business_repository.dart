@@ -57,7 +57,7 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.post(
       Urls.BUSINESS_VIEW + "$id",
       {},
-      headers: {'Authorization': 'Bearer ' + '$token','imei':'$Imei'},
+      headers: {'imei':'$Imei'},
     );
     if (response == null) return null;
     return response;

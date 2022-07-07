@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import '../../../utils/images/images.dart';
 import '../../../posts_module/reponse/posts_reponse.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
+import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
 
 class HomePageSuccess extends States {
   final HomePageScreenState screenState;
+  final List <Post> posthome;
 
 
-  HomePageSuccess( this.screenState) : super(false);
+  HomePageSuccess( this.screenState,this.posthome) : super(false);
 
   List<CategoryModel> categorys = [
     CategoryModel(id: 1, name: "Personal", selectedCard: true),
@@ -55,76 +57,7 @@ class HomePageSuccess extends States {
         selectedCard: false),
   ];
 
-  List<postModel> post = [
-    postModel(
-        id: 1,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-//          "https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80",
-//          'https://googleflutter.com/sample_image.jpg',
-          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        id: 2,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        id: 3,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        id: 4,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        id: 5,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-    postModel(
-        id: 6,
-        autherImage: ImageAsset.TEST_IMAGE,
-        title: "Peter Tohme",
-        subTitle: "Zahle",
-        imgTwo: [
-          "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-        ],
-        paragraph:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et ",
-        titleTwo: "Liked by 28 visitors"),
-  ];
+
 
 
 
@@ -147,7 +80,9 @@ class HomePageSuccess extends States {
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: MainCategoryCard(categorys[index], () {
+                      child: MainCategoryCard(
+
+                          categorys[index], () {
                         categorys.forEach((element) {
                           element.selectedCard = false;
                         });
@@ -202,11 +137,11 @@ class HomePageSuccess extends States {
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: post.length,
+            itemCount: posthome.length,
             itemBuilder: (context, index) {
               return PostCard(onLikeTap: (){
                 screenState.goToLikes();
-              },posts: post[index],);
+              },posthome: posthome[index]);
             })
       ]),
     );

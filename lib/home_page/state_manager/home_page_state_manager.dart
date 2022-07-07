@@ -15,12 +15,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../abstracts/states/error_state.dart';
+import '../repository/business_repository.dart';
+import '../response/home_page.dart';
+
 @injectable
 class HomePageCubit extends Cubit<States> {
   final AuthService _authService;
   final AuthRepository _authRepository;
+  final HomeP _homePage;
 
-  HomePageCubit(this._authService, this._authRepository)
+  HomePageCubit(this._authService, this._authRepository,this._homePage)
       : super(LoadingState());
 
   getToLikeList(HomePageScreenState screenState) {
@@ -33,6 +38,21 @@ class HomePageCubit extends Cubit<States> {
     } else {
       emit(RequestOtpState(screenState));
     }
+  }
+  getHome(HomePageScreenState screenState) {
+    _homePage.getHomePage().then((value) {
+      if(value == null){
+        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+          getHome(screenState);
+        }));
+      }
+      else if (value.code == 200){
+       HomePageResponse hom = HomePageResponse.fromJson( value.data.insideData) ;
+
+
+        emit(HomePageSuccess(screenState,hom.postt ??[]));
+      }
+    });
   }
 
   void requestOtp(HomePageScreenState screenState, OtpRequest request) {

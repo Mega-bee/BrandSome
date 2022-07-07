@@ -1,10 +1,11 @@
+
 import 'package:brandsome/hive/hive.dart';
 
 import 'package:brandsome/module_auth/repository/auth_repository.dart';
 import 'package:device_information/device_information.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+
 
 
 @injectable
@@ -24,7 +25,9 @@ class AuthService {
   }
 }
 @injectable
+
 class ImeiService {
+
   String platformVersion = 'Unknown',
       imeiNo = "";
 
