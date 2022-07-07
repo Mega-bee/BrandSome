@@ -1,3 +1,4 @@
+
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class BusnessDetailsScreen extends StatefulWidget {
 class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
     with TickerProviderStateMixin {
   String? id = "-1";
+  String? name = "";
 
   clickCall(String? number) {
     widget._businessListDetailsCubit.PostCall(this, id, number);
@@ -52,10 +54,18 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments;
     if (args != null && id == "-1") {
-      id = args as String;
-      widget._businessListDetailsCubit.getBusinessDetails(this, id);
+      if(args is Map) {
+        id = args["id"] as String;
+        name = args["name"] as String;
+        widget._businessListDetailsCubit.getBusinessDetails(this, id);
+        widget._businessListDetailsCubit.ImeiView(this, id);
+      }
+
     }
     return Scaffold(
+      appBar: AppBar(title: Text(name!),
+
+      ),
 
         body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,

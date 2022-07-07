@@ -18,7 +18,8 @@ class BusinessCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
-          arguments: businessCardModel.id.toString()
+          arguments: {"id":businessCardModel.id.toString(),"name":businessCardModel.name.toString()}
+
 
           ,
         );

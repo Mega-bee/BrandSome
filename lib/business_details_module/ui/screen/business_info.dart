@@ -9,12 +9,14 @@ class BusinessInfo extends StatefulWidget {
   final Function onNumberClick;
   final Function onReviewClick;
   final Function onFollow;
+  final bool isLoggedin;
 
   BusinessInfo({
     required this.businessInfoModel,
     required this.onNumberClick,
     required this.onReviewClick,
     required this.onFollow,
+    required this.isLoggedin,
   });
 
   @override
@@ -49,10 +51,14 @@ class _BusinessInfoState extends State<BusinessInfo> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    widget.businessInfoModel.isFollow =
-                        !widget.businessInfoModel.isFollow!;
-                    setState(() {});
+
+                   if (widget.isLoggedin){
+                     widget.businessInfoModel.isFollow =
+                     !widget.businessInfoModel.isFollow!;
+                     setState(() {});}
+
                     widget.onFollow(widget.businessInfoModel.isFollow);
+
                   },
                   child: widget.businessInfoModel.isFollow!
                       ? Padding(

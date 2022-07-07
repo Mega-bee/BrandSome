@@ -28,10 +28,10 @@ class SettingNotLogged extends States {
             },
             visualDensity: VisualDensity.comfortable,
             switchType: SwitchType.cupertino,
-            switchActiveColor: Theme.of(context).scaffoldBackgroundColor,
+            switchActiveColor: Colors.grey,
             title: Text('Dark mode'),
           ),
-          ListTile(title: Text('Rgister to app'),
+          ListTile(title: Text('Register to app'),
             leading: Icon(Icons.login),
             onTap: (){
               _settingsScreenState.goToLogin();

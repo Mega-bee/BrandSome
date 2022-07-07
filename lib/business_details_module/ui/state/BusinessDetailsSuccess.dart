@@ -13,10 +13,14 @@ import '../screen/business_details.dart';
 class BusinessDetailsSuccess extends States {
   final BusnessDetailsScreenState screenState;
   final BusinessInfoResponse businessInfoModel;
+  final bool islogged;
+
 
   BusinessDetailsSuccess(
     this.screenState,
     this.businessInfoModel,
+      this.islogged,
+
   ) : super(false);
 
   late TabController tabController =
@@ -29,15 +33,7 @@ class BusinessDetailsSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 5,
-        title: Text(
-          businessInfoModel.name.toString(),
-        ),
-      ),
-      body: Column(
+    return  Column(
         children: [
           Container(
             color: Theme.of(context).cardColor,
@@ -67,6 +63,8 @@ class BusinessDetailsSuccess extends States {
                 controller: tabController,
                 children: [
                   BusinessInfo(
+
+                    isLoggedin: islogged,
                     businessInfoModel: businessInfoModel,
                     onNumberClick: (number) {
                       screenState.clickCall(number);
@@ -89,10 +87,15 @@ class BusinessDetailsSuccess extends States {
                       }
                     },
                     onFollow: (rahaf) {
+    if (screenState.checkIfLogin()) {
                       screenState.isfollowing(IsFollower(
                         isFollow: rahaf,
                       ));
-                    },
+                    }
+    else {
+      screenState.loginFirst();
+    }
+    }
                   ),
                   BusinessPosts(
                       businessInfoModel: businessInfoModel.posts ?? []),
@@ -102,7 +105,7 @@ class BusinessDetailsSuccess extends States {
             ),
           )
         ],
-      ),
-    );
+      );
+
   }
 }
