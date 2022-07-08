@@ -2,9 +2,11 @@ import 'package:brandsome/business_details_module/reponse/business_response.dart
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 import '../../../home_page/response/home_page.dart';
 import '../../reponse/posts_reponse.dart';
 import 'package:video_player/video_player.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class PostCard extends StatefulWidget {
 
@@ -31,63 +33,77 @@ class _PostCardState extends State<PostCard> {
         '${widget.posthome.postMedia![0].url}')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+
+
         setState(() {});});
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Card(
-        color: Theme.of(context).cardColor,
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        child: Column(
-          children: [
-            ListTile(
-              leading:   Container(
-                width: 50,
-                height: 50,
-                child: CachedNetworkImage(
-                  imageUrl: widget.posthome.profileImage.toString(),
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(80),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.contain,
-                      ),
+    return Card(
+      color: Theme.of(context).cardColor,
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(1)),
+      child: Column(
+        children: [
+          ListTile(
+            leading:   Container(
+              width: 50,
+              height: 50,
+              child:
+              CachedNetworkImage(
+                imageUrl: widget.posthome.profileImage.toString(),
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(80),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-              ),
-              title: Text(
-                "${widget.posthome.name}",
-              ),
-              subtitle: Text(
-                "${widget.posthome.city}",
+                placeholder: (context, url) => CircularProgressIndicator(),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
+            title: Text(
+              "${widget.posthome.name}",
+            ),
+            subtitle: Text(
+              "${widget.posthome.city}",
+            ),
+          ),
 //            Image.network(
 //              "${posts.imgTwo}",
 //              fit: BoxFit.cover,
 //            ),
-            Column(
+          Container(
+            height: 500,
+            width: 500,
+            child: Column(
               children: [
+
                 CarouselSlider.builder(
 
                   options: CarouselOptions(
-                    height: 350,
+
+
+                    height: 450,
+                      enlargeStrategy: CenterPageEnlargeStrategy.scale,
+
+
+                      padEnds: true,
+                      pageSnapping: true,
 
                       autoPlay: false,
                       enlargeCenterPage: true,
                       reverse: false,
 
-                      disableCenter: false,
+                      disableCenter: true,
                       enableInfiniteScroll: false,
                       onPageChanged: (index, reason) {
+
                         _currentIndex = index;
                         print(_currentIndex);
                         setState(() {});
@@ -97,49 +113,129 @@ class _PostCardState extends State<PostCard> {
                           int pageViewIndex) =>
                       Container(
 
-                    width: 350,
+width: 500,
+
                     // margin: EdgeInsets.symmetric(horizontal: .0),
                     child:
     widget.posthome.postMedia![itemIndex].mediaTypeId==1?
-                    Image.network(
-                      widget.posthome.postMedia![itemIndex].url.toString(),
-                      fit: BoxFit.cover,
+    PinchZoom(
+      zoomEnabled: true,
 
-                    ) :
+    resetDuration: const Duration(milliseconds: 100),
+    maxScale: 5.5,
+
+    onZoomStart: (){print('Start zooming');},
+    onZoomEnd: (){print('Stop zooming');},
+
+      child: CachedNetworkImage(
+      imageUrl:  widget.posthome.postMedia![itemIndex].url.toString(),
+      imageBuilder: (context, imageProvider) => Center(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+
+            ),
+          ),
+        ),
+      ),
+      placeholder: (context, url) => Container(
+          alignment: Alignment.topCenter,
+          margin: EdgeInsets.only(top: 20),
+          child: Center(
+            child: CircularProgressIndicator(
+                backgroundColor: Colors.grey,
+            ),
+          )
+      ),
+      errorWidget: (context, url, error) => Icon(Icons.error),
+      ),
+    )
+                     :
 
     _controller!.value.isInitialized
-    ? AspectRatio(
+    ?
+
+    AspectRatio(
+
 
     aspectRatio: _controller!.value.aspectRatio,
     child: Stack(children:[
-      VideoPlayer(_controller!),
-      widget.posthome.postMedia![0].mediaTypeId==2?
-      Center(
-        child: IconButton(onPressed:() {
-          setState(() {
+    FittedBox(
+      alignment: Alignment.center,
+        fit: BoxFit.fill,
+        child: SizedBox(
+height: 429,
+              width: 339,
+           child:
+
+
+           VisibilityDetector(
+              key: ObjectKey(_controller),
+
+              onVisibilityChanged: (visibility){
+
+                if (visibility.visibleBounds == 0 && this.mounted && _controller!.value.isPlaying) {
+                  _controller?.pause();
+                  setState(() {
+
+
+                  });
+
+                }
+
+              },
+              child: Container(
+                child: AspectRatio(
+                  aspectRatio: 1280/720,
+                    child: VideoPlayer(_controller!,))),
+                ),
+              ),
+            ),
+
+      Padding(
+        padding: EdgeInsets.only(top: 420,),
+        child: VideoProgressIndicator(
+          _controller!,//controller
+          allowScrubbing: true,
+
+
+          colors: VideoProgressColors(
+            playedColor: Colors.red,
+            bufferedColor: Colors.grey,
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+      ),
+    widget.posthome.postMedia![0].mediaTypeId==2?
+    Center(
+      child: IconButton(onPressed:() {
+        setState(() {
             _controller!.value.isPlaying
                 ? _controller!.pause()
                 : _controller!.play();
-          });
-        },
+        });
+      },
             icon:
             _controller!.value.isPlaying?
             AnimatedOpacity(duration: Duration(seconds: 2),
-            opacity: 1,
+            opacity: 0,
             child: Icon(  Icons.pause,)):
             AnimatedOpacity(duration: Duration(seconds: 2),
-                opacity: 0,
+                opacity: 1,
                 child: Icon(Icons.play_arrow,))
 
-        )
-
       )
-          :Container()
-      ,
+
+    )
+        :Container(),
+
 
     ]),
     )
-        : Container(),
+      : Container(),
                   ),
                 ),
 
@@ -165,56 +261,56 @@ class _PostCardState extends State<PostCard> {
                     )
               ],
             ),
-            Padding(
-              padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: (){
-                      widget.onLikeTap();
-                    },
-                    child: Row(
-                      children: [
-                        SizedBox(
-                          height: 25,
-                        ),
-                        Icon(
-                          Icons.thumb_up_alt_outlined,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        widget.posthome.likeCount ==1?
-                        Text(
-                          "${widget.posthome.likeCount} like",
-                        ):Text(
-                          "${widget.posthome.likeCount} likes",
-                        ),
-                      ],
-                    ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 15.0, end: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  onTap: (){
+                    widget.onLikeTap();
+                  },
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 25,
+                      ),
+                      Icon(
+                        Icons.thumb_up_alt_outlined,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      widget.posthome.likeCount ==1?
+                      Text(
+                        "${widget.posthome.likeCount} like",
+                      ):Text(
+                        "${widget.posthome.likeCount} likes",
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Properties/Appartments/Electricians",
-                    style: Theme.of(context).textTheme.caption,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "${widget.posthome.description}",
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Properties/Appartments/Electricians",
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "${widget.posthome.description}",
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
