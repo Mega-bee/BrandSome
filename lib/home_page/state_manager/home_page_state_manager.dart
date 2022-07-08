@@ -18,6 +18,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../abstracts/states/error_state.dart';
 import '../repository/business_repository.dart';
+import '../request/is_like.dart';
 import '../response/home_page.dart';
 
 @injectable
@@ -42,53 +43,67 @@ class HomePageCubit extends Cubit<States> {
   }
   getHome(HomePageScreenState screenState) {
     _homePage.getHomePage().then((value) {
-      if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: (){
+      if (value == null) {
+        emit(ErrorState(errorMessage: 'Connection error', retry: () {
           getHome(screenState);
         }));
       }
-      else if (value.code == 200){
-       HomePageResponse hom = HomePageResponse.fromJson( value.data.insideData) ;
+      else if (value.code == 200) {
+        HomePageResponse hom = HomePageResponse.fromJson(value.data.insideData);
 
 
-        emit(HomePageSuccess(screenState,hom.postt ??[]));
+        emit(HomePageSuccess(screenState, hom.postt ?? []));
       }
-    });
+    });}
+
+    Islike(HomePageScreenState screenState, LikeRequest request, String? id) {
+
+      if (_authService.isLoggedIn) {
+      _homePage.Like(id, request).then((value) {
+        if (value!.code == 200) {
+          Fluttertoast.showToast(msg: "Like Post success");
+          print("is foloowowowowowowowowowowowowowowoowowow");
+        }
+      });} else {
+        emit(RequestOtpState(screenState));
+
+    }}
+
+    void requestOtp(HomePageScreenState screenState, OtpRequest request) {
+      emit(LoadingAlertState());
+      _authRepository.requestOtp(request).then((value) {
+        if (value == null) {
+          emit(ErrorAlertState('Somtheing error'));
+        } else if (value.code == 200) {
+          Navigator.pop(screenState.context);
+          emit(VerifyOtpState(
+              phoneNumber: request.number, screenState: screenState));
+        } else if (value.code != 200) {
+          Navigator.pop(screenState.context);
+          emit(ErrorAlertState(value.errorMessage));
+        }
+      });
+    }
+
+    void verifyOtp(HomePageScreenState screenState, VerifyOtpRequest request) {
+      emit(LoadingAlertState());
+      _authRepository.verifyOtp(request).then((value) {
+        if (value == null) {
+          emit(ErrorAlertState('Somtheing error'));
+        } else if (value.code == 200) {
+          Navigator.pop(screenState.context);
+          String token = value.data.insideData;
+          _authService.setToken(token);
+          Navigator.pushNamedAndRemoveUntil(
+              screenState.context, NavRoutes.nav_rout, (route) => false);
+        } else if (value.code != 200) {
+          Navigator.pop(screenState.context);
+          emit(VerifyOtpState(
+              phoneNumber: request.number,
+              screenState: screenState,
+              errorMessage: value.errorMessage));
+        }
+      });
+    }
   }
 
-  void requestOtp(HomePageScreenState screenState, OtpRequest request) {
-    emit(LoadingAlertState());
-    _authRepository.requestOtp(request).then((value) {
-      if (value == null) {
-        emit(ErrorAlertState('Somtheing error'));
-      } else if (value.code == 200) {
-        Navigator.pop(screenState.context);
-        emit(VerifyOtpState(
-            phoneNumber: request.number, screenState: screenState));
-      } else if (value.code != 200) {
-        Navigator.pop(screenState.context);
-        emit(ErrorAlertState(value.errorMessage));
-      }
-    });
-  }
-
-  void verifyOtp(HomePageScreenState screenState,VerifyOtpRequest request) {
-    emit(LoadingAlertState());
-    _authRepository.verifyOtp(request).then((value) {
-      if(value == null){
-        emit(ErrorAlertState('Somtheing error'));
-      }else if(value.code == 200){
-        Navigator.pop(screenState.context);
-        String token =  value.data.insideData;
-        _authService.setToken(token);
-        Navigator.pushNamedAndRemoveUntil(screenState.context, NavRoutes.nav_rout, (route) => false);
-      }else if (value.code != 200){
-        Navigator.pop(screenState.context);
-        emit(VerifyOtpState(
-            phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
-      }
-    });
-  }
-
-
-}

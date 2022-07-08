@@ -90,7 +90,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i15.FollowerRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i16.FollowersCubit>(
       () => _i16.FollowersCubit(get<_i15.FollowerRepository>()));
-  gh.factory<_i17.HomeP>(() => _i17.HomeP(get<_i9.ApiClient>()));
+  gh.factory<_i17.HomeP>(
+      () => _i17.HomeP(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i18.HomePageCubit>(() => _i18.HomePageCubit(
       get<_i5.AuthService>(), get<_i10.AuthRepository>(), get<_i17.HomeP>()));
   gh.factory<_i19.LikedList>(

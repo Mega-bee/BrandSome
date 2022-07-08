@@ -2,6 +2,7 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/categories_module/ui/widget/category_card.dart';
 import 'package:brandsome/home_page/model/category_model.dart';
 import 'package:brandsome/home_page/model/subCategory.dart';
+import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -142,6 +143,9 @@ class HomePageSuccess extends States {
             itemCount: posthome.length,
             itemBuilder: (context, index) {
               return PostCard(
+                onLikeClick: (like){
+                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString());
+                },
                   onLikeTap: () {
                     screenState.goToLikes();
                   },

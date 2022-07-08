@@ -35,6 +35,8 @@ class Urls {
   static const CREATE_POSTS = BASE_API_POSTS + 'CreatePost';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
 
+  /*--------postHOMEPAGE-------------------*/
+  static const LIKE_HOME = BASE_API_POSTS + 'LikePost/';
   //
   /*--------Settings-------------------*/
   static const ACCOUNTS_SETTINGS =BSE_API_SETTINGS + 'GetAccountSetings';

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../request/is_like.dart';
 import '../../response/home_page.dart';
 
 @injectable
@@ -27,6 +28,7 @@ class HomePageScreenState extends State<HomePage>
  late List<ItemModel> menuItems;
 
 
+
  goToLikes(){
    widget.cubit.getToLikeList(this);
  }
@@ -34,8 +36,13 @@ class HomePageScreenState extends State<HomePage>
    widget.cubit.requestOtp(this ,request);
  }
  verifyOtp(VerifyOtpRequest request){
-   widget.cubit.verifyOtp(this ,request);
+   widget.cubit.verifyOtp(this ,request,);
  }
+ Islike(LikeRequest request,String id){
+   widget.cubit.Islike(this, request,id);
+ }
+
+
   @override
   void initState() {
     super.initState();
