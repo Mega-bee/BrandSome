@@ -3,6 +3,7 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/home_page/state_manager/home_page_state_manager.dart';
 import 'package:brandsome/home_page/ui/state/homepage_success.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
+import 'package:brandsome/posts_module/post_route.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,9 @@ class HomePageScreenState extends State<HomePage>
       ItemModel('Add Bussines', Icon(Icons.card_travel),(){
 //        Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
       }),
-      ItemModel('Add Post', Icon(Icons.post_add),(){}),
+      ItemModel('Add Post', Icon(Icons.post_add),(){
+        Navigator.pushNamed(context, PostRoutes.ADD_POST);
+      }),
     ];
     widget.cubit.getHome(this);
 

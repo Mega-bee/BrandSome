@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../request/follow_request.dart';
 import '../../state_manager/follower.dart';
 
 
@@ -13,15 +14,20 @@ class Followers extends StatefulWidget {
 
   @override
 
-  State<Followers> createState() => _FollowersState();
+  State<Followers> createState() => FollowersState();
 }
 
-class _FollowersState extends State<Followers> {
+class FollowersState extends State<Followers> {
   @override
   void initState() {
 
-    widget.cubit.getFoll();
+    widget.cubit.getFoll(this);
   }
+
+  void follow(FollowRequest request,String?id){
+    widget.cubit.following(request,id,this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

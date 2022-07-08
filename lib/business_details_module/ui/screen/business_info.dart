@@ -1,10 +1,13 @@
+import 'package:brandsome/business_details_module/business_details_route.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../reponse/business_response.dart';
 
 class BusinessInfo extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;
+  final Function onDeleteClick;
   final Function onNumberClick;
   final Function onReviewClick;
   final Function onFollow;
@@ -16,6 +19,7 @@ class BusinessInfo extends StatefulWidget {
     required this.onReviewClick,
     required this.onFollow,
     required this.isLoggedin,
+    required this.onDeleteClick,
   });
 
   @override
@@ -136,15 +140,15 @@ class _BusinessInfoState extends State<BusinessInfo> {
           ),
           Padding(
               padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
-              child: Row(
+              child: Wrap(
                 children: widget.businessInfoModel.services!
                     .map<Widget>(
                       (e) => Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsetsDirectional.only(end: 8,top: 10),
                         child: Text(
-                          "${ e.name }",
+                          "${e.name}",
                           style: TextStyle(
-                          decoration: TextDecoration.underline,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
@@ -164,33 +168,35 @@ class _BusinessInfoState extends State<BusinessInfo> {
                   color: Theme.of(context).primaryColor,
                 ),
 
-                Container(
-                    padding: EdgeInsets.fromLTRB(1, 3, 15, 3),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          5), // radius of 10// green as background color
-                    ),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: widget.businessInfoModel.cities!
-                            .map<Widget>(
-                              (e) => Container(
-                                height: 30,
-                                width: 80,
-                                child: Card(
-                                  color: Colors.grey[900],
-                                  child: Center(
-                                    child: Text(
-                                      "${e.name} ",
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.grey[500]),
+                Expanded(
+                  child: Container(
+                      padding: EdgeInsets.fromLTRB(1, 3, 15, 3),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                            5), // radius of 10// green as background color
+                      ),
+                      child: Wrap(
+//                        mainAxisAlignment: MainAxisAlignment.center,
+                          children: widget.businessInfoModel.cities!
+                              .map<Widget>(
+                                (e) => Container(
+                                  height: 30,
+                                  width: 80,
+                                  child: Card(
+                                    color: Colors.grey[900],
+                                    child: Center(
+                                      child: Text(
+                                        "${e.name} ",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.grey[500]),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            )
-                            .toList())),
+                              )
+                              .toList())),
+                ),
 
                 SizedBox(
                   width: 11,
@@ -219,7 +225,6 @@ class _BusinessInfoState extends State<BusinessInfo> {
               "${widget.businessInfoModel.description}",
               style: TextStyle(
                 fontSize: 16,
-                color: Color(0xffDFDFDF),
               ),
             ),
           ),
@@ -301,19 +306,26 @@ class _BusinessInfoState extends State<BusinessInfo> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    widget.onNumberClick(widget.businessInfoModel.phoneNumber);
+                    widget.businessInfoModel.isUserBusiness!
+                        ? Navigator.pushNamed(context, BusinessDetailsRoutes.BUSINESS_UPDATE_SCREEN,arguments:widget.businessInfoModel)
+                        : widget.onNumberClick(
+                            widget.businessInfoModel.phoneNumber);
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        SvgImg.PHONE,
-                        height: 20,
-                      ),
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(Icons.edit , color: Colors.white,)
+                          : SvgPicture.asset(
+                              SvgImg.PHONE,
+                              height: 20,
+                            ),
                       SizedBox(
                         width: 10,
                       ),
                       Text(
-                        "Call Now",
+                        widget.businessInfoModel.isUserBusiness!
+                            ? "Update"
+                            : "Call Now",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -328,19 +340,27 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    widget.onReviewClick();
+                    widget.businessInfoModel.isUserBusiness!
+                        ? widget.onDeleteClick()
+                        : widget.onReviewClick();
                     // );
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(
-                        SvgImg.RATING,
-                        height: 20,
-                      ),
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(Icons.delete , color: Colors.white,)
+                          : SvgPicture.asset(
+                              SvgImg.RATING,
+                              height: 20,
+                            ),
                       SizedBox(
                         width: 10,
                       ),
-                      Text("Add review", style: TextStyle(color: Colors.white)),
+                      Text(
+                          widget.businessInfoModel.isUserBusiness!
+                              ? "Delete"
+                              : "Add review",
+                          style: TextStyle(color: Colors.white)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(

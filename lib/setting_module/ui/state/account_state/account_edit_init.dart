@@ -36,7 +36,6 @@ class EditAccountInit extends States {
   File? _pickImage;
   MultipartFile? imageForUpload;
 
-
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
@@ -56,12 +55,15 @@ class EditAccountInit extends States {
                           EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
-                          child:_pickImage != null ?  Image.file(
-                             _pickImage!,
-                            fit: BoxFit.cover,
-                            width: 150,height: 150
-                          ) : Image.network(model.imageUrl ?? '',fit: BoxFit.cover,width: 150,height: 150,),
-
+                        child: _pickImage != null
+                            ? Image.file(_pickImage!,
+                                fit: BoxFit.cover, width: 150, height: 150)
+                            : Image.network(
+                                model.imageUrl ?? '',
+                                fit: BoxFit.cover,
+                                width: 150,
+                                height: 150,
+                              ),
                       ),
                     ),
                     Positioned(
@@ -100,18 +102,17 @@ class EditAccountInit extends States {
                                                                 .pickImageFromCamera()
                                                             .then(
                                                                 (pickedFile) async {
-
                                                           if (pickedFile ==
                                                               null) return;
-                                                          _pickImage = File(pickedFile.path) ;
+                                                          _pickImage = File(
+                                                              pickedFile.path);
                                                           imageForUpload =
-                                                          await MultipartFile
-                                                              .fromFile(
-                                                              pickedFile
-                                                                  .path);
+                                                              await MultipartFile
+                                                                  .fromFile(
+                                                                      pickedFile
+                                                                          .path);
 
-                                                          screenState
-                                                              .refresh();
+                                                          screenState.refresh();
                                                         });
                                                       },
                                                       child: Text('Camera')),
@@ -132,23 +133,22 @@ class EditAccountInit extends States {
                                                       onPressed: () async {
                                                         Navigator.pop(context);
                                                         await ImageCropHelper
-                                                            .pickImageFromGallery()
+                                                                .pickImageFromGallery()
                                                             .then(
                                                                 (pickedFile) async {
+                                                          if (pickedFile ==
+                                                              null) return;
+                                                          _pickImage = File(
+                                                              pickedFile.path);
 
-                                                              if (pickedFile ==
-                                                                  null) return;
-                                                              _pickImage = File(pickedFile.path) ;
-
-                                                              imageForUpload =
+                                                          imageForUpload =
                                                               await MultipartFile
                                                                   .fromFile(
-                                                                  pickedFile
-                                                                      .path);
+                                                                      pickedFile
+                                                                          .path);
 
-                                                              screenState
-                                                                  .refresh();
-                                                            });
+                                                          screenState.refresh();
+                                                        });
                                                       },
                                                       child: Text('Gallery')),
                                                 ),
@@ -203,17 +203,14 @@ class EditAccountInit extends States {
                 title: Padding(
                   padding: const EdgeInsets.only(right: 20),
                   child: Text(
-                      'Gender',
-                    ),
+                    'Gender',
+                  ),
                 ),
-
-                subtitle:
-                Column(
-                  children:[
-                    SizedBox(height: 20,),
-                    Flex(
-
-
+                subtitle: Column(children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Flex(
                     direction: Axis.horizontal,
                     children: [
                       Expanded(
@@ -222,7 +219,10 @@ class EditAccountInit extends States {
                           activeColor: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          title: Text('Male',style: TextStyle(fontSize: 12),),
+                          title: Text(
+                            'Male',
+                            style: TextStyle(fontSize: 12),
+                          ),
                           value: 1,
                           groupValue: genderID,
                           onChanged: (int? v) {
@@ -231,10 +231,6 @@ class EditAccountInit extends States {
                           },
                         ),
                       ),
-
-
-
-
 
 //                    Expanded(
 //                      child: Container(
@@ -258,29 +254,28 @@ class EditAccountInit extends States {
 //                    ),
                     ],
                   ),
-                    Flex(
-
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            title: Text('Female',style: TextStyle(fontSize: 12),),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            value: 2,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
+                  Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        child: RadioListTile(
+                          dense: true,
+                          activeColor: Theme.of(context).primaryColor,
+                          title: Text(
+                            'Female',
+                            style: TextStyle(fontSize: 12),
                           ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          value: 2,
+                          groupValue: genderID,
+                          onChanged: (int? v) {
+                            genderID = v;
+                            screenState.refresh();
+                          },
                         ),
-                        SizedBox(height: 30),
-
-
-
+                      ),
+                      SizedBox(height: 30),
 
 //                    Expanded(
 //                      child: Container(
@@ -302,31 +297,30 @@ class EditAccountInit extends States {
 //                        ),
 //                      ),
 //                    ),
-                      ],
-                    ),
-                    Flex(
-
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text('Rather not to say',style: TextStyle(fontSize: 12),),
-                            value: 3,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
+                    ],
+                  ),
+                  Flex(
+                    direction: Axis.horizontal,
+                    children: [
+                      Expanded(
+                        child: RadioListTile(
+                          dense: true,
+                          activeColor: Theme.of(context).primaryColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          title: Text(
+                            'Rather not to say',
+                            style: TextStyle(fontSize: 12),
                           ),
+                          value: 3,
+                          groupValue: genderID,
+                          onChanged: (int? v) {
+                            genderID = v;
+                            screenState.refresh();
+                          },
                         ),
-                        SizedBox(height: 30),
-
-
-
+                      ),
+                      SizedBox(height: 30),
 
 //                    Expanded(
 //                      child: Container(
@@ -348,11 +342,11 @@ class EditAccountInit extends States {
 //                        ),
 //                      ),
 //                    ),
-                      ],
-                    ),
-                ]),),
+                    ],
+                  ),
+                ]),
+              ),
               SizedBox(height: 30),
-
               TextButton(
                 onPressed: () {
                   onSaveClick(UpdateProfileRequest(
@@ -373,13 +367,16 @@ class EditAccountInit extends States {
                   ),
                 ),
               ),
-              SizedBox(height: 70,)
+              SizedBox(
+                height: 70,
+              )
             ],
           ),
         ),
       ),
     );
   }
+
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert

@@ -6,6 +6,7 @@ import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 
+import '../request/edit_business_request.dart';
 import '../request/is_follow.dart';
 
 @injectable
@@ -73,4 +74,42 @@ class BusinessRepositoryDetails {
     if (response == null) return null;
     return response;
   }
+
+
+
+  Future<WebServiceResponse?> updateBusiness(EditBusinessRequest request) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.UPDATE_BUSINESS,
+      request.toJson(),
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
+
+  Future<WebServiceResponse?> deleteBusiness(String?id) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.DELETE_BUSINESS + "${id}",
+      {},
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
+
+  Future<WebServiceResponse?> deletePost(String?id) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.DELETE_POST + "${id}",
+      {},
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 }

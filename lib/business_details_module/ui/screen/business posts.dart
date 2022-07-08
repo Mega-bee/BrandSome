@@ -6,8 +6,9 @@ import '../../reponse/business_response.dart';
 
 class BusinessPosts extends StatefulWidget {
   final List<Posts> businessInfoModel;
+  final Function onDeletePost;
 
-  BusinessPosts({required this.businessInfoModel});
+  BusinessPosts({required this.businessInfoModel,required this.onDeletePost});
 
   @override
   State<BusinessPosts> createState() => _BusinessPostsState();
@@ -20,7 +21,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
         print("Clicking add business");
         break;
       case 1:
-        print("Clicking add post");
+        widget.onDeletePost();
         break;
     }
   }

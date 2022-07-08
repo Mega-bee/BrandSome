@@ -16,10 +16,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '../reponse/business_response.dart';
 import '../repository/business_repository.dart';
 import '../request/add_review_request.dart';
+import '../request/edit_business_request.dart';
 import '../request/is_follow.dart';
 import '../request/is_follow.dart';
 import '../request/is_follow.dart';
 import '../ui/screen/business_details.dart';
+import '../ui/screen/update_business.dart';
 import '../ui/state/BusinessDetailsSuccess.dart';
 
 @injectable
@@ -137,6 +139,47 @@ void  createReview(AddReviewRequest request,BusnessDetailsScreenState screenStat
         Navigator.pop(screenState.context);
         emit(VerifyOtpState(
             phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
+      }
+    });
+  }
+
+  void  editBusiness(EditBusinessRequest request,UpdateBusinessState screenstate) {
+    // emit(LoadingState());
+    _businessRepositoryDetails.updateBusiness(request).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: "Error try again");
+      }
+      else if (value.code == 200) {
+        print('review add successfully');
+       Navigator.pop(screenstate.context);
+      }
+    });
+  }
+
+  void  deleteBusiness(BusnessDetailsScreenState screenstate,String?id) {
+    emit(LoadingState());
+    _businessRepositoryDetails.deleteBusiness(id).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: "Error try again");
+      }
+      else if (value.code == 200) {
+        print('Business deleted successfully');
+        Fluttertoast.showToast(msg:'Business deleted successfully');
+        Navigator.pop(screenstate.context);
+      }
+    });
+  }
+
+  void  deletePost(BusnessDetailsScreenState screenstate,String?id) {
+    emit(LoadingState());
+    _businessRepositoryDetails.deletePost(id).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: "Error try again");
+      }
+      else if (value.code == 200) {
+        print('Post deleted successfully');
+        Fluttertoast.showToast(msg:'Post deleted successfully');
+        Navigator.pop(screenstate.context);
       }
     });
   }
