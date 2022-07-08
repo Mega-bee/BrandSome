@@ -162,7 +162,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i48.FollowerModule>(
       () => _i48.FollowerModule(get<_i33.Followers>()));
   gh.factory<_i49.HomeModule>(() => _i49.HomeModule(get<_i34.HomePage>()));
-  gh.factory<_i50.PostModule>(() => _i50.PostModule(get<_i47.CreatePost>()));
+  gh.factory<_i50.PostModule>(
+      () => _i50.PostModule(get<_i47.CreatePost>(), get<_i34.HomePage>()));
   gh.factory<_i51.SettingModule>(() => _i51.SettingModule(
       get<_i39.SettingsScreen>(), get<_i42.AccountInfoScreen>()));
   gh.factory<_i52.MyApp>(() => _i52.MyApp(
