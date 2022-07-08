@@ -23,7 +23,7 @@ class Post {
   List<PostMedia>? postMedia;
   String? description;
   int? likeCount;
-  bool? isLiked;
+  bool isLiked =false;
   String? city;
   String? type;
 
@@ -34,7 +34,7 @@ class Post {
         this.postMedia,
         this.description,
         this.likeCount,
-        this.isLiked,
+        required this.isLiked ,
         this.city,
         this.type});
 
