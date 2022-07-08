@@ -5,10 +5,13 @@ import 'package:brandsome/posts_module/ui/screen/createPost.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../home_page/ui/screen/homePage.dart';
+
 @injectable
 class PostModule extends RoutModule {
   final CreatePost _createPost;
-  PostModule(this._createPost) {
+  final HomePage _homePage;
+  PostModule(this._createPost,this._homePage) {
     RoutModule.RoutesMap.addAll(getRoutes());
   }
 

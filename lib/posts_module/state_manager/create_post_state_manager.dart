@@ -18,7 +18,9 @@ import 'package:injectable/injectable.dart';
 
 import '../../abstracts/states/error_state.dart';
 import '../../business_module/request/create_business_request.dart';
+import '../../home_page/home_route.dart';
 import '../../home_page/repository/business_repository.dart';
+import '../post_route.dart';
 import '../ui/screen/createPost.dart';
 import '../repository/create_post_repo.dart';
 import '../request/bussines_filter_request.dart';
@@ -45,6 +47,7 @@ class CreatePostCubit extends Cubit<States> {
       }
       else if (value.code == 201){
         Navigator.pop(createPostState.context);
+        // Navigator.pushNamedAndRemoveUntil(createPostState.context, '/nav_rout', (route) => false);
         Fluttertoast.showToast(msg: 'Bussiness created Successfully',backgroundColor: Colors.green);
       }
     });

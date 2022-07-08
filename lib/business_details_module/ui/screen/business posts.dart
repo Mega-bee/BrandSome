@@ -8,11 +8,13 @@ class BusinessPosts extends StatefulWidget {
   final List<Posts> businessInfoModel;
   final Function onDeletePost;
 
+
   BusinessPosts({required this.businessInfoModel,required this.onDeletePost});
 
   @override
   State<BusinessPosts> createState() => _BusinessPostsState();
 }
+
 
 class _BusinessPostsState extends State<BusinessPosts> {
   void onSelected(BuildContext context, item) {

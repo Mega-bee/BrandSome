@@ -22,6 +22,7 @@ class BusinessDetailsSuccess extends States {
     this.businessInfoModel,
       this.islogged,
 
+
   ) : super(false);
 
   late TabController tabController =
@@ -124,6 +125,7 @@ class BusinessDetailsSuccess extends States {
                               content: "",
                               yesBtn: () {
                                 screenState.deletePost(businessInfoModel.id.toString());
+
                               },
                               noBtn: () {
                                 Navigator.pop(context);
