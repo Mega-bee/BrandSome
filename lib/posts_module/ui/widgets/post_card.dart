@@ -48,6 +48,7 @@ class _PostCardState extends State<PostCard> {
       child: Column(
         children: [
           ListTile(
+
             leading:   Container(
               width: 50,
               height: 50,
