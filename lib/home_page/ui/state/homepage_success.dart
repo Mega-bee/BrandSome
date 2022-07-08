@@ -5,6 +5,7 @@ import 'package:brandsome/home_page/model/subCategory.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../utils/images/images.dart';
 import '../../../posts_module/reponse/posts_reponse.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
@@ -13,10 +14,9 @@ import '../widgets/main_cate_card.dart';
 
 class HomePageSuccess extends States {
   final HomePageScreenState screenState;
-  final List <Post> posthome;
+  final List<Post> posthome;
 
-
-  HomePageSuccess( this.screenState,this.posthome) : super(false);
+  HomePageSuccess(this.screenState, this.posthome) : super(false);
 
   List<CategoryModel> categorys = [
     CategoryModel(id: 1, name: "Personal", selectedCard: true),
@@ -57,12 +57,13 @@ class HomePageSuccess extends States {
         selectedCard: false),
   ];
 
-
-
-
-
   @override
   Widget getUI(BuildContext context) {
+
+    final ItemScrollController itemScrollController = ItemScrollController();
+    final ItemPositionsListener itemPositionsListener =
+        ItemPositionsListener.create();
+
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -80,9 +81,7 @@ class HomePageSuccess extends States {
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: MainCategoryCard(
-
-                          categorys[index], () {
+                      child: MainCategoryCard(categorys[index], () {
                         categorys.forEach((element) {
                           element.selectedCard = false;
                         });
@@ -134,18 +133,24 @@ class HomePageSuccess extends States {
         Divider(
           thickness: 3,
         ),
-        ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+        ScrollablePositionedList.builder(
+
+            itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
+            physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: posthome.length,
             itemBuilder: (context, index) {
-              return PostCard(onLikeTap: (){
-                screenState.goToLikes();
-              },posthome: posthome[index]);
+              return PostCard(
+                  onLikeTap: () {
+                    screenState.goToLikes();
+                  },
+                  posthome: posthome[index]);
             })
       ]),
     );
   }
+
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
