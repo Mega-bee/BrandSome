@@ -100,4 +100,16 @@ class BusinessRepositoryDetails {
     return response;
   }
 
+
+  Future<WebServiceResponse?> deletePost(String?id) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.DELETE_POST + "${id}",
+      {},
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 }

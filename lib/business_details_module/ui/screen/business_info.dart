@@ -2,10 +2,12 @@ import 'package:brandsome/business_details_module/business_details_route.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../reponse/business_response.dart';
 
 class BusinessInfo extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;
+  final Function onDeleteClick;
   final Function onNumberClick;
   final Function onReviewClick;
   final Function onFollow;
@@ -17,6 +19,7 @@ class BusinessInfo extends StatefulWidget {
     required this.onReviewClick,
     required this.onFollow,
     required this.isLoggedin,
+    required this.onDeleteClick,
   });
 
   @override
@@ -338,7 +341,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ElevatedButton(
                   onPressed: () {
                     widget.businessInfoModel.isUserBusiness!
-                        ? Container()
+                        ? widget.onDeleteClick()
                         : widget.onReviewClick();
                     // );
                   },

@@ -27,6 +27,14 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
     widget._businessListDetailsCubit.PostCall(this, id, number);
   }
 
+  deleteBusiness(String?id){
+    widget._businessListDetailsCubit.deleteBusiness(this, id);
+  }
+
+  deletePost(String?id){
+    widget._businessListDetailsCubit.deletePost(this, id);
+  }
+
   createReview(AddReviewRequest request) {
     widget._businessListDetailsCubit.createReview(request, this);
   }

@@ -5,6 +5,7 @@ import 'package:brandsome/utils/components/custom_alert_dialog/CustomReviewDialo
 import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../reponse/business_response.dart';
 import '../screen/business_info.dart';
 import '../screen/business posts.dart';
@@ -63,6 +64,22 @@ class BusinessDetailsSuccess extends States {
                 controller: tabController,
                 children: [
                   BusinessInfo(
+                    onDeleteClick: (){
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomDeleteDialog(
+                              title: "Delete business",
+                              content: "",
+                              yesBtn: () {
+                                screenState.deleteBusiness(businessInfoModel.id.toString());
+                              },
+                              noBtn: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                      );
+                    },
 
                     isLoggedin: islogged,
                     businessInfoModel: businessInfoModel,
@@ -98,6 +115,22 @@ class BusinessDetailsSuccess extends States {
     }
                   ),
                   BusinessPosts(
+                    onDeletePost: (){
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            CustomDeleteDialog(
+                              title: "Delete Post",
+                              content: "",
+                              yesBtn: () {
+                                screenState.deletePost(businessInfoModel.id.toString());
+                              },
+                              noBtn: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                      );
+                    },
                       businessInfoModel: businessInfoModel.posts ?? []),
                   ReviewScreen(review: businessInfoModel.reviews ?? []),
                 ],

@@ -156,14 +156,29 @@ void  createReview(AddReviewRequest request,BusnessDetailsScreenState screenStat
     });
   }
 
-  void  deleteBusiness(UpdateBusinessState screenstate,String?id) {
-    // emit(LoadingState());
+  void  deleteBusiness(BusnessDetailsScreenState screenstate,String?id) {
+    emit(LoadingState());
     _businessRepositoryDetails.deleteBusiness(id).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Error try again");
       }
       else if (value.code == 200) {
-        print('review add successfully');
+        print('Business deleted successfully');
+        Fluttertoast.showToast(msg:'Business deleted successfully');
+        Navigator.pop(screenstate.context);
+      }
+    });
+  }
+
+  void  deletePost(BusnessDetailsScreenState screenstate,String?id) {
+    emit(LoadingState());
+    _businessRepositoryDetails.deletePost(id).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: "Error try again");
+      }
+      else if (value.code == 200) {
+        print('Post deleted successfully');
+        Fluttertoast.showToast(msg:'Post deleted successfully');
         Navigator.pop(screenstate.context);
       }
     });

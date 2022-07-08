@@ -1,17 +1,14 @@
-import 'package:brandsome/business_details_module/reponse/business_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../../../home_page/response/home_page.dart';
-import '../../reponse/posts_reponse.dart';
 import 'package:video_player/video_player.dart';
 
 class PostCard extends StatefulWidget {
-
   final Function onLikeTap;
   final Post posthome;
 
-  PostCard({required this.onLikeTap,required this.posthome } );
+  PostCard({required this.onLikeTap, required this.posthome});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -23,15 +20,14 @@ class _PostCardState extends State<PostCard> {
 
   @override
   void initState() {
-
-
     super.initState();
     _currentIndex = 0;
-    _controller = VideoPlayerController.network(
-        '${widget.posthome.postMedia![0].url}')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});});
+    _controller =
+        VideoPlayerController.network('${widget.posthome.postMedia![0].url}')
+          ..initialize().then((_) {
+            // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+            setState(() {});
+          });
   }
 
   @override
@@ -45,7 +41,7 @@ class _PostCardState extends State<PostCard> {
         child: Column(
           children: [
             ListTile(
-              leading:   Container(
+              leading: Container(
                 width: 50,
                 height: 50,
                 child: CachedNetworkImage(
@@ -77,14 +73,11 @@ class _PostCardState extends State<PostCard> {
             Column(
               children: [
                 CarouselSlider.builder(
-
                   options: CarouselOptions(
-                    height: 350,
-
+                      height: 350,
                       autoPlay: false,
                       enlargeCenterPage: true,
                       reverse: false,
-
                       disableCenter: false,
                       enableInfiniteScroll: false,
                       onPageChanged: (index, reason) {
@@ -96,70 +89,65 @@ class _PostCardState extends State<PostCard> {
                   itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) =>
                       Container(
-
                     width: 350,
                     // margin: EdgeInsets.symmetric(horizontal: .0),
-                    child:
-    widget.posthome.postMedia![itemIndex].mediaTypeId==1?
-                    Image.network(
-                      widget.posthome.postMedia![itemIndex].url.toString(),
-                      fit: BoxFit.cover,
-
-                    ) :
-
-    _controller!.value.isInitialized
-    ? AspectRatio(
-
-    aspectRatio: _controller!.value.aspectRatio,
-    child: Stack(children:[
-      VideoPlayer(_controller!),
-      widget.posthome.postMedia![0].mediaTypeId==2?
-      Center(
-        child: IconButton(onPressed:() {
-          setState(() {
-            _controller!.value.isPlaying
-                ? _controller!.pause()
-                : _controller!.play();
-          });
-        },
-            icon:
-            _controller!.value.isPlaying?
-            AnimatedOpacity(duration: Duration(seconds: 2),
-            opacity: 1,
-            child: Icon(  Icons.pause,)):
-            AnimatedOpacity(duration: Duration(seconds: 2),
-                opacity: 0,
-                child: Icon(Icons.play_arrow,))
-
-        )
-
-      )
-          :Container()
-      ,
-
-    ]),
-    )
-        : Container(),
+                    child: widget.posthome.postMedia![itemIndex].mediaTypeId ==
+                            1
+                        ? Image.network(
+                            widget.posthome.postMedia![itemIndex].url
+                                .toString(),
+                            fit: BoxFit.cover,
+                          )
+                        : _controller!.value.isInitialized
+                            ? AspectRatio(
+                                aspectRatio: _controller!.value.aspectRatio,
+                                child: Stack(children: [
+                                  VideoPlayer(_controller!),
+                                  widget.posthome.postMedia![0].mediaTypeId == 2
+                                      ? Center(
+                                          child: IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _controller!.value.isPlaying
+                                                      ? _controller!.pause()
+                                                      : _controller!.play();
+                                                });
+                                              },
+                                              icon: _controller!.value.isPlaying
+                                                  ? AnimatedOpacity(
+                                                      duration:
+                                                          Duration(seconds: 2),
+                                                      opacity: 1,
+                                                      child: Icon(
+                                                        Icons.pause,
+                                                      ))
+                                                  : AnimatedOpacity(
+                                                      duration:
+                                                          Duration(seconds: 2),
+                                                      opacity: 0,
+                                                      child: Icon(
+                                                        Icons.play_arrow,
+                                                      ))))
+                                      : Container(),
+                                ]),
+                              )
+                            : Container(),
                   ),
                 ),
-
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: widget.posthome.postMedia!
                         .map((e) => Container(
                               width: 5.0,
                               height: 5.0,
-
                               margin: EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 2.0),
                               decoration: BoxDecoration(
-
                                   shape: BoxShape.circle,
                                   color: _currentIndex ==
                                           widget.posthome.postMedia!.indexOf(e)
                                       ? Colors.white
-                                      : Colors.grey
-                              ),
+                                      : Colors.grey),
                             ))
                         .toList() //
                     )
@@ -171,7 +159,7 @@ class _PostCardState extends State<PostCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       widget.onLikeTap();
                     },
                     child: Row(
@@ -185,12 +173,13 @@ class _PostCardState extends State<PostCard> {
                         SizedBox(
                           width: 5,
                         ),
-                        widget.posthome.likeCount ==1?
-                        Text(
-                          "${widget.posthome.likeCount} like",
-                        ):Text(
-                          "${widget.posthome.likeCount} likes",
-                        ),
+                        widget.posthome.likeCount == 1
+                            ? Text(
+                                "${widget.posthome.likeCount} like",
+                              )
+                            : Text(
+                                "${widget.posthome.likeCount} likes",
+                              ),
                       ],
                     ),
                   ),

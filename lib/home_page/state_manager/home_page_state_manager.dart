@@ -13,6 +13,7 @@ import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../abstracts/states/error_state.dart';
@@ -88,4 +89,6 @@ class HomePageCubit extends Cubit<States> {
       }
     });
   }
+
+
 }
