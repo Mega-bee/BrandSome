@@ -132,7 +132,7 @@ class AddBusinessInit extends States {
 
                                                         if (pickedFile ==
                                                             null) return;
-                                                        _pickImage = File(pickedFile.path) ;
+                                                        _pickImage = File(pickedFile.path);
                                                         imageForUpload =
                                                         await MultipartFile
                                                             .fromFile(

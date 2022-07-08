@@ -5,7 +5,6 @@ import 'package:brandsome/categories_module/categories_module.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/follower_module/follower_module.dart';
 import 'package:brandsome/home_page/home_module.dart';
-import 'package:brandsome/module_auth/authoriazation_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:brandsome/setting_module/setting_module.dart';

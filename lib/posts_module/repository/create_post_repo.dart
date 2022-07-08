@@ -5,25 +5,24 @@ import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../module_auth/service/auth_service.dart';
+import '../request/bussines_filter_request.dart';
 
 @injectable
-class FilterRepo {
+class CreatePostRepo {
   final ApiClient _apiClient;
  final AuthService _authService;
 
-  FilterRepo(this._apiClient,this._authService);
+  CreatePostRepo(this._apiClient,this._authService);
 
-
-  Future<WebServiceResponse?> getFilter() async {
-//    var token = await _authService.getToken();
-    WebServiceResponse? response = await _apiClient.get(
-      Urls.GET_FILTER,
-//      headers: {'Authorization': 'Bearer ' + '$token'},
+  Future<WebServiceResponse?> createPost(CreatePostRequest request) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.CREATE_POSTS,
+      request.toJson(),
+      headers: {'Authorization': 'Bearer ' + '$token'},
     );
     if (response == null) return null;
     return response;
   }
-
-
 
 }

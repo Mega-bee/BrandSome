@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 
-class CreateBusinessRequest {
+class CreatePostRequest {
 
 int?cityId;
-int?id;
+// int?id;
 int?serviceId;
 String?description;
-MultipartFile?media;
+List <MultipartFile>media;
 
-  CreateBusinessRequest({this.id,this.description,this.cityId,this.media,this.serviceId});
+  CreatePostRequest({this.description,this.cityId,required this.media,this.serviceId});
 
   Map<String, dynamic> toJson() {
     return {
@@ -16,7 +16,7 @@ MultipartFile?media;
       "Description": this.description,
       "Media":this.media,
       "ServiceId":this.serviceId,
-      "Id":this.id,
+      // "Id":this.id,
     };
   }
 

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:brandsome/home_page/request/bussines_filter_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,15 +11,17 @@ import '../../../business_module/ui/state/add_business_state/add_business_init.d
 import '../../../categories_module/categories_routes.dart';
 import '../../../categories_module/reponse/category_response.dart';
 import '../../../setting_module/response/add_location_response.dart';
-import '../../home_route.dart';
-import '../../state_manager/home_page_state_manager.dart';
+import '../../../home_page/home_route.dart';
+import '../../../home_page/state_manager/home_page_state_manager.dart';
 import '../state/create_post_success.dart';
+import '../../request/bussines_filter_request.dart';
+import '../../state_manager/create_post_state_manager.dart';
 
 @injectable
 class CreatePost extends StatefulWidget {
-final HomePageCubit homePageCubit;
+final CreatePostCubit createPostCubit;
 
-CreatePost({required this.homePageCubit});
+CreatePost({required this.createPostCubit});
   @override
   State<CreatePost> createState() => CreatePostState();
 }
@@ -35,14 +36,14 @@ void refrech(){
   }
 }
   createBusinessRequest() {
-    widget.homePageCubit.createPost(request, this);
+    widget.createPostCubit.createPost(request, this);
   }
-  late CreateBusinessRequest request;
+  late CreatePostRequest request;
   @override
   void initState() {
     super.initState();
-    request = CreateBusinessRequest();
-    widget.homePageCubit.emit(CreatePostSuccess(state: this));
+    request = CreatePostRequest(media: []);
+    widget.createPostCubit.emit(CreatePostSuccess(state: this));
   }
   @override
   Widget build(BuildContext context) {
@@ -71,8 +72,8 @@ void refrech(){
           ),
         ],
       ),
-      body: BlocBuilder<HomePageCubit, States>(
-          bloc: widget.homePageCubit,
+      body: BlocBuilder<CreatePostCubit, States>(
+          bloc: widget.createPostCubit,
           builder: (context, state) {
             return state.getUI(context);
           }),

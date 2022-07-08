@@ -1,6 +1,6 @@
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/home_page/home_route.dart';
-import 'package:brandsome/home_page/ui/screen/createPost.dart';
+import 'package:brandsome/posts_module/ui/screen/createPost.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:flutter/material.dart';

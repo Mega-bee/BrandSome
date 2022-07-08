@@ -23,30 +23,31 @@ import '../categories_module/categories_module.dart' as _i30;
 import '../categories_module/repository/category_repository.dart' as _i13;
 import '../categories_module/state_manager/cate_stats_manager.dart' as _i28;
 import '../categories_module/ui/screen/categories_list_screen.dart' as _i29;
-import '../follower_module/follower_module.dart' as _i46;
+import '../follower_module/follower_module.dart' as _i47;
 import '../follower_module/repository/follower_repository.dart' as _i15;
 import '../follower_module/state_manager/follower.dart' as _i16;
 import '../follower_module/ui/screens/follower_list.dart' as _i32;
 import '../hive/hive.dart' as _i4;
-import '../home_page/home_module.dart' as _i47;
-import '../home_page/repository/business_repository.dart' as _i14;
+import '../home_page/home_module.dart' as _i48;
 import '../home_page/state_manager/home_page_state_manager.dart' as _i17;
-import '../home_page/ui/screen/createPost.dart' as _i31;
 import '../home_page/ui/screen/homePage.dart' as _i33;
 import '../liked_module/liked_list_module.dart' as _i35;
 import '../liked_module/repository/likes_list_repository.dart' as _i18;
 import '../liked_module/state_manager/liked_list_bloc.dart' as _i19;
 import '../liked_module/ui/screen/liked_by_screen.dart' as _i34;
-import '../main.dart' as _i49;
+import '../main.dart' as _i50;
 import '../module_auth/repository/auth_repository.dart' as _i10;
 import '../module_auth/service/auth_service.dart' as _i5;
 import '../module_network/http_client/http_client.dart' as _i9;
 import '../navigation_bar/navigator_module.dart' as _i8;
 import '../navigation_bar/ui/screens/navigationBar.dart' as _i7;
+import '../posts_module/repository/create_post_repo.dart' as _i14;
+import '../posts_module/state_manager/create_post_state_manager.dart' as _i31;
+import '../posts_module/ui/screen/createPost.dart' as _i46;
 import '../setting_module/repository/account_repository.dart' as _i22;
 import '../setting_module/repository/location_repository.dart' as _i20;
 import '../setting_module/repository/setting_repository.dart' as _i21;
-import '../setting_module/setting_module.dart' as _i48;
+import '../setting_module/setting_module.dart' as _i49;
 import '../setting_module/state_manager/account_state_manager.dart' as _i40;
 import '../setting_module/state_manager/location_state_manager.dart' as _i36;
 import '../setting_module/state_manager/setting.dart' as _i37;
@@ -87,10 +88,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i15.FollowerRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i16.FollowersCubit>(
       () => _i16.FollowersCubit(get<_i15.FollowerRepository>()));
-  gh.factory<_i17.HomePageCubit>(() => _i17.HomePageCubit(
-      get<_i5.AuthService>(),
-      get<_i10.AuthRepository>(),
-      get<_i14.FilterRepo>()));
+  gh.factory<_i17.HomePageCubit>(() =>
+      _i17.HomePageCubit(get<_i5.AuthService>(), get<_i10.AuthRepository>()));
   gh.factory<_i18.LikedList>(
       () => _i18.LikedList(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i19.LikedListCubit>(
@@ -119,8 +118,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i29.CategoryListScreen(get<_i28.CategoryListCubit>()));
   gh.factory<_i30.CategoryModule>(
       () => _i30.CategoryModule(get<_i29.CategoryListScreen>()));
-  gh.factory<_i31.CreatePost>(
-      () => _i31.CreatePost(homePageCubit: get<_i17.HomePageCubit>()));
+  gh.factory<_i31.CreatePostCubit>(() => _i31.CreatePostCubit(
+      get<_i5.AuthService>(),
+      get<_i10.AuthRepository>(),
+      get<_i14.FilterRepo>()));
   gh.factory<_i32.Followers>(() => _i32.Followers(get<_i16.FollowersCubit>()));
   gh.factory<_i33.HomePage>(
       () => _i33.HomePage(cubit: get<_i17.HomePageCubit>()));
@@ -152,21 +153,23 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i26.BusinessScreen>(),
       get<_i42.AddBusiness>(),
       get<_i43.AddLocationScreen>()));
-  gh.factory<_i46.FollowerModule>(
-      () => _i46.FollowerModule(get<_i32.Followers>()));
-  gh.factory<_i47.HomeModule>(() => _i47.HomeModule(get<_i33.HomePage>(),
-      get<_i29.CategoryListScreen>(), get<_i31.CreatePost>()));
-  gh.factory<_i48.SettingModule>(() => _i48.SettingModule(
+  gh.factory<_i46.CreatePost>(
+      () => _i46.CreatePost(createPostCubit: get<_i31.CreatePostCubit>()));
+  gh.factory<_i47.FollowerModule>(
+      () => _i47.FollowerModule(get<_i32.Followers>()));
+  gh.factory<_i48.HomeModule>(() => _i48.HomeModule(get<_i33.HomePage>(),
+      get<_i29.CategoryListScreen>(), get<_i46.CreatePost>()));
+  gh.factory<_i49.SettingModule>(() => _i49.SettingModule(
       get<_i38.SettingsScreen>(), get<_i41.AccountInfoScreen>()));
-  gh.factory<_i49.MyApp>(() => _i49.MyApp(
+  gh.factory<_i50.MyApp>(() => _i50.MyApp(
       get<_i3.AppThemeDataService>(),
       get<_i8.NavigatorModule>(),
       get<_i45.BusinessModule>(),
       get<_i44.BusinessDetailsModule>(),
       get<_i35.LikedListModule>(),
-      get<_i48.SettingModule>(),
-      get<_i46.FollowerModule>(),
+      get<_i49.SettingModule>(),
+      get<_i47.FollowerModule>(),
       get<_i30.CategoryModule>(),
-      get<_i47.HomeModule>()));
+      get<_i48.HomeModule>()));
   return get;
 }
