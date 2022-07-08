@@ -2,7 +2,6 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/utils/components/costom_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../response/add_location_response.dart';
 import '../screen/add_location.dart';

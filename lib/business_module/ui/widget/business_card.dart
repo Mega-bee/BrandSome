@@ -90,15 +90,17 @@ class BusinessCard extends StatelessWidget {
                                 Icons.location_on_outlined,
                                 size: 18,
                               ),
-                              Wrap(
-                                  children: businessCardModel.city!
-                                      .map(
-                                        (e) => Text(
-                                          "${e.name},",
-                                          style:Theme.of(context).textTheme.overline,
-                                        ),
-                                      )
-                                      .toList()),
+                              Expanded(
+                                child: Wrap(
+                                    children: businessCardModel.city!
+                                        .map(
+                                          (e) => Text(
+                                            "${e.name},",
+                                            style:Theme.of(context).textTheme.overline,
+                                          ),
+                                        )
+                                        .toList()),
+                              ),
                             ],
                           ),
                           SizedBox(

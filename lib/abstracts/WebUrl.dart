@@ -19,8 +19,8 @@ class Urls {
   /*--------home-------------------*/
   static const GET_BUSINESS = BASE_API_BUSINESS + 'GetBusinesses';
   static const DELETE_BUSINESS = BASE_API_BUSINESS + 'DeleteBusiness/';
-  static const CREATE_BUSINESS = BASE_API_BUSINESS + 'UpdateBusiness';
-  static const UPDATE_BUSINESS = BASE_API_BUSINESS + 'CreateBusiness';
+  static const UPDATE_BUSINESS = BASE_API_BUSINESS + 'UpdateBusiness';
+  static const CREATE_BUSINESS = BASE_API_BUSINESS + 'CreateBusiness';
   static const GET_BUSINESS_DETAILS = BASE_API_BUSINESS + 'GetBusiness/';
   static const PHONE_CLICK = BASE_API_BUSINESS + 'RegisterNewPhoneClick/';
   static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview';

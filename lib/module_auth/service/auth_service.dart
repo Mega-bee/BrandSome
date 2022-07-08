@@ -30,6 +30,7 @@ class ImeiService {
 
   var apiLevel;
   Future<String> initPlatformState() async {
+    print('Hellllllo from herer');
     late String platformVersion,
         imeiNo = '';
 
@@ -38,9 +39,12 @@ class ImeiService {
     try {
       platformVersion = await DeviceInformation.platformVersion;
       imeiNo = await DeviceInformation.deviceIMEINumber;
+      print('IMIE');
+      print(imeiNo);
 
     } on PlatformException catch (e) {
       platformVersion = '${e.message}';
+      print(e.message);
     }
 
     // If the widget was removed from the tree while the asynchronous platform

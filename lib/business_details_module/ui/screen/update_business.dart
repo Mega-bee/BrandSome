@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-
 import '../../state_manager/business_details_state_manager.dart';
 import '../state/update_business_success.dart';
 
@@ -23,6 +22,7 @@ class UpdateBusiness extends StatefulWidget {
 
 class UpdateBusinessState extends State<UpdateBusiness> {
   late EditBusinessRequest request;
+  bool flags = true;
 
   void refresh() {
     if (mounted) {
@@ -30,22 +30,22 @@ class UpdateBusinessState extends State<UpdateBusiness> {
     }
   }
 
-  EditBusinessrequest() {
-    widget._businessListDetailsCubit.editBusiness(request,this);
+  editBusinessRequest() {
+     widget._businessListDetailsCubit.editBusiness(request, this);
   }
 
   @override
   void initState() {
     super.initState();
-    request = EditBusinessRequest(cities: [],services: []);
-
+    request = EditBusinessRequest(cities: [1], services: [1]);
   }
 
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments;
-    if (args != null && args is BusinessInfoResponse) {
-      widget._businessListDetailsCubit.emit(UpdateBusinessSuccess(this,args));
+    if (args != null && args is BusinessInfoResponse && flags) {
+      flags = false;
+      widget._businessListDetailsCubit.emit(UpdateBusinessSuccess(this, args));
     }
     return Scaffold(
       appBar: AppBar(
@@ -58,8 +58,8 @@ class UpdateBusinessState extends State<UpdateBusiness> {
           Padding(
               padding: const EdgeInsets.only(right: 28.0),
               child: IconButton(
-                  onPressed: () {
-                    EditBusinessrequest();
+                  onPressed: ()   {
+                    editBusinessRequest();
                   },
                   icon: Icon(
                     Icons.check,
@@ -68,11 +68,28 @@ class UpdateBusinessState extends State<UpdateBusiness> {
                   ))),
         ],
       ),
-      body: BlocBuilder<BusinessListDetailsCubit, States>(
-          bloc: widget._businessListDetailsCubit,
-          builder: (context, state) {
+      body: BlocConsumer<BusinessListDetailsCubit, States>(
+        bloc: widget._businessListDetailsCubit,
+        buildWhen: (previous, current) => !current.lis,
+        listenWhen: (previous, current) => current.lis,
+        builder: (context, state) {
+          print(state);
+          print('builderr in Edit ' );
+          if (!state.lis) {
             return state.getUI(context);
-          }),
+          }
+          return Container();
+        },
+        listener: (context, state) {
+          print(state);
+          print('in Lisssennnerrr');
+          if (state.lis) {
+            showDialog(
+                context: context,
+                builder: (context) => state.getAlert(context));
+          }
+        },
+      ),
     );
   }
 }
