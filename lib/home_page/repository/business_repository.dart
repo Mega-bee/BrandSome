@@ -5,11 +5,11 @@ import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class FilterRepo {
+class HomeP {
   final ApiClient _apiClient;
 //  final AuthService _authService;
 
-  FilterRepo(this._apiClient);
+  HomeP(this._apiClient);
 
 
   Future<WebServiceResponse?> getFilter() async {
@@ -21,5 +21,15 @@ class FilterRepo {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> getHomePage() async {
+//    var token = await _authService.getToken();
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.GET_HOME_PAGE,
+//      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 
 }

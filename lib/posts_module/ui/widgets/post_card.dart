@@ -1,12 +1,17 @@
+import 'package:brandsome/business_details_module/reponse/business_response.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../../home_page/response/home_page.dart';
 import '../../reponse/posts_reponse.dart';
+import 'package:video_player/video_player.dart';
 
 class PostCard extends StatefulWidget {
-  final postModel posts;
-  final Function onLikeTap;
 
-  PostCard({required this.posts ,required this.onLikeTap } );
+  final Function onLikeTap;
+  final Post posthome;
+
+  PostCard({required this.onLikeTap,required this.posthome } );
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -14,11 +19,19 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   late int _currentIndex;
+  VideoPlayerController? _controller;
 
   @override
   void initState() {
+
+
     super.initState();
     _currentIndex = 0;
+    _controller = VideoPlayerController.network(
+        '${widget.posthome.postMedia![0].url}')
+      ..initialize().then((_) {
+        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
+        setState(() {});});
   }
 
   @override
@@ -32,14 +45,29 @@ class _PostCardState extends State<PostCard> {
         child: Column(
           children: [
             ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage("${widget.posts.autherImage}"),
+              leading:   Container(
+                width: 50,
+                height: 50,
+                child: CachedNetworkImage(
+                  imageUrl: widget.posthome.profileImage.toString(),
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(80),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
               title: Text(
-                "${widget.posts.title}",
+                "${widget.posthome.name}",
               ),
               subtitle: Text(
-                "${widget.posts.subTitle}",
+                "${widget.posthome.city}",
               ),
             ),
 //            Image.network(
@@ -49,42 +77,89 @@ class _PostCardState extends State<PostCard> {
             Column(
               children: [
                 CarouselSlider.builder(
+
                   options: CarouselOptions(
                     height: 350,
+
                       autoPlay: false,
+                      enlargeCenterPage: true,
+                      reverse: false,
+
+                      disableCenter: false,
+                      enableInfiniteScroll: false,
                       onPageChanged: (index, reason) {
                         _currentIndex = index;
                         print(_currentIndex);
                         setState(() {});
                       }),
-                  itemCount: widget.posts.imgTwo?.length,
+                  itemCount: widget.posthome.postMedia?.length,
                   itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) =>
                       Container(
 
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 3.0),
-                    child:Image.network(
-                      widget.posts.imgTwo![itemIndex],
+                    width: 350,
+                    // margin: EdgeInsets.symmetric(horizontal: .0),
+                    child:
+    widget.posthome.postMedia![itemIndex].mediaTypeId==1?
+                    Image.network(
+                      widget.posthome.postMedia![itemIndex].url.toString(),
                       fit: BoxFit.cover,
-                    ) ,
 
+                    ) :
+
+    _controller!.value.isInitialized
+    ? AspectRatio(
+
+    aspectRatio: _controller!.value.aspectRatio,
+    child: Stack(children:[
+      VideoPlayer(_controller!),
+      widget.posthome.postMedia![0].mediaTypeId==2?
+      Center(
+        child: IconButton(onPressed:() {
+          setState(() {
+            _controller!.value.isPlaying
+                ? _controller!.pause()
+                : _controller!.play();
+          });
+        },
+            icon:
+            _controller!.value.isPlaying?
+            AnimatedOpacity(duration: Duration(seconds: 2),
+            opacity: 1,
+            child: Icon(  Icons.pause,)):
+            AnimatedOpacity(duration: Duration(seconds: 2),
+                opacity: 0,
+                child: Icon(Icons.play_arrow,))
+
+        )
+
+      )
+          :Container()
+      ,
+
+    ]),
+    )
+        : Container(),
                   ),
                 ),
+
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: widget.posts.imgTwo!
+                    children: widget.posthome.postMedia!
                         .map((e) => Container(
-                              width: 8.0,
-                              height: 8.0,
+                              width: 5.0,
+                              height: 5.0,
+
                               margin: EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 2.0),
                               decoration: BoxDecoration(
+
                                   shape: BoxShape.circle,
                                   color: _currentIndex ==
-                                          widget.posts.imgTwo!.indexOf(e)
+                                          widget.posthome.postMedia!.indexOf(e)
                                       ? Colors.white
-                                      : Colors.black),
+                                      : Colors.grey
+                              ),
                             ))
                         .toList() //
                     )
@@ -110,8 +185,11 @@ class _PostCardState extends State<PostCard> {
                         SizedBox(
                           width: 5,
                         ),
+                        widget.posthome.likeCount ==1?
                         Text(
-                          "${widget.posts.titleTwo}",
+                          "${widget.posthome.likeCount} like",
+                        ):Text(
+                          "${widget.posthome.likeCount} likes",
                         ),
                       ],
                     ),
@@ -127,7 +205,7 @@ class _PostCardState extends State<PostCard> {
                     height: 5,
                   ),
                   Text(
-                    "${widget.posts.paragraph}",
+                    "${widget.posthome.description}",
                   ),
                   SizedBox(
                     height: 10,

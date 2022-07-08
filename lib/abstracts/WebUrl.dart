@@ -8,6 +8,7 @@ class Urls {
   static const String BASE_API_POSTS = DOMAIN + '/api/Posts/';
   static const String BSE_API_SETTINGS = DOMAIN + '/api/Accounts/';
   static const String BSE_API_LOCATION = DOMAIN + '/api/General/';
+  static const String BASE_HOME_PAGE = DOMAIN + '/api/Home/';
 
 
 
@@ -15,8 +16,10 @@ class Urls {
    static const REQUEST_OTP = BSE_API_SETTINGS + 'RequestOtp';
    static const VERIFY_OTP = BSE_API_SETTINGS + 'VerifyOtp';
 
+  /*--------homepage-------------------*/
+  static const GET_HOME_PAGE = BASE_HOME_PAGE + 'GetHomePage';
 
-  /*--------home-------------------*/
+  /*--------business-------------------*/
   static const GET_BUSINESS = BASE_API_BUSINESS + 'GetBusinesses';
   static const DELETE_BUSINESS = BASE_API_BUSINESS + 'DeleteBusiness/';
   static const UPDATE_BUSINESS = BASE_API_BUSINESS + 'UpdateBusiness';

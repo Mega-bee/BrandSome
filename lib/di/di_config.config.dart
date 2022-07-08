@@ -24,12 +24,12 @@ import '../categories_module/repository/category_repository.dart' as _i13;
 import '../categories_module/state_manager/cate_stats_manager.dart' as _i28;
 import '../categories_module/ui/screen/categories_list_screen.dart' as _i29;
 import '../follower_module/follower_module.dart' as _i45;
-import '../follower_module/repository/follower_repository.dart' as _i15;
-import '../follower_module/state_manager/follower.dart' as _i16;
+import '../follower_module/repository/follower_repository.dart' as _i14;
+import '../follower_module/state_manager/follower.dart' as _i15;
 import '../follower_module/ui/screens/follower_list.dart' as _i31;
 import '../hive/hive.dart' as _i4;
 import '../home_page/home_module.dart' as _i46;
-import '../home_page/repository/business_repository.dart' as _i14;
+import '../home_page/repository/business_repository.dart' as _i16;
 import '../home_page/state_manager/home_page_state_manager.dart' as _i17;
 import '../home_page/ui/screen/homePage.dart' as _i32;
 import '../liked_module/liked_list_module.dart' as _i34;
@@ -80,13 +80,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i5.AuthService>(), get<_i5.ImeiService>()));
   gh.factory<_i13.CategoryRepository>(() =>
       _i13.CategoryRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
-  gh.factory<_i14.FilterRepo>(() => _i14.FilterRepo(get<_i9.ApiClient>()));
-  gh.factory<_i15.FollowerRepository>(() =>
-      _i15.FollowerRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
-  gh.factory<_i16.FollowersCubit>(
-      () => _i16.FollowersCubit(get<_i15.FollowerRepository>()));
-  gh.factory<_i17.HomePageCubit>(() =>
-      _i17.HomePageCubit(get<_i5.AuthService>(), get<_i10.AuthRepository>()));
+  gh.factory<_i14.FollowerRepository>(() =>
+      _i14.FollowerRepository(get<_i9.ApiClient>(), get<_i5.AuthService>()));
+  gh.factory<_i15.FollowersCubit>(
+      () => _i15.FollowersCubit(get<_i14.FollowerRepository>()));
+  gh.factory<_i16.HomeP>(() => _i16.HomeP(get<_i9.ApiClient>()));
+  gh.factory<_i17.HomePageCubit>(() => _i17.HomePageCubit(
+      get<_i5.AuthService>(), get<_i10.AuthRepository>(), get<_i16.HomeP>()));
   gh.factory<_i18.LikedList>(
       () => _i18.LikedList(get<_i9.ApiClient>(), get<_i5.AuthService>()));
   gh.factory<_i19.LikedListCubit>(
@@ -115,7 +115,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i29.CategoryListScreen(get<_i28.CategoryListCubit>()));
   gh.factory<_i30.CategoryModule>(
       () => _i30.CategoryModule(get<_i29.CategoryListScreen>()));
-  gh.factory<_i31.Followers>(() => _i31.Followers(get<_i16.FollowersCubit>()));
+  gh.factory<_i31.Followers>(() => _i31.Followers(get<_i15.FollowersCubit>()));
   gh.factory<_i32.HomePage>(
       () => _i32.HomePage(cubit: get<_i17.HomePageCubit>()));
   gh.factory<_i33.LikeByScreen>(
