@@ -32,6 +32,7 @@ class EditAccountInit extends States {
   final gender = TextEditingController();
   final birthday = TextEditingController();
   final username = TextEditingController();
+  DateTime?   birthDate;
   int? genderID;
   File? _pickImage;
   MultipartFile? imageForUpload;
@@ -191,11 +192,46 @@ class EditAccountInit extends States {
                 readOnly: true,
               ),
               SizedBox(height: 30),
-              DatePicker(
-                controller: birthday,
-                label: "Date Of Birth",
-                read: true,
+
+              InkWell(
+                onTap: (){
+                  showDatePicker(
+                    context: context,
+                    builder: (context, widget) {
+                      return widget ?? SizedBox();
+                    },
+                    firstDate: DateTime(1995),
+                    lastDate: DateTime.now(),
+                    initialDate:DateTime(1995)
+                  ).then((value) {
+                    if (value == null) {
+                    } else {
+                      DateTime DOB = value;
+                        birthDate = DateTime(DOB.year, DOB.month,
+                          DOB.day);
+                      screenState.refresh();
+                    }
+                  });
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Bithdey number",
+                    ),
+                    SizedBox(height: 10,),
+                    Text(
+               birthDate != null ?
+                       birthDate.toString().split(' ').first :
+                       birthday.text
+                    ),
+                  ],
+                ),
               ),
+              SizedBox(height: 5,),
+
+              Divider(height: 2,thickness: 3,color: Theme.of(context).dividerColor,),
               SizedBox(
                 height: 20,
               ),
@@ -354,7 +390,7 @@ class EditAccountInit extends States {
                     PhoneNumber: phoneNumber.text,
                     Username: username.text,
                     genderId: genderID.toString(),
-                    Birthday: birthday.toString(),
+                    Birthday:birthDate?.toIso8601String(),
                     ImageFile: imageForUpload,
                   ));
                 },

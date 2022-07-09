@@ -1,3 +1,6 @@
+import 'package:brandsome/categories_module/reponse/category_response.dart';
+import 'package:brandsome/hive/hive_category.dart';
+import 'package:brandsome/hive/hive_city.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
@@ -5,17 +8,21 @@ import 'package:injectable/injectable.dart';
 class HiveSetUp {
   static Future<void> init() async {
     await Hive.initFlutter();
+    Hive.registerAdapter(HiveCityAdapter());
+    Hive.registerAdapter(HiveMainCategoryAdapter());
+    Hive.registerAdapter(HiveSubCategoryAdapter());
+    Hive.registerAdapter(HiveServiceAdapter());
     await publicBoxes();
   }
-
 
   static Future<void> publicBoxes() async {
     await Hive.openBox('Authorization');
     await Hive.openBox('language');
     await Hive.openBox('themeColor');
-
+    await Hive.openBox('GeneralData');
   }
 }
+
 @injectable
 class AuthPrefsHelper {
   var box = Hive.box('Authorization');
@@ -28,9 +35,10 @@ class AuthPrefsHelper {
     return box.get('token');
   }
 
-  Future<void> clearToken() async{
+  Future<void> clearToken() async {
     await box.clear();
   }
+
   bool isSignedIn() {
     try {
       String? uid = getToken();
@@ -39,9 +47,9 @@ class AuthPrefsHelper {
       return false;
     }
   }
-
 }
-class LanguageHelper{
+
+class LanguageHelper {
   var box = Hive.box('language');
 
   void setLanguage(String username) {
@@ -52,7 +60,8 @@ class LanguageHelper{
     return box.get('lang');
   }
 }
-class ThemeHelper{
+
+class ThemeHelper {
   var box = Hive.box('themeColor');
 
   void setTheme(bool isDark) {
@@ -60,9 +69,30 @@ class ThemeHelper{
   }
 
   bool getisDark() {
-    if( box.get('theme') == null){
+    if (box.get('theme') == null) {
       return true;
     }
     return box.get('theme');
+  }
+}
+
+@injectable
+class GeneralDataHelper {
+  var box = Hive.box('GeneralData');
+
+  void setCities(List<HiveCity>? lo) {
+    box.put('cities', lo);
+  }
+
+  List<HiveCity>? getCities() {
+    return box.get('cities');
+  }
+
+  void setCategories(List<HiveMainCategory>? lo) {
+    box.put('categories', lo);
+  }
+
+  List<HiveMainCategory>? getCategories() {
+    return box.get('categories');
   }
 }

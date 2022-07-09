@@ -1,17 +1,32 @@
 
+import 'package:brandsome/categories_module/reponse/category_response.dart';
+import '../../categories_module/reponse/add_location_response.dart';
+
 class HomePageResponse {
-
-
   List<Post>? postt;
+  List<MainCategoryModel>? categories;
+  List<AddLocationResponse>? cities;
 
 
-  HomePageResponse({this.postt,});
+  HomePageResponse({this.postt,this.cities,this.categories});
 
   HomePageResponse.fromJson(Map<String, dynamic> json) {
     if (json['posts'] != null) {
       postt = <Post>[];
       json['posts'].forEach((v) {
-        postt!.add(new Post.fromJson(v));
+        postt!.add( Post.fromJson(v));
+      });
+    }
+    if (json['categories'] != null) {
+      categories = <MainCategoryModel>[];
+      json['categories'].forEach((v) {
+        categories!.add( MainCategoryModel.fromJson(v));
+      });
+    }
+    if (json['cities'] != null) {
+      cities = <AddLocationResponse>[];
+      json['cities'].forEach((v) {
+        cities!.add(AddLocationResponse.fromJson(v));
       });
     }
   }
@@ -22,7 +37,7 @@ class Post {
   String? name;
   List<PostMedia>? postMedia;
   String? description;
-  int? likeCount;
+  int  likeCount = 0;
   bool isLiked =false;
   String? city;
   String? type;
@@ -33,7 +48,7 @@ class Post {
         this.name,
         this.postMedia,
         this.description,
-        this.likeCount,
+      required  this.likeCount,
         required this.isLiked ,
         this.city,
         this.type});

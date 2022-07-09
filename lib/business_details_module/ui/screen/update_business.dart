@@ -70,12 +70,12 @@ class UpdateBusinessState extends State<UpdateBusiness> {
       ),
       body: BlocConsumer<BusinessListDetailsCubit, States>(
         bloc: widget._businessListDetailsCubit,
-        buildWhen: (previous, current) => !current.lis,
-        listenWhen: (previous, current) => current.lis,
+        buildWhen: (previous, current) => !current.isListener,
+        listenWhen: (previous, current) => current.isListener,
         builder: (context, state) {
           print(state);
           print('builderr in Edit ' );
-          if (!state.lis) {
+          if (!state.isListener) {
             return state.getUI(context);
           }
           return Container();
@@ -83,7 +83,7 @@ class UpdateBusinessState extends State<UpdateBusiness> {
         listener: (context, state) {
           print(state);
           print('in Lisssennnerrr');
-          if (state.lis) {
+          if (state.isListener) {
             showDialog(
                 context: context,
                 builder: (context) => state.getAlert(context));

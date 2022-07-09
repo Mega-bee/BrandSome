@@ -10,7 +10,7 @@ import '../../../business_module/business_routes.dart';
 import '../../../business_module/ui/state/add_business_state/add_business_init.dart';
 import '../../../categories_module/categories_routes.dart';
 import '../../../categories_module/reponse/category_response.dart';
-import '../../../setting_module/response/add_location_response.dart';
+import '../../../categories_module/reponse/add_location_response.dart';
 import '../../../home_page/home_route.dart';
 import '../../../home_page/state_manager/home_page_state_manager.dart';
 import '../state/create_post_success.dart';

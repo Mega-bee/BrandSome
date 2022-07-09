@@ -1,6 +1,7 @@
 import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/module_auth/repository/auth_repository.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/service/auth_service.dart';
@@ -10,8 +11,10 @@ import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:brandsome/setting_module/ui/state/setting_not_logged.dart';
+import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../business_module/request/bussines_filter_request.dart';
@@ -25,11 +28,11 @@ class SettingCubit extends Cubit<States> {
   final SettingRepository _getAccountSetting;
   final AuthRepository _authRepository;
   final AuthService _authService;
-   SettingCubit(this._getAccountSetting, this._authService,this._authRepository)
+  SettingCubit(this._getAccountSetting, this._authService, this._authRepository)
       : super(LoadingState());
 
   getSetting(SettingsScreenState screenState) {
-    if(_authService.isLoggedIn){
+    if (_authService.isLoggedIn) {
       _getAccountSetting.getSet().then((value) {
         if (value == null) {
           emit(ErrorState(
@@ -39,17 +42,16 @@ class SettingCubit extends Cubit<States> {
               }));
         } else if (value.code == 200) {
           GetAccountSetting sett =
-          GetAccountSetting.fromJson(value.data.insideData);
-          emit(SettingSuccess(screenState ,getaccsetting: sett));
+              GetAccountSetting.fromJson(value.data.insideData);
+          emit(SettingSuccess(screenState, getaccsetting: sett));
         }
       });
-    }else{
+    } else {
       emit(SettingNotLogged(screenState));
     }
-
   }
 
-  void requestOtp(SettingsScreenState screenState, OtpRequest request) {
+  requestOtp(SettingsScreenState screenState, OtpRequest request) {
     emit(LoadingAlertState());
     _authRepository.requestOtp(request).then((value) {
       if (value == null) {
@@ -65,17 +67,26 @@ class SettingCubit extends Cubit<States> {
     });
   }
 
-  void verifyOtp(SettingsScreenState screenState,VerifyOtpRequest request) {
+  verifyOtp( SettingsScreenState screenState,VerifyOtpRequest request,) {
     emit(LoadingAlertState());
     _authRepository.verifyOtp(request).then((value) {
-      if(value == null){
+      if (value == null) {
         emit(ErrorAlertState('Somtheing error'));
-      }else if(value.code == 200){
-
-      }else if (value.code != 200){
+      } else if (value.code == 200) {
+        Navigator.pop(screenState.context);
+        String token = value.data.insideData;
+        _authService.setToken(token);
+        Fluttertoast.showToast(
+            msg: 'Your account created Successfuly',
+            backgroundColor: Colors.green);
+        getSetting(screenState);
+        getIt<GlobalStateManager>().update();
+      } else if (value.code != 200) {
         Navigator.pop(screenState.context);
         emit(VerifyOtpState(
-            phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
+            phoneNumber: request.number,
+            screenState: screenState,
+            errorMessage: value.errorMessage));
       }
     });
   }

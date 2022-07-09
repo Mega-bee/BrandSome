@@ -77,12 +77,12 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
 
         body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,
-          buildWhen: (previous, current) => !current.lis,
-          listenWhen: (previous, current) => current.lis,
+          buildWhen: (previous, current) => !current.isListener,
+          listenWhen: (previous, current) => current.isListener,
           builder: (context, state) {
             print(state);
             print('builderr');
-            if (!state.lis) {
+            if (!state.isListener) {
               return state.getUI(context);
             }
             return Container();
@@ -90,7 +90,7 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
           listener: (context, state) {
             print(state);
             print('in Lisssennnerrr');
-            if (state.lis) {
+            if (state.isListener) {
               showDialog(
                   context: context,
                   builder: (context) => state.getAlert(context));

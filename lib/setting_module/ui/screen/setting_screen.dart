@@ -1,4 +1,9 @@
+import 'dart:async';
+
+import 'package:brandsome/di/di_config.dart';
+import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
+import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -18,16 +23,32 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class SettingsScreenState extends State<SettingsScreen> {
-  bool value = false;
+
+  StreamSubscription? _globalStateManager;
+
+
+
   @override
   void initState() {
     super.initState();
     widget.cubit.getSetting(this);
+    _globalStateManager =
+        getIt<GlobalStateManager>().stateStream.listen((event) {
+          if (mounted) {
+            widget.cubit.getSetting(this);
+          }
+        });
   }
+
   void goToLogin(){
     widget.cubit.emit( RequestOtpState(this));
   }
-
+  requestOtp(OtpRequest request){
+    widget.cubit.requestOtp(this ,request);
+  }
+  verifyOtp(VerifyOtpRequest request){
+    widget.cubit.verifyOtp(this ,request);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +63,12 @@ class SettingsScreenState extends State<SettingsScreen> {
 
         body: BlocConsumer<SettingCubit, States>(
           bloc: widget.cubit,
-          buildWhen: (previous, current) => !current.lis,
-          listenWhen: (previous, current) => current.lis,
+          buildWhen: (previous, current) => !current.isListener,
+          listenWhen: (previous, current) => current.isListener,
           builder: (context, state) {
             print(state);
             print('builderr');
-            if (!state.lis) {
+            if (!state.isListener) {
               return state.getUI(context);
             }
             return Container();
@@ -55,7 +76,7 @@ class SettingsScreenState extends State<SettingsScreen> {
           listener: (context, state) {
             print(state);
             print('in Lisssennnerrr');
-            if (state.lis) {
+            if (state.isListener) {
               showDialog(
                   context: context,
                   builder: (context) => state.getAlert(context));
@@ -63,5 +84,11 @@ class SettingsScreenState extends State<SettingsScreen> {
           },
         )
     );
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _globalStateManager?.cancel();
   }
 }

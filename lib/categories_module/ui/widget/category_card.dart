@@ -23,7 +23,7 @@ class _CategoryCardState extends State<CategoryCard> {
     return InkWell(
       onTap: () {
         widget.isSlecteced = !widget.isSlecteced;
-        widget.onCardTap();
+        widget.onCardTap(widget.isSlecteced);
         setState(() {});
       },
       child: Padding(

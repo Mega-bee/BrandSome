@@ -10,28 +10,28 @@ import '../repository/likes_list_repository.dart';
 import '../ui/screen/liked_by_screen.dart';
 import '../ui/state/liked_list_success.dart';
 
-
 @injectable
 class LikedListCubit extends Cubit<States> {
   final LikedList _likedList;
 
   LikedListCubit(this._likedList) : super(LoadingState());
 
-  getLikesList(String? id,LikeByScreenState state) {
+  getLikesList(String? id, LikeByScreenState state) {
+    emit(LoadingState());
     _likedList.getLikedPosts(id).then((value) {
-      if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          getLikesList(id,state);
-        }));
-      }
-      else if (value.code == 200){
-
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getLikesList(id, state);
+            }));
+      } else if (value.code == 200) {
         List<LikedByModel> likes = [];
         for (var item in value.data.insideData) {
           likes.add(LikedByModel.fromJson(item));
         }
         state.likedmodel1 = likes;
-        emit(LikedListSuccess(likes,state));
+        emit(LikedListSuccess(likes, state));
       }
     });
   }

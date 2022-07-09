@@ -1,16 +1,11 @@
 import 'dart:io';
-
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/business_module/business_routes.dart';
-import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
-import 'package:brandsome/setting_module/response/add_location_response.dart';
+import '../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../utils/helpers/image_crop_helper.dart';
-import '../../../business_module/reponse/business_response.dart';
 import '../../reponse/business_response.dart';
 import '../screen/update_business.dart';
 
@@ -201,7 +196,7 @@ class UpdateBusinessSuccess extends States {
                 TextButton(
                   onPressed: () {
                     print("Pushed to location");
-                    Navigator.pushNamed(context, BusinessRoutes.ADD_LOCATION)
+                    Navigator.pushNamed(context, CategoriesRoutes.CITY_LIST_SCREEN)
                         .then((returnedLocation) {
                       selected = returnedLocation as List<AddLocationResponse>;
                       selected.forEach((element) {

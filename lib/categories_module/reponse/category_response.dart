@@ -1,8 +1,9 @@
 class MainCategoryModel {
   int? id;
   String? name;
+  bool? isSelected = false;
   List<SubCategoryModel>  subs = [];
-  MainCategoryModel({required this.id, required this.name , required this.subs});
+  MainCategoryModel({required this.id, required this.name , required this.subs ,this.isSelected});
 
   MainCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -18,8 +19,9 @@ class MainCategoryModel {
 class SubCategoryModel {
   int? id;
   String? name;
+  bool? isSelected = false;
   List<ServiceModel>  services = [];
-  SubCategoryModel({required this.id, required this.name , required this.services});
+  SubCategoryModel({required this.id, required this.name , required this.services,this.isSelected});
 
   SubCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -35,7 +37,8 @@ class SubCategoryModel {
 class ServiceModel {
   int? id;
   String? name;
-  ServiceModel({required this.id, required this.name});
+  bool  isSelected = false;
+  ServiceModel({required this.id, required this.name ,required this.isSelected});
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

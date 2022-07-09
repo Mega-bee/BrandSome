@@ -54,11 +54,10 @@ class BusinessRepositoryDetails {
     var token =   _authService.getToken();
     var Imei = await  _imeiService.initPlatformState();
 
-
     WebServiceResponse? response = await _apiClient.post(
       Urls.BUSINESS_VIEW + "$id",
       {},
-      headers: {'imei':'$Imei'},
+      headers: {'imei':'$Imei','Authorization': 'Bearer ' + '$token'},
     );
     if (response == null) return null;
     return response;

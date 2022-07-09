@@ -1,9 +1,7 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
-import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../module_auth/service/auth_service.dart';
 import '../request/is_like.dart';
 
@@ -25,10 +23,10 @@ class HomeP {
     return response;
   }
   Future<WebServiceResponse?> getHomePage() async {
-//    var token = await _authService.getToken();
+    var token = await _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
       Urls.GET_HOME_PAGE,
-//      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' + '$token'},
     );
     if (response == null) return null;
     return response;
@@ -36,7 +34,6 @@ class HomeP {
 
   Future<WebServiceResponse?> Like(String?id,LikeRequest request) async {
     var token = _authService.getToken();
-
     WebServiceResponse? response = await _apiClient.put(
       Urls.LIKE_HOME + "$id",
       request.toJson(),
@@ -45,7 +42,5 @@ class HomeP {
     if (response == null) return null;
     return response;
   }
-
-
 
 }

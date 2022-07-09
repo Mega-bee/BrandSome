@@ -1,4 +1,5 @@
 import 'package:brandsome/business_module/reponse/business_response.dart';
+import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,40 +14,35 @@ class BusinessCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
-          arguments: {"id":businessCardModel.id.toString(),"name":businessCardModel.name.toString()}
-
-
-          ,
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsetsDirectional.only(start: 5,end: 5),
-        child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Row(
-            children: [
-              Flexible(
-                flex: 1,
-                fit: FlexFit.tight,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                  child: Image.network(
-                    businessCardModel.image ?? '',
-                    fit: BoxFit.cover,
+    return Padding(
+      padding: const EdgeInsetsDirectional.only(start: 5,end: 5),
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Row(
+          children: [
+            Flexible(
+              flex: 1,
+              fit: FlexFit.tight,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                child: SizedBox(
                     height: 120,
-                  ),
-                ),
+                    child: CustomNetworkImage(imageSource: businessCardModel.image ?? '')),
               ),
-              Flexible(
-                flex: 2,
+            ),
+            Flexible(
+              flex: 2,
+              child: InkWell(
+                onTap: (){
+                  Navigator.pushNamed(
+                    context,
+                    BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+                    arguments: {"id":businessCardModel.id.toString(),"name":businessCardModel.name.toString()}
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -157,9 +153,9 @@ class BusinessCard extends StatelessWidget {
                         ],
                       ),
                   ),
-                ),
-            ],
-          ),
+              ),
+              ),
+          ],
         ),
       ),
     );

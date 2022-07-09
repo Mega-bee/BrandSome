@@ -16,13 +16,10 @@ class BusinessDetailsSuccess extends States {
   final BusinessInfoResponse businessInfoModel;
   final bool islogged;
 
-
   BusinessDetailsSuccess(
     this.screenState,
     this.businessInfoModel,
-      this.islogged,
-
-
+    this.islogged,
   ) : super(false);
 
   late TabController tabController =
@@ -35,53 +32,52 @@ class BusinessDetailsSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return  Column(
-        children: [
-          Container(
-            color: Theme.of(context).cardColor,
-            child: TabBar(
-              // unselectedLabelColor: Color(0xffDFDFDF),
-              // labelColor: primaryColor,
-              controller: tabController,
-              indicatorColor: Theme.of(context).primaryColor,
-              unselectedLabelColor: Colors.white,
-              labelColor: Theme.of(context).primaryColor,
-              tabs: [
-                Tab(
-                  text: "Info",
-                ),
-                Tab(
-                  text: "Posts",
-                ),
-                Tab(
-                  text: "Review",
-                ),
-              ],
-            ),
+    return Column(
+      children: [
+        Container(
+          color: Theme.of(context).cardColor,
+          child: TabBar(
+            // unselectedLabelColor: Color(0xffDFDFDF),
+            // labelColor: primaryColor,
+            controller: tabController,
+            indicatorColor: Theme.of(context).primaryColor,
+            unselectedLabelColor: Colors.white,
+            labelColor: Theme.of(context).primaryColor,
+            tabs: [
+              Tab(
+                text: "Info",
+              ),
+              Tab(
+                text: "Posts",
+              ),
+              Tab(
+                text: "Review",
+              ),
+            ],
           ),
-          Container(
-            child: Expanded(
-              child: TabBarView(
-                controller: tabController,
-                children: [
-                  BusinessInfo(
-                    onDeleteClick: (){
+        ),
+        Container(
+          child: Expanded(
+            child: TabBarView(
+              controller: tabController,
+              children: [
+                BusinessInfo(
+                    onDeleteClick: () {
                       showDialog(
                         context: context,
-                        builder: (context) =>
-                            CustomDeleteDialog(
-                              title: "Delete business",
-                              content: "",
-                              yesBtn: () {
-                                screenState.deleteBusiness(businessInfoModel.id.toString());
-                              },
-                              noBtn: () {
-                                Navigator.pop(context);
-                              },
-                            ),
+                        builder: (context) => CustomDeleteDialog(
+                          title: "Delete business",
+                          content: "",
+                          yesBtn: () {
+                            screenState.deleteBusiness(
+                                businessInfoModel.id.toString());
+                          },
+                          noBtn: () {
+                            Navigator.pop(context);
+                          },
+                        ),
                       );
                     },
-
                     isLoggedin: islogged,
                     businessInfoModel: businessInfoModel,
                     onNumberClick: (number) {
@@ -105,42 +101,38 @@ class BusinessDetailsSuccess extends States {
                       }
                     },
                     onFollow: (rahaf) {
-    if (screenState.checkIfLogin()) {
-                      screenState.isfollowing(IsFollower(
-                        isFollow: rahaf,
-                      ));
-                    }
-    else {
-      screenState.loginFirst();
-    }
-    }
-                  ),
-                  BusinessPosts(
-                    onDeletePost: (){
+                      if (screenState.checkIfLogin()) {
+                        screenState.isfollowing(IsFollower(
+                          isFollow: rahaf,
+                        ));
+                      } else {
+                        screenState.loginFirst();
+                      }
+                    }),
+                BusinessPosts(
+                    onDeletePost: () {
                       showDialog(
                         context: context,
-                        builder: (context) =>
-                            CustomDeleteDialog(
-                              title: "Delete Post",
-                              content: "",
-                              yesBtn: () {
-                                screenState.deletePost(businessInfoModel.id.toString());
-
-                              },
-                              noBtn: () {
-                                Navigator.pop(context);
-                              },
-                            ),
+                        builder: (context) => CustomDeleteDialog(
+                          title: "Delete Post",
+                          content: "",
+                          yesBtn: () {
+                            screenState
+                                .deletePost(businessInfoModel.id.toString());
+                          },
+                          noBtn: () {
+                            Navigator.pop(context);
+                          },
+                        ),
                       );
                     },
-                      businessInfoModel: businessInfoModel.posts ?? []),
-                  ReviewScreen(review: businessInfoModel.reviews ?? []),
-                ],
-              ),
+                    businessInfoModel: businessInfoModel.posts ?? []),
+                ReviewScreen(review: businessInfoModel.reviews ?? []),
+              ],
             ),
-          )
-        ],
-      );
-
+          ),
+        )
+      ],
+    );
   }
 }

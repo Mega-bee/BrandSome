@@ -17,55 +17,44 @@ class AddBusiness extends StatefulWidget {
 }
 
 class AddBusinessState extends State<AddBusiness> {
-  late CreateBusinessRequest request;
-
-//  List<AddLocationResponse> selectedLocation = [];
-
   void refresh() {
     if (mounted) {
       setState(() {});
     }
   }
 
-  addBusinessRequest() {
+  addBusinessRequest(CreateBusinessRequest request) {
     widget._addBusinessCubit.addBusiness(request, this);
   }
 
   @override
   void initState() {
     super.initState();
-    request = CreateBusinessRequest(cities: [],services: []);
     widget._addBusinessCubit.emit(AddBusinessInit(this));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-//        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 5,
-        title: Text(
-          "Add business",
-        ),
-        actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: 28.0),
-              child: IconButton(
-                  onPressed: () {
-                    addBusinessRequest();
-                  },
-                  icon: Icon(
-                    Icons.check,
-                    color: Theme.of(context).primaryColor,
-                    size: 30,
-                  ))),
-        ],
-      ),
-      body: BlocBuilder<AddBusinessCubit, States>(
-          bloc: widget._addBusinessCubit,
-          builder: (context, state) {
-            return state.getUI(context);
-          }),
+    return BlocConsumer<AddBusinessCubit, States>(
+      bloc: widget._addBusinessCubit,
+      buildWhen: (previous, current) => !current.isListener,
+      listenWhen: (previous, current) => current.isListener,
+      builder: (context, state) {
+        print(state);
+        print('builderr');
+        if (!state.isListener) {
+          return state.getUI(context);
+        }
+        return Container();
+      },
+      listener: (context, state) {
+        print(state);
+        print('in Lisssennnerrr');
+        if (state.isListener) {
+          showDialog(
+              context: context, builder: (context) => state.getAlert(context));
+        }
+      },
     );
   }
 }

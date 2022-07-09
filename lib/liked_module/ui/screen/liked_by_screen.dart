@@ -35,7 +35,7 @@ class LikeByScreenState extends State<LikeByScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
           child: Text(
@@ -47,13 +47,13 @@ class LikeByScreenState extends State<LikeByScreen> {
       body: BlocConsumer<LikedListCubit, States>(
         bloc: widget.likedListCubit,
         builder: (context, state) {
-          if (!state.lis) {
+          if (!state.isListener) {
             return state.getUI(context);
           }
           return Container();
         },
         listener: (context, state) {
-          if (state.lis) {
+          if (state.isListener) {
             showDialog(
                 context: context,
                 builder: (context) => state.getAlert(context));

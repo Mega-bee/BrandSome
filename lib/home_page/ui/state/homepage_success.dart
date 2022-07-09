@@ -16,8 +16,9 @@ import '../widgets/main_cate_card.dart';
 class HomePageSuccess extends States {
   final HomePageScreenState screenState;
   final List<Post> posthome;
+final  bool isLogged;
 
-  HomePageSuccess(this.screenState, this.posthome) : super(false);
+  HomePageSuccess(this.screenState, this.posthome, this.isLogged) : super(false);
 
   List<CategoryModel> categorys = [
     CategoryModel(id: 1, name: "Personal", selectedCard: true),
@@ -143,14 +144,18 @@ class HomePageSuccess extends States {
             itemCount: posthome.length,
             itemBuilder: (context, index) {
               return PostCard(
+                isLogged: isLogged,
                 onLikeClick: (like){
                   screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString());
                 },
-                  onLikeTap: () {
-                    screenState.goToLikes();
+                  onViewLikeTap: (id) {
+                    screenState.goToLikes(id);
                   },
                   posthome: posthome[index]);
-            })
+            }),
+        SizedBox(
+          height: 55,
+        ),
       ]),
     );
   }

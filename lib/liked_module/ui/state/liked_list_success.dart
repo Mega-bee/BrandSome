@@ -1,8 +1,6 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/liked_module/reponse/get_likes_list_response.dart';
 import 'package:flutter/material.dart';
-
-import '../../../utils/components/Seperator/seperator_doted.dart';
 import '../../../utils/components/costom_search.dart';
 import '../screen/liked_by_screen.dart';
 import '../widget/likes_card.dart';
@@ -11,55 +9,56 @@ class LikedListSuccess extends States {
   final List<LikedByModel> likedmodel;
   final LikeByScreenState likeByScreenState;
 
-  LikedListSuccess(this.likedmodel, this.likeByScreenState) : super(false);
+  LikedListSuccess(this.likedmodel, this.likeByScreenState) : super(false) {
+    likedmodelSearch = likedmodel;
+  }
+
+  List<LikedByModel> likedmodelSearch = [];
 
   @override
   Widget getUI(BuildContext context) {
-
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
-            padding: const EdgeInsetsDirectional.all(20),
+          padding: const EdgeInsets.all(15.0),
+          child: CustomSearch(
+            hintText: 'Search for location',
+            onChanged: (searchText) {
+              searchText = searchText.toLowerCase();
+              print(searchText);
+              print("search test");
+              likedmodelSearch = likedmodel
+                  .where((string) => string.name!
+                      .toLowerCase()
+                      .contains(searchText.toLowerCase()))
+                  .toList();
+              likeByScreenState.refrech();
+            },
+          ),
+        ),
+        Padding(
+            padding: const EdgeInsetsDirectional.only(start: 30, end: 30),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Liked by :",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "${likedmodel.length} ${likedmodel.length == 1 ? "person" : "people"}",
                     style: TextStyle(color: Theme.of(context).primaryColor),
                   )
                 ])),
-        CustomSearch(
-          hintText: 'Search for location',
-          onChanged: (searchText) {
-            searchText = searchText.toLowerCase();
-            print(searchText);
-            print("search test");
-            likeByScreenState.likedmodel1 = likedmodel
-                .where(
-                  (string) => string.name!.toLowerCase().contains(
-                        searchText.toLowerCase(),
-                      ),
-                )
-                .toList();
-            likeByScreenState.refrech();
-          },
-        ),
         ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: likeByScreenState.likedmodel1.length,
+            itemCount: likedmodelSearch.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: LikesCard(likeByScreenState.likedmodel1[index]),
+                child: LikesCard(likedmodelSearch[index]),
               );
             })
       ]),
