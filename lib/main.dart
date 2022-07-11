@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
 import 'package:brandsome/categories_module/categories_module.dart';
@@ -23,6 +24,11 @@ import 'liked_module/liked_list_module.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveSetUp.init();
+
+//  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
+//  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then((_) async {

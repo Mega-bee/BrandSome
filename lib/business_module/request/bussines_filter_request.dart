@@ -1,15 +1,16 @@
 class BusinessFilterRequest {
 
-  // final List<int>? services;
+  List<int>  services =[];
    String? sortBy;
 
-  BusinessFilterRequest({this.sortBy});
-
+  BusinessFilterRequest({required this.services,  this.sortBy});
   Map<String, dynamic> toJson() {
-    return {
-      'sortBy': this.sortBy,
-      // 'services': this.services,
-    };
+    final Map<String, dynamic> data =   Map<String, dynamic>();
+    data['sortBy'] = this.sortBy;
+    if(services.isNotEmpty){
+      data['services']= services ;
+    }
+    return data;
   }
 
 }

@@ -14,21 +14,10 @@ class CategoryListScreen extends StatefulWidget {
 }
 
 class CategoryListScreenState extends State<CategoryListScreen> {
-  final searchbarFilter = TextEditingController();
-
-
-  List<ServiceModel> selectedServiceCa = [];
-
   @override
   void initState() {
     widget._getCategoryListCubit.getCategories(this);
   }
-
-  returnedService() {
-    print("selectedLocation${selectedServiceCa}");
-    Navigator.pop(context, selectedServiceCa);
-  }
-
   void refresh() {
     if (mounted) {
       setState(() {});

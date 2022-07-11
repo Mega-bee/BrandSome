@@ -9,8 +9,7 @@ class Urls {
   static const String BSE_API_SETTINGS = DOMAIN + '/api/Accounts/';
   static const String BSE_API_LOCATION = DOMAIN + '/api/General/';
   static const String BASE_HOME_PAGE = DOMAIN + '/api/Home/';
-
-
+  static const String  HUBS ='https://brandsome.azurewebsites.net/hubs/signalrHub';
 
 //  /*--------Auth-------------------*/
    static const REQUEST_OTP = BSE_API_SETTINGS + 'RequestOtp';
