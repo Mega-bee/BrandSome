@@ -20,14 +20,22 @@ class CreatePostSuccess extends States {
   final description = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
+  final ImagePicker _pickervid = ImagePicker();
   List<ServiceModel> services = [];
   List<AddLocationResponse> selected = [];
   List<XFile> imageFileList = [];
+  List<XFile> videoFileList = [];
 
   Future<List<XFile>?> selectedImages() async {
     final List<XFile>? selectedImages = await _picker.pickMultiImage();
     return selectedImages;
   }
+
+  Future <List<XFile>?> selectedVideos() async {
+    final List<XFile>? selectedVideos= (await _pickervid.pickVideo(source: ImageSource.gallery)) as List<XFile>?;
+    return selectedVideos;
+  }
+
 
   @override
   Widget getUI(BuildContext context) {
@@ -70,6 +78,23 @@ class CreatePostSuccess extends States {
         ),
         SizedBox(
           height: 30,
+        ),
+        IconButton(
+          onPressed: () {
+            selectedVideos().then((value) {
+              if(value == null){
+                return;
+              }else{
+                value.forEach((element) async{
+                  videoFileList.add(element);
+                  state.request.media
+                      .add(await MultipartFile.fromFile(element.path));
+
+                });
+              }
+            });
+          },
+          icon: Icon(Icons.image),
         ),
         Expanded(
           child: GridView.builder(

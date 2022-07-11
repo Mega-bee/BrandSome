@@ -2,7 +2,9 @@ import 'package:brandsome/business_details_module/business_details_route.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
+import '../../../utils/components/cutom_network_image.dart';
 import '../../reponse/business_response.dart';
 
 class BusinessInfo extends StatefulWidget {
@@ -38,11 +40,25 @@ class _BusinessInfoState extends State<BusinessInfo> {
           SizedBox(
             height: 24,
           ),
-          Image.network(
-            widget.businessInfoModel.image.toString(),
-            fit: BoxFit.fill,
-            width: double.infinity,
-            height: 220,
+
+          Container(
+            height: 260,
+            child:CustomNetworkImage(imageSource:  widget.businessInfoModel.image.toString(),
+
+            )
+            // PinchZoom(
+            //   resetDuration: const Duration(milliseconds: 150),
+            //   onZoomStart: () {},
+            //   onZoomEnd: () {},
+            //   zoomEnabled: true,
+            //
+            //   child: Image.network(
+            //     widget.businessInfoModel.image.toString(),
+            //     fit: BoxFit.fitWidth,
+            //     width: double.infinity,
+            //     height: 270,
+            //   ),
+            // ),
           ),
           SizedBox(
             height: 20,

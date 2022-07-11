@@ -52,7 +52,7 @@ class CustomNetworkImage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
                             image: imageProvider,
-                            fit: BoxFit.contain,
+                            fit: BoxFit.fitWidth,
                           ),
                         ),
                       ),
