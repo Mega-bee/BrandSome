@@ -90,4 +90,10 @@ class SettingCubit extends Cubit<States> {
       }
     });
   }
+
+  logout(){
+    _authService.clearToken().then((value) {
+      getIt<GlobalStateManager>().update();
+    });
+  }
 }

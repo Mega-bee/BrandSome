@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:brandsome/abstracts/model/menu_item.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_details_module/business_details_route.dart';
@@ -6,15 +8,16 @@ import 'package:brandsome/business_module/helper/helper_sort_business.dart';
 import 'package:brandsome/business_module/reponse/search_response.dart';
 import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/state_manager/business_list_bloc.dart';
-import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
+import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../utils/global/global_state_manager.dart';
 
 @injectable
 class BusinessScreen extends StatefulWidget {
@@ -29,16 +32,25 @@ class BusinessScreen extends StatefulWidget {
 class BusinessScreenState extends State<BusinessScreen> {
   late BusinessFilterRequest request;
   late List<ItemModel> menuItems;
+  StreamSubscription? _globalStateManager;
 
   String? returnServiceName;
   String? query;
 
+
+  void getBusiness(){
+    widget.cubit.getBusinessList(this,request);
+  }
   @override
   void initState() {
     super.initState();
-//    initSearch();
-//    initUpdate();
     request = BusinessFilterRequest(services: []);
+    _globalStateManager =
+        getIt<GlobalStateManager>().stateStream.listen((event) {
+          if (mounted) {
+            widget.cubit.getBusinessList(this,request);
+          }
+        });
     menuItems = [
       ItemModel(
           'A-Z',
@@ -124,7 +136,7 @@ class BusinessScreenState extends State<BusinessScreen> {
                       ServiceModel vv = value[1] as ServiceModel;
                       request.services = [];
                       request.services.add(vv.id ?? -1);
-                      returnServiceName = vv.name ?? '';
+                      returnServiceName =vv.category.toString() +'/'+vv.name.toString();
                       widget.cubit.getBusinessList(this, request);
                     }
                   }
@@ -134,16 +146,6 @@ class BusinessScreenState extends State<BusinessScreen> {
                 Icons.search,
               ),
             ),
-//            IconButton(
-//              onPressed: () {
-//                Navigator.pushNamed(
-//                    context, CategoriesRoutes.CATEGORY_LIST_SCREEN);
-//              },
-//              icon: Icon(
-//                FontAwesomeIcons.filter,
-//                size: 18,
-//              ),
-//            ),
             CustomMenuDropDown(
               mainIcon: Icons.sort,
               menuItems: menuItems,
@@ -161,11 +163,10 @@ class BusinessScreenState extends State<BusinessScreen> {
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '/${returnServiceName}',
+                            '${returnServiceName}',
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
+                                fontSize: 15),
                           ),
                         )
                       : Container(),

@@ -19,6 +19,7 @@ class BusinessCard extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
       child: Card(
         elevation: 5,
+        color: Theme.of(context).dividerColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),

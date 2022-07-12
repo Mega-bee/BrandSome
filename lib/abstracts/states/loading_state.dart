@@ -21,7 +21,7 @@ class LoadingState extends States {
 
 class LoadingWaitingState extends States {
  final String msg;
-  LoadingWaitingState(this.msg) : super(false);
+  LoadingWaitingState(this.msg) : super(true);
 
   @override
   Widget getUI(BuildContext context) {

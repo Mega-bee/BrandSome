@@ -49,6 +49,9 @@ class SettingsScreenState extends State<SettingsScreen> {
   verifyOtp(VerifyOtpRequest request){
     widget.cubit.verifyOtp(this ,request);
   }
+  void logOut(){
+    widget.cubit.logout();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

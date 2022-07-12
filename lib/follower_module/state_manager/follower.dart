@@ -20,6 +20,7 @@ class FollowersCubit extends Cubit<States> {
   FollowersCubit(this._getAccountFollowers) : super(LoadingState());
 
   getFoll(FollowersState state) {
+    emit(LoadingState());
     _getAccountFollowers.getFollowers().then((value) {
       if(value == null){
         emit(ErrorState(errorMessage: 'Connection error', retry: (){

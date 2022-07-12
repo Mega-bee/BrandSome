@@ -89,8 +89,8 @@ class HomePageCubit extends Cubit<States> {
     if (_authService.isLoggedIn) {
       _homePage.Like(id, request).then((value) {
         if (value!.code == 200) {
-          Fluttertoast.showToast(msg: "Like Post success");
-          print("is foloowowowowowowowowowowowowowowoowowow");
+//         request.isLike ?  Fluttertoast.showToast(msg: "Like Post success"):
+//          Fluttertoast.showToast(msg: "UnLike Post success");
         }
       });
     } else {

@@ -10,8 +10,7 @@ import '../home_page/ui/screen/homePage.dart';
 @injectable
 class PostModule extends RoutModule {
   final CreatePost _createPost;
-  final HomePage _homePage;
-  PostModule(this._createPost,this._homePage) {
+  PostModule(this._createPost) {
     RoutModule.RoutesMap.addAll(getRoutes());
   }
 

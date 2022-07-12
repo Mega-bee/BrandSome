@@ -67,8 +67,9 @@ class BusinessDetailsSuccess extends States {
                         context: context,
                         builder: (context) => CustomDeleteDialog(
                           title: "Delete business",
-                          content: "",
+                          content: "Do you really want\n this business",
                           yesBtn: () {
+                            Navigator.pop(context);
                             screenState.deleteBusiness(
                                 businessInfoModel.id.toString());
                           },

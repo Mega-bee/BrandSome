@@ -8,7 +8,6 @@ import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
 import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
-import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,6 @@ import '../repository/business_repository.dart';
 import '../request/add_review_request.dart';
 import '../request/edit_business_request.dart';
 import '../request/is_follow.dart';
-import '../request/is_follow.dart';
-import '../request/is_follow.dart';
 import '../ui/screen/business_details.dart';
 import '../ui/screen/update_business.dart';
 import '../ui/state/BusinessDetailsSuccess.dart';
@@ -33,54 +30,56 @@ class BusinessListDetailsCubit extends Cubit<States> {
   final AuthRepository _authRepository;
   final AuthService _authService;
 
-  BusinessListDetailsCubit(this._businessRepositoryDetails, this._authRepository, this._authService) : super(LoadingState());
+  BusinessListDetailsCubit(
+      this._businessRepositoryDetails, this._authRepository, this._authService)
+      : super(LoadingState());
 
-  getBusinessDetails(BusnessDetailsScreenState screenstate,String? id) {
+  getBusinessDetails(BusnessDetailsScreenState screenstate, String? id) {
     emit(LoadingState());
     _businessRepositoryDetails.getBusinessDetails(id).then((value) {
-      if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry:(){
-          getBusinessDetails(screenstate,id);
-        }
+      if (value == null) {
+        emit(ErrorState(
+            errorMessage: 'Connection error',
+            retry: () {
+              getBusinessDetails(screenstate, id);
+            }));
+      } else if (value.code == 200) {
+        BusinessInfoResponse businessInfoModel =
+            BusinessInfoResponse.fromJson(value.data.insideData);
+        emit(BusinessDetailsSuccess(
+          screenstate,
+          businessInfoModel,
+          checkIfLogged(),
         ));
       }
-      else if (value.code == 200){
-        BusinessInfoResponse businessInfoModel = BusinessInfoResponse.fromJson(value.data.insideData);
-        emit(BusinessDetailsSuccess(screenstate,businessInfoModel,checkIfLogged(),));
-      }
     });
   }
 
-void ImeiView(BusnessDetailsScreenState screenstate,String? id){
+  void ImeiView(BusnessDetailsScreenState screenstate, String? id) {
     _businessRepositoryDetails.IMEI(id).then((value) {
-      if (value!.code == 200){
+      if (value!.code == 200) {
         print("Imeiiiii seuccess");
       }
-    }
-    );
-}
+    });
+  }
 
-  PostCall(BusnessDetailsScreenState screenstate,String? id,String? number) {
+  PostCall(BusnessDetailsScreenState screenstate, String? id, String? number) {
     _businessRepositoryDetails.PostCall(id).then((value) {
-       if (value!.code == 200){
-
-         launchUrl("tel://${number}.");
+      if (value!.code == 200) {
+        launchUrl("tel://${number}.");
       }
     });
-
   }
-  IsFollow(BusnessDetailsScreenState screenState,IsFollower request,String? id ) {
-    _businessRepositoryDetails.IsFollow(id,request).then((value) {
-      if (value!.code == 200){
 
-        Fluttertoast.showToast(msg: "You Are Followed");
-        print("is foloowowowowowowowowowowowowowowoowowow");
-
+  IsFollow(
+      BusnessDetailsScreenState screenState, IsFollower request, String? id) {
+    _businessRepositoryDetails.IsFollow(id, request).then((value) {
+      if (value!.code == 200) {
+       request.isFollow ?  Fluttertoast.showToast(msg: "Followed Successfully")
+       : Fluttertoast.showToast(msg: "UnFollowed Successfully");
       }
     });
-
   }
-
 
   Future<void> launchUrl(String url) async {
     if (await canLaunch(url)) {
@@ -90,26 +89,25 @@ void ImeiView(BusnessDetailsScreenState screenstate,String? id){
     }
   }
 
-
-void  createReview(AddReviewRequest request,BusnessDetailsScreenState screenState) {
+  void createReview(
+      AddReviewRequest request, BusnessDetailsScreenState screenState) {
     emit(LoadingState());
     _businessRepositoryDetails.AddReview(request).then((value) {
       if (value == null) {
         emit(ErrorState(
-            errorMessage: 'Connection error', retry:(){
-          getBusinessDetails(screenState,request.Bussinessid);
-
-        }));
-      }
-      else if (value.code == 200) {
+            errorMessage: 'Connection error',
+            retry: () {
+              getBusinessDetails(screenState, request.Bussinessid);
+            }));
+      } else if (value.code == 200) {
         print('review add successfully');
-        getBusinessDetails(screenState,request.Bussinessid);
+        getBusinessDetails(screenState, request.Bussinessid);
       }
     });
   }
 
-  bool checkIfLogged(){
-   return _authService.isLoggedIn;
+  bool checkIfLogged() {
+    return _authService.isLoggedIn;
   }
 
   void requestOtp(BusnessDetailsScreenState screenState, OtpRequest request) {
@@ -128,65 +126,71 @@ void  createReview(AddReviewRequest request,BusnessDetailsScreenState screenStat
     });
   }
 
-  void verifyOtp(BusnessDetailsScreenState screenState,VerifyOtpRequest request) {
+  void verifyOtp(
+      BusnessDetailsScreenState screenState, VerifyOtpRequest request) {
     emit(LoadingAlertState());
     _authRepository.verifyOtp(request).then((value) {
-      if(value == null){
+      if (value == null) {
         emit(ErrorAlertState('Somtheing error'));
-      }else if(value.code == 200){
+      } else if (value.code == 200) {
         Navigator.pop(screenState.context);
-        String token =  value.data.insideData;
+        String token = value.data.insideData;
         _authService.setToken(token);
-        Fluttertoast.showToast(msg: 'Your account created Successfuly',backgroundColor: Colors.green);
+        Fluttertoast.showToast(
+            msg: 'Your account created Successfuly',
+            backgroundColor: Colors.green);
         getIt<GlobalStateManager>().update();
-      }else if (value.code != 200){
+      } else if (value.code != 200) {
         Navigator.pop(screenState.context);
         emit(VerifyOtpState(
-            phoneNumber: request.number, screenState: screenState,errorMessage: value.errorMessage));
+            phoneNumber: request.number,
+            screenState: screenState,
+            errorMessage: value.errorMessage));
       }
     });
   }
 
-  void  editBusiness(EditBusinessRequest request,UpdateBusinessState screenstate) {
-    // emit(LoadingState());
+  void editBusiness(
+      EditBusinessRequest request, UpdateBusinessState screenstate) {
+     emit(LoadingWaitingState('wating to update your business'));
     _businessRepositoryDetails.updateBusiness(request).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Error try again");
-      }
-      else if (value.code == 200) {
-        print('review add successfully');
-       Navigator.pop(screenstate.context);
+      } else if (value.code == 200) {
+        getIt<GlobalStateManager>().update();
+        Navigator.pop(screenstate.context);
+        Fluttertoast.showToast(msg: "bussines update successfully", backgroundColor: Colors.green);
+
       }
     });
   }
 
-  void  deleteBusiness(BusnessDetailsScreenState screenstate,String?id) {
-    emit(LoadingState());
+  void deleteBusiness(BusnessDetailsScreenState screenstate, String? id) {
+    emit(LoadingWaitingState('Wating to delete business'));
     _businessRepositoryDetails.deleteBusiness(id).then((value) {
       if (value == null) {
-        Fluttertoast.showToast(msg: "Error try again");
-      }
-      else if (value.code == 200) {
-        print('Business deleted successfully');
-        Fluttertoast.showToast(msg:'Business deleted successfully');
         Navigator.pop(screenstate.context);
+        Fluttertoast.showToast(msg: "Error try again");
+      } else if (value.code == 200) {
+        Navigator.pop(screenstate.context);
+        Navigator.pop(screenstate.context);
+        getIt<GlobalStateManager>().update();
+        Fluttertoast.showToast(msg: 'Business deleted successfully');
+
       }
     });
   }
 
-  void  deletePost(BusnessDetailsScreenState screenstate,String?id) {
+  void deletePost(BusnessDetailsScreenState screenstate, String? id) {
     emit(LoadingState());
     _businessRepositoryDetails.deletePost(id).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Error try again");
-      }
-      else if (value.code == 200) {
+      } else if (value.code == 200) {
         print('Post deleted successfully');
-        Fluttertoast.showToast(msg:'Post deleted successfully');
+        Fluttertoast.showToast(msg: 'Post deleted successfully');
         Navigator.pop(screenstate.context);
       }
     });
   }
 }
-
-

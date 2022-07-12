@@ -1,5 +1,6 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/reponse/business_response.dart';
+import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/ui/screen/business_screen.dart';
 import 'package:brandsome/business_module/ui/widget/business_card.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,17 @@ class BusinessListSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return  ListView(
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      children:getBussCard() ,
+    return  RefreshIndicator(
+      onRefresh: ()async{
+        _screenState.request =  BusinessFilterRequest(services: []);
+        _screenState.query='';
+        _screenState.returnServiceName=null;
+        _screenState.getBusiness();
+      },
+      child: ListView(
+        physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        children:getBussCard() ,
+      ),
     );
   }
   List<Widget> getBussCard() {
@@ -30,7 +39,7 @@ class BusinessListSuccess extends States {
         widgets.add(BusinessCard(element));
       }
     }
-    widgets.add(SizedBox(height: 75));
+    widgets.add(SizedBox(height: 30));
     return widgets;
   }
   @override

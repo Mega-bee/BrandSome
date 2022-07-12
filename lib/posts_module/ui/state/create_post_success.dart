@@ -1,16 +1,11 @@
 import 'dart:io';
 
-import 'package:dio/src/multipart_file.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../abstracts/states/state.dart';
-import '../../../business_module/business_routes.dart';
 import '../../../categories_module/reponse/category_response.dart';
 import '../../../categories_module/reponse/add_location_response.dart';
-import '../../../home_page/home_route.dart';
 import '../screen/createPost.dart';
 
 class CreatePostSuccess extends States {
