@@ -10,26 +10,30 @@ import '../../request/business_follow_card_request.dart';
 class BusinessListSuccess extends States {
   final List<BusinessResponse> business;
   final BusinessScreenState _screenState;
-  // final bool islogged;
+  final bool islogged;
 
-  BusinessListSuccess(this._screenState,{required this.business,})
-      : super(false);
+  BusinessListSuccess(
+    this._screenState,
+    this.islogged, {
+    required this.business,
+  }) : super(false);
 
   @override
   Widget getUI(BuildContext context) {
-    return  RefreshIndicator(
-      onRefresh: ()async{
-        _screenState.request =  BusinessFilterRequest(services: []);
-        _screenState.query='';
-        _screenState.returnServiceName=null;
+    return RefreshIndicator(
+      onRefresh: () async {
+        _screenState.request = BusinessFilterRequest(services: []);
+        _screenState.query = '';
+        _screenState.returnServiceName = null;
         _screenState.getBusiness();
       },
       child: ListView(
         physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-        children:getBussCard() ,
+        children: getBussCard(),
       ),
     );
   }
+
   List<Widget> getBussCard() {
     List<Widget> widgets = [];
     if (business == null) {
@@ -43,13 +47,20 @@ class BusinessListSuccess extends States {
           continue;
         }
         widgets.add(
-          BusinessCard( onFollowClick: (isSelected){
-            _screenState.followc(IsFollowCard(isFollow:isSelected),element.id.toString());
-          },
-            businessCardModel:element,
+          BusinessCard(
+            onFollowClick: (isSelected) {
+              if (_screenState.checkIfLogin()) {
+                _screenState.followc(
+                  IsFollowCard(isFollow: isSelected),
+                  element.id.toString(),
+                );
+              } else {
+                _screenState.loginFirst();
+              }
+            },
+            businessCardModel: element,
             screenState: _screenState,
-            // isLoggedin: islogged,
-
+            isLoggedin: islogged,
           ),
         );
       }
@@ -57,6 +68,7 @@ class BusinessListSuccess extends States {
     widgets.add(SizedBox(height: 30));
     return widgets;
   }
+
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
