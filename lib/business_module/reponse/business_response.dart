@@ -8,6 +8,7 @@ class BusinessResponse {
   String? image;
   int? id;
   String? name;
+  bool? isFollowed;
 
   BusinessResponse({
     this.description,
@@ -19,10 +20,12 @@ class BusinessResponse {
     this.id,
     this.name,
     this.city,
+    this.isFollowed,
   });
 
   BusinessResponse.fromJson(Map<String, dynamic> json) {
     description = json['description'];
+    isFollowed = json['isFollowed'];
     viewCount = json['viewCount'];
     postCount = json['postCount'];
     reviewCount = json['reviewCount'];

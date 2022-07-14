@@ -109,8 +109,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i24.AddBusinessCubit(get<_i12.BusinessRepository>()));
   gh.factory<_i25.AddLocationScreen>(
       () => _i25.AddLocationScreen(get<_i17.GeneralDataCubit>()));
-  gh.factory<_i26.BusinessListCubit>(
-      () => _i26.BusinessListCubit(get<_i12.BusinessRepository>()));
+  gh.factory<_i26.BusinessListCubit>(() => _i26.BusinessListCubit(
+      get<_i12.BusinessRepository>(), get<_i6.AuthService>()));
   gh.factory<_i27.BusinessListDetailsCubit>(() => _i27.BusinessListDetailsCubit(
       get<_i13.BusinessRepositoryDetails>(),
       get<_i11.AuthRepository>(),

@@ -16,6 +16,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../request/business_follow_card_request.dart';
+
 @injectable
 class BusinessScreen extends StatefulWidget {
   final BusinessListCubit cubit;
@@ -34,6 +36,11 @@ class BusinessScreenState extends State<BusinessScreen> {
   String? query;
 
   @override
+
+  followc(IsFollowCard request,String?id){
+    widget.cubit.FollowCardState(request,id);
+  }
+
   void initState() {
     super.initState();
 //    initSearch();

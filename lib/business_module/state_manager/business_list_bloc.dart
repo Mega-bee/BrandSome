@@ -11,15 +11,20 @@ import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/business_module/ui/screen/business_screen.dart';
 import 'package:brandsome/business_module/ui/state/business_list_success.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
+import '../../module_auth/service/auth_service.dart';
+import '../request/business_follow_card_request.dart';
+
 @injectable
 class BusinessListCubit extends Cubit<States> {
   final BusinessRepository _businessRepository;
+  final AuthService _authService;
 
-  BusinessListCubit(this._businessRepository) : super(LoadingState());
+  BusinessListCubit(this._businessRepository,this._authService) : super(LoadingState());
 
   final PublishSubject<SearchResponse> _stateSubject =
       PublishSubject();
@@ -44,7 +49,9 @@ class BusinessListCubit extends Cubit<States> {
       }
     });
   }
-
+  bool checkIfLogged(){
+    return _authService.isLoggedIn;
+  }
   initConnectFirstTime() async {
     print('iniiit Connect');
 
@@ -74,5 +81,21 @@ class BusinessListCubit extends Cubit<States> {
     print('${valueMap}');
     SearchResponse vv = SearchResponse.fromJson(valueMap);
     _stateSubject.add(vv);
+  }
+
+
+  FollowCardState(IsFollowCard request,String? id, ) {
+    _businessRepository.FollowCard(id,request).then((value) {
+      if (value == null) {
+        Fluttertoast.showToast(msg: "Error try again later");
+
+      }
+      else if (value.code == 200){
+
+        Fluttertoast.showToast(msg: "You Are Followed");
+        print("follow card");
+      }
+    });
+
   }
 }

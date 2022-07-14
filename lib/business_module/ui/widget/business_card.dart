@@ -7,11 +7,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../business_details_module/business_details_route.dart';
+import '../screen/business_screen.dart';
 
-class BusinessCard extends StatelessWidget {
+class BusinessCard extends StatefulWidget {
   final BusinessResponse businessCardModel;
+  final Function onFollowClick;
+  final BusinessScreenState screenState;
 
-  BusinessCard(this.businessCardModel);
+  // final bool isLoggedin;
+  BusinessCard(
+      {required this.businessCardModel,
+      required this.onFollowClick,
+      required this.screenState});
+
+  @override
+  State<BusinessCard> createState() => _BusinessCardState();
+}
+
+class _BusinessCardState extends State<BusinessCard> {
+  bool isSelected = true;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +44,7 @@ class BusinessCard extends StatelessWidget {
               child: SizedBox(
                 height: 120,
                 child: CachedNetworkImage(
-                  imageUrl: businessCardModel.image ?? '',
+                  imageUrl: widget.businessCardModel.image ?? '',
                   imageBuilder: (context, imageProvider) => Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
@@ -38,7 +52,8 @@ class BusinessCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  placeholder: (context, url) => CircularProgressIndicator(strokeWidth: 1),
+                  placeholder: (context, url) =>
+                      CircularProgressIndicator(strokeWidth: 1),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
@@ -50,8 +65,8 @@ class BusinessCard extends StatelessWidget {
                   Navigator.pushNamed(
                       context, BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
                       arguments: {
-                        "id": businessCardModel.id.toString(),
-                        "name": businessCardModel.name.toString()
+                        "id": widget.businessCardModel.id.toString(),
+                        "name": widget.businessCardModel.name.toString()
                       });
                 },
                 child: Padding(
@@ -63,13 +78,14 @@ class BusinessCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            businessCardModel.name ?? "",
+                            widget.businessCardModel.name ?? "",
                             style: TextStyle(fontSize: 17),
                             // style:Theme.of(context).textTheme.titleMedium,
                           ),
                           Row(
                             children: [
-                              Text(businessCardModel.viewCount.toString()),
+                              Text(widget.businessCardModel.viewCount
+                                  .toString()),
                               SizedBox(
                                 width: 5,
                               ),
@@ -85,7 +101,7 @@ class BusinessCard extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        businessCardModel.description ?? "",
+                        widget.businessCardModel.description ?? "",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
 //                            softWrap: true,
@@ -104,7 +120,7 @@ class BusinessCard extends StatelessWidget {
                           // ),
                           Expanded(
                             child: Wrap(
-                                children: businessCardModel.city!
+                                children: widget.businessCardModel.city!
                                     .map(
                                       (e) => Text(
                                         "${e.name} ",
@@ -135,7 +151,7 @@ class BusinessCard extends StatelessWidget {
                                   width: 6,
                                 ),
                                 Text(
-                                  "${businessCardModel.followCount}",
+                                  "${widget.businessCardModel.followCount}",
                                 ),
                               ],
                             ),
@@ -148,19 +164,76 @@ class BusinessCard extends StatelessWidget {
                                   width: 6,
                                 ),
                                 Text(
-                                  "${businessCardModel.reviewCount}",
+                                  "${widget.businessCardModel.reviewCount}",
                                 ),
                               ],
                             ),
                             Row(
                               children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add_business_outlined,
-                                    color: Colors.white70,
-                                  ),
-                                )
+                                ElevatedButton(
+                                    child: widget.businessCardModel.isFollowed!
+                                        ? Padding(
+                                            padding: const EdgeInsets.all(1.0),
+                                            child: Text(
+                                              "Unfollow",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Theme.of(context)
+                                                      .primaryColor),
+                                            ),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(1.0),
+                                            child: Text(
+                                              "  Follow  ",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.normal,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                    style: widget.businessCardModel.isFollowed!
+                                        ? ElevatedButton.styleFrom(
+                                            primary: Colors.black,
+                                            padding: EdgeInsetsDirectional.only(
+                                              end: 20,
+                                              start: 20,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                    width: 1,
+                                                    color: Theme.of(context)
+                                                        .primaryColor),
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                          )
+                                        : ElevatedButton.styleFrom(
+                                            primary:
+                                                Theme.of(context).primaryColor,
+                                            padding: EdgeInsetsDirectional.only(
+                                              end: 20,
+                                              start: 20,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                side: BorderSide(
+                                                    width: 0,
+                                                    color: Colors.transparent),
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                          ),
+                                    onPressed: () {
+                                      widget.businessCardModel.isFollowed =
+                                          !widget.businessCardModel.isFollowed!;
+                                      setState(() {});
+                                      widget.onFollowClick(
+                                          widget.businessCardModel.isFollowed,);
+                                    }),
+                                // IconButton(
+                                //   onPressed: () {},
+                                //   icon: Icon(
+                                //     Icons.add_business_outlined,
+                                //     color: Colors.white70,
+                                //   ),
+                                // )
                               ],
                             )
                           ],
