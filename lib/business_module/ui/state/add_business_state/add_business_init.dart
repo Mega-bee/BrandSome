@@ -21,7 +21,6 @@ import 'package:photofilters/photofilters.dart';
 import 'package:image/image.dart' as imageLib;
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../../../filter/filter.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
@@ -386,11 +385,11 @@ class AddBusinessInit extends States {
                   SizedBox(
                     height: 12,
                   ),
-                  IconButton( onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MyApp(),
-                    ));
-                  }, icon: Icon(Icons.height,color: Colors.white,)),
+                  // IconButton( onPressed: () {
+                  //   Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => MyApp(),
+                  //   ));
+                  // }, icon: Icon(Icons.height,color: Colors.white,)),
                   // SERVICE
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
