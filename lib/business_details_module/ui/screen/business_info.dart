@@ -74,7 +74,8 @@ class _BusinessInfoState extends State<BusinessInfo> {
                    if (widget.isLoggedin){
                      widget.businessInfoModel.isFollow =
                      !widget.businessInfoModel.isFollow!;
-                     setState(() {});}
+                     setState(() {});
+                   }
 
                     widget.onFollow(widget.businessInfoModel.isFollow);
 

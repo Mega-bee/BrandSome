@@ -17,7 +17,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../module_auth/request/otp_request.dart';
+import '../../../module_auth/ui/state/request_otp_alert_state.dart';
 import '../../../utils/global/global_state_manager.dart';
+
+import '../../request/business_follow_card_request.dart';
 
 @injectable
 class BusinessScreen extends StatefulWidget {
@@ -37,20 +41,24 @@ class BusinessScreenState extends State<BusinessScreen> {
   String? returnServiceName;
   String? query;
 
-
-  void getBusiness(){
-    widget.cubit.getBusinessList(this,request);
+  void getBusiness() {
+    widget.cubit.getBusinessList(this, request);
   }
+
   @override
+  followc(IsFollowCard request, String? id) {
+    widget.cubit.FollowCardState(request, id);
+  }
+
   void initState() {
     super.initState();
     request = BusinessFilterRequest(services: []);
     _globalStateManager =
         getIt<GlobalStateManager>().stateStream.listen((event) {
-          if (mounted) {
-            widget.cubit.getBusinessList(this,request);
-          }
-        });
+      if (mounted) {
+        widget.cubit.getBusinessList(this, request);
+      }
+    });
     menuItems = [
       ItemModel(
           'A-Z',
@@ -101,12 +109,26 @@ class BusinessScreenState extends State<BusinessScreen> {
     widget.cubit.getBusinessList(this, request);
     widget.cubit.initConnectFirstTime();
   }
-  void refresh(){
-    if(mounted){
-      setState(() {
 
-      });
+  void refresh() {
+    if (mounted) {
+      setState(() {});
     }
+  }
+
+  requestOtp(OtpRequest request) {
+    widget.cubit.requestOtp(this, request);
+  }
+
+  verifyOtp(VerifyOtpRequest request) {
+    widget.cubit.verifyOtp(this, request);
+  }
+
+  bool checkIfLogin() {
+    return widget.cubit.checkIfLogged();
+  }
+  loginFirst() {
+    widget.cubit.emit(RequestOtpState(this));
   }
 
   @override
@@ -136,7 +158,8 @@ class BusinessScreenState extends State<BusinessScreen> {
                       ServiceModel vv = value[1] as ServiceModel;
                       request.services = [];
                       request.services.add(vv.id ?? -1);
-                      returnServiceName =vv.category.toString() +'/'+vv.name.toString();
+                      returnServiceName =
+                          vv.category.toString() + '/' + vv.name.toString();
                       widget.cubit.getBusinessList(this, request);
                     }
                   }
@@ -152,8 +175,20 @@ class BusinessScreenState extends State<BusinessScreen> {
             ),
           ],
         ),
-        body: BlocBuilder<BusinessListCubit, States>(
+        body: BlocConsumer<BusinessListCubit, States>(
             bloc: widget.cubit,
+            buildWhen: (previous, current) => !current.isListener,
+            listenWhen: (previous, current) => current.isListener,
+            listener: (context, state) {
+              print(state);
+              print('in Lisssennnerrr');
+              if (state.isListener) {
+                showDialog(
+                    context: context,
+                    builder: (context) => state.getAlert(context));
+              }
+
+            },
             builder: (context, state) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
