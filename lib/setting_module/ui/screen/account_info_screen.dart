@@ -1,4 +1,5 @@
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
+import 'package:brandsome/setting_module/request/update_profile_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -19,7 +20,6 @@ class AccountInfoScreen extends StatefulWidget {
 }
 
 class AccountInfoScreenState extends State<AccountInfoScreen> {
-  late AccountResponse accountModel;
 
   void refresh() {
     if (mounted) {
@@ -29,38 +29,18 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
 
   @override
   void initState() {
-    accountModel = AccountResponse();
     widget.cubit.getAccount(this);
   }
 
+  goToEditScreen(AccountResponse model){
+    widget.cubit.emit(EditAccountInit(model , screenState: this ));
+  }
+  updateProfile(UpdateProfileRequest request){
+    widget.cubit.updateProfile(this, request);
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 5,
-          title: Text(
-            "Account Info",
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.only(end: 10.0),
-              child: IconButton(
-                onPressed: () {
-                  widget.cubit.emit(EditAccountInit(accountModel,
-                      screenState: this, onSaveClick: (request) {
-                    widget.cubit.updateProfile(this, request);
-                  }));
-                },
-                icon: Icon(
-                  Icons.edit,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-        body: BlocConsumer<AccountCubit, States>(
+    return  BlocConsumer<AccountCubit, States>(
           bloc: widget.cubit,
           buildWhen: (previous, current) => !current.isListener,
           listenWhen: (previous, current) => current.isListener,
@@ -81,6 +61,6 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
                   builder: (context) => state.getAlert(context));
             }
           },
-        ));
+        );
   }
 }

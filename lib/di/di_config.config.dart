@@ -128,8 +128,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       get<_i11.AuthRepository>(),
       get<_i14.CreatePostRepo>()));
   gh.factory<_i33.Followers>(() => _i33.Followers(get<_i16.FollowersCubit>()));
-  gh.factory<_i34.HomePage>(
-      () => _i34.HomePage(cubit: get<_i19.HomePageCubit>()));
+  gh.factory<_i34.HomePage>(() => _i34.HomePage(
+      cubit: get<_i19.HomePageCubit>(), authService: get<_i6.AuthService>()));
   gh.factory<_i35.LikeByScreen>(
       () => _i35.LikeByScreen(likedListCubit: get<_i21.LikedListCubit>()));
   gh.factory<_i36.LikedListModule>(
@@ -157,8 +157,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i46.FollowerModule>(
       () => _i46.FollowerModule(get<_i33.Followers>()));
   gh.factory<_i47.HomeModule>(() => _i47.HomeModule(get<_i34.HomePage>()));
-  gh.factory<_i48.PostModule>(
-      () => _i48.PostModule(get<_i45.CreatePost>(), get<_i34.HomePage>()));
+  gh.factory<_i48.PostModule>(() => _i48.PostModule(get<_i45.CreatePost>()));
   gh.factory<_i49.SettingModule>(() => _i49.SettingModule(
       get<_i38.SettingsScreen>(), get<_i41.AccountInfoScreen>()));
   gh.factory<_i50.MyApp>(() => _i50.MyApp(

@@ -1,7 +1,7 @@
 class LikeRequest {
-  bool? isLike;
+  bool  isLike;
 
-  LikeRequest({this.isLike});
+  LikeRequest({required this.isLike});
 
   Map<String, dynamic> toJson() {
     return {

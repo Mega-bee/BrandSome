@@ -105,7 +105,7 @@ class VerifyOtpState extends States{
              Navigator.pop(context);
              screenState.verifyOtp(VerifyOtpRequest(number: phoneNumber,otp:otpController.text ));
            },
-           child: Text("Verify"),
+           child: Text("Verify",style: TextStyle(color: Colors.white),),
            style: ElevatedButton.styleFrom(
                primary: Theme.of(context).primaryColor,
                padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),

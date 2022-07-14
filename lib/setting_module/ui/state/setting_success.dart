@@ -1,14 +1,14 @@
 import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
+import 'package:brandsome/utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
-
 import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
-import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../response/settings_response.dart';
@@ -23,6 +23,8 @@ class SettingSuccess extends States {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListView(
+        physics:const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics()),
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Padding(
@@ -120,10 +122,11 @@ class SettingSuccess extends States {
                 return InkWell(
                   onTap: (){
                     Navigator.pushNamed(
-                      context,
-                      BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
-                      arguments: getaccsetting.businesses![index].id.toString(),
-                    );
+                        context, BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+                        arguments: {
+                          "id": getaccsetting.businesses?[index].id.toString(),
+                          "name": getaccsetting.businesses?[index].name.toString()
+                        });
                   },
                   child: Padding(
                     padding: const EdgeInsetsDirectional.only(
@@ -316,8 +319,53 @@ class SettingSuccess extends States {
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 5,
           ),
+
+          InkWell(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => CustomDeleteDialog(
+                  title: "LogOut",
+                  content: "Do you really want to logout",
+                  yesBtn: () {
+                    Navigator.pop(context);
+                    _settingsScreenState.logOut();
+                  },
+                  noBtn: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              );
+
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 18.0,
+                right: 30,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.powerOff,
+                      ),
+                      SizedBox(
+                        width: 27,
+                      ),
+                      Text(
+                        "Logout",style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Spacer(),
+                ],
+              ),
+            ),
+          )  ,
           Divider(
             thickness: 2,
           ),

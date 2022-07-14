@@ -19,18 +19,17 @@ class AddBusinessCubit extends Cubit<States> {
   AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
   addBusiness(CreateBusinessRequest request,AddBusinessState businessState) {
-    emit(LoadingWaitingState('Wating to add your bussiness'));
+    emit(LoadingWaitingState('Wating to add bussiness'));
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){
-        emit(ErrorState(errorMessage: 'Connection error', retry: (){
-          addBusiness(request,businessState);
-        }));
+        Navigator.pop(businessState.context);
+        Fluttertoast.showToast(msg: 'somthing wrong',backgroundColor: Colors.red);
       }
       else if (value.code == 200){
         getIt<GlobalStateManager>().update();
         Navigator.pop(businessState.context);
+        Navigator.pop(businessState.context);
         Fluttertoast.showToast(msg: 'Bussiness add Successfully',backgroundColor: Colors.green);
-
       }
     });
   }

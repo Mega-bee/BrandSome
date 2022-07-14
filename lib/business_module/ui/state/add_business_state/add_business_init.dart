@@ -7,6 +7,7 @@ import 'package:brandsome/business_module/request/create_business_request.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
@@ -43,15 +44,25 @@ class AddBusinessInit extends States {
             padding: const EdgeInsetsDirectional.only(end: 15),
             child: InkWell(
                 onTap: () {
-                  request.businessDescription = description.text;
-                  request.businessName = business.text;
-                  request.businessPhoneNumber = phoneNumber.text;
-                  request.images = imageForUpload;
-                  selectedLoca.forEach(
-                      (element) => request.cities.add(element.id ?? -1));
-                  selectedServices.forEach(
-                          (element) => request.services.add(element.id ?? -1));
-                  addBusinessState.addBusinessRequest(request);
+                  if(_formKeyBusiness.currentState!.validate()){
+                    if(imageForUpload != null){
+                      if(selectedServices.isNotEmpty && selectedLoca.isNotEmpty ){
+                        request.businessDescription = description.text;
+                        request.businessName = business.text;
+                        request.businessPhoneNumber = phoneNumber.text;
+                        request.images = imageForUpload;
+                        selectedLoca.forEach(
+                                (element) => request.cities.add(element.id ?? -1));
+                        selectedServices.forEach(
+                                (element) => request.services.add(element.id ?? -1));
+                        addBusinessState.addBusinessRequest(request);
+                      }else{
+                        Fluttertoast.showToast(msg: 'Select cities and services',backgroundColor: Theme.of(context).errorColor);
+                      }
+                    }else{
+                      Fluttertoast.showToast(msg: 'Select Image Please',backgroundColor: Theme.of(context).errorColor);
+                    }
+                  }
                 },
                 child: Icon(
                   Icons.check,
@@ -103,7 +114,7 @@ class AddBusinessInit extends States {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(25),
                                         color: Theme.of(context)
-                                            .scaffoldBackgroundColor),
+                                            .dialogBackgroundColor),
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Column(
@@ -198,6 +209,9 @@ class AddBusinessInit extends States {
                   ),
                   TextFormField(
                     controller: business,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                    value!.isEmpty ? "fill the field" : null,
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -205,6 +219,9 @@ class AddBusinessInit extends States {
                   ),
                   TextFormField(
                     controller: description,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                    value!.isEmpty ? "fill the field" : null,
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -213,7 +230,11 @@ class AddBusinessInit extends States {
                   TextFormField(
                     keyboardType: TextInputType.phone,
                     controller: phoneNumber,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    maxLength: 8,
                     autofocus: false,
+                    validator: (value) =>
+                    value!.isEmpty ? "fill the field" : null,
                   ),
                   SizedBox(height: 20),
                   // CITY

@@ -23,6 +23,9 @@ class AuthService {
   String? getToken() {
     return _prefsHelper.getToken();
   }
+  Future<void> clearToken() async{
+    await  _prefsHelper.clearToken();
+  }
 }
 
 @injectable

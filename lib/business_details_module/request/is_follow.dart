@@ -1,12 +1,11 @@
 class IsFollower {
 
-  bool? isFollow;
+  bool  isFollow;
 
-  IsFollower({this.isFollow});
+  IsFollower({required this.isFollow});
 
   Map<String, dynamic> toJson() {
     return {
-
       'IsFollow': this.isFollow,
     };
   }

@@ -5,12 +5,15 @@ import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/home_page/state_manager/home_page_state_manager.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
+import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/posts_module/post_route.dart';
 import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../request/is_like.dart';
@@ -18,7 +21,9 @@ import '../../request/is_like.dart';
 @injectable
 class HomePage extends StatefulWidget {
   final HomePageCubit cubit;
-  const HomePage({required this.cubit});
+  final AuthService  authService;
+
+  HomePage({required this.cubit,required this.authService});
 
   @override
   State<HomePage> createState() => HomePageScreenState();
@@ -91,10 +96,11 @@ class HomePageScreenState extends State<HomePage>
                 Icons.search,
               ),
             ),
-            CustomMenuDropDown(
-              mainIcon: Icons.add_circle_outline,
-              menuItems: menuItems,
-            ),
+
+//            CustomMenuDropDown(
+//              mainIcon: Icons.add_circle_outline,
+//              menuItems: menuItems,
+//            ),
             Padding(
               padding: const EdgeInsets.only(right: 10.0),
               child: IconButton(

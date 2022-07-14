@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomDeleteDialog extends StatefulWidget {
+class CustomDeleteDialog extends StatelessWidget {
   final String title;
   final String content;
   final Function yesBtn;
@@ -13,15 +12,6 @@ class CustomDeleteDialog extends StatefulWidget {
     required this.yesBtn,
     required this.noBtn,
   });
-
-  @override
-  State<CustomDeleteDialog> createState() => _CustomDeleteDialog();
-}
-
-class _CustomDeleteDialog extends State<CustomDeleteDialog> {
-  final username = TextEditingController();
-  final phonenumber = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -34,11 +24,8 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
             ),
             Container(
               child: Text(
-                widget.title,
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "BerlinSansFB"),
+                title,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -48,8 +35,10 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Are you sure you want\n "
-                "to delete your account? ",style: TextStyle(fontSize: 13),),
+            Text(
+              content,
+              style: TextStyle(fontSize: 14),
+            ),
             SizedBox(
               height: 50,
             ),
@@ -59,19 +48,26 @@ class _CustomDeleteDialog extends State<CustomDeleteDialog> {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      widget.yesBtn();
+                      yesBtn();
                     },
-                    child: Text("  Yes  ",style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.w400,fontSize: 12)),
+                    child: Text("  Yes  ",
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12)),
                     style: ElevatedButton.styleFrom(
-                         elevation: 0,
-                        side: BorderSide(color:Theme.of(context).primaryColor ),
+                        elevation: 0,
+                        side: BorderSide(color: Theme.of(context).primaryColor),
                         padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      widget.noBtn();
+                      noBtn();
                     },
-                    child: Text("Cancel",style: TextStyle(fontSize: 12),),
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(fontSize: 12),
+                    ),
                     style: ElevatedButton.styleFrom(
 //                        primary: primaryColor,
                         elevation: 0,

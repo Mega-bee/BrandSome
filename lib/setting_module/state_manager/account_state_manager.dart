@@ -31,9 +31,9 @@ class AccountCubit extends Cubit<States> {
               getAccount(screenState);
             }));
       } else if (value.code == 200) {
-        screenState.accountModel =
+        AccountResponse accountModel =
             AccountResponse.fromJson(value.data.insideData);
-        emit(AccountSuccess(accountModel: screenState.accountModel));
+        emit(AccountSuccess(screenState,accountModel: accountModel));
       }
     });
     }else{
