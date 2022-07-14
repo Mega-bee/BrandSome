@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:async';
 import 'package:badges/badges.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/business_routes.dart';
@@ -9,10 +9,19 @@ import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:photofilters/filters/preset_filters.dart';
+import 'package:photofilters/widgets/photo_filter.dart';
 import '../../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
+import 'package:photofilters/photofilters.dart';
+import 'package:image/image.dart' as imageLib;
+import 'package:path/path.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../../filter/filter.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
@@ -29,9 +38,47 @@ class AddBusinessInit extends States {
   List<ServiceModel> selectedServices = [];
   File? _pickImage;
   MultipartFile? imageForUpload;
+  final picker = ImagePicker();
+  String? fileName;
+
+
 
   CreateBusinessRequest request =
       CreateBusinessRequest(cities: [], services: []);
+  Future getImage(context) async {
+    print("chrisssssssssssssssssssssssssssssssssssssssss");
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if(pickedFile!=null) {
+      _pickImage = new File(pickedFile.path);
+      fileName = basename(_pickImage!.path);
+      var image = imageLib.decodeImage(await _pickImage!.readAsBytes());
+      image = imageLib.copyResize(image!, width: 600);
+      Map imagefile = await Navigator.push(
+        context,
+        new MaterialPageRoute(
+          builder: (context) =>
+          new PhotoFilterSelector(
+            title: Text("Photo Filter"),
+            image: image!,
+            filters: presetFiltersList,
+            filename: fileName!,
+            appBarColor: Colors.black,
+
+            loader: Center(child: CircularProgressIndicator()),
+            fit: BoxFit.contain,
+          ),
+        ),
+      );
+
+      if (imagefile != null && imagefile.containsKey('image_filtered')) {
+
+        imageForUpload = imagefile['image_filtered'];
+
+        addBusinessState.refresh();
+        Navigator.pop(context);
+      }
+    }
+  }
 
   @override
   Widget getUI(BuildContext context) {
@@ -89,16 +136,17 @@ class AddBusinessInit extends States {
                       ? Image.file(_pickImage!,
                           fit: BoxFit.cover, width: 150, height: 150)
                       : Image.network(
-                          "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
-                          fit: BoxFit.cover,
-                          width: 150,
-                          height: 150,
+"https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg"
+                          ,fit: BoxFit.cover,
+
+                          width: 350,
+                          height: 200,
                         ),
                 ),
               ),
               Positioned(
-                  top: 130,
-                  left: 110,
+                  top: 200,
+                  left: 310,
                   child: RawMaterialButton(
                     onPressed: () {
                       showModalBottomSheet(
@@ -129,6 +177,7 @@ class AddBusinessInit extends States {
                                                   await ImageCropHelper
                                                           .pickImageFromCamera()
                                                       .then((pickedFile) async {
+
                                                     if (pickedFile == null)
                                                       return;
                                                     _pickImage =
@@ -137,6 +186,7 @@ class AddBusinessInit extends States {
                                                         await MultipartFile
                                                             .fromFile(pickedFile
                                                                 .path);
+
 
                                                     addBusinessState.refresh();
                                                   });
@@ -156,24 +206,22 @@ class AddBusinessInit extends States {
                                                 style: TextButton.styleFrom(
                                                     shape: StadiumBorder()),
                                                 onPressed: () async {
-                                                  Navigator.pop(context);
-                                                  await ImageCropHelper
-                                                          .pickImageFromGallery()
-                                                      .then((pickedFile) async {
-                                                    if (pickedFile == null)
-                                                      return;
-                                                    _pickImage =
-                                                        File(pickedFile.path);
-                                                    imageForUpload =
-                                                        await MultipartFile
-                                                            .fromFile(pickedFile
-                                                                .path);
 
-                                                    addBusinessState.refresh();
-                                                  });
+
+
+
+                                                  getImage(context).then((value) => print("helloooo"));
+
+
+
+
+
+
+
                                                 },
                                                 child: Text('Gallery')),
                                           ),
+
                                         ],
                                       ),
                                     ),
@@ -227,15 +275,35 @@ class AddBusinessInit extends States {
                   Text(
                     "Business Phone",
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.phone,
-                    controller: phoneNumber,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    maxLength: 8,
-                    autofocus: false,
-                    validator: (value) =>
-                    value!.isEmpty ? "fill the field" : null,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                //     child: IntlPhoneField(
+                //       controller:phoneNumber,
+                //        validator: (value) =>
+                // value!.countryISOCode.isEmpty ? "fill the field" : null,
+                //       decoration: InputDecoration(
+                //
+                //         labelText: 'Phone Number',
+                //
+                //
+                //       ),
+                //       onChanged: (phone) {
+                //         print(phone.completeNumber);
+                //       },
+                //       onCountryChanged: (country) {
+                //         print('Country changed to: ' + country.name);
+                //       },
+                //     ),
                   ),
+                  // TextFormField(
+                  //   keyboardType: TextInputType.phone,
+                  //   controller: phoneNumber,
+                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  //   maxLength: 8,
+                  //   autofocus: false,
+                  //   validator: (value) =>
+                  //   value!.isEmpty ? "fill the field" : null,
+                  // ),
                   SizedBox(height: 20),
                   // CITY
                   Column(
@@ -318,6 +386,11 @@ class AddBusinessInit extends States {
                   SizedBox(
                     height: 12,
                   ),
+                  IconButton( onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MyApp(),
+                    ));
+                  }, icon: Icon(Icons.height,color: Colors.white,)),
                   // SERVICE
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

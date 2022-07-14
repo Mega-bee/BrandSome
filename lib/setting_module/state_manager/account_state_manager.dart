@@ -1,3 +1,5 @@
+
+
 import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
@@ -7,6 +9,7 @@ import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/setting_module/repository/account_repository.dart';
 import 'package:brandsome/setting_module/ui/screen/account_info_screen.dart';
 import 'package:brandsome/setting_module/ui/state/account_state/account_success.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../utils/global/global_state_manager.dart';
@@ -57,5 +60,25 @@ class AccountCubit extends Cubit<States> {
         getIt<GlobalStateManager>().update();
       }
     });
+  }
+  deleteAccount(
+      AccountInfoScreenState screenState,
+
+      ) {
+    emit(LoadingWaitingState("Waiting To Delete Your Account"));
+    _getAccoun.deleteAcc().then((value) {
+      if(value == null){
+        emit(ErrorState(errorMessage: 'errrorr', retry: (){}));
+      }
+      else if (value.code == 200) {
+        _authService.clearToken().then((value) {
+          getIt<GlobalStateManager>().update();
+          Navigator.pop(screenState.context);
+
+
+
+      });
+    }});
+
   }
 }

@@ -1,8 +1,10 @@
+import 'package:brandsome/posts_module/ui/widgets/v.dart';
 import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {
@@ -28,6 +30,7 @@ class _PostCardState extends State<PostCard> {
   void initState() {
     super.initState();
     _currentIndex = 0;
+
   }
 
   @override
@@ -96,8 +99,20 @@ class _PostCardState extends State<PostCard> {
                           width: 500,
 
                           // margin: EdgeInsets.symmetric(horizontal: .0),
-                          child: VideoCheck(
-                              widget.posthome.postMedia![itemIndex])),
+                          child:
+    widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
+ CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container()
+
+//
+//                           VideoApp(
+// video:
+//                               widget.posthome.postMedia![itemIndex].url.toString()
+//
+//                           )
+
+                      ),
+
+
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -188,88 +203,102 @@ class _PostCardState extends State<PostCard> {
     );
   }
 
-  Widget VideoCheck(PostMedia m) {
-    if (m.mediaTypeId == 1) {
-      return CustomNetworkImage(imageSource: m.url ?? '',);
-    } else {
-      print("hellooo videooooooooooooooooooo");
-      return Container();
-//      var _controller = VideoPlayerController.network('${m.url}')
-//        ..initialize().then((_) {
-//          setState(() {
-//
-//          });
-//        });
-//        return AspectRatio(
-//          aspectRatio: _controller!.value.aspectRatio,
-//          child: Stack(children: [
-//            FittedBox(
-//              alignment: Alignment.center,
-//              fit: BoxFit.fill,
-//              child: SizedBox(
-//                height: 429,
-//                width: 339,
-//                child: VisibilityDetector(
-//                  key: ObjectKey(_controller),
-//                  onVisibilityChanged: (visibility) {
-//                    if (visibility.visibleBounds == 0 &&
-//                        this.mounted &&
-//                        _controller!.value.isPlaying) {
-//                      _controller?.pause();
-//                      setState(() {});
-//                    }
-//                  },
-//                  child: Container(
-//                      child: AspectRatio(
-//                          aspectRatio: 1280 / 720,
-//                          child: VideoPlayer(
-//                            _controller!,
-//                          ))),
-//                ),
-//              ),
-//            ),
-//            Padding(
-//              padding: EdgeInsets.only(
-//                top: 420,
-//              ),
-//              child: VideoProgressIndicator(
-//                _controller!, //controller
-//                allowScrubbing: true,
-//
-//                colors: VideoProgressColors(
-//                  playedColor: Colors.red,
-//                  bufferedColor: Colors.grey,
-//                  backgroundColor: Colors.transparent,
-//                ),
-//              ),
-//            ),
-//
-//                Center(
-//                    child: IconButton(
-//                        onPressed: () {
-//                          setState(() {
-//                            _controller!.value.isPlaying
-//                                ? _controller!.pause()
-//                                : _controller!.play();
-//                          });
-//                        },
-//                        icon: _controller!.value.isPlaying
-//                            ? AnimatedOpacity(
-//                                duration: Duration(seconds: 2),
-//                                opacity: 0,
-//                                child: Icon(
-//                                  Icons.pause,
-//                                ))
-//                            : AnimatedOpacity(
-//                                duration: Duration(seconds: 2),
-//                                opacity: 1,
-//                                child: Icon(
-//                                  Icons.play_arrow,
-//                                ))))
-//
-//          ]),
-//        );
+  // Widget VideoCheck(PostMedia m) {
+  //
+  //   var _controller =   VideoPlayerController.network('${m.url}')
+  //     ..initialize().then((_) {
+  //       setState(() {
+  //
+  //       });
+  //     });
+  //
+  //   if (m.mediaTypeId == 1) {
+  //     return CustomNetworkImage(imageSource: m.url ?? '',);
+  //   } else  {
+  //     print("hellooo videooooooooooooooooooo");
+  //     // return Container();
+  //
+  //      return
+  //
+  //        Stack(children: [
+  //
+  //
+  //            FittedBox(
+  //              alignment: Alignment.center,
+  //              fit: BoxFit.fill,
+  //              child: SizedBox(
+  //                height: 429,
+  //                width: 339,
+  //                child: VisibilityDetector(
+  //                  key: ObjectKey(_controller),
+  //                  onVisibilityChanged: (visibility) {
+  //                    if (visibility.visibleBounds == 0 &&
+  //                        this.mounted &&
+  //                        _controller!.value.isPlaying) {
+  //
+  //                      setState(() {
+  //                        _controller?.pause();});
+  //                    }
+  //                  },
+  //                  child: Container(
+  //
+  //                      child:
+  //                      _controller.value.isInitialized?
+  //                      AspectRatio(
+  //                          aspectRatio: 120/200,
+  //                          child: VideoPlayer(
+  //                            _controller!,
+  //                          )):Container(),),
+  //                ),
+  //              ),
+  //            ),
+  //            Padding(
+  //              padding: EdgeInsets.only(
+  //                top: 420,
+  //              ),
+  //              child: VideoProgressIndicator(
+  //                _controller!, //controller
+  //                allowScrubbing: false,
+  //
+  //
+  //
+  //                colors: VideoProgressColors(
+  //                  playedColor: Colors.red,
+  //                  bufferedColor: Colors.grey,
+  //                  backgroundColor: Colors.transparent,
+  //                ),
+  //              ),
+  //            ),
+  //
+  //                Center(
+  //                    child: IconButton(
+  //                        onPressed: () {
+  //                          setState(() {
+  //                            _controller!.value.isPlaying
+  //                                ? _controller!.pause()
+  //                                : _controller!.play();
+  //                          });
+  //                        },
+  //                        icon: _controller!.value.isPlaying
+  //                            ? AnimatedOpacity(
+  //                                duration: Duration(seconds: 2),
+  //                                opacity: 0,
+  //                                child: Icon(
+  //                                  Icons.pause,
+  //                                ))
+  //                            : AnimatedOpacity(
+  //                                duration: Duration(seconds: 2),
+  //                                opacity: 1,
+  //                                child: Icon(
+  //                                  Icons.play_arrow,
+  //                                ))))
+  //
+  //          ]);
+  //
+  //
+  //
+  //   }
 
-    }
-  }
+  // }
+
 }

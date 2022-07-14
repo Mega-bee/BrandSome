@@ -50,10 +50,13 @@ class UpdateBusinessSuccess extends States {
               padding: const EdgeInsets.only(right: 28.0),
               child: IconButton(
                   onPressed: () {
+
+
                     request.businessDescription = description.text;
                     request.businessName = business.text;
                     request.businessPhoneNumber = phoneNumber.text;
                     request.id = businessInfoResponse.id ?? -1;
+
                     if (imageForUpload != null) {
                       request.images = imageForUpload;
                     }
@@ -64,6 +67,7 @@ class UpdateBusinessSuccess extends States {
                       request.services.add(element.id ?? -1);
                     });
                     updateBusinessState.editBusiness(request);
+
                   },
                   icon: Icon(
                     Icons.check,

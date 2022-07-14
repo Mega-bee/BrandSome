@@ -61,6 +61,9 @@ dependencies:
   image_cropper:
   pinch_zoom:
   scrollable_positioned_list:
+  photofilters:
+  image:
+#  intl_phone_field:
 #  another_flushbar: ^1.10.22
 
   fluttertoast: ^8.0.8

@@ -97,7 +97,9 @@ class AccountSuccess extends States {
                           title: "Delete account",
                           content: "",
                           yesBtn: () {
-                            Navigator.pop(context);
+                            _screenState.deleteAccount();
+
+
                           },
                           noBtn: () {
                             Navigator.pop(context);

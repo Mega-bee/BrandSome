@@ -19,7 +19,7 @@ class AddBusinessCubit extends Cubit<States> {
   AddBusinessCubit(this._businessRepository) : super(LoadingState());
 
   addBusiness(CreateBusinessRequest request,AddBusinessState businessState) {
-    emit(LoadingWaitingState('Wating to add bussiness'));
+    emit(LoadingWaitingState('Waiting to add bussiness'));
     _businessRepository.addBusiness(request).then((value) {
       if(value == null){
         Navigator.pop(businessState.context);

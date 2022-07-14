@@ -17,7 +17,7 @@ class ReviewScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
             Image.asset(ImageAsset.NO_REVIEW,height: 200,),
-            Text('No review yet')
+            Text('No Reviews yet')
           ],) :
 
       ListView.builder(

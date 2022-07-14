@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -215,8 +216,13 @@ class EditAccountInit extends States {
                   autofocus: false,
                   controller: phoneNumber,
                   keyboardType: TextInputType.phone,
-                  readOnly: true,
+                  readOnly: false,
                 ),
+                TextButton(onPressed: (){
+                  RequestOtpState(this);
+
+                }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+
                 SizedBox(height: 30),
 
                 InkWell(
@@ -245,7 +251,7 @@ class EditAccountInit extends States {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Bithdey number",
+                        "Birthday Date",
                       ),
                       SizedBox(height: 10,),
                       Text(
