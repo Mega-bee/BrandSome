@@ -38,6 +38,9 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
   updateProfile(UpdateProfileRequest request){
     widget.cubit.updateProfile(this, request);
   }
+  deleteAccount(){
+    widget.cubit.deleteAccount(this);
+  }
   @override
   Widget build(BuildContext context) {
     return  BlocConsumer<AccountCubit, States>(

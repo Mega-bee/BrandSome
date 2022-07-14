@@ -152,7 +152,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
 
   void editBusiness(
       EditBusinessRequest request, UpdateBusinessState screenstate) {
-     emit(LoadingWaitingState('wating to update your business'));
+     emit(LoadingWaitingState('waiting to update your business'));
     _businessRepositoryDetails.updateBusiness(request).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Error try again");
@@ -160,13 +160,15 @@ class BusinessListDetailsCubit extends Cubit<States> {
         getIt<GlobalStateManager>().update();
         Navigator.pop(screenstate.context);
         Fluttertoast.showToast(msg: "bussines update successfully", backgroundColor: Colors.green);
+        Navigator.pop(screenstate.context);
+
 
       }
     });
   }
 
   void deleteBusiness(BusnessDetailsScreenState screenstate, String? id) {
-    emit(LoadingWaitingState('Wating to delete business'));
+    emit(LoadingWaitingState('Waiting to delete business'));
     _businessRepositoryDetails.deleteBusiness(id).then((value) {
       if (value == null) {
         Navigator.pop(screenstate.context);

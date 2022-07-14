@@ -22,6 +22,17 @@ class AccountRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> deleteAcc() async {
+    var token = _authService.getToken();
+
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.DELETE_ACC,
+      {},
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
 
   Future<WebServiceResponse?> UpdateAcc(UpdateProfileRequest request) async {
     var token = _authService.getToken();
