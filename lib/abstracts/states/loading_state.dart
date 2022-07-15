@@ -1,6 +1,7 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoadingState extends States {
   LoadingState() : super(false);
@@ -8,7 +9,7 @@ class LoadingState extends States {
   @override
   Widget getUI(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(),
+      child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
     );
   }
 
@@ -26,7 +27,7 @@ class LoadingWaitingState extends States {
   @override
   Widget getUI(BuildContext context) {
     return Center(
-      child: CircularProgressIndicator(),
+      child: LoadingAnimationWidget.beat(color: Theme.of(context).primaryColor, size: 30)
     );
   }
 
@@ -42,7 +43,7 @@ class LoadingWaitingState extends States {
             SizedBox(
               height: 5,
             ),
-            CircularProgressIndicator(),
+            LoadingAnimationWidget.beat(color: Theme.of(context).primaryColor, size: 30)
           ],
         ),
       ),

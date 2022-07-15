@@ -1,6 +1,7 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class LoadingAlertState extends States{
   LoadingAlertState( ) : super(true);
@@ -19,7 +20,7 @@ class LoadingAlertState extends States{
        child: Column(
          children: [
            SizedBox(height: 5,),
-           CircularProgressIndicator(),
+           LoadingAnimationWidget.prograssiveDots(color: Theme.of(context).primaryColor, size: 30)
          ],
        ),
      ),
