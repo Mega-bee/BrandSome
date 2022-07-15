@@ -16,6 +16,7 @@ class LoadingAlertState extends States{
      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
      title: Text('Waiting to send otp'),
      content: SizedBox(
+
        height: 100,
        child: Column(
          children: [
