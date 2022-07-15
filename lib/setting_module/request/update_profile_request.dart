@@ -16,7 +16,7 @@ class UpdateProfileRequest {
     data['PhoneNumber'] = this.PhoneNumber;
     data['ImageFile'] = this.ImageFile;
     data['GenderId'] = this.genderId;
-    data['BirthDate'] = this.Birthday;
+    data['Birthday '] = this.Birthday;
     return data;
   }
 
