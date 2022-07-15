@@ -3,6 +3,7 @@ import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import '../../../home_page/response/home_page.dart';
@@ -56,7 +57,10 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
-                placeholder: (context, url) => CircularProgressIndicator(),
+                placeholder: (context, url) => Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 10),
+                ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),

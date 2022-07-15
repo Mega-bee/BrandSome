@@ -16,7 +16,9 @@ class EditAccountInit extends States {
   final AccountInfoScreenState screenState;
   final AccountResponse model;
 
-  EditAccountInit(this.model, {required this.screenState}) : super(false) {
+  EditAccountInit(this.model,
+      { required this.screenState})
+      : super(false) {
     phoneNumber.text = model.phoneNumber ?? '';
     gender.text = model.gender ?? '';
     username.text = model.userName ?? '';
@@ -30,7 +32,7 @@ class EditAccountInit extends States {
   final gender = TextEditingController();
   final birthday = TextEditingController();
   final username = TextEditingController();
-  DateTime? birthDate;
+  DateTime?   birthDate;
   int? genderID;
   File? _pickImage;
   MultipartFile? imageForUpload;
@@ -119,8 +121,7 @@ class EditAccountInit extends States {
                                                 color: Theme.of(context)
                                                     .dialogBackgroundColor),
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
+                                              padding: const EdgeInsets.all(8.0),
                                               child: Column(
                                                 children: [
                                                   SizedBox(
@@ -130,8 +131,7 @@ class EditAccountInit extends States {
                                                             shape:
                                                                 StadiumBorder()),
                                                         onPressed: () async {
-                                                          Navigator.pop(
-                                                              context);
+                                                          Navigator.pop(context);
                                                           await ImageCropHelper
                                                                   .pickImageFromCamera()
                                                               .then(
@@ -139,16 +139,14 @@ class EditAccountInit extends States {
                                                             if (pickedFile ==
                                                                 null) return;
                                                             _pickImage = File(
-                                                                pickedFile
-                                                                    .path);
+                                                                pickedFile.path);
                                                             imageForUpload =
                                                                 await MultipartFile
                                                                     .fromFile(
                                                                         pickedFile
                                                                             .path);
 
-                                                            screenState
-                                                                .refresh();
+                                                            screenState.refresh();
                                                           });
                                                         },
                                                         child: Text('Camera')),
@@ -223,39 +221,43 @@ class EditAccountInit extends States {
                 Text(
                   "Phone number",
                 ),
-                TextFormField(
+              screenState.newNumber.text.isNotEmpty ?TextFormField(
+                autofocus: false,
+                controller: screenState.newNumber,
+                keyboardType: TextInputType.phone,
+                readOnly: true,
+
+              ) :  TextFormField(
                   autofocus: false,
                   controller: phoneNumber,
                   keyboardType: TextInputType.phone,
                   readOnly: false,
+
                 ),
-                TextButton(
-                    onPressed: () {
-                      RequestOtpState(this);
-                    },
-                    child: Text(
-                      "Send Otp to verify",
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Theme.of(context).primaryColor,
-                          decoration: TextDecoration.underline),
-                    )),
+                TextButton(onPressed: (){
+                 screenState.gotoNumberAlert();
+
+                }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+
                 SizedBox(height: 30),
+
                 InkWell(
-                  onTap: () {
+                  onTap: (){
                     showDatePicker(
-                            context: context,
-                            builder: (context, widget) {
-                              return widget ?? SizedBox();
-                            },
-                            firstDate: DateTime(1995),
-                            lastDate: DateTime.now(),
-                            initialDate: DateTime(1995))
-                        .then((value) {
+                      context: context,
+                      builder: (context, widget) {
+                        return widget ?? SizedBox();
+                      },
+                      firstDate: DateTime(1995),
+                      lastDate: DateTime.now(),
+                      initialDate:DateTime(1995)
+                    ).then((value) {
                       if (value == null) {
+
                       } else {
                         DateTime DOB = value;
-                        birthDate = DateTime(DOB.year, DOB.month, DOB.day);
+                          birthDate = DateTime(DOB.year, DOB.month,
+                            DOB.day);
                         screenState.refresh();
                       }
                     });
@@ -267,23 +269,18 @@ class EditAccountInit extends States {
                       Text(
                         "Birthday Date",
                       ),
-                      SizedBox(
-                        height: 10,
+                      SizedBox(height: 10,),
+                      Text(
+                 birthDate != null ?
+                         birthDate.toString().split(' ').first :
+                         birthday.text
                       ),
-                      Text(birthDate != null
-                          ? birthDate.toString().split(' ').first
-                          : birthday.text),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Divider(
-                  height: 2,
-                  thickness: 3,
-                  color: Theme.of(context).dividerColor,
-                ),
+                SizedBox(height: 5,),
+
+                Divider(height: 2,thickness: 3,color: Theme.of(context).dividerColor,),
                 SizedBox(
                   height: 20,
                 ),

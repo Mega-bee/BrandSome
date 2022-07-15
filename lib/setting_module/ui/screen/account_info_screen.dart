@@ -1,13 +1,16 @@
+import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/setting_module/request/update_profile_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../request/Phone_change.dart';
 import '../../response/account_response.dart';
 import '../../response/settings_response.dart';
 import '../../state_manager/account_state_manager.dart';
 import '../state/account_state/account_edit_init.dart';
+import '../state/account_state/number_otp.dart';
 
 @injectable
 class AccountInfoScreen extends StatefulWidget {
@@ -20,7 +23,7 @@ class AccountInfoScreen extends StatefulWidget {
 }
 
 class AccountInfoScreenState extends State<AccountInfoScreen> {
-
+TextEditingController newNumber=TextEditingController();
   void refresh() {
     if (mounted) {
       setState(() {});
@@ -40,6 +43,15 @@ class AccountInfoScreenState extends State<AccountInfoScreen> {
   }
   deleteAccount(){
     widget.cubit.deleteAccount(this);
+  }
+  changeMobilenum(ChangenumberRequest request){
+    widget.cubit.changeMobilenum(this, request);
+  }
+  gotoNumberAlert(){
+    widget.cubit.emit(NumberOtpState(this,));
+  }
+  verifyOtp(VerifyOtpRequest request){
+    widget.cubit.verifyOtp(this, request);
   }
   @override
   Widget build(BuildContext context) {

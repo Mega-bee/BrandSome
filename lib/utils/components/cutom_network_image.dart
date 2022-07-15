@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
 class CustomNetworkImage extends StatelessWidget {
@@ -61,9 +62,7 @@ class CustomNetworkImage extends StatelessWidget {
                         alignment: Alignment.topCenter,
                         margin: EdgeInsets.only(top: 20),
                         child: Center(
-                          child: CircularProgressIndicator(
-                            backgroundColor: Colors.grey,
-                          ),
+                          child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
                         )),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
@@ -92,9 +91,7 @@ class CustomNetworkImage extends StatelessWidget {
             alignment: Alignment.topCenter,
             margin: EdgeInsets.only(top: 20),
             child: Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.grey,
-              ),
+              child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
             )),
         errorWidget: (context, url, error) => Icon(Icons.error),
       ),

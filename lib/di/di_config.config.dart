@@ -144,8 +144,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i38.SettingsScreen(get<_i37.SettingCubit>()));
   gh.factory<_i39.UpdateBusiness>(
       () => _i39.UpdateBusiness(get<_i27.BusinessListDetailsCubit>()));
-  gh.factory<_i40.AccountCubit>(() =>
-      _i40.AccountCubit(get<_i23.AccountRepository>(), get<_i6.AuthService>()));
+  gh.factory<_i40.AccountCubit>(() => _i40.AccountCubit(
+      get<_i23.AccountRepository>(),
+      get<_i6.AuthService>(),
+      get<_i11.AuthRepository>()));
   gh.factory<_i41.AccountInfoScreen>(
       () => _i41.AccountInfoScreen(get<_i40.AccountCubit>()));
   gh.factory<_i42.AddBusiness>(
