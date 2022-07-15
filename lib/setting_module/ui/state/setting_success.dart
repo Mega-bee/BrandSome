@@ -29,10 +29,13 @@ class SettingSuccess extends States {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListView(
+
         physics:const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics()),
         children: [
+
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Container(
@@ -54,15 +57,7 @@ class SettingSuccess extends States {
                 ),
               ),
             ),
-            Row(children: [
-              Text(
-                "${getaccsetting.name} ",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],),
+
             Column(
               children: [
 
@@ -111,6 +106,17 @@ class SettingSuccess extends States {
               ],
             ),
           ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text(
+              "${getaccsetting.name} ",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],),
 
           SizedBox(
             height: 3,
