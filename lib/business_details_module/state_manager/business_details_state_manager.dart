@@ -107,7 +107,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
   }
 
   bool checkIfLogged() {
-    return _authService.isLoggedIn;
+   return _authService.isLoggedIn;
   }
 
   void requestOtp(BusnessDetailsScreenState screenState, OtpRequest request) {
