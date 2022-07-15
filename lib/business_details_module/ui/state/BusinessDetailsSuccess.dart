@@ -41,8 +41,7 @@ class BusinessDetailsSuccess extends States {
             // labelColor: primaryColor,
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Colors.white,
-            labelColor: Theme.of(context).primaryColor,
+
             tabs: [
               Tab(
                 text: "Info",

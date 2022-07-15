@@ -82,9 +82,14 @@ class AddBusinessInit extends States {
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+centerTitle: true,
         elevation: 5,
-        title: Text('Add Business'),
+        title: Text('Add Business',  style: TextStyle(
+          color: Theme.of(context).primaryColor,
+        ),),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),

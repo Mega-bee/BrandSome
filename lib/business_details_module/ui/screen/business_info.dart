@@ -40,26 +40,25 @@ class _BusinessInfoState extends State<BusinessInfo> {
           SizedBox(
             height: 24,
           ),
-
           Container(
-            height: 260,
-            child:CustomNetworkImage(imageSource:  widget.businessInfoModel.image.toString(),
-
-            )
-            // PinchZoom(
-            //   resetDuration: const Duration(milliseconds: 150),
-            //   onZoomStart: () {},
-            //   onZoomEnd: () {},
-            //   zoomEnabled: true,
-            //
-            //   child: Image.network(
-            //     widget.businessInfoModel.image.toString(),
-            //     fit: BoxFit.fitWidth,
-            //     width: double.infinity,
-            //     height: 270,
-            //   ),
-            // ),
-          ),
+              height: 260,
+              child: CustomNetworkImage(
+                imageSource: widget.businessInfoModel.image.toString(),
+              )
+              // PinchZoom(
+              //   resetDuration: const Duration(milliseconds: 150),
+              //   onZoomStart: () {},
+              //   onZoomEnd: () {},
+              //   zoomEnabled: true,
+              //
+              //   child: Image.network(
+              //     widget.businessInfoModel.image.toString(),
+              //     fit: BoxFit.fitWidth,
+              //     width: double.infinity,
+              //     height: 270,
+              //   ),
+              // ),
+              ),
           SizedBox(
             height: 20,
           ),
@@ -70,15 +69,13 @@ class _BusinessInfoState extends State<BusinessInfo> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-
-                   if (widget.isLoggedin){
-                     widget.businessInfoModel.isFollow =
-                     !widget.businessInfoModel.isFollow!;
-                     setState(() {});
-                   }
+                    if (widget.isLoggedin) {
+                      widget.businessInfoModel.isFollow =
+                          !widget.businessInfoModel.isFollow!;
+                      setState(() {});
+                    }
 
                     widget.onFollow(widget.businessInfoModel.isFollow);
-
                   },
                   child: widget.businessInfoModel.isFollow!
                       ? Padding(
@@ -101,7 +98,6 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         ),
                   style: widget.businessInfoModel.isFollow!
                       ? ElevatedButton.styleFrom(
-                          primary: Colors.black,
                           padding: EdgeInsetsDirectional.only(
                             end: 20,
                             start: 20,
@@ -161,7 +157,8 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 children: widget.businessInfoModel.services!
                     .map<Widget>(
                       (e) => Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 8,top: 10),
+                        padding:
+                            const EdgeInsetsDirectional.only(end: 8, top: 10),
                         child: Text(
                           "${e.name}",
                           style: TextStyle(
@@ -200,13 +197,14 @@ class _BusinessInfoState extends State<BusinessInfo> {
                                   height: 30,
                                   width: 80,
                                   child: Card(
-                                    color: Colors.grey[900],
+                                    // color: Colors.grey[900],
                                     child: Center(
                                       child: Text(
                                         "${e.name} ",
                                         style: TextStyle(
-                                            fontSize: 12,
-                                            color: Colors.grey[500]),
+                                          fontSize: 12,
+                                          color: Colors.grey[500],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -324,14 +322,19 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ElevatedButton(
                   onPressed: () async {
                     widget.businessInfoModel.isUserBusiness!
-                        ? Navigator.pushNamed(context, BusinessDetailsRoutes.BUSINESS_UPDATE_SCREEN,arguments:widget.businessInfoModel)
+                        ? Navigator.pushNamed(context,
+                            BusinessDetailsRoutes.BUSINESS_UPDATE_SCREEN,
+                            arguments: widget.businessInfoModel)
                         : widget.onNumberClick(
                             widget.businessInfoModel.phoneNumber);
                   },
                   child: Row(
                     children: [
                       widget.businessInfoModel.isUserBusiness!
-                          ? Icon(Icons.edit , color: Colors.white,)
+                          ? Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                            )
                           : SvgPicture.asset(
                               SvgImg.PHONE,
                               height: 20,
@@ -365,7 +368,10 @@ class _BusinessInfoState extends State<BusinessInfo> {
                   child: Row(
                     children: [
                       widget.businessInfoModel.isUserBusiness!
-                          ? Icon(Icons.delete , color: Colors.white,)
+                          ? Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            )
                           : SvgPicture.asset(
                               SvgImg.RATING,
                               height: 20,

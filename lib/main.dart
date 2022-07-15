@@ -15,11 +15,13 @@ import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'business_details_module/business_details_module.dart';
+import 'generated/l10n.dart';
 import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
+import 'localization_service/localizationSservice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -59,6 +61,8 @@ class MyApp extends StatefulWidget {
   final CategoryModule _categoryModule;
   final HomeModule _homeModule;
   final PostModule _postModule;
+  late LocalizationService _localizationService;
+  late String lang ;
 
 
 
@@ -108,7 +112,16 @@ class _MyAppState extends State<MyApp> {
 //          GlobalCupertinoLocalizations.delegate,
 //        ],
       theme: activeThem,
-//        supportedLocales: S.delegate.supportedLocales,
+      locale: Locale.fromSubtags(
+        languageCode: widget.lang,
+      ),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       title: 'BrandSome',
       routes: fullRoutesList,
       initialRoute: NavRoutes.nav_rout,
@@ -121,5 +134,17 @@ class _MyAppState extends State<MyApp> {
       activeThem = event;
       setState(() {});
     });
+    widget._localizationService= LocalizationService();
+    widget.lang = widget._localizationService.getLanguage();
+
+    widget._localizationService.localizationStream.listen((event) {
+     widget.lang = event;
+      setState(() {
+
+      });
+    });
   }
+
+
+
 }
