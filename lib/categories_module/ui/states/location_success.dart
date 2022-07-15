@@ -21,7 +21,11 @@ class LocationSuccess extends States {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
-        title: Text('Select Location'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+centerTitle: true,
+        title: Text('Select Location',  style: TextStyle(
+          color: Theme.of(context).primaryColor,
+        ),),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),

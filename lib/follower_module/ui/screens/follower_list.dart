@@ -34,8 +34,13 @@ class FollowersState extends State<Followers> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 5,
+          centerTitle: true,
           title: Text(
             "Followers",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+
           ),
         ),
         body: BlocBuilder<FollowersCubit, States>(

@@ -54,7 +54,7 @@ class _FollowCardState extends State<FollowCard> {
                   },
                   child: Text("Follow",),
                   style: TextButton.styleFrom(
-                      backgroundColor:   Theme.of(context).primaryColor,
+                      // backgroundColor:   Theme.of(context).primaryColor,
                     // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                       side: BorderSide(color: Theme.of(context).primaryColor)),
                 )

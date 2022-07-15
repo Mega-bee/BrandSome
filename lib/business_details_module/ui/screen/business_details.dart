@@ -71,7 +71,16 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
 
     }
     return Scaffold(
-      appBar: AppBar(title: Text(name!)),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: Text(
+            name!,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      // appBar: AppBar(title: Text(name!)),
         body: BlocConsumer<BusinessListDetailsCubit, States>(
           bloc: widget._businessListDetailsCubit,
           buildWhen: (previous, current) => !current.isListener,

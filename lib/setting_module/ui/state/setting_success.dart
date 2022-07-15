@@ -9,6 +9,7 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../response/settings_response.dart';
@@ -48,8 +49,18 @@ class SettingSuccess extends States {
                 ),
               ),
             ),
+            Row(children: [
+              Text(
+                "${getaccsetting.name} ",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],),
             Column(
               children: [
+
                 Text(
                   getaccsetting.businessesCount.toString(),
                 ),
@@ -95,15 +106,7 @@ class SettingSuccess extends States {
               ],
             ),
           ]),
-          Center(
-            child: Text(
-              "${getaccsetting.name} ",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
+
           SizedBox(
             height: 3,
           ),
@@ -259,7 +262,7 @@ class SettingSuccess extends States {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 25,
           ),
           InkWell(
             onTap: () {
@@ -296,6 +299,14 @@ class SettingSuccess extends States {
           SizedBox(
             height: 5,
           ),
+          Divider(
+            thickness: 2,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+
+
           ListTileSwitch(
             value: Theme.of(context).brightness == Brightness.dark,
 
@@ -318,10 +329,33 @@ class SettingSuccess extends States {
               child: Text('Dark mode',style: TextStyle(fontSize: 16)),
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
 
+          ListTileSwitch(
+            value: Theme.of(context).brightness == Brightness.dark,
+
+            leading: Text(
+              Theme.of(context).brightness == Brightness.dark
+                  ? " EN"
+                  : " AR",
+              style: TextStyle(fontSize: 10),
+            ),
+            onChanged: (mode) {
+//                      widget._themeDataService.switchDarkMode(mode);
+              AppThemeDataService().switchDarkMode(mode);
+            },
+
+            visualDensity: VisualDensity.comfortable,
+            switchType: SwitchType.cupertino,
+            switchActiveColor: Colors.grey,
+
+            title: Padding(
+              padding: const EdgeInsets.only(right: 100),
+              child: Text('Languages',style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          SizedBox(
+            height: 15,
+          ),
           InkWell(
             onTap: () {
               showDialog(
@@ -351,7 +385,7 @@ class SettingSuccess extends States {
                   Row(
                     children: [
                       Icon(
-                        FontAwesomeIcons.powerOff,
+                        FontAwesomeIcons.powerOff,size: 20,
                       ),
                       SizedBox(
                         width: 27,
@@ -366,6 +400,9 @@ class SettingSuccess extends States {
               ),
             ),
           )  ,
+          SizedBox(
+            height: 5,
+          ),
           Divider(
             thickness: 2,
           ),
