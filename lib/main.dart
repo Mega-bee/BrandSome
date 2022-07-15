@@ -61,8 +61,8 @@ class MyApp extends StatefulWidget {
   final CategoryModule _categoryModule;
   final HomeModule _homeModule;
   final PostModule _postModule;
-  late LocalizationService _localizationService;
-  late String lang ;
+  final LocalizationService _localizationService;
+
 
 
 
@@ -78,7 +78,8 @@ class MyApp extends StatefulWidget {
 //      this._authorizationModule,
       this._categoryModule,
       this._homeModule,
-      this._postModule
+      this._postModule,
+      this._localizationService,
       );
 
   @override
@@ -87,7 +88,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late ThemeData activeThem;
-
+  late String lang ;
   @override
   Widget build(BuildContext context) {
     return getConfiguredApp(RoutModule.RoutesMap);
@@ -113,7 +114,7 @@ class _MyAppState extends State<MyApp> {
 //        ],
       theme: activeThem,
       locale: Locale.fromSubtags(
-        languageCode: widget.lang,
+        languageCode: lang,
       ),
       localizationsDelegates: [
         S.delegate,
@@ -134,11 +135,12 @@ class _MyAppState extends State<MyApp> {
       activeThem = event;
       setState(() {});
     });
-    widget._localizationService= LocalizationService();
-    widget.lang = widget._localizationService.getLanguage();
+    // widget._localizationService= LocalizationService();
+ lang = widget._localizationService.getLanguage();
 
     widget._localizationService.localizationStream.listen((event) {
-     widget.lang = event;
+      print(event);
+     lang = event;
       setState(() {
 
       });

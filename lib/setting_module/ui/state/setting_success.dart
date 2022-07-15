@@ -10,6 +10,8 @@ import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
 import '../../../generated/l10n.dart';
+import '../../../hive/hive.dart';
+import '../../../localization_service/localizationSservice.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../response/settings_response.dart';
@@ -17,17 +19,23 @@ import '../../response/settings_response.dart';
 class SettingSuccess extends States {
   final GetAccountSetting getaccsetting;
   final SettingsScreenState _settingsScreenState ;
-  SettingSuccess(this._settingsScreenState, {required this.getaccsetting}) : super(false);
 
+  SettingSuccess(this._settingsScreenState, {required this.getaccsetting}) : super(false);
+  bool isArabic=false;
   @override
+
+
   Widget getUI(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListView(
+
         physics:const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics()),
         children: [
+
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+
             Padding(
               padding: EdgeInsets.all(15.0),
               child: Container(
@@ -49,15 +57,7 @@ class SettingSuccess extends States {
                 ),
               ),
             ),
-            Row(children: [
-              Text(
-                "${getaccsetting.name} ",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],),
+
             Column(
               children: [
 
@@ -106,6 +106,17 @@ class SettingSuccess extends States {
               ],
             ),
           ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text(
+              "${getaccsetting.name} ",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],),
 
           SizedBox(
             height: 3,
@@ -331,17 +342,16 @@ class SettingSuccess extends States {
           ),
 
           ListTileSwitch(
-            value: Theme.of(context).brightness == Brightness.dark,
+            value: LanguageHelper().getLanguage()=="ar"?true:false,
 
             leading: Text(
-              Theme.of(context).brightness == Brightness.dark
-                  ? " EN"
-                  : " AR",
+              " EN",
+
               style: TextStyle(fontSize: 10),
             ),
             onChanged: (mode) {
-//                      widget._themeDataService.switchDarkMode(mode);
-              AppThemeDataService().switchDarkMode(mode);
+              print('fffffffffffffffffffff');
+              LocalizationService().setLanguage(mode?"ar":"en");
             },
 
             visualDensity: VisualDensity.comfortable,
