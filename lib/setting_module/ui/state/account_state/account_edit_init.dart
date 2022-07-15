@@ -212,14 +212,21 @@ class EditAccountInit extends States {
                 Text(
                   "Phone number",
                 ),
-                TextFormField(
+              screenState.newNumber.text.isNotEmpty ?TextFormField(
+                autofocus: false,
+                controller: screenState.newNumber,
+                keyboardType: TextInputType.phone,
+                readOnly: true,
+
+              ) :  TextFormField(
                   autofocus: false,
                   controller: phoneNumber,
                   keyboardType: TextInputType.phone,
                   readOnly: false,
+
                 ),
                 TextButton(onPressed: (){
-                  RequestOtpState(this);
+                 screenState.gotoNumberAlert();
 
                 }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
 

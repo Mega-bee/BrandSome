@@ -94,10 +94,11 @@ class _BusinessCardState extends State<BusinessCard> {
                                       widget.businessCardModel.isFollowed =
                                           !widget.businessCardModel.isFollowed!;
                                       setState(() {});
-                                    }
                                     widget.onFollowClick(
-                                      widget.businessCardModel.isFollowed,
+                                    widget.businessCardModel.isFollowed,
                                     );
+                                    }
+
                                   },
                                   icon: widget.businessCardModel.isFollowed!
                                       ? Icon(

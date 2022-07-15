@@ -63,6 +63,7 @@ dependencies:
   scrollable_positioned_list:
   photofilters:
   image:
+  animated_text_kit:
 #  intl_phone_field:
 #  another_flushbar: ^1.10.22
 

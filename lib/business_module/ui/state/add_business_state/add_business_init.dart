@@ -71,7 +71,7 @@ class AddBusinessInit extends States {
 
       if (imagefile != null && imagefile.containsKey('image_filtered')) {
 
-        imageForUpload = imagefile['image_filtered'];
+        _pickImage = imagefile['image_filtered'];
 
         addBusinessState.refresh();
         Navigator.pop(context);
