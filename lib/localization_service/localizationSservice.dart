@@ -1,9 +1,10 @@
 import 'dart:io' as plat;
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../hive/hive.dart';
-
+@injectable
 class LocalizationService {
   static final PublishSubject<String> _localizationSubject =
   PublishSubject<String>();
