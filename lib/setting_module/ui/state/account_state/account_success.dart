@@ -15,8 +15,12 @@ class AccountSuccess extends States {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 5,
+        centerTitle: true,
         title: Text(
           "Account Info",
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
         ),
         actions: [
           Padding(

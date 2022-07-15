@@ -41,7 +41,14 @@ class EditAccountInit extends States {
   Widget getUI(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit account'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
+        title: Text(
+          'Edit account',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),
@@ -52,8 +59,8 @@ class EditAccountInit extends States {
                       Birthday: birthDate?.toIso8601String(),
                       PhoneNumber: phoneNumber.text,
                       Username: username.text,
-                      ImageFile: imageForUpload !=null ? imageForUpload :null
-                  ));
+                      ImageFile:
+                          imageForUpload != null ? imageForUpload : null));
                 },
                 child: Icon(
                   Icons.check,
@@ -61,9 +68,8 @@ class EditAccountInit extends States {
                   size: 30,
                 )),
           )
-
-      ],),
-
+        ],
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics()),
@@ -159,7 +165,8 @@ class EditAccountInit extends States {
                                                             shape:
                                                                 StadiumBorder()),
                                                         onPressed: () async {
-                                                          Navigator.pop(context);
+                                                          Navigator.pop(
+                                                              context);
                                                           await ImageCropHelper
                                                                   .pickImageFromGallery()
                                                               .then(
@@ -167,7 +174,8 @@ class EditAccountInit extends States {
                                                             if (pickedFile ==
                                                                 null) return;
                                                             _pickImage = File(
-                                                                pickedFile.path);
+                                                                pickedFile
+                                                                    .path);
 
                                                             imageForUpload =
                                                                 await MultipartFile
@@ -175,7 +183,8 @@ class EditAccountInit extends States {
                                                                         pickedFile
                                                                             .path);
 
-                                                            screenState.refresh();
+                                                            screenState
+                                                                .refresh();
                                                           });
                                                         },
                                                         child: Text('Gallery')),

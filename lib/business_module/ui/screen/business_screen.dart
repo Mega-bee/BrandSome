@@ -15,6 +15,7 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../module_auth/request/otp_request.dart';
@@ -62,45 +63,36 @@ class BusinessScreenState extends State<BusinessScreen> {
     menuItems = [
       ItemModel(
           'A-Z',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          Icon(Icons.sort_by_alpha,size: 20,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.A_Z);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Followers',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+    Icon(Icons.follow_the_signs,size: 20,), () {
         request.sortBy = HelperBusinessSort.getBusinessSortString(
             BusinessSortEnum.FOLLOWERS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Reviwes',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          Icon(Icons.reviews_outlined,size: 20,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.REVIEWS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Posts',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          Icon(Icons.post_add,size: 20,),() {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.POSTS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Views',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          Icon(            FontAwesomeIcons.eye,
+            size: 18,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.VIEWS);
         widget.cubit.getBusinessList(this, request);
@@ -289,7 +281,6 @@ class CustomSearchDelegateIn extends SearchDelegate {
                                 children: result.service
                                     .map<Widget>(
                                       (e) => Card(
-                                        color: Colors.grey.shade700,
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.only(
@@ -346,7 +337,6 @@ class CustomSearchDelegateIn extends SearchDelegate {
                               child: Card(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                                color: Colors.grey.shade800,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,

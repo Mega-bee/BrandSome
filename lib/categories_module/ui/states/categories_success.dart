@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class CategorySuccess extends States {
   final List<MainCategoryModel> categories;
   final CategoryListScreenState screenState;
+
   CategorySuccess(this.categories, this.screenState) : super(false) {
     mainCa = categories;
     if (mainCa.isNotEmpty) {
@@ -26,123 +27,132 @@ class CategorySuccess extends States {
   List<SubCategoryModel> subsCa = [];
   List<ServiceModel> serviceCa = [];
 
-
   int mainCaId = -1;
   int subCaId = -1;
 
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Select category'),
-        elevation: 5,
-        actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: 15),
-            child: IconButton(
-              onPressed: () {
-                List<ServiceModel> selected = [];
-               serviceCa.forEach((element) {
-                 if(element.isSelected){
-                   selected.add(element);
-                 }
-               });
-                Navigator.pop(context ,selected);
-              },
-              icon: Icon(
-                Icons.check,
-                color: Theme.of(context).primaryColor,
-                size: 30,
-              ),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          centerTitle: true,
+          title: Text(
+            'Select category',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
             ),
           ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-            children: [
-        Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: CustomSearch(hintText: 'Search for service'),
-      ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Chosse manin Cat'),
-              SizedBox(
-                height: 130,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) {
-                      return CategoryCard(
-                        onCardTap: (ss) {
-                          selectFirstItem(categories[index].id ?? -1);
-                        },
-                        catId: categories[index].id ?? 0,
-                        catName: categories[index].name ?? '',
-                        isSlecteced:
-                            mainCaId == categories[index].id ? true : false,
-                      );
-                    }),
+          elevation: 5,
+          actions: [
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 15),
+              child: IconButton(
+                onPressed: () {
+                  List<ServiceModel> selected = [];
+                  serviceCa.forEach((element) {
+                    if (element.isSelected) {
+                      selected.add(element);
+                    }
+                  });
+                  Navigator.pop(context, selected);
+                },
+                icon: Icon(
+                  Icons.check,
+                  color: Theme.of(context).primaryColor,
+                  size: 30,
+                ),
               ),
-              Text('Chosse Sub Cat'),
-              SizedBox(
-                height: 130,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: subsCa.length,
-                    itemBuilder: (context, indexS) {
-                      return CategoryCard(
-                        onCardTap: (ss) {
-                          selectSecItem(subsCa[indexS].id ?? 0);
-                        },
-                        catId: subsCa[indexS].id ?? 0,
-                        catName: subsCa[indexS].name ?? '',
-                        isSlecteced: subCaId == subsCa[indexS].id ? true : false,
-                      );
-                    }),
-              ),
-              Text('Chosse Service'),
-              SizedBox(
-//          height: 130,
-                child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        childAspectRatio: 3 / 2.1,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20),
-                    shrinkWrap: true,
-                    itemCount: serviceCa.length,
-                    itemBuilder: (context, index) {
-                      return CategoryCard(
-                        onCardTap: (ss) {
-                          print('incardClickkc' '${ss}');
-                          serviceCa[index].isSelected = ss;
-//                          screenState.selectedServiceCa.add(serviceCa[index]);
-                        },
-                        catId: serviceCa[index].id ?? 0,
-                        catName: serviceCa[index].name ?? '',
-                        isSlecteced: false,
-                      );
-                    }),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ]),
-      ));
+        body: SingleChildScrollView(
+          child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: CustomSearch(hintText: 'Search for service'),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Chosse main Cat'),
+                  SizedBox(
+                    height: 130,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: categories.length,
+                        itemBuilder: (context, index) {
+                          return CategoryCard(
+                            onCardTap: (ss) {
+                              selectFirstItem(categories[index].id ?? -1);
+                            },
+                            catId: categories[index].id ?? 0,
+                            catName: categories[index].name ?? '',
+                            isSlecteced:
+                                mainCaId == categories[index].id ? true : false,
+                          );
+                        }),
+                  ),
+                  Text('Chosse Sub Cat'),
+                  SizedBox(
+                    height: 130,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: subsCa.length,
+                        itemBuilder: (context, indexS) {
+                          return CategoryCard(
+                            onCardTap: (ss) {
+                              selectSecItem(subsCa[indexS].id ?? 0);
+                            },
+                            catId: subsCa[indexS].id ?? 0,
+                            catName: subsCa[indexS].name ?? '',
+                            isSlecteced:
+                                subCaId == subsCa[indexS].id ? true : false,
+                          );
+                        }),
+                  ),
+                  Text('Chosse Service'),
+                  SizedBox(
+//          height: 130,
+                    child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                maxCrossAxisExtent: 200,
+                                childAspectRatio: 3 / 2.1,
+                                crossAxisSpacing: 20,
+                                mainAxisSpacing: 20),
+                        shrinkWrap: true,
+                        itemCount: serviceCa.length,
+                        itemBuilder: (context, index) {
+                          return CategoryCard(
+                            onCardTap: (ss) {
+                              print('incardClickkc' '${ss}');
+                              serviceCa[index].isSelected = ss;
+//                          screenState.selectedServiceCa.add(serviceCa[index]);
+                            },
+                            catId: serviceCa[index].id ?? 0,
+                            catName: serviceCa[index].name ?? '',
+                            isSlecteced: false,
+                          );
+                        }),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ));
   }
+
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
     throw UnimplementedError();
   }
+
   void selectFirstItem(int firstCatId) {
     mainCa.forEach((element) {
       if (element.id == firstCatId) {

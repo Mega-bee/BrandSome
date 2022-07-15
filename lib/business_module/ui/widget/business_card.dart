@@ -36,7 +36,7 @@ class _BusinessCardState extends State<BusinessCard> {
       padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
       child: Card(
         elevation: 5,
-        color: Theme.of(context).dividerColor,
+        // color: Theme.of(context).dividerColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -120,8 +120,10 @@ class _BusinessCardState extends State<BusinessCard> {
                         maxLines: 3,
 //                            softWrap: true,
 //                            style:Theme.of(context).textTheme.labelMedium,
-                        style:
-                            TextStyle(color: Color(0xffe8e8e8), fontSize: 12),
+                        style: TextStyle(
+                          color:Theme.of(context).brightness==Brightness.light?Colors.black: Color(0xffe8e8e8),
+                          fontSize: 12,
+                        ),
                       ),
                       SizedBox(
                         height: 8,

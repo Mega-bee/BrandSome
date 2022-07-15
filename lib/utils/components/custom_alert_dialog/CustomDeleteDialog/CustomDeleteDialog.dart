@@ -66,12 +66,14 @@ class CustomDeleteDialog extends StatelessWidget {
                     },
                     child: Text(
                       "Cancel",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    style: ElevatedButton.styleFrom(
-//                        primary: primaryColor,
-                        elevation: 0,
-                        padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12)     ,               ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          side: BorderSide(color: Theme.of(context).primaryColor),
+                          padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                 ],
               ),

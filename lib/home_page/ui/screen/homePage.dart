@@ -75,7 +75,6 @@ class HomePageScreenState extends State<HomePage>
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 5,
           title: Text(
             "Brandsome",
             style: TextStyle(
