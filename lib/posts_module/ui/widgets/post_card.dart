@@ -30,7 +30,6 @@ class _PostCardState extends State<PostCard> {
   void initState() {
     super.initState();
     _currentIndex = 0;
-
   }
 
   @override
@@ -99,9 +98,15 @@ class _PostCardState extends State<PostCard> {
                           width: 500,
 
                           // margin: EdgeInsets.symmetric(horizontal: .0),
-                          child:
-    widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
- CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container()
+                          child: widget.posthome.postMedia![itemIndex]
+                                      .mediaTypeId ==
+                                  1
+                              ? CustomNetworkImage(
+                                  imageSource: widget
+                                          .posthome.postMedia![itemIndex].url ??
+                                      '',
+                                )
+                              : Container()
 
 //
 //                           VideoApp(
@@ -110,9 +115,7 @@ class _PostCardState extends State<PostCard> {
 //
 //                           )
 
-                      ),
-
-
+                          ),
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -146,15 +149,14 @@ class _PostCardState extends State<PostCard> {
                           bool like = !widget.posthome.isLiked;
                           if (widget.isLogged) {
                             widget.posthome.isLiked = like;
-                            if(like){
-                              widget.posthome.likeCount ++;
-                            }else{
-                              widget.posthome.likeCount --;
+                            if (like) {
+                              widget.posthome.likeCount++;
+                            } else {
+                              widget.posthome.likeCount--;
                             }
 
                             print('persooon lllooggedd');
                             setState(() {});
-
                           }
                           widget.onLikeClick(like);
                         },
@@ -162,20 +164,22 @@ class _PostCardState extends State<PostCard> {
                             ? Icon(
                                 Icons.thumb_up,
                                 color: Theme.of(context).primaryColor,
-                          size: 25,
+                                size: 25,
                               )
                             : Icon(
                                 Icons.thumb_up_alt_outlined,
-                          size: 25,
+                                size: 25,
                               )),
                     InkWell(
-                       onTap: (){
-                         widget.onViewLikeTap(widget.posthome.id.toString());
-                       },
-                         child: Text(widget.posthome.likeCount.toString() + ' Likes',
-                           style: TextStyle(
-                           decoration: TextDecoration.underline,
-                         ),))
+                        onTap: () {
+                          widget.onViewLikeTap(widget.posthome.id.toString());
+                        },
+                        child: Text(
+                          widget.posthome.likeCount.toString() + ' Likes',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ))
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
@@ -203,102 +207,102 @@ class _PostCardState extends State<PostCard> {
     );
   }
 
-  // Widget VideoCheck(PostMedia m) {
-  //
-  //   var _controller =   VideoPlayerController.network('${m.url}')
-  //     ..initialize().then((_) {
-  //       setState(() {
-  //
-  //       });
-  //     });
-  //
-  //   if (m.mediaTypeId == 1) {
-  //     return CustomNetworkImage(imageSource: m.url ?? '',);
-  //   } else  {
-  //     print("hellooo videooooooooooooooooooo");
-  //     // return Container();
-  //
-  //      return
-  //
-  //        Stack(children: [
-  //
-  //
-  //            FittedBox(
-  //              alignment: Alignment.center,
-  //              fit: BoxFit.fill,
-  //              child: SizedBox(
-  //                height: 429,
-  //                width: 339,
-  //                child: VisibilityDetector(
-  //                  key: ObjectKey(_controller),
-  //                  onVisibilityChanged: (visibility) {
-  //                    if (visibility.visibleBounds == 0 &&
-  //                        this.mounted &&
-  //                        _controller!.value.isPlaying) {
-  //
-  //                      setState(() {
-  //                        _controller?.pause();});
-  //                    }
-  //                  },
-  //                  child: Container(
-  //
-  //                      child:
-  //                      _controller.value.isInitialized?
-  //                      AspectRatio(
-  //                          aspectRatio: 120/200,
-  //                          child: VideoPlayer(
-  //                            _controller!,
-  //                          )):Container(),),
-  //                ),
-  //              ),
-  //            ),
-  //            Padding(
-  //              padding: EdgeInsets.only(
-  //                top: 420,
-  //              ),
-  //              child: VideoProgressIndicator(
-  //                _controller!, //controller
-  //                allowScrubbing: false,
-  //
-  //
-  //
-  //                colors: VideoProgressColors(
-  //                  playedColor: Colors.red,
-  //                  bufferedColor: Colors.grey,
-  //                  backgroundColor: Colors.transparent,
-  //                ),
-  //              ),
-  //            ),
-  //
-  //                Center(
-  //                    child: IconButton(
-  //                        onPressed: () {
-  //                          setState(() {
-  //                            _controller!.value.isPlaying
-  //                                ? _controller!.pause()
-  //                                : _controller!.play();
-  //                          });
-  //                        },
-  //                        icon: _controller!.value.isPlaying
-  //                            ? AnimatedOpacity(
-  //                                duration: Duration(seconds: 2),
-  //                                opacity: 0,
-  //                                child: Icon(
-  //                                  Icons.pause,
-  //                                ))
-  //                            : AnimatedOpacity(
-  //                                duration: Duration(seconds: 2),
-  //                                opacity: 1,
-  //                                child: Icon(
-  //                                  Icons.play_arrow,
-  //                                ))))
-  //
-  //          ]);
-  //
-  //
-  //
-  //   }
+// Widget VideoCheck(PostMedia m) {
+//
+//   var _controller =   VideoPlayerController.network('${m.url}')
+//     ..initialize().then((_) {
+//       setState(() {
+//
+//       });
+//     });
+//
+//   if (m.mediaTypeId == 1) {
+//     return CustomNetworkImage(imageSource: m.url ?? '',);
+//   } else  {
+//     print("hellooo videooooooooooooooooooo");
+//     // return Container();
+//
+//      return
+//
+//        Stack(children: [
+//
+//
+//            FittedBox(
+//              alignment: Alignment.center,
+//              fit: BoxFit.fill,
+//              child: SizedBox(
+//                height: 429,
+//                width: 339,
+//                child: VisibilityDetector(
+//                  key: ObjectKey(_controller),
+//                  onVisibilityChanged: (visibility) {
+//                    if (visibility.visibleBounds == 0 &&
+//                        this.mounted &&
+//                        _controller!.value.isPlaying) {
+//
+//                      setState(() {
+//                        _controller?.pause();});
+//                    }
+//                  },
+//                  child: Container(
+//
+//                      child:
+//                      _controller.value.isInitialized?
+//                      AspectRatio(
+//                          aspectRatio: 120/200,
+//                          child: VideoPlayer(
+//                            _controller!,
+//                          )):Container(),),
+//                ),
+//              ),
+//            ),
+//            Padding(
+//              padding: EdgeInsets.only(
+//                top: 420,
+//              ),
+//              child: VideoProgressIndicator(
+//                _controller!, //controller
+//                allowScrubbing: false,
+//
+//
+//
+//                colors: VideoProgressColors(
+//                  playedColor: Colors.red,
+//                  bufferedColor: Colors.grey,
+//                  backgroundColor: Colors.transparent,
+//                ),
+//              ),
+//            ),
+//
+//                Center(
+//                    child: IconButton(
+//                        onPressed: () {
+//                          setState(() {
+//                            _controller!.value.isPlaying
+//                                ? _controller!.pause()
+//                                : _controller!.play();
+//                          });
+//                        },
+//                        icon: _controller!.value.isPlaying
+//                            ? AnimatedOpacity(
+//                                duration: Duration(seconds: 2),
+//                                opacity: 0,
+//                                child: Icon(
+//                                  Icons.pause,
+//                                ))
+//                            : AnimatedOpacity(
+//                                duration: Duration(seconds: 2),
+//                                opacity: 1,
+//                                child: Icon(
+//                                  Icons.play_arrow,
+//                                ))))
+//
+//          ]);
+//
+//
+//
+//   }
 
-  // }
+// }
 
 }

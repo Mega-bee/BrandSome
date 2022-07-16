@@ -21,5 +21,32 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AddBussines": MessageLookupByLibrary.simpleMessage("Add Bussines"),
+        "AddLocation": MessageLookupByLibrary.simpleMessage("Add Location"),
+        "AddPost": MessageLookupByLibrary.simpleMessage("Add Post"),
+        "AppVersion": MessageLookupByLibrary.simpleMessage("App Version"),
+        "Business": MessageLookupByLibrary.simpleMessage("Business"),
+        "BusinessName": MessageLookupByLibrary.simpleMessage("Business Name"),
+        "BusinessPhone": MessageLookupByLibrary.simpleMessage("Business Phone"),
+        "Camera": MessageLookupByLibrary.simpleMessage("Camera"),
+        "Cars": MessageLookupByLibrary.simpleMessage("Cars"),
+        "Chooseinterests":
+            MessageLookupByLibrary.simpleMessage("Choose interests"),
+        "Description": MessageLookupByLibrary.simpleMessage("Description"),
+        "Gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "Likes": MessageLookupByLibrary.simpleMessage("Likes"),
+        "No": MessageLookupByLibrary.simpleMessage("No"),
+        "Personal": MessageLookupByLibrary.simpleMessage("Personal"),
+        "PhotoFilter": MessageLookupByLibrary.simpleMessage("Photo Filter"),
+        "Properties": MessageLookupByLibrary.simpleMessage("Properties:"),
+        "SelectImagePlease":
+            MessageLookupByLibrary.simpleMessage("Select Image Please"),
+        "Selectcitiesandservices":
+            MessageLookupByLibrary.simpleMessage("Select cities and services"),
+        "Services": MessageLookupByLibrary.simpleMessage("Services"),
+        "Theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "Yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "fillthefield": MessageLookupByLibrary.simpleMessage("fill the field")
+      };
 }
