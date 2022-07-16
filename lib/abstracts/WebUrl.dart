@@ -44,5 +44,6 @@ class Urls {
   static const GETFOLLOWEDBUSINESSES =BSE_API_SETTINGS + 'GetFollowedBusinessses';
   static const GETLOCATION =BSE_API_LOCATION + 'GetCities';
   static const DELETE_ACC =BSE_API_SETTINGS + 'DeleteAccount';
+  static const PHONE_CHANGE =BSE_API_SETTINGS + 'ResendOtp';
 
 }

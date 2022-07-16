@@ -3,6 +3,7 @@ import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import 'package:injectable/injectable.dart';
 import '../../abstracts/WebUrl.dart';
+import '../request/Phone_change.dart';
 import '../request/update_profile_request.dart';
 
 @injectable
@@ -44,4 +45,15 @@ class AccountRepository {
     if (response == null) return null;
     return response;
   }
+  Future<WebServiceResponse?> Phonechange(ChangenumberRequest request) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.post(
+      Urls.PHONE_CHANGE,
+      request.toJson(),
+      headers: {'Authorization': 'Bearer ' + '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 }

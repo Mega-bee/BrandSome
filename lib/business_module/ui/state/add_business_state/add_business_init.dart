@@ -71,9 +71,12 @@ class AddBusinessInit extends States {
 
       if (imagefile != null && imagefile.containsKey('image_filtered')) {
 
-        imageForUpload = imagefile['image_filtered'];
-
+        _pickImage = imagefile['image_filtered'];
+        imageForUpload =
+        await MultipartFile
+            .fromFile(_pickImage!.path);
         addBusinessState.refresh();
+
         Navigator.pop(context);
       }
     }
@@ -279,26 +282,13 @@ centerTitle: true,
                   Text(
                     "Business Phone",
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                //     child: IntlPhoneField(
-                //       controller:phoneNumber,
-                //        validator: (value) =>
-                // value!.countryISOCode.isEmpty ? "fill the field" : null,
-                //       decoration: InputDecoration(
-                //
-                //         labelText: 'Phone Number',
-                //
-                //
-                //       ),
-                //       onChanged: (phone) {
-                //         print(phone.completeNumber);
-                //       },
-                //       onCountryChanged: (country) {
-                //         print('Country changed to: ' + country.name);
-                //       },
-                //     ),
+                  TextFormField(
+                    controller: phoneNumber,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) =>
+                    value!.isEmpty ? "fill the field" : null,
                   ),
+
                   // TextFormField(
                   //   keyboardType: TextInputType.phone,
                   //   controller: phoneNumber,
