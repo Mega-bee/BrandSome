@@ -3,6 +3,7 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/components/cutom_network_image.dart';
 import '../../reponse/business_response.dart';
@@ -81,7 +82,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       ? Padding(
                           padding: const EdgeInsets.all(1.0),
                           child: Text(
-                            "Unfollow",
+                            S.of(context).Unfollow,
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Theme.of(context).primaryColor),
@@ -90,7 +91,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       : Padding(
                           padding: const EdgeInsets.all(1.0),
                           child: Text(
-                            "  Follow  ",
+                            "  ${S.of(context).Follow}  ",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.white),
@@ -344,8 +345,8 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       ),
                       Text(
                         widget.businessInfoModel.isUserBusiness!
-                            ? "Update"
-                            : "Call Now",
+                            ? S.of(context).Update
+                            : S.of(context).CallNow,
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -381,8 +382,8 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       ),
                       Text(
                           widget.businessInfoModel.isUserBusiness!
-                              ? "Delete"
-                              : "Add review",
+                              ? S.of(context).Delete
+                              : S.of(context).addReview,
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),

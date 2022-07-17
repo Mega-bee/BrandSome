@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../generated/l10n.dart';
 import '../../state_manager/setting.dart';
 
 @injectable
@@ -57,7 +58,7 @@ class SettingsScreenState extends State<SettingsScreen> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
-            "Settings",
+            S.of(context).Settings,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),

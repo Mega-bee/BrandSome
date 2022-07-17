@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../generated/l10n.dart';
 import '../../request/follow_request.dart';
 import '../../state_manager/follower.dart';
 
@@ -36,7 +37,7 @@ class FollowersState extends State<Followers> {
           elevation: 5,
           centerTitle: true,
           title: Text(
-            "Followers",
+              S.of(context).Followers,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),

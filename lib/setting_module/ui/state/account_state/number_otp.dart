@@ -3,6 +3,7 @@ import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../request/Phone_change.dart';
 import '../../screen/account_info_screen.dart';
 
@@ -58,7 +59,7 @@ class NumberOtpState extends States {
 
 
                 Text(
-                  "Phone Number",
+                  S.of(context).phoneNumber,
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                 ),
                 SizedBox(
@@ -75,7 +76,7 @@ class NumberOtpState extends States {
                           width: 5,
                         ),
                       ),
-                      hintText: 'Enter your phone number',
+                      hintText: S.of(context).enterYourPhoneNumber,
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
                       contentPadding: EdgeInsetsDirectional.only(
@@ -94,7 +95,7 @@ class NumberOtpState extends States {
                    ));
             },
             child: Text(
-              "Continue",
+              S.of(context).Continue,
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(

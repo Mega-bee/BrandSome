@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
 import '../../reponse/business_response.dart';
 
@@ -35,7 +36,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
                   ImageAsset.NO_POST,
                   height: 200,
                 ),
-                Text('No posts yet')
+                Text(S.of(context).noPostsYet)
               ],
             ),
           )
@@ -158,7 +159,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
                                 width: 5,
                               ),
                               Text(
-                                "Liked by ${widget.businessInfoModel[index].likeCount} visitors",
+                                "${S.of(context).likedBy} ${widget.businessInfoModel[index].likeCount} ${S.of(context).visitors}",
                               ),
                             ],
                           ),

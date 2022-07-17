@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
+import '../../../generated/l10n.dart';
 import '../../reponse/get_likes_list_response.dart';
 import '../../state_manager/liked_list_bloc.dart';
 
@@ -39,7 +40,7 @@ class LikeByScreenState extends State<LikeByScreen> {
         title: Padding(
           padding: const EdgeInsetsDirectional.only(start: 10.0),
           child: Text(
-            "Likes",
+            S.of(context).Likes,
             style: Theme.of(context).textTheme.headline6,
           ),
         ),

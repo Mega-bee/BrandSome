@@ -7,6 +7,7 @@ import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
 import '../../../posts_module/reponse/posts_reponse.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
@@ -124,7 +125,7 @@ final  bool isLogged;
               padding: const EdgeInsetsDirectional.only(
                   end: 8.0, start: 10, top: 5, bottom: 13),
               child: Text(
-                "Choose interests",
+                S.of(context).chooseInterests,
                 style: TextStyle(
                     color: Theme.of(context).primaryColor,
                     decoration: TextDecoration.underline),

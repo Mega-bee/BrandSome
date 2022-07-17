@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../utils/components/pickertime.dart';
 import '../../../request/update_profile_request.dart';
 import '../../../response/account_response.dart';
@@ -44,7 +45,7 @@ class EditAccountInit extends States {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: Text(
-          'Edit account',
+          S.of(context).editAccount,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -149,7 +150,7 @@ class EditAccountInit extends States {
                                                             screenState.refresh();
                                                           });
                                                         },
-                                                        child: Text('Camera')),
+                                                        child: Text(S.of(context).Camera)),
                                                   ),
                                                   Divider(
                                                     indent: 16,
@@ -187,7 +188,7 @@ class EditAccountInit extends States {
                                                                 .refresh();
                                                           });
                                                         },
-                                                        child: Text('Gallery')),
+                                                        child: Text(S.of(context).Gallery)),
                                                   ),
                                                 ],
                                               ),
@@ -211,7 +212,7 @@ class EditAccountInit extends States {
                   ),
                 ),
                 Text(
-                  "Username",
+                  S.of(context).userName,
                 ),
                 TextFormField(
                   autofocus: false,
@@ -219,7 +220,7 @@ class EditAccountInit extends States {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  "Phone number",
+                  S.of(context).phoneNumber,
                 ),
               screenState.newNumber.text.isNotEmpty ?TextFormField(
                 autofocus: false,
@@ -237,7 +238,7 @@ class EditAccountInit extends States {
                 TextButton(onPressed: (){
                  screenState.gotoNumberAlert();
 
-                }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+                }, child: Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
 
                 SizedBox(height: 30),
 
@@ -267,7 +268,7 @@ class EditAccountInit extends States {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Birthday Date",
+                        S.of(context).birthdayDate,
                       ),
                       SizedBox(height: 10,),
                       Text(
@@ -288,7 +289,7 @@ class EditAccountInit extends States {
                   title: Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: Text(
-                      'Gender',
+                      S.of(context).Gender,
                     ),
                   ),
                   subtitle: Column(children: [
@@ -305,7 +306,7 @@ class EditAccountInit extends States {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             title: Text(
-                              'Male',
+                              S.of(context).Male,
                               style: TextStyle(fontSize: 12),
                             ),
                             value: 1,
@@ -326,7 +327,7 @@ class EditAccountInit extends States {
                             dense: true,
                             activeColor: Theme.of(context).primaryColor,
                             title: Text(
-                              'Female',
+                              S.of(context).Female,
                               style: TextStyle(fontSize: 12),
                             ),
                             shape: RoundedRectangleBorder(
@@ -352,7 +353,7 @@ class EditAccountInit extends States {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             title: Text(
-                              'Rather not to say',
+                              S.of(context).ratherNotToSay,
                               style: TextStyle(fontSize: 12),
                             ),
                             value: 3,

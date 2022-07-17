@@ -2,6 +2,7 @@ import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../response/follower_response.dart';
 
 class FollowCard extends StatefulWidget {
@@ -52,7 +53,7 @@ class _FollowCardState extends State<FollowCard> {
 
 
                   },
-                  child: Text("Follow",),
+                  child: Text(S.of(context).Follow,),
                   style: TextButton.styleFrom(
                       // backgroundColor:   Theme.of(context).primaryColor,
                     // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
@@ -66,7 +67,7 @@ class _FollowCardState extends State<FollowCard> {
                           widget.onFollowClick(widget.bussfol.id,isSelected);
 
                         },
-                        child: Text("Unfollow",),
+                        child: Text(S.of(context).Unfollow,),
                         style: TextButton.styleFrom(
                             // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                             side: BorderSide(color: Theme.of(context).primaryColor)),
