@@ -5,7 +5,7 @@ class CityCard extends StatefulWidget {
   final AddLocationResponse city;
   final Function onCheckClicked;
 
-  CityCard({required this.city,required this.onCheckClicked});
+  const CityCard({required this.city,required this.onCheckClicked});
 
   @override
   State<CityCard> createState() => _CityCardState();
@@ -38,14 +38,14 @@ class _CityCardState extends State<CityCard> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(
+        const Padding(
+          padding: EdgeInsetsDirectional.only(
               start: 15.0, end: 15),
           child: Divider(
             thickness: 3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
       ],

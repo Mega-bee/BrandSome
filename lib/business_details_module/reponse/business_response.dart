@@ -43,26 +43,26 @@ class BusinessInfoResponse {
     if (json['posts'] != null) {
       posts = <Posts>[];
       json['posts'].forEach((v) {
-        posts!.add(new Posts.fromJson(v));
+        posts!.add(Posts.fromJson(v));
       });
     }
     if (json['reviews'] != null) {
       reviews = <Reviews>[];
       json['reviews'].forEach((v) {
-        reviews!.add(new Reviews.fromJson(v));
+        reviews!.add(Reviews.fromJson(v));
       });
     }
     isUserBusiness = json['isUserBusiness'];
     if (json['services'] != null) {
       services = <Services>[];
       json['services'].forEach((v) {
-        services!.add(new Services.fromJson(v));
+        services!.add(Services.fromJson(v));
       });
     }
     if (json['cities'] != null) {
       cities = <City>[];
       json['cities'].forEach((v) {
-        cities!.add(new City.fromJson(v));
+        cities!.add(City.fromJson(v));
       });
     }
     description = json['description'];
@@ -79,13 +79,15 @@ class BusinessInfoResponse {
 
 class City {
   int? id;
+  int? businessCityId;
   String? name;
 
-  City({this.name, this.id});
+  City({this.name, this.id ,this.businessCityId});
 
   City.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json["name"];
+    businessCityId = json["businessCityId"];
   }
 }
 
@@ -135,7 +137,7 @@ class Posts {
     if (json['postMedia'] != null) {
       postMedia = <PostMedia>[];
       json['postMedia'].forEach((v) {
-        postMedia!.add(new PostMedia.fromJson(v));
+        postMedia!.add(PostMedia.fromJson(v));
       });
     }
     description = json['description'];
@@ -166,12 +168,14 @@ class PostMedia {
 
 class Services {
   int? id;
+  int? businessServiceId;
   String? name;
 
-  Services({this.id, this.name});
+  Services({this.id, this.name ,this.businessServiceId});
 
   Services.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    businessServiceId = json['businessServiceId'];
   }
 }

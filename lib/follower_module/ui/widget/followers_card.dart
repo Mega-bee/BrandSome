@@ -1,5 +1,3 @@
-import 'package:brandsome/utils/images/images.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../response/follower_response.dart';
@@ -7,7 +5,7 @@ import '../../response/follower_response.dart';
 class FollowCard extends StatefulWidget {
   final FollowersResp bussfol;
   final Function onFollowClick;
-  FollowCard({required this.bussfol,required this.onFollowClick});
+  const FollowCard({required this.bussfol,required this.onFollowClick});
   @override
   State<FollowCard> createState() => _FollowCardState();
 }
@@ -38,7 +36,7 @@ class _FollowCardState extends State<FollowCard> {
                      ),
                     Text(
                       widget.bussfol.type.toString(),
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14),
                      ),
                   ],
                 ),
@@ -52,9 +50,9 @@ class _FollowCardState extends State<FollowCard> {
 
 
                   },
-                  child: Text("Follow",),
+                  child: const Text("Follow",),
                   style: TextButton.styleFrom(
-                      backgroundColor:   Theme.of(context).primaryColor,
+                      // backgroundColor:   Theme.of(context).primaryColor,
                     // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                       side: BorderSide(color: Theme.of(context).primaryColor)),
                 )
@@ -66,7 +64,7 @@ class _FollowCardState extends State<FollowCard> {
                           widget.onFollowClick(widget.bussfol.id,isSelected);
 
                         },
-                        child: Text("Unfollow",),
+                        child: const Text("Unfollow",),
                         style: TextButton.styleFrom(
                             // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                             side: BorderSide(color: Theme.of(context).primaryColor)),
@@ -74,7 +72,7 @@ class _FollowCardState extends State<FollowCard> {
               ],
             ),
           ),
-          Divider(height: 3,)
+          const Divider(height: 3,)
         ],
       ),
     );

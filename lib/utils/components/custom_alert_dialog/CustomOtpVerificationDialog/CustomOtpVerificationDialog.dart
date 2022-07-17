@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -8,7 +7,7 @@ class CustomOtpVerificationDialog extends StatefulWidget {
   final String content;
   final Function continueBtn;
 
-  CustomOtpVerificationDialog({
+  const CustomOtpVerificationDialog({
     required this.title,
     required this.content,
     required this.continueBtn,
@@ -45,7 +44,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
           Container(
             child: Text(
               widget.title,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                   fontFamily: "BerlinSansFB"),
@@ -58,7 +57,7 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           RichText(
-            text: TextSpan(
+            text: const TextSpan(
               children: <TextSpan>[
                 TextSpan(
                     text: 'Enter the OTP you received to\n',
@@ -77,39 +76,39 @@ class _CustomOtpVerificationDialog extends State<CustomOtpVerificationDialog> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Center(
-              child: Container(
+              child: SizedBox(
             width: MediaQuery.of(context).size.height / 3,
-            child: TextField(
+            child: const TextField(
               maxLength: 4,
               keyboardType: TextInputType.phone,
-              decoration: new InputDecoration(
+              decoration: InputDecoration(
                 contentPadding:
                     EdgeInsetsDirectional.only(top: 10, bottom: 10, start: 10),
-                enabledBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 0.0),
                 ),
-                focusedBorder: const OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.grey, width: 0.0),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 0.0),
                 ),
               ),
               textAlign: TextAlign.center,
             ),
           )),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
             onPressed: () {
               widget.continueBtn();
             },
-            child: Text("Resend OTP"),
+            child: const Text("Resend OTP"),
             style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
-                padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
+                padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],
       ),

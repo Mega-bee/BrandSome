@@ -15,8 +15,12 @@ class AccountSuccess extends States {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 5,
+        centerTitle: true,
         title: Text(
           "Account Info",
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
         ),
         actions: [
           Padding(
@@ -37,9 +41,9 @@ class AccountSuccess extends States {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Center(
-              child: Container(
+              child: SizedBox(
                 height: 150,
               width: 150,
               child: CustomNetworkImage(
@@ -47,43 +51,43 @@ class AccountSuccess extends States {
               ),
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsetsDirectional.only(
                   end: 38.0, start: 27.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ListTile(title: Text('User name'),
+                 ListTile(title: const Text('User name'),
                  subtitle: Text(accountModel.userName ?? ''),
-                   leading: Icon(Icons.person),
+                   leading: const Icon(Icons.person),
                  ),
-                  Divider(thickness: 3,),
+                  const Divider(thickness: 3,),
 
-                  ListTile(title: Text('Phone Number'),
+                  ListTile(title: const Text('Phone Number'),
                     subtitle: Text(accountModel.phoneNumber ?? ''),
-                    leading: Icon(Icons.phone_android),
+                    leading: const Icon(Icons.phone_android),
                   ),
-                  Divider(thickness: 3,),
+                  const Divider(thickness: 3,),
 
 
-                  ListTile(title: Text('Brithday'),
+                  ListTile(title: const Text('Brithday'),
                     subtitle: Text(accountModel.birthDate ?? ''),
-                    leading: Icon(Icons.cake),
+                    leading: const Icon(Icons.cake),
                   ),
-                  Divider(thickness: 3,),
+                  const Divider(thickness: 3,),
 
 
 
-                  ListTile(title: Text('Gender'),
+                  ListTile(title: const Text('Gender'),
                     subtitle: Text(accountModel.gender ?? ''),
-                    leading: Icon(Icons.transgender),
+                    leading: const Icon(Icons.transgender),
                   ),
-                  Divider(thickness: 3,)
+                  const Divider(thickness: 3,)
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Padding(

@@ -37,7 +37,7 @@ class _CategoryCardState extends State<CategoryCard> {
             child: Column(
               children: [
                 Text(widget.catName),
-                SizedBox(height: 8,),
+                const SizedBox(height: 8,),
                 Image.asset(
                   ImageAsset.CAT,
                 )

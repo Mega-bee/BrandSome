@@ -1,8 +1,6 @@
 import 'package:brandsome/business_module/reponse/business_response.dart';
-import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +15,7 @@ class BusinessCard extends StatefulWidget {
 
   final bool isLoggedin;
 
-  BusinessCard(
+  const BusinessCard(
       {required this.businessCardModel,
       required this.onFollowClick,
       required this.screenState,
@@ -36,7 +34,7 @@ class _BusinessCardState extends State<BusinessCard> {
       padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
       child: Card(
         elevation: 5,
-        color: Theme.of(context).dividerColor,
+        // color: Theme.of(context).dividerColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
@@ -57,8 +55,8 @@ class _BusinessCardState extends State<BusinessCard> {
                     ),
                   ),
                   placeholder: (context, url) =>
-                      CircularProgressIndicator(strokeWidth: 1),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                      const CircularProgressIndicator(strokeWidth: 1),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
@@ -83,7 +81,7 @@ class _BusinessCardState extends State<BusinessCard> {
                         children: [
                           Text(
                             widget.businessCardModel.name ?? "",
-                            style: TextStyle(fontSize: 17),
+                            style: const TextStyle(fontSize: 17),
                             // style:Theme.of(context).textTheme.titleMedium,
                           ),
                           Row(
@@ -100,17 +98,17 @@ class _BusinessCardState extends State<BusinessCard> {
                                     );
                                   },
                                   icon: widget.businessCardModel.isFollowed!
-                                      ? Icon(
+                                      ? const Icon(
                                           FontAwesomeIcons.solidHeart,
                                         )
-                                      : Icon(
+                                      : const Icon(
                                           FontAwesomeIcons.heart,
                                         )),
                             ],
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Text(
@@ -119,10 +117,12 @@ class _BusinessCardState extends State<BusinessCard> {
                         maxLines: 3,
 //                            softWrap: true,
 //                            style:Theme.of(context).textTheme.labelMedium,
-                        style:
-                            TextStyle(color: Color(0xffe8e8e8), fontSize: 12),
+                        style: TextStyle(
+                          color:Theme.of(context).brightness==Brightness.light?Colors.black: const Color(0xffe8e8e8),
+                          fontSize: 12,
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
@@ -137,7 +137,7 @@ class _BusinessCardState extends State<BusinessCard> {
                                     .map(
                                       (e) => Text(
                                         "${e.name} ",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 10, color: Colors.grey),
                                         // style:Theme.of(context).textTheme.overline,
                                       ),
@@ -146,7 +146,7 @@ class _BusinessCardState extends State<BusinessCard> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Padding(
@@ -160,7 +160,7 @@ class _BusinessCardState extends State<BusinessCard> {
                                 SvgPicture.asset(
                                   SvgImg.PERSON,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 6,
                                 ),
                                 Text(
@@ -173,7 +173,7 @@ class _BusinessCardState extends State<BusinessCard> {
                                 SvgPicture.asset(
                                   SvgImg.RATE,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 6,
                                 ),
                                 Text(
@@ -185,10 +185,10 @@ class _BusinessCardState extends State<BusinessCard> {
                               children: [
                                 Text(widget.businessCardModel.viewCount
                                     .toString()),
-                                SizedBox(
+                                const SizedBox(
                                   width: 5,
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.remove_red_eye_outlined,
                                   size: 18,
                                 ),

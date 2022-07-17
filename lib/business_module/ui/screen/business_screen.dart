@@ -14,7 +14,7 @@ import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../module_auth/request/otp_request.dart';
@@ -50,6 +50,7 @@ class BusinessScreenState extends State<BusinessScreen> {
     widget.cubit.FollowCardState(request, id);
   }
 
+  @override
   void initState() {
     super.initState();
     request = BusinessFilterRequest(services: []);
@@ -62,45 +63,36 @@ class BusinessScreenState extends State<BusinessScreen> {
     menuItems = [
       ItemModel(
           'A-Z',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          const Icon(Icons.sort_by_alpha,size: 20,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.A_Z);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Followers',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+    const Icon(Icons.follow_the_signs,size: 20,), () {
         request.sortBy = HelperBusinessSort.getBusinessSortString(
             BusinessSortEnum.FOLLOWERS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Reviwes',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          const Icon(Icons.reviews_outlined,size: 20,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.REVIEWS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Posts',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          const Icon(Icons.post_add,size: 20,),() {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.POSTS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Views',
-          SvgPicture.asset(
-            SvgImg.SORT_ALPGA_DOWN,
-          ), () {
+          const Icon( FontAwesomeIcons.eye,
+            size: 18,), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.VIEWS);
         widget.cubit.getBusinessList(this, request);
@@ -165,7 +157,7 @@ class BusinessScreenState extends State<BusinessScreen> {
                   }
                 });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
               ),
             ),
@@ -198,7 +190,7 @@ class BusinessScreenState extends State<BusinessScreen> {
                       ? Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            '${returnServiceName}',
+                            '$returnServiceName',
                             style: TextStyle(
                                 color: Theme.of(context).primaryColor,
                                 fontSize: 15),
@@ -221,7 +213,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -232,7 +224,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -252,19 +244,19 @@ class CustomSearchDelegateIn extends SearchDelegate {
         stream: searchBloc.searchResults,
         builder: (context, AsyncSnapshot<SearchResponse> snapshot) {
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
             return ListView(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Text(
                     'Business',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 snapshot.data!.business.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Text(
                           "No Results Found.",
                         ),
@@ -289,7 +281,6 @@ class CustomSearchDelegateIn extends SearchDelegate {
                                 children: result.service
                                     .map<Widget>(
                                       (e) => Card(
-                                        color: Colors.grey.shade700,
                                         child: Padding(
                                           padding:
                                               const EdgeInsetsDirectional.only(
@@ -299,7 +290,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
                                                   bottom: 3),
                                           child: Text(
                                             "${e.name}",
-                                            style: TextStyle(fontSize: 10),
+                                            style: const TextStyle(fontSize: 10),
                                           ),
                                         ),
                                       ),
@@ -319,15 +310,15 @@ class CustomSearchDelegateIn extends SearchDelegate {
                           );
                         },
                       ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Text(
                     'Services',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 snapshot.data!.services.isEmpty
-                    ? Center(
+                    ? const Center(
                         child: Text(
                           "No Results Found.",
                         ),
@@ -335,7 +326,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
                     : GridView.count(
                         crossAxisCount: 3,
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         children: snapshot.data!.services.map((e) {
                           return Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -346,13 +337,12 @@ class CustomSearchDelegateIn extends SearchDelegate {
                               child: Card(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                                color: Colors.grey.shade800,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(e.name ?? ''),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     e.image != null

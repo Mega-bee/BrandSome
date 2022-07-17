@@ -7,9 +7,7 @@ import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
 import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
-import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
-import 'package:brandsome/setting_module/setting_route.dart';
 import 'package:brandsome/setting_module/ui/state/setting_not_logged.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../business_module/request/bussines_filter_request.dart';
 import '../repository/setting_repository.dart';
 import '../response/settings_response.dart';
 import '../ui/screen/setting_screen.dart';

@@ -6,7 +6,7 @@ class IsFollower {
 
   Map<String, dynamic> toJson() {
     return {
-      'IsFollow': this.isFollow,
+      'IsFollow': isFollow,
     };
   }
 

@@ -1,5 +1,4 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
-import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
@@ -19,7 +18,7 @@ class CreatePostRepo {
     WebServiceResponse? response = await _apiClient.post(
       Urls.CREATE_POSTS,
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

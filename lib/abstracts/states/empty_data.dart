@@ -21,7 +21,7 @@ class EmptyDataState extends States {
                 image,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Text(message)

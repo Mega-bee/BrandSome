@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageSource;
-   CustomNetworkImage({
+   const CustomNetworkImage({
     required this.imageSource,
   });
 
@@ -22,17 +23,17 @@ class CustomNetworkImage extends StatelessWidget {
                   leading: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      customBorder: CircleBorder(),
+                      customBorder: const CircleBorder(),
                       onTap: () {
                         Navigator.of(context).pop();
                       },
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.black38,
                           shape: BoxShape.circle,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Icon(
                             Icons.arrow_back,
                             color: Colors.white,
@@ -59,13 +60,11 @@ class CustomNetworkImage extends StatelessWidget {
                     ),
                     placeholder: (context, url) => Container(
                         alignment: Alignment.topCenter,
-                        margin: EdgeInsets.only(top: 20),
+                        margin: const EdgeInsets.only(top: 20),
                         child: Center(
-                          child: CircularProgressIndicator(
-                            backgroundColor: Colors.grey,
-                          ),
+                          child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
                         )),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                   resetDuration: const Duration(milliseconds: 150),
                   onZoomStart: () {},
@@ -90,13 +89,11 @@ class CustomNetworkImage extends StatelessWidget {
         ),
         placeholder: (context, url) => Container(
             alignment: Alignment.topCenter,
-            margin: EdgeInsets.only(top: 20),
+            margin: const EdgeInsets.only(top: 20),
             child: Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.grey,
-              ),
+              child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
             )),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

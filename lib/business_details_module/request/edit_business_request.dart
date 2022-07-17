@@ -21,13 +21,13 @@ class EditBusinessRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'Id':this.id,
-      'BusinessDescription': this.businessDescription,
-      'BusinessName': this.businessName,
-      'BusinessPhoneNumber': this.businessPhoneNumber,
-      'Cities': this.cities,
-      'Services': this.services,
-      'ImageFile':this.images,
+      'Id':id,
+      'BusinessDescription': businessDescription,
+      'BusinessName': businessName,
+      'BusinessPhoneNumber': businessPhoneNumber,
+      'Cities': cities,
+      'Services': services,
+      'ImageFile':images,
     };
   }
 }

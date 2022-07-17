@@ -1,7 +1,6 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class RequestOtpState extends States {
   dynamic screenState;
@@ -10,7 +9,7 @@ class RequestOtpState extends States {
   final phonenumber = TextEditingController();
   @override
   Widget getUI(BuildContext context) {
-    return Center(child: Container(child: Text("Super is false"),));
+    return Center(child: Container(child: const Text("Super is false"),));
   }
 
   @override
@@ -33,7 +32,7 @@ class RequestOtpState extends States {
             ),
           ),
           Container(
-            child: Text(
+            child: const Text(
               'Register account',
               style: TextStyle(
 //                    color: blackColor,
@@ -51,11 +50,11 @@ class RequestOtpState extends States {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Username",
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -71,17 +70,17 @@ class RequestOtpState extends States {
                       hintText: 'Enter your username',
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                      contentPadding: EdgeInsetsDirectional.only(
+                      contentPadding: const EdgeInsetsDirectional.only(
                           top: 10, bottom: 10, start: 10)),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Phone Number",
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -98,13 +97,13 @@ class RequestOtpState extends States {
                       hintText: 'Enter your phone number',
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                      contentPadding: EdgeInsetsDirectional.only(
+                      contentPadding: const EdgeInsetsDirectional.only(
                           top: 10, bottom: 10, start: 10)),
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
@@ -113,13 +112,13 @@ class RequestOtpState extends States {
               screenState.requestOtp(OtpRequest(
                   userName: username.text, number: phonenumber.text));
             },
-            child: Text(
+            child: const Text(
               "Continue",
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
-                padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
+                padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],
       ),

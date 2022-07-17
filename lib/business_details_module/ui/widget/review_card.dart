@@ -6,7 +6,7 @@ import 'package:timeago/timeago.dart' as timeago;
 class ReviewCard extends StatelessWidget {
   final Reviews review;
 
-  ReviewCard(this.review);
+  const ReviewCard(this.review);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class ReviewCard extends StatelessWidget {
             trailing: Text(timeago.format(DateHelper.convertDateToLocal(review.createdDate ?? DateTime(0))),
             ),
           ),
-          Divider(thickness: 2,)
+          const Divider(thickness: 2,)
         ],
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../reponse/get_likes_list_response.dart';
@@ -6,7 +5,7 @@ import '../../reponse/get_likes_list_response.dart';
 class LikesCard extends StatefulWidget {
   final LikedByModel likedByModel;
 
-  LikesCard(this.likedByModel);
+  const LikesCard(this.likedByModel);
 
   @override
   State<LikesCard> createState() => _LikesCardState();

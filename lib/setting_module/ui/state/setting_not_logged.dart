@@ -1,5 +1,4 @@
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/setting_module/response/settings_response.dart';
 import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +28,23 @@ class SettingNotLogged extends States {
             visualDensity: VisualDensity.comfortable,
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
-            title: Text('Dark mode'),
+            title: const Text('Dark mode'),
           ),
-          ListTile(title: Text('Register to app'),
-            leading: Icon(Icons.login),
+          ListTile(title: const Text('Register to app'),
+            leading: const Icon(Icons.login),
             onTap: (){
               _settingsScreenState.goToLogin();
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
 
           Center(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
               Icon(
                 Icons.info_outlined,
                 color: Colors.grey,
@@ -60,7 +59,7 @@ class SettingNotLogged extends States {
               ),
             ]),
           ),
-          SizedBox(
+          const SizedBox(
             height: 100,
           )
         ],

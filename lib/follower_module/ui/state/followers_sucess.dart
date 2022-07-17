@@ -14,18 +14,18 @@ class FollowersSuccess extends States {
   @override
   Widget getUI(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       Padding(
         padding: const EdgeInsets.only(left: 38.0),
         child: Text("You are following ${bussfollowers.length} businesses"),
       ),
-      SizedBox(
+      const SizedBox(
         height: 15,
       ),
-      Padding(
-        padding: const EdgeInsets.only(right: 38.0, left: 38.0),
+      const Padding(
+        padding: EdgeInsets.only(right: 38.0, left: 38.0),
         child: Divider(
           thickness: 1,
         ),

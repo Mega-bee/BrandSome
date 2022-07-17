@@ -7,13 +7,9 @@ import 'package:brandsome/home_page/state_manager/home_page_state_manager.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/posts_module/post_route.dart';
-import 'package:brandsome/utils/components/custom_menu.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../request/is_like.dart';
@@ -23,7 +19,7 @@ class HomePage extends StatefulWidget {
   final HomePageCubit cubit;
   final AuthService  authService;
 
-  HomePage({required this.cubit,required this.authService});
+  const HomePage({required this.cubit,required this.authService});
 
   @override
   State<HomePage> createState() => HomePageScreenState();
@@ -60,10 +56,10 @@ class HomePageScreenState extends State<HomePage>
       }
     });
     menuItems = [
-      ItemModel('Add Bussines', Icon(Icons.card_travel), () {
+      ItemModel('Add Bussines', const Icon(Icons.card_travel), () {
 //        Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
       }),
-      ItemModel('Add Post', Icon(Icons.post_add), () {
+      ItemModel('Add Post', const Icon(Icons.post_add), () {
         Navigator.pushNamed(context, PostRoutes.ADD_POST);
       }),
     ];
@@ -75,7 +71,6 @@ class HomePageScreenState extends State<HomePage>
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 5,
           title: Text(
             "Brandsome",
             style: TextStyle(
@@ -92,7 +87,7 @@ class HomePageScreenState extends State<HomePage>
                 //   ),
                 // );
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
               ),
             ),
@@ -105,7 +100,7 @@ class HomePageScreenState extends State<HomePage>
               padding: const EdgeInsets.only(right: 10.0),
               child: IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.notifications_none),
+                icon: const Icon(Icons.notifications_none),
               ),
             ),
           ],

@@ -1,13 +1,9 @@
 import 'dart:io';
 
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import '../../../../utils/components/pickertime.dart';
 import '../../../request/update_profile_request.dart';
 import '../../../response/account_response.dart';
 import '../../screen/account_info_screen.dart';
@@ -41,7 +37,14 @@ class EditAccountInit extends States {
   Widget getUI(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit account'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        centerTitle: true,
+        title: Text(
+          'Edit account',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),
@@ -52,8 +55,8 @@ class EditAccountInit extends States {
                       Birthday: birthDate?.toIso8601String(),
                       PhoneNumber: phoneNumber.text,
                       Username: username.text,
-                      ImageFile: imageForUpload !=null ? imageForUpload :null
-                  ));
+                      ImageFile:
+                          imageForUpload));
                 },
                 child: Icon(
                   Icons.check,
@@ -61,9 +64,8 @@ class EditAccountInit extends States {
                   size: 30,
                 )),
           )
-
-      ],),
-
+        ],
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(
             parent: AlwaysScrollableScrollPhysics()),
@@ -80,7 +82,7 @@ class EditAccountInit extends States {
                     child: Stack(children: [
                       Container(
                         margin:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                            const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: _pickImage != null
@@ -191,46 +193,53 @@ class EditAccountInit extends States {
                             },
                             elevation: 10,
                             fillColor: Theme.of(context).primaryColor,
-                            child: Icon(
+                            child: const Icon(
                               Icons.camera_alt_outlined,
                               color: Colors.white,
                             ),
-                            padding: EdgeInsets.all(15.0),
-                            shape: CircleBorder(),
+                            padding: const EdgeInsets.all(15.0),
+                            shape: const CircleBorder(),
                           ))
                     ]),
                   ),
                 ),
-                Text(
+                const Text(
                   "Username",
                 ),
                 TextFormField(
                   autofocus: false,
                   controller: username,
                 ),
-                SizedBox(height: 30),
-                Text(
+                const SizedBox(height: 30),
+                const Text(
                   "Phone number",
                 ),
-                TextFormField(
+              screenState.newNumber.text.isNotEmpty ?TextFormField(
+                autofocus: false,
+                controller: screenState.newNumber,
+                keyboardType: TextInputType.phone,
+                readOnly: true,
+
+              ) :  TextFormField(
                   autofocus: false,
                   controller: phoneNumber,
                   keyboardType: TextInputType.phone,
                   readOnly: false,
+
                 ),
                 TextButton(onPressed: (){
-                  RequestOtpState(this);
+                 screenState.gotoNumberAlert();
 
                 }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
 
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
 
                 InkWell(
                   onTap: (){
                     showDatePicker(
                       context: context,
                       builder: (context, widget) {
-                        return widget ?? SizedBox();
+                        return widget ?? const SizedBox();
                       },
                       firstDate: DateTime(1995),
                       lastDate: DateTime.now(),
@@ -250,10 +259,10 @@ class EditAccountInit extends States {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "Birthday Date",
                       ),
-                      SizedBox(height: 10,),
+                      const SizedBox(height: 10,),
                       Text(
                  birthDate != null ?
                          birthDate.toString().split(' ').first :
@@ -262,21 +271,21 @@ class EditAccountInit extends States {
                     ],
                   ),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
 
                 Divider(height: 2,thickness: 3,color: Theme.of(context).dividerColor,),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ListTile(
-                  title: Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                  title: const Padding(
+                    padding: EdgeInsets.only(right: 20),
                     child: Text(
                       'Gender',
                     ),
                   ),
                   subtitle: Column(children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Flex(
@@ -288,7 +297,7 @@ class EditAccountInit extends States {
                             activeColor: Theme.of(context).primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            title: Text(
+                            title: const Text(
                               'Male',
                               style: TextStyle(fontSize: 12),
                             ),
@@ -309,7 +318,7 @@ class EditAccountInit extends States {
                           child: RadioListTile(
                             dense: true,
                             activeColor: Theme.of(context).primaryColor,
-                            title: Text(
+                            title: const Text(
                               'Female',
                               style: TextStyle(fontSize: 12),
                             ),
@@ -323,7 +332,7 @@ class EditAccountInit extends States {
                             },
                           ),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                       ],
                     ),
                     Flex(
@@ -335,7 +344,7 @@ class EditAccountInit extends States {
                             activeColor: Theme.of(context).primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            title: Text(
+                            title: const Text(
                               'Rather not to say',
                               style: TextStyle(fontSize: 12),
                             ),
@@ -347,7 +356,7 @@ class EditAccountInit extends States {
                             },
                           ),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
 
 //                    Expanded(
 //                      child: Container(
@@ -373,7 +382,7 @@ class EditAccountInit extends States {
                     ),
                   ]),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
               ],
             ),
           ),

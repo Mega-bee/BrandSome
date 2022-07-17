@@ -37,7 +37,7 @@ class VerifyOtpState extends States{
            ),
          ),
          Container(
-           child: Text(
+           child: const Text(
              'Verify Otp',
              style: TextStyle(
                  fontSize: 14,
@@ -54,7 +54,7 @@ class VerifyOtpState extends States{
          RichText(
            text: TextSpan(
              children: <TextSpan>[
-               TextSpan(
+               const TextSpan(
                    text: 'Enter the OTP you received to\n',
 //                    style: TextStyle(color: darkWhiteColor, fontSize: 17),
                    children: [
@@ -65,13 +65,13 @@ class VerifyOtpState extends States{
                      ),
                    ]),
                TextSpan(
-                 text: '+961 ${phoneNumber}',
+                 text: '+961 $phoneNumber',
 //                  style: TextStyle(color: blackColor, fontSize: 17),
                )
              ],
            ),
          ),
-         SizedBox(
+         const SizedBox(
            height: 30,
          ),
          Center(
@@ -91,24 +91,24 @@ class VerifyOtpState extends States{
                      hintText: 'Enter Otp',
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                     contentPadding: EdgeInsetsDirectional.only(
+                     contentPadding: const EdgeInsetsDirectional.only(
                          top: 10, bottom: 10, start: 10)),
                ),
              )),
-         SizedBox(
+         const SizedBox(
            height: 30,
          ),
-         Text(errorMessage?? '',style: TextStyle(color: Colors.red),),
+         Text(errorMessage?? '',style: const TextStyle(color: Colors.red),),
 
          ElevatedButton(
            onPressed: () {
              Navigator.pop(context);
              screenState.verifyOtp(VerifyOtpRequest(number: phoneNumber,otp:otpController.text ));
            },
-           child: Text("Verify",style: TextStyle(color: Colors.white),),
+           child: const Text("Verify",style: TextStyle(color: Colors.white),),
            style: ElevatedButton.styleFrom(
                primary: Theme.of(context).primaryColor,
-               padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
+               padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
          ),
        ],
      ),

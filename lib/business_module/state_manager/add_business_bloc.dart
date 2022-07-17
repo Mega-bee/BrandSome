@@ -1,4 +1,3 @@
-import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/business_module/repository/business_repository.dart';

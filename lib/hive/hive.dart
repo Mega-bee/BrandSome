@@ -1,7 +1,5 @@
-import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:brandsome/hive/hive_category.dart';
 import 'package:brandsome/hive/hive_city.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:injectable/injectable.dart';
 

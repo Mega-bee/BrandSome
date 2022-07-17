@@ -6,14 +6,14 @@ class CustomMenuDropDown extends StatefulWidget {
   final List<ItemModel> menuItems;
   final IconData mainIcon;
 
-  CustomMenuDropDown({required this.menuItems, required this.mainIcon});
+  const CustomMenuDropDown({required this.menuItems, required this.mainIcon});
 
   @override
   State<CustomMenuDropDown> createState() => _CustomMenuDropDownState();
 }
 
 class _CustomMenuDropDownState extends State<CustomMenuDropDown> {
-  CustomPopupMenuController _controller = CustomPopupMenuController();
+  final CustomPopupMenuController _controller = CustomPopupMenuController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +49,13 @@ class _CustomMenuDropDownState extends State<CustomMenuDropDown> {
                               padding: const EdgeInsets.all(10.0),
                               child: Row(children: [
                                item.icon,
-                                SizedBox(width: 5,),
+                                const SizedBox(width: 5,),
                                 Text(
                                   item.title,
                                 ),
                               ],),
                             ),
-                            Divider(height: 3,thickness: 2,)
+                            const Divider(height: 3,thickness: 2,)
                           ],
                         ),
                       ),

@@ -22,7 +22,7 @@ class CustomCupertinoPicker extends StatefulWidget {
 }
 
 class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
   buildItems() {
     List<Widget> items = [];
     for (int i = 0; i < widget.items.length; i++) {
@@ -52,7 +52,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
               Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  border: Border(
+                  border: const Border(
                     bottom: BorderSide(
                       width: 0.25,
                     ),
@@ -73,7 +73,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
                           Navigator.of(context).pop();
                         }
                       },
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 16.0,
                         vertical: 5.0,
                       ),
@@ -81,7 +81,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 250,
                 child: CupertinoPicker(
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -108,7 +108,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height / 11,
       // margin: EdgeInsets.only(bottom: 5),
       // padding: EdgeInsets.all(12),
@@ -145,7 +145,7 @@ class _CustomCupertinoPickerState extends State<CustomCupertinoPicker> {
           showPicker(context);
         },
         readOnly: true,
-        keyboardType: this.widget.inputType,
+        keyboardType: widget.inputType,
       ),
     );
   }

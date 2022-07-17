@@ -1,12 +1,16 @@
+import 'package:brandsome/posts_module/post_route.dart';
 import 'package:flutter/material.dart';
 import '../../../utils/images/images.dart';
 import '../../reponse/business_response.dart';
 
 class BusinessPosts extends StatefulWidget {
-  final List<Posts> businessInfoModel;
+  final BusinessInfoResponse businessInfoModel;
   final Function onDeletePost;
-
-  BusinessPosts({required this.businessInfoModel, required this.onDeletePost});
+  final bool isMyBuss;
+  const BusinessPosts(
+      {required this.businessInfoModel,
+      required this.onDeletePost,
+      required this.isMyBuss});
 
   @override
   State<BusinessPosts> createState() => _BusinessPostsState();
@@ -26,7 +30,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.businessInfoModel.isEmpty
+    return widget.businessInfoModel.posts!.isEmpty
         ? Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -35,26 +39,45 @@ class _BusinessPostsState extends State<BusinessPosts> {
                   ImageAsset.NO_POST,
                   height: 200,
                 ),
-                Text('No posts yet')
+                const Text('No posts yet'),
+                widget.isMyBuss
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton.icon(
+                          label: const Text('Add new post'),
+                          icon: const Icon(Icons.post_add),
+                          style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              textStyle: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold)),
+                          onPressed: () {
+                            Navigator.pushNamed(context, PostRoutes.ADD_POST,arguments: {"service" : widget.businessInfoModel.services ,"city":widget.businessInfoModel.cities});
+                          },
+                        ),
+                      )
+                    : Container()
               ],
             ),
           )
         : ListView.builder(
             shrinkWrap: true,
-            itemCount: widget.businessInfoModel.length,
+            itemCount: widget.businessInfoModel.posts!.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   ListTile(
-                    leading: Container(
+                    leading: SizedBox(
                       width: 40,
                       height: 40,
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(
-                          widget.businessInfoModel[index].profileImage
+                          widget.businessInfoModel.posts![index].profileImage
                               .toString(),
                         ),
                       ),
@@ -64,7 +87,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "${widget.businessInfoModel[index].name.toString()}",
+                          widget.businessInfoModel.posts![index].name.toString(),
                         ),
 //                    PopupMenuButton(
 //                        icon: Icon(
@@ -128,11 +151,11 @@ class _BusinessPostsState extends State<BusinessPosts> {
                     ),
 
                     subtitle: Text(
-                      widget.businessInfoModel[index].city.toString(),
-                      style: TextStyle(fontSize: 11),
+                      widget.businessInfoModel.posts![index].city.toString(),
+                      style: const TextStyle(fontSize: 11),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Card(
@@ -144,47 +167,47 @@ class _BusinessPostsState extends State<BusinessPosts> {
                           "https://static.remove.bg/remove-bg-web/913b22608288cd03cc357799d0d4594e2d1c6b41/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg",
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.thumb_up_alt_outlined,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
                               Text(
-                                "Liked by ${widget.businessInfoModel[index].likeCount} visitors",
+                                "Liked by ${widget.businessInfoModel.posts![index].likeCount} visitors",
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
-                          child: Text("${widget.businessInfoModel[index].type}",
-                              style: TextStyle(
+                          child: Text("${widget.businessInfoModel.posts![index].type}",
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,
                               )),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0),
                           child: Text(
-                            widget.businessInfoModel[index].description
+                            widget.businessInfoModel.posts![index].description
                                 .toString(),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         )
                       ],

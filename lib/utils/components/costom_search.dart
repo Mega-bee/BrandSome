@@ -9,7 +9,7 @@ class CustomSearch extends StatefulWidget {
   @override
   _CustomDeliverySearchState createState() => _CustomDeliverySearchState();
 
-  CustomSearch(
+  const CustomSearch(
       {this.height = 50,
       this.contentPadding = const EdgeInsets.fromLTRB(0, 13.5, 0, 0),
       required this.hintText,
@@ -24,7 +24,7 @@ class _CustomDeliverySearchState extends State<CustomSearch> {
       height: widget.height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Theme.of(context).colorScheme.surfaceVariant,
+         color: Theme.of(context).colorScheme.onTertiary,
       ),
       child: TextField(
         controller: widget.controller,
@@ -32,8 +32,8 @@ class _CustomDeliverySearchState extends State<CustomSearch> {
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: widget.hintText,
-          prefixIcon: Icon(Icons.search),
-          suffixIcon: Icon(Icons.filter_list),
+          prefixIcon: const Icon(Icons.search),
+          suffixIcon: const Icon(Icons.filter_list),
           enabledBorder: InputBorder.none,
           contentPadding: widget.contentPadding,
           focusedBorder: InputBorder.none,

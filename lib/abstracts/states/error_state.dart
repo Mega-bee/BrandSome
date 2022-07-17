@@ -1,24 +1,36 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:flutter/material.dart';
 class ErrorState extends States {
   final String errorMessage;
   final Function retry;
+
  ErrorState({required this.errorMessage,required this.retry}) : super(false);
   @override
   Widget getUI(BuildContext context) {
+    final text=["$errorMessage !!",''];
     return  SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset("assets/images/wifi.png"),
           const SizedBox(
-            height: 15,
+            height: 90,
           ),
-          Text(
-            errorMessage,
-            style: TextStyle(color: Colors.white),
+          Center(child: Image.asset("assets/images/cerror-removebg.png",height: 250,color: Theme.of(context).primaryColor,)),
+          const SizedBox(
+            height: 10,
           ),
+          AnimatedTextKit(animatedTexts: [
+            for(final txt in text)TyperAnimatedText(txt)
+
+          ],
+          repeatForever: true,
+          ),
+           Text(
+             errorMessage,
+             style: const TextStyle(color: Colors.white),
+           ),
           const   SizedBox(
             height: 30,
           ),

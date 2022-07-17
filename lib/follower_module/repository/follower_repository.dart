@@ -18,7 +18,7 @@ class FollowerRepository {
 
     WebServiceResponse? response = await _apiClient.get(
       Urls.GETFOLLOWEDBUSINESSES,
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -30,7 +30,7 @@ class FollowerRepository {
     WebServiceResponse? response = await _apiClient.post(
       Urls.FOLLOW_UNFOLLOW + "$id",
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

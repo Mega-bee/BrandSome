@@ -6,11 +6,11 @@ import 'package:rxdart/rxdart.dart';
 @injectable
 class AppThemeDataService {
   static final PublishSubject<ThemeData> _darkModeSubject =
-  PublishSubject<ThemeData>();
+      PublishSubject<ThemeData>();
 
   Stream<ThemeData> get darkModeStream => _darkModeSubject.stream;
 
-  ThemeHelper _themeHelper = ThemeHelper();
+  final ThemeHelper _themeHelper = ThemeHelper();
 
   static Color get PrimaryColor {
     return Colors.deepOrange;
@@ -20,28 +20,32 @@ class AppThemeDataService {
     var dark = _themeHelper.getisDark();
     final lightScheme = ColorScheme.fromSeed(seedColor: PrimaryColor);
     final darkScheme = ColorScheme.fromSeed(
-        seedColor: PrimaryColor,
-        brightness: Brightness.dark,
-        error: Colors.red[900],
-        errorContainer: Colors.red[100],);
+      seedColor: PrimaryColor,
+      brightness: Brightness.dark,
+      error: Colors.red[900],
+      errorContainer: Colors.red[100],
+    );
     if (dark == true) {
       return ThemeData(
-        cardColor: Colors.black,
-        scaffoldBackgroundColor: Colors.black,
-          appBarTheme: AppBarTheme(
-              iconTheme: IconThemeData(color: Colors.white)
-          ),
+          cardColor: Colors.black,
+          scaffoldBackgroundColor: Colors.black,
+          appBarTheme:
+              const AppBarTheme(iconTheme: IconThemeData(color: Colors.white)),
+          tabBarTheme: const TabBarTheme(
+              unselectedLabelColor: Colors.white,
+              labelColor: Color(0xffFF4C29)),
+
           brightness: Brightness.dark,
           colorScheme: darkScheme,
           useMaterial3: true,
           primarySwatch: Colors.deepOrange,
           focusColor: PrimaryColor,
-          primaryColor:PrimaryColor,
+          primaryColor: PrimaryColor,
           textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(primary: Colors.white70)),
           checkboxTheme: CheckboxThemeData(
             checkColor:
-            MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+                MaterialStateProperty.resolveWith((Set<MaterialState> states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{
                 MaterialState.pressed,
                 MaterialState.hovered,
@@ -53,7 +57,7 @@ class AppThemeDataService {
               return Colors.white;
             }),
             fillColor:
-            MaterialStateProperty.resolveWith((Set<MaterialState> states) {
+                MaterialStateProperty.resolveWith((Set<MaterialState> states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{
                 MaterialState.pressed,
                 MaterialState.hovered,
@@ -69,34 +73,38 @@ class AppThemeDataService {
           fontFamily: 'Dubai',
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25),
-                ),
-              )),
-          textTheme: TextTheme(
+                primary: Colors.black,
+
+              )
+          ),
+          textTheme: const TextTheme(
             button: TextStyle(
               color: Colors.white,
             ),
           ));
     }
     return ThemeData(
-      appBarTheme: AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.black)
-      ),
+        appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: Colors.black)),
+        tabBarTheme: const TabBarTheme(
+            unselectedLabelColor: Colors.black, labelColor: Color(0xffFF4C29)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+          primary: Colors.white,
+        )),
         brightness: Brightness.light,
         primaryColor: PrimaryColor,
         colorScheme: lightScheme,
         useMaterial3: true,
         focusColor: PrimaryColor,
         primarySwatch: Colors.deepOrange,
-        cardColor: Color.fromRGBO(245, 245, 245, 1),
-        backgroundColor: Color.fromRGBO(236, 239, 241, 1),
-        textTheme: TextTheme(button: TextStyle(color: Colors.white)),
+        cardColor: const Color.fromRGBO(245, 245, 245, 1),
+        backgroundColor: const Color.fromRGBO(236, 239, 241, 1),
+        textTheme: const TextTheme(button: TextStyle(color: Colors.white)),
         fontFamily: 'Dubai',
-        timePickerTheme: TimePickerThemeData(
+        timePickerTheme: const TimePickerThemeData(
           dialBackgroundColor: Color.fromRGBO(235, 235, 235, 1),
           dayPeriodBorderSide:
-          BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
+              BorderSide(color: Color.fromRGBO(235, 235, 235, 1)),
         ));
   }
 
@@ -106,8 +114,7 @@ class AppThemeDataService {
     } else {
       _themeHelper.setTheme(false);
     }
-    var activeTheme = await getActiveTheme();
+    var activeTheme = getActiveTheme();
     _darkModeSubject.add(activeTheme);
   }
-
 }

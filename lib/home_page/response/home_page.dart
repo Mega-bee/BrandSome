@@ -60,7 +60,7 @@ class Post {
     if (json['postMedia'] != null) {
       postMedia = <PostMedia>[];
       json['postMedia'].forEach((v) {
-        postMedia!.add(new PostMedia.fromJson(v));
+        postMedia!.add(PostMedia.fromJson(v));
       });
     }
     description = json['description'];

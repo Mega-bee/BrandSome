@@ -9,7 +9,6 @@ import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
 import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -66,7 +65,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
   PostCall(BusnessDetailsScreenState screenstate, String? id, String? number) {
     _businessRepositoryDetails.PostCall(id).then((value) {
       if (value!.code == 200) {
-        launchUrl("tel://${number}.");
+        launchUrl("tel://$number.");
       }
     });
   }

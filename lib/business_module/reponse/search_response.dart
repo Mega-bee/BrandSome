@@ -1,4 +1,3 @@
-import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
 
 class SearchResponse {

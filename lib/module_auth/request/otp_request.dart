@@ -7,8 +7,8 @@ class OtpRequest{
 
   Map<String, dynamic> toJson() {
     return {
-      'phoneNumber': this.number,
-      'username': this.userName,
+      'phoneNumber': number,
+      'username': userName,
     };
   }
 
@@ -23,8 +23,8 @@ class VerifyOtpRequest{
 
   Map<String, dynamic> toJson() {
     return {
-      'phoneNumber': this.number,
-      'otp': this.otp,
+      'phoneNumber': number,
+      'otp': otp,
     };
   }
 

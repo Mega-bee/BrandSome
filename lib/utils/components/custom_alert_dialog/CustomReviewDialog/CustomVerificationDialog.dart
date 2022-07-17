@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomReviewDialog extends StatelessWidget {
@@ -35,14 +34,14 @@ class CustomReviewDialog extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "Add review",
                   style: TextStyle(
 //                      color: greyColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -56,23 +55,23 @@ class CustomReviewDialog extends StatelessWidget {
                           width: 5,
                         ),
                       ),
-                      contentPadding: EdgeInsetsDirectional.only(
+                      contentPadding: const EdgeInsetsDirectional.only(
                           top: 10, bottom: 10, start: 10)),
                 ),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ElevatedButton(
             onPressed: () {
               continueBtn(review.text);
             },
-            child: Text("Save review"),
+            child: const Text("Save review"),
             style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
-                padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
+                padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],
       ),

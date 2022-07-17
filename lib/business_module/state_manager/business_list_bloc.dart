@@ -17,7 +17,6 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:signalr_netcore/signalr_client.dart';
 
-import '../../business_details_module/ui/screen/business_details.dart';
 import '../../di/di_config.dart';
 import '../../module_auth/repository/auth_repository.dart';
 import '../../module_auth/request/otp_request.dart';
@@ -44,7 +43,7 @@ class BusinessListCubit extends Cubit<States> {
 
   getBusinessList(
       BusinessScreenState screenState, BusinessFilterRequest request) {
-    emit(LoadingState());
+//    emit(LoadingState());
     _businessRepository.getBusiness(request).then((value) {
       if (value == null) {
         emit(ErrorState(
@@ -138,7 +137,7 @@ class BusinessListCubit extends Cubit<States> {
     print('after listen result ${dd?.first}');
     print('affter encoddd ${jsonEncode(dd![0])}');
     Map<String, dynamic> valueMap = dd[0] as Map<String, dynamic>;
-    print('${valueMap}');
+    print('$valueMap');
     SearchResponse vv = SearchResponse.fromJson(valueMap);
     _stateSubject.add(vv);
   }

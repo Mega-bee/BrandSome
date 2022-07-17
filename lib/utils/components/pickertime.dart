@@ -14,15 +14,16 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
-  DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
-  DateFormat _monthFormat = DateFormat('MMMM');
-  DateFormat _yearFormat = DateFormat('yyyy');
-  DateFormat _dayFormat = DateFormat('dd');
+  final DateFormat _dateFormat = DateFormat('yyyy/MM/dd');
+  final DateFormat _monthFormat = DateFormat('MMMM');
+  final DateFormat _yearFormat = DateFormat('yyyy');
+  final DateFormat _dayFormat = DateFormat('dd');
 
   DateTime _chosenDate=DateTime.now();
   String _chosenMonth="";
   String _chosenYear="";
   String _chosenDay="";
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -107,7 +108,7 @@ class _DatePickerState extends State<DatePicker> {
                   color:
                   focusNode.hasFocus ? Theme.of(context).primaryColor : Colors.white ),
               labelText: widget.label,
-              hintStyle:TextStyle(
+              hintStyle:const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   ),
@@ -116,7 +117,7 @@ class _DatePickerState extends State<DatePicker> {
               fillColor: Theme.of(context).scaffoldBackgroundColor,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(1.0),
-                borderSide:  BorderSide(
+                borderSide:  const BorderSide(
                   width: 0,
                   color: Colors.grey,
                 ),
@@ -124,7 +125,7 @@ class _DatePickerState extends State<DatePicker> {
               focusedBorder: OutlineInputBorder(
 
                   borderRadius: BorderRadius.circular(5.0),
-                  borderSide:  BorderSide(
+                  borderSide:  const BorderSide(
                     width: 0,
                     color:Colors.grey
                   ))),

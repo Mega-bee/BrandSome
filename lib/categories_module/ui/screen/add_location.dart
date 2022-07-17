@@ -1,4 +1,3 @@
-import '../../repository/location_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -10,7 +9,7 @@ import '../../state_manager/location_state_manager.dart';
 @injectable
 class AddLocationScreen extends StatefulWidget {
   final GeneralDataCubit locationCubit;
-  AddLocationScreen(this.locationCubit);
+  const AddLocationScreen(this.locationCubit);
   @override
   State<AddLocationScreen> createState() => AddLocationScreenState();
 }

@@ -9,7 +9,7 @@ class FilterSearchModel {
     if (json['subCategories'] != null) {
       subCategories = <SubCategories>[];
       json['subCategories'].forEach((v) {
-        subCategories!.add(new SubCategories.fromJson(v));
+        subCategories!.add(SubCategories.fromJson(v));
       });
     }
     id = json['id'];
@@ -29,7 +29,7 @@ class SubCategories {
     if (json['services'] != null) {
       services = <ServicesCat>[];
       json['services'].forEach((v) {
-        services!.add(new ServicesCat.fromJson(v));
+        services!.add(ServicesCat.fromJson(v));
       });
     }
     id = json['id'];

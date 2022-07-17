@@ -1,6 +1,4 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
-import 'package:brandsome/business_module/reponse/business_response.dart';
-import 'package:brandsome/business_module/request/bussines_filter_request.dart';
 import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
 import '../../abstracts/WebUrl.dart';
@@ -18,7 +16,7 @@ class SettingRepository {
 
     WebServiceResponse? response = await _apiClient.get(
       Urls.ACCOUNTS_SETTINGS,
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

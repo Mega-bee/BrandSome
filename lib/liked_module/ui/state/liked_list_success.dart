@@ -18,7 +18,7 @@ class LikedListSuccess extends States {
   @override
   Widget getUI(BuildContext context) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
           padding: const EdgeInsets.all(15.0),
@@ -42,7 +42,7 @@ class LikedListSuccess extends States {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Liked by :",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
@@ -52,7 +52,7 @@ class LikedListSuccess extends States {
                   )
                 ])),
         ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: likedmodelSearch.length,
             itemBuilder: (context, index) {

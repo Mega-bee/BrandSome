@@ -41,9 +41,8 @@ class BusinessDetailsSuccess extends States {
             // labelColor: primaryColor,
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
-            unselectedLabelColor: Colors.white,
-            labelColor: Theme.of(context).primaryColor,
-            tabs: [
+
+            tabs: const [
               Tab(
                 text: "Info",
               ),
@@ -127,7 +126,8 @@ class BusinessDetailsSuccess extends States {
                         ),
                       );
                     },
-                    businessInfoModel: businessInfoModel.posts ?? []),
+                    isMyBuss: businessInfoModel.isUserBusiness ?? false,
+                    businessInfoModel: businessInfoModel),
                 ReviewScreen(review: businessInfoModel.reviews ?? []),
               ],
             ),

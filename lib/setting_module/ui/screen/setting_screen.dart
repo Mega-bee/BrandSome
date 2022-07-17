@@ -10,23 +10,18 @@ import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../state_manager/setting.dart';
 
-
 @injectable
 class SettingsScreen extends StatefulWidget {
-
   final SettingCubit cubit;
+
   const SettingsScreen(this.cubit);
 
   @override
-
   State<SettingsScreen> createState() => SettingsScreenState();
 }
 
 class SettingsScreenState extends State<SettingsScreen> {
-
   StreamSubscription? _globalStateManager;
-
-
 
   @override
   void initState() {
@@ -34,36 +29,40 @@ class SettingsScreenState extends State<SettingsScreen> {
     widget.cubit.getSetting(this);
     _globalStateManager =
         getIt<GlobalStateManager>().stateStream.listen((event) {
-          if (mounted) {
-            widget.cubit.getSetting(this);
-          }
-        });
+      if (mounted) {
+        widget.cubit.getSetting(this);
+      }
+    });
   }
 
-  void goToLogin(){
-    widget.cubit.emit( RequestOtpState(this));
+  void goToLogin() {
+    widget.cubit.emit(RequestOtpState(this));
   }
-  requestOtp(OtpRequest request){
-    widget.cubit.requestOtp(this ,request);
+
+  requestOtp(OtpRequest request) {
+    widget.cubit.requestOtp(this, request);
   }
-  verifyOtp(VerifyOtpRequest request){
-    widget.cubit.verifyOtp(this ,request);
+
+  verifyOtp(VerifyOtpRequest request) {
+    widget.cubit.verifyOtp(this, request);
   }
-  void logOut(){
+
+  void logOut() {
     widget.cubit.logout();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 5,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: Text(
-          "Settings",
-          style: TextStyle(color: Colors.white),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          title: Text(
+            "Settings",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
         ),
-      ),
-
         body: BlocConsumer<SettingCubit, States>(
           bloc: widget.cubit,
           buildWhen: (previous, current) => !current.isListener,
@@ -85,9 +84,9 @@ class SettingsScreenState extends State<SettingsScreen> {
                   builder: (context) => state.getAlert(context));
             }
           },
-        )
-    );
+        ));
   }
+
   @override
   void dispose() {
     // TODO: implement dispose

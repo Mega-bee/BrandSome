@@ -9,6 +9,8 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
+import '../../../hive/hive.dart';
+import '../../../localization_service/localizationSservice.dart';
 import '../../../utils/images/images.dart';
 import '../../../utils/service/theme_serrvice/theme_service.dart';
 import '../../response/settings_response.dart';
@@ -16,20 +18,26 @@ import '../../response/settings_response.dart';
 class SettingSuccess extends States {
   final GetAccountSetting getaccsetting;
   final SettingsScreenState _settingsScreenState ;
-  SettingSuccess(this._settingsScreenState, {required this.getaccsetting}) : super(false);
 
+  SettingSuccess(this._settingsScreenState, {required this.getaccsetting}) : super(false);
+  bool isArabic=false;
   @override
+
+
   Widget getUI(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListView(
+
         physics:const BouncingScrollPhysics(
           parent: AlwaysScrollableScrollPhysics()),
         children: [
+
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+
             Padding(
-              padding: EdgeInsets.all(15.0),
-              child: Container(
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
                 width: 80,
                 height: 80,
                 child: CachedNetworkImage(
@@ -43,17 +51,19 @@ class SettingSuccess extends States {
                       ),
                     ),
                   ),
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  placeholder: (context, url) => const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
+
             Column(
               children: [
+
                 Text(
                   getaccsetting.businessesCount.toString(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 3,
                 ),
                 Text(
@@ -69,7 +79,7 @@ class SettingSuccess extends States {
                 Text(
                   getaccsetting.reviewCount.toString(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 3,
                 ),
                 Text(
@@ -82,8 +92,8 @@ class SettingSuccess extends States {
             ),
             Column(
               children: [
-                Text("${getaccsetting.followingCount}", style: TextStyle()),
-                SizedBox(
+                Text("${getaccsetting.followingCount}", style: const TextStyle()),
+                const SizedBox(
                   height: 3,
                 ),
                 Text(
@@ -95,27 +105,30 @@ class SettingSuccess extends States {
               ],
             ),
           ]),
-          Center(
-            child: Text(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Text(
               "${getaccsetting.name} ",
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          SizedBox(
+          ],),
+
+          const SizedBox(
             height: 3,
           ),
 
-          Divider(
+          const Divider(
             thickness: 2,
           ),
 
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
 
           ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: getaccsetting.businesses!.length,
               itemBuilder: (context, index) {
@@ -136,7 +149,7 @@ class SettingSuccess extends States {
                       children: [
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: 30,
                               height: 30,
                               child: CachedNetworkImage(
@@ -150,20 +163,20 @@ class SettingSuccess extends States {
                                     ),
                                   ),
                                 ),
-                                placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Icon(Icons.error),
+                                placeholder: (context, url) => const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                             ),
 
-                            SizedBox(
+                            const SizedBox(
                               width: 27,
                             ),
                             Text(
-                              getaccsetting.businesses![index].name.toString(),style: TextStyle(fontSize: 16)
+                              getaccsetting.businesses![index].name.toString(),style: const TextStyle(fontSize: 16)
                             ),
                           ],
                         ),
-                        Icon(
+                        const Icon(
                           Icons.arrow_forward_ios_rounded,
                         ),
                       ],
@@ -172,11 +185,11 @@ class SettingSuccess extends States {
                 );
               }),
 
-          SizedBox(height: 20,),
-          Divider(
+          const SizedBox(height: 20,),
+          const Divider(
             thickness: 2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           InkWell(
@@ -200,28 +213,28 @@ class SettingSuccess extends States {
 
                         height: 30,width: 30,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 27,
                       ),
-                      Text(
+                      const Text(
                         "Your Bees",style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
-          SizedBox(height: 20,),
+          const SizedBox(height: 20,),
           InkWell(
             onTap: () {
               Navigator.pushNamed(
@@ -239,7 +252,7 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.person,
                       ),
@@ -251,15 +264,15 @@ class SettingSuccess extends States {
                       ),
                     ],
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 15,
+          const SizedBox(
+            height: 25,
           ),
           InkWell(
             onTap: () {
@@ -274,7 +287,7 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.add_business,
                       ),
@@ -286,16 +299,24 @@ class SettingSuccess extends States {
                       ),
                     ],
                   ),
-                  Icon(
+                  const Icon(
                     Icons.arrow_forward_ios_rounded,
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
+          const Divider(
+            thickness: 2,
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+
+
           ListTileSwitch(
             value: Theme.of(context).brightness == Brightness.dark,
 
@@ -313,15 +334,37 @@ class SettingSuccess extends States {
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
 
-            title: Padding(
-              padding: const EdgeInsets.only(right: 100),
+            title: const Padding(
+              padding: EdgeInsets.only(right: 100),
               child: Text('Dark mode',style: TextStyle(fontSize: 16)),
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
 
+          ListTileSwitch(
+            value: LanguageHelper().getLanguage()=="ar"?true:false,
+
+            leading: const Text(
+              " EN",
+
+              style: TextStyle(fontSize: 10),
+            ),
+            onChanged: (mode) {
+              print('fffffffffffffffffffff');
+              LocalizationService().setLanguage(mode?"ar":"en");
+            },
+
+            visualDensity: VisualDensity.comfortable,
+            switchType: SwitchType.cupertino,
+            switchActiveColor: Colors.grey,
+
+            title: const Padding(
+              padding: EdgeInsets.only(right: 100),
+              child: Text('Languages',style: TextStyle(fontSize: 16)),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
           InkWell(
             onTap: () {
               showDialog(
@@ -349,9 +392,9 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       Icon(
-                        FontAwesomeIcons.powerOff,
+                        FontAwesomeIcons.powerOff,size: 20,
                       ),
                       SizedBox(
                         width: 27,
@@ -361,15 +404,18 @@ class SettingSuccess extends States {
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),
           )  ,
-          Divider(
+          const SizedBox(
+            height: 5,
+          ),
+          const Divider(
             thickness: 2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
@@ -424,14 +470,14 @@ class SettingSuccess extends States {
           //     ),
           //   ),
           // ),
-          Divider(
+          const Divider(
             thickness: 2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
               Icon(
                 Icons.info_outlined,
                 color: Colors.grey,
@@ -447,11 +493,11 @@ class SettingSuccess extends States {
             ]),
           ),
 
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Image.asset(ImageAsset.MEGABEE,width: 15,height: 12,),
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
         ],

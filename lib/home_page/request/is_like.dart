@@ -5,7 +5,7 @@ class LikeRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'Islike': this.isLike,
+      'Islike': isLike,
     };
   }
 

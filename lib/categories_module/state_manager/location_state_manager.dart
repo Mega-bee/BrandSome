@@ -26,20 +26,20 @@ class GeneralDataCubit extends Cubit<States> {
     if (hiveCity == null) {
       emit(ErrorState(errorMessage: 'Faild to load cities', retry: () {}));
     } else {
-      hiveCity.forEach((element) {
+      for (var element in hiveCity) {
         cities.add(AddLocationResponse(
             value: false, id: element.id, name: element.name));
-      });
+      }
       if (alreadySelected != null && alreadySelected.isNotEmpty) {
         print('check Selected');
-        alreadySelected.forEach((selec) {
-          cities.forEach((city) {
+        for (var selec in alreadySelected) {
+          for (var city in cities) {
             if (selec.id == city.id) {
               city.value = true;
               print(1111);
             }
-          });
-        });
+          }
+        }
 //        List<AddLocationResponse>? citiesb =   cities.where((item) => alreadySelected.contains(item)).toList();
 //        print(citiesb);
       }
@@ -53,7 +53,7 @@ class GeneralDataCubit extends Cubit<States> {
     if (catHive == null) {
       emit(ErrorState(errorMessage: 'Faild to load categories', retry: () {}));
     } else {
-      catHive.forEach((element) {
+      for (var element in catHive) {
         List<SubCategoryModel> subCategories = [];
         element.subs?.forEach((element) {
           List<ServiceModel> service = [];
@@ -65,7 +65,7 @@ class GeneralDataCubit extends Cubit<States> {
         });
         cateigories.add(MainCategoryModel(
             name: element.name, id: element.id, subs: subCategories));
-      });
+      }
       emit(CategorySuccess(cateigories, state));
     }
   }

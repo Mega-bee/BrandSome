@@ -7,7 +7,7 @@ class IsFollowCard {
   Map<String, dynamic> toJson() {
     return {
 
-      'isFollow': this.isFollow,
+      'isFollow': isFollow,
     };
   }
 

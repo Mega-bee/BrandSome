@@ -19,7 +19,7 @@ class BusinessRepository {
     WebServiceResponse? response = await _apiClient.get(
       Urls.GET_BUSINESS,
       queryParams: request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -30,7 +30,7 @@ class BusinessRepository {
     WebServiceResponse? response = await _apiClient.post(
       Urls.CREATE_BUSINESS,
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -43,7 +43,7 @@ class BusinessRepository {
       Urls.FOLLOW_UNFOLLOW+ "$id",
       request.toJson()
       ,
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

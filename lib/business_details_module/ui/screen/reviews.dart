@@ -7,7 +7,7 @@ class ReviewScreen extends StatelessWidget {
   final List<Reviews> review;
 
 
-  ReviewScreen({required this.review,});
+  const ReviewScreen({required this.review,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class ReviewScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
             Image.asset(ImageAsset.NO_REVIEW,height: 200,),
-            Text('No Reviews yet')
+            const Text('No Reviews yet')
           ],) :
 
       ListView.builder(

@@ -23,10 +23,10 @@ class HomeP {
     return response;
   }
   Future<WebServiceResponse?> getHomePage() async {
-    var token = await _authService.getToken();
+    var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
       Urls.GET_HOME_PAGE,
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -37,7 +37,7 @@ class HomeP {
     WebServiceResponse? response = await _apiClient.put(
       Urls.LIKE_HOME + "$id",
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

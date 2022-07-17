@@ -32,8 +32,9 @@ class _NavigationState extends State<NavigationScreen> {
         children: screens,
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        animationDuration: Duration(milliseconds: 400),
-        color: Colors.black87,
+        animationDuration: const Duration(milliseconds: 400),
+        color: Theme.of(context).brightness==Brightness.light?Colors.white:Colors.black38,
+        // color: Colors.black87,
         buttonBackgroundColor: Theme.of(context).primaryColor,
         backgroundColor: Colors.transparent,
         height: 60,
@@ -42,7 +43,7 @@ class _NavigationState extends State<NavigationScreen> {
             currentIndex = index;
           });
         },
-        items: [
+        items: const [
           Icon(
             Icons.home,
           ),

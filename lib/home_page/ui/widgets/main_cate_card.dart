@@ -1,4 +1,3 @@
-import 'package:brandsome/home_page/response/home_page.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +8,7 @@ class MainCategoryCard extends StatefulWidget {
   final Function onCardTAP;
 
 
-  MainCategoryCard(this.category, this.onCardTAP);
+  const MainCategoryCard(this.category, this.onCardTAP);
 
   @override
   State<MainCategoryCard> createState() => _CategoryState();
@@ -27,7 +26,7 @@ class _CategoryState extends State<MainCategoryCard> {
           Text(
             widget.category.name!,
           ),
-          SizedBox(
+          const SizedBox(
             height: 2,
           ),
           Visibility(

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -34,8 +33,13 @@ class FollowersState extends State<Followers> {
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           elevation: 5,
+          centerTitle: true,
           title: Text(
             "Followers",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+
           ),
         ),
         body: BlocBuilder<FollowersCubit, States>(

@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:brandsome/abstracts/module/rout_module.dart';
 import 'package:brandsome/business_module/business_module.dart';
 import 'package:brandsome/categories_module/categories_module.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/follower_module/follower_module.dart';
-import 'package:brandsome/hive/hive_city.dart';
 import 'package:brandsome/home_page/home_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
@@ -15,11 +13,13 @@ import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive/hive.dart';
+//import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'business_details_module/business_details_module.dart';
 import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
+import 'localization_service/localizationSservice.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,12 +35,12 @@ void main() async {
     FlutterError.onError = (FlutterErrorDetails details) async {
       Logger().error('Main', details.toString(), StackTrace.current);
     };
-    await runZonedGuarded(() {
+    runZonedGuarded(() {
       configureDependencies();
       // Your App Here
       runApp(getIt<MyApp>());
     }, (error, stackTrace) {
-      new Logger().error(
+      Logger().error(
           'Main', error.toString() + stackTrace.toString(), StackTrace.current);
     });
   });
@@ -59,11 +59,13 @@ class MyApp extends StatefulWidget {
   final CategoryModule _categoryModule;
   final HomeModule _homeModule;
   final PostModule _postModule;
+  final LocalizationService _localizationService;
 
 
 
 
-  MyApp(
+
+  const MyApp(
       this._themeDataService,
       this._navigatorModule,
       this._businessModule,
@@ -74,7 +76,8 @@ class MyApp extends StatefulWidget {
 //      this._authorizationModule,
       this._categoryModule,
       this._homeModule,
-      this._postModule
+      this._postModule,
+      this._localizationService,
       );
 
   @override
@@ -83,6 +86,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late ThemeData activeThem;
+  late String lang ;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +112,16 @@ class _MyAppState extends State<MyApp> {
 //          GlobalCupertinoLocalizations.delegate,
 //        ],
       theme: activeThem,
-//        supportedLocales: S.delegate.supportedLocales,
+//      locale: Locale.fromSubtags(
+//        languageCode: lang,
+//      ),
+//      localizationsDelegates: [
+//        S.delegate,
+//        GlobalMaterialLocalizations.delegate,
+//        GlobalWidgetsLocalizations.delegate,
+//        GlobalCupertinoLocalizations.delegate,
+//      ],
+//      supportedLocales: S.delegate.supportedLocales,
       title: 'BrandSome',
       routes: fullRoutesList,
       initialRoute: NavRoutes.nav_rout,
@@ -121,5 +134,18 @@ class _MyAppState extends State<MyApp> {
       activeThem = event;
       setState(() {});
     });
+    // widget._localizationService= LocalizationService();
+ lang = widget._localizationService.getLanguage();
+
+    widget._localizationService.localizationStream.listen((event) {
+      print(event);
+     lang = event;
+      setState(() {
+
+      });
+    });
   }
+
+
+
 }

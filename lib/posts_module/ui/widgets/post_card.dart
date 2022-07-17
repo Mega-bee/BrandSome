@@ -1,10 +1,8 @@
-import 'package:brandsome/posts_module/ui/widgets/v.dart';
 import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
-import 'package:visibility_detector/visibility_detector.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {
@@ -13,7 +11,7 @@ class PostCard extends StatefulWidget {
   final Function onLikeClick;
   final bool isLogged;
 
-  PostCard(
+  const PostCard(
       {required this.onViewLikeTap,
       required this.posthome,
       required this.onLikeClick,
@@ -42,7 +40,7 @@ class _PostCardState extends State<PostCard> {
       child: Column(
         children: [
           ListTile(
-            leading: Container(
+            leading: SizedBox(
               width: 50,
               height: 50,
               child: CachedNetworkImage(
@@ -56,8 +54,11 @@ class _PostCardState extends State<PostCard> {
                     ),
                   ),
                 ),
-                placeholder: (context, url) => CircularProgressIndicator(),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                placeholder: (context, url) => Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 10),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             title: Text(
@@ -71,7 +72,7 @@ class _PostCardState extends State<PostCard> {
 //              "${posts.imgTwo}",
 //              fit: BoxFit.cover,
 //            ),
-          Container(
+          SizedBox(
             height: 500,
             width: 500,
             child: Column(
@@ -95,7 +96,7 @@ class _PostCardState extends State<PostCard> {
                   itemCount: widget.posthome.postMedia?.length,
                   itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) =>
-                      Container(
+                      SizedBox(
                           width: 500,
 
                           // margin: EdgeInsets.symmetric(horizontal: .0),
@@ -120,7 +121,7 @@ class _PostCardState extends State<PostCard> {
                         .map((e) => Container(
                               width: 5.0,
                               height: 5.0,
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 2.0),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -164,7 +165,7 @@ class _PostCardState extends State<PostCard> {
                                 color: Theme.of(context).primaryColor,
                           size: 25,
                               )
-                            : Icon(
+                            : const Icon(
                                 Icons.thumb_up_alt_outlined,
                           size: 25,
                               )),
@@ -173,26 +174,26 @@ class _PostCardState extends State<PostCard> {
                          widget.onViewLikeTap(widget.posthome.id.toString());
                        },
                          child: Text(widget.posthome.likeCount.toString() + ' Likes',
-                           style: TextStyle(
+                           style: const TextStyle(
                            decoration: TextDecoration.underline,
                          ),))
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   widget.posthome.type ?? '',
                   style: Theme.of(context).textTheme.caption,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   "${widget.posthome.description}",
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ],

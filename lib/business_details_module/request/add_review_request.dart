@@ -6,8 +6,8 @@ class AddReviewRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'businessId': this.Bussinessid,
-      'description': this.Description,
+      'businessId': Bussinessid,
+      'description': Description,
     };
   }
 

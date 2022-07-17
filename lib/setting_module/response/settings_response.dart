@@ -18,7 +18,7 @@ class GetAccountSetting {
     if (json['businesses'] != null) {
       businesses = <Businesses>[];
       json['businesses'].forEach((v) {
-        businesses!.add(new Businesses.fromJson(v));
+        businesses!.add(Businesses.fromJson(v));
       });
     }
     name = json['name'];

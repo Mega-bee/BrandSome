@@ -15,6 +15,7 @@ class ImageAsset {
   static const MEGABEE = ROOT +'megabeelogo.png';
   static const NO_POST = ROOT +'no-paper.png';
   static const NO_REVIEW = ROOT +'no-review.png';
+  static const LOGO = ROOT +'logo/logo.png';
 }
 
 ///sport images

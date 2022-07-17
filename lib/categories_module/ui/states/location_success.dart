@@ -1,7 +1,6 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/setting_module/ui/widget/citiy_card.dart';
 import 'package:brandsome/utils/components/costom_search.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../reponse/add_location_response.dart';
@@ -21,7 +20,11 @@ class LocationSuccess extends States {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
-        title: Text('Select Location'),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+centerTitle: true,
+        title: Text('Select Location',  style: TextStyle(
+          color: Theme.of(context).primaryColor,
+        ),),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),
@@ -71,7 +74,7 @@ class LocationSuccess extends States {
         widgets.insert(
             0,
             Padding(
-              padding: EdgeInsets.only(left: 18.0, right: 18.0, bottom: 16),
+              padding: const EdgeInsets.only(left: 18.0, right: 18.0, bottom: 16),
               child: CustomSearch(
                 hintText: 'Search for city',
                 onChanged: (s) {
@@ -87,7 +90,7 @@ class LocationSuccess extends States {
             ));
       }
     }
-    widgets.add(SizedBox(height: 75));
+    widgets.add(const SizedBox(height: 75));
     return widgets;
   }
 }

@@ -21,7 +21,7 @@ class BusinessRepositoryDetails {
     var token =   _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
       Urls.GET_BUSINESS_DETAILS + "$id",
-     headers: {'Authorization': 'Bearer ' + '$token'},
+     headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -33,7 +33,7 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.post(
       Urls.PHONE_CLICK + "$id",
       {},
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -45,7 +45,7 @@ class BusinessRepositoryDetails {
       Urls.FOLLOW_UNFOLLOW + "$id",
       request.toJson()
       ,
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -57,7 +57,7 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.post(
       Urls.BUSINESS_VIEW + "$id",
       {},
-      headers: {'imei':'$Imei','Authorization': 'Bearer ' + '$token'},
+      headers: {'imei':Imei,'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -68,7 +68,7 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.post(
       Urls.CREATE_REVIEW,
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -81,7 +81,7 @@ class BusinessRepositoryDetails {
     WebServiceResponse? response = await _apiClient.put(
       Urls.UPDATE_BUSINESS,
       request.toJson(),
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -91,9 +91,9 @@ class BusinessRepositoryDetails {
   Future<WebServiceResponse?> deleteBusiness(String?id) async {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.put(
-      Urls.DELETE_BUSINESS + "${id}",
+      Urls.DELETE_BUSINESS + "$id",
       {},
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
@@ -103,9 +103,9 @@ class BusinessRepositoryDetails {
   Future<WebServiceResponse?> deletePost(String?id) async {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.put(
-      Urls.DELETE_POST + "${id}",
+      Urls.DELETE_POST + "$id",
       {},
-      headers: {'Authorization': 'Bearer ' + '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;

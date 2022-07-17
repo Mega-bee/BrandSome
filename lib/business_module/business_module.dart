@@ -5,7 +5,6 @@ import 'package:brandsome/business_module/ui/screen/business_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import '../categories_module/ui/screen/add_location.dart';
 
 @injectable
 class   BusinessModule extends RoutModule {

@@ -1,32 +1,30 @@
-import 'dart:io';
 
+import 'package:brandsome/business_details_module/reponse/business_response.dart';
+import 'package:brandsome/posts_module/ui/state/create_post_init.dart';
+import 'package:brandsome/posts_module/ui/state/pick_image_state.dart';
+import 'package:brandsome/test_select_Image/picker_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import '../../../abstracts/states/state.dart';
-import '../../../business_module/business_routes.dart';
-import '../../../business_module/ui/state/add_business_state/add_business_init.dart';
-import '../../../categories_module/categories_routes.dart';
-import '../../../categories_module/reponse/category_response.dart';
-import '../../../categories_module/reponse/add_location_response.dart';
-import '../../../home_page/home_route.dart';
-import '../../../home_page/state_manager/home_page_state_manager.dart';
-import '../state/create_post_success.dart';
 import '../../request/bussines_filter_request.dart';
 import '../../state_manager/create_post_state_manager.dart';
 
 @injectable
-class CreatePost extends StatefulWidget {
+class CreatePostScreen extends StatefulWidget {
 final CreatePostCubit createPostCubit;
 
-CreatePost({required this.createPostCubit});
+const CreatePostScreen({required this.createPostCubit});
   @override
-  State<CreatePost> createState() => CreatePostState();
+  State<CreatePostScreen> createState() => CreatePostScreenState();
 }
 
-class CreatePostState extends State<CreatePost> {
+class CreatePostScreenState extends State<CreatePostScreen> {
+List<Services>? services;
+List<City>? cities;
+List<AssetEntity> assets = <AssetEntity>[];
+
 
 void refrech(){
   if(mounted){
@@ -35,43 +33,29 @@ void refrech(){
     });
   }
 }
-  createBusinessRequest() {
+  createBusinessRequest(CreatePostRequest request) {
     widget.createPostCubit.createPost(request, this);
   }
-  late CreatePostRequest request;
+
   @override
   void initState() {
     super.initState();
-    request = CreatePostRequest(media: []);
-    widget.createPostCubit.emit(CreatePostSuccess(state: this));
+    cities = [];
+    services = [];
+//    openImage();
+//    widget.createPostCubit.emit(PickImagesState(openImages:selectAssets( PickMethod.cameraAndStay(maxAssetsCount: 9),) ));
+    widget.createPostCubit.emit(CreatePostInit(screenState: this));
   }
+
+
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments;
+    if(args != null && args is Map){
+        services = args["service"] as List<Services>;
+        cities = args["city"] as List<City>;
+    }
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
-        title: Text("Add Post"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              createBusinessRequest();
-            },
-            icon: Icon(
-              Icons.check,
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-        ],
-      ),
       body: BlocBuilder<CreatePostCubit, States>(
           bloc: widget.createPostCubit,
           builder: (context, state) {
@@ -79,4 +63,16 @@ void refrech(){
           }),
     );
   }
+
+
+Future<void> selectAssets(PickMethod model) async {
+
+  final List<AssetEntity>? result = await model.method(context, assets);
+  if (result != null) {
+    assets = List<AssetEntity>.from(result);
+    if (mounted) {
+      setState(() {});
+    }
+  }
+}
 }

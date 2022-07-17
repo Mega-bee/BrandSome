@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomVerificationDialog extends StatefulWidget {
@@ -6,7 +5,7 @@ class CustomVerificationDialog extends StatefulWidget {
   final String content;
   final Function continueBtn;
 
-  CustomVerificationDialog({
+  const CustomVerificationDialog({
     required this.title,
     required this.content,
     required this.continueBtn,
@@ -43,7 +42,7 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
             Container(
               child: Text(
                 widget.title,
-                style: TextStyle(
+                style: const TextStyle(
 //                    color: blackColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
@@ -60,11 +59,11 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Username",
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -80,17 +79,17 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
                         hintText: 'Enter your username',
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                        contentPadding: EdgeInsetsDirectional.only(
+                        contentPadding: const EdgeInsetsDirectional.only(
                             top: 10, bottom: 10, start: 10)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Text(
+                  const Text(
                     "Phone Number",
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   TextFormField(
@@ -106,23 +105,23 @@ class _CustomVerificationDialog extends State<CustomVerificationDialog> {
                         hintText: 'Enter your phone number',
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                        contentPadding: EdgeInsetsDirectional.only(
+                        contentPadding: const EdgeInsetsDirectional.only(
                             top: 10, bottom: 10, start: 10)),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             ElevatedButton(
               onPressed: () {
                 widget.continueBtn();
               },
-              child: Text("Continue"),
+              child: const Text("Continue"),
               style: ElevatedButton.styleFrom(
                   primary: Theme.of(context).primaryColor,
-                  padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
+                  padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
             ),
           ],
         ),

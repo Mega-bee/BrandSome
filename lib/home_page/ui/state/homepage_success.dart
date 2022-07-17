@@ -4,11 +4,9 @@ import 'package:brandsome/home_page/model/category_model.dart';
 import 'package:brandsome/home_page/model/subCategory.dart';
 import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../utils/images/images.dart';
-import '../../../posts_module/reponse/posts_reponse.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
 import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
@@ -67,9 +65,9 @@ final  bool isLogged;
         ItemPositionsListener.create();
 
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         SizedBox(
@@ -84,18 +82,18 @@ final  bool isLogged;
                   return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: MainCategoryCard(categorys[index], () {
-                        categorys.forEach((element) {
+                        for (var element in categorys) {
                           element.selectedCard = false;
-                        });
+                        }
                         categorys[index].selectedCard = true;
                       }));
                 }),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
-        Container(
+        SizedBox(
           height: 150,
           child: ListView.builder(
               shrinkWrap: true,
@@ -132,14 +130,14 @@ final  bool isLogged;
             ),
           ),
         ),
-        Divider(
+        const Divider(
           thickness: 3,
         ),
         ScrollablePositionedList.builder(
 
             itemScrollController: itemScrollController,
             itemPositionsListener: itemPositionsListener,
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: posthome.length,
             itemBuilder: (context, index) {
@@ -153,7 +151,7 @@ final  bool isLogged;
                   },
                   posthome: posthome[index]);
             }),
-        SizedBox(
+        const SizedBox(
           height: 55,
         ),
       ]),

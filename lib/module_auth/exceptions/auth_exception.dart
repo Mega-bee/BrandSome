@@ -6,7 +6,7 @@ class TokenExpiredException implements Exception {
   const TokenExpiredException(this.msg);
 
   @override
-  String toString() => 'TokenExpiredException ${msg}';
+  String toString() => 'TokenExpiredException $msg';
 }
 
 class AuthorizationException implements Exception {

@@ -6,7 +6,7 @@ class CustomDeleteDialog extends StatelessWidget {
   final Function yesBtn;
   final Function noBtn;
 
-  CustomDeleteDialog({
+  const CustomDeleteDialog({
     required this.title,
     required this.content,
     required this.yesBtn,
@@ -19,13 +19,13 @@ class CustomDeleteDialog extends StatelessWidget {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Container(
               child: Text(
                 title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -37,9 +37,9 @@ class CustomDeleteDialog extends StatelessWidget {
           children: [
             Text(
               content,
-              style: TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 14),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Center(
@@ -58,7 +58,7 @@ class CustomDeleteDialog extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                         elevation: 0,
                         side: BorderSide(color: Theme.of(context).primaryColor),
-                        padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
+                        padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -66,17 +66,19 @@ class CustomDeleteDialog extends StatelessWidget {
                     },
                     child: Text(
                       "Cancel",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    style: ElevatedButton.styleFrom(
-//                        primary: primaryColor,
-                        elevation: 0,
-                        padding: EdgeInsets.fromLTRB(30, 10, 30, 10)),
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 12)     ,               ),
+                      style: ElevatedButton.styleFrom(
+                          elevation: 0,
+                          side: BorderSide(color: Theme.of(context).primaryColor),
+                          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
           ],

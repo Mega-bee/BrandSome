@@ -21,12 +21,12 @@ class CreateBusinessRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'BusinessDescription': this.businessDescription,
-      'BusinessName': this.businessName,
-      'BusinessPhoneNumber': this.businessPhoneNumber,
-      'Cities': this.cities,
-      'Services': this.services,
-      'ImageFile': this.images,
+      'BusinessDescription': businessDescription,
+      'BusinessName': businessName,
+      'BusinessPhoneNumber': businessPhoneNumber,
+      'Cities': cities,
+      'Services': services,
+      'ImageFile': images,
     };
   }
 }

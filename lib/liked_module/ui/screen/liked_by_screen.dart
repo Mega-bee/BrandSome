@@ -9,7 +9,7 @@ import '../../state_manager/liked_list_bloc.dart';
 class LikeByScreen extends StatefulWidget {
   final LikedListCubit likedListCubit;
 
-  LikeByScreen({required this.likedListCubit});
+  const LikeByScreen({required this.likedListCubit});
 
   @override
   State<LikeByScreen> createState() => LikeByScreenState();
