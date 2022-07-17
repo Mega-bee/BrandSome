@@ -5,6 +5,8 @@ import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
+import '../../../generated/l10n.dart';
+
 class SettingNotLogged extends States {
   final SettingsScreenState _settingsScreenState ;
   SettingNotLogged(this._settingsScreenState) : super(false);
@@ -29,7 +31,7 @@ class SettingNotLogged extends States {
             visualDensity: VisualDensity.comfortable,
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
-            title: Text('Dark mode'),
+            title: Text(S.of(context).darkMode,),
           ),
           ListTile(title: Text('Register to app'),
             leading: Icon(Icons.login),
@@ -55,7 +57,7 @@ class SettingNotLogged extends States {
                 width: 10,
               ),
               Text(
-                "App Version 1.0.0",
+                "${S.of(context).appVersion} 1.0.0",
                 style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ]),

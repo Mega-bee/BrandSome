@@ -51,20 +51,20 @@ class S {
   }
 
   /// `Add Bussines`
-  String get AddBussines {
+  String get addBussines {
     return Intl.message(
       'Add Bussines',
-      name: 'AddBussines',
+      name: 'addBussines',
       desc: '',
       args: [],
     );
   }
 
   /// `Add Post`
-  String get AddPost {
+  String get addPost {
     return Intl.message(
       'Add Post',
-      name: 'AddPost',
+      name: 'addPost',
       desc: '',
       args: [],
     );
@@ -101,10 +101,10 @@ class S {
   }
 
   /// `Choose interests`
-  String get Chooseinterests {
+  String get chooseInterests {
     return Intl.message(
       'Choose interests',
-      name: 'Chooseinterests',
+      name: 'chooseInterests',
       desc: '',
       args: [],
     );
@@ -130,7 +130,15 @@ class S {
     );
   }
 
-  // skipped getter for the 'NoResultsFound.' key
+  /// `No Results Found`
+  String get noResultsFound {
+    return Intl.message(
+      'No Results Found',
+      name: 'noResultsFound',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Services`
   String get Services {
@@ -143,30 +151,30 @@ class S {
   }
 
   /// `Photo Filter`
-  String get PhotoFilter {
+  String get photoFilter {
     return Intl.message(
       'Photo Filter',
-      name: 'PhotoFilter',
+      name: 'photoFilter',
       desc: '',
       args: [],
     );
   }
 
   /// `Select cities and services`
-  String get Selectcitiesandservices {
+  String get selectCitiesAndServices {
     return Intl.message(
       'Select cities and services',
-      name: 'Selectcitiesandservices',
+      name: 'selectCitiesAndServices',
       desc: '',
       args: [],
     );
   }
 
   /// `Select Image Please`
-  String get SelectImagePlease {
+  String get selectImagePlease {
     return Intl.message(
       'Select Image Please',
-      name: 'SelectImagePlease',
+      name: 'selectImagePlease',
       desc: '',
       args: [],
     );
@@ -203,20 +211,20 @@ class S {
   }
 
   /// `Business Name`
-  String get BusinessName {
+  String get businessName {
     return Intl.message(
       'Business Name',
-      name: 'BusinessName',
+      name: 'businessName',
       desc: '',
       args: [],
     );
   }
 
   /// `fill the field`
-  String get fillthefield {
+  String get fillTheField {
     return Intl.message(
       'fill the field',
-      name: 'fillthefield',
+      name: 'fillTheField',
       desc: '',
       args: [],
     );
@@ -253,106 +261,516 @@ class S {
   }
 
   /// `Business Phone`
-  String get BusinessPhone {
+  String get businessPhone {
     return Intl.message(
       'Business Phone',
-      name: 'BusinessPhone',
+      name: 'businessPhone',
       desc: '',
       args: [],
     );
   }
 
   /// `Add Location`
-  String get AddLocation {
+  String get addLocation {
     return Intl.message(
       'Add Location',
-      name: 'AddLocation',
+      name: 'addLocation',
       desc: '',
       args: [],
     );
   }
 
-  // skipped getter for the 'AddService\'' key
+  /// `Add Service`
+  String get addService {
+    return Intl.message(
+      'Add Service',
+      name: 'addService',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Nopostsyet\'' key
+  /// `No posts yet`
+  String get noPostsYet {
+    return Intl.message(
+      'No posts yet',
+      name: 'noPostsYet',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Likedby\'' key
+  /// `Liked by`
+  String get likedBy {
+    return Intl.message(
+      'Liked by',
+      name: 'likedBy',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Unfollow\'' key
+  /// `Unfollow`
+  String get Unfollow {
+    return Intl.message(
+      'Unfollow',
+      name: 'Unfollow',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Follow\'' key
+  /// `Follow`
+  String get Follow {
+    return Intl.message(
+      'Follow',
+      name: 'Follow',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Update\'' key
+  /// `Update`
+  String get Update {
+    return Intl.message(
+      'Update',
+      name: 'Update',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'CallNow\'' key
+  /// `Call Now`
+  String get CallNow {
+    return Intl.message(
+      'Call Now',
+      name: 'CallNow',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Delete\'' key
+  /// `Delete`
+  String get Delete {
+    return Intl.message(
+      'Delete',
+      name: 'Delete',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Addreview\'' key
+  /// `Add review`
+  String get addReview {
+    return Intl.message(
+      'Add review',
+      name: 'addReview',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'NoReviewsyet\'' key
+  /// `No Reviews yet`
+  String get noReviewsYet {
+    return Intl.message(
+      'No Reviews yet',
+      name: 'noReviewsYet',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Editbusiness\'' key
+  /// `Edit business`
+  String get editBusiness {
+    return Intl.message(
+      'Edit business',
+      name: 'editBusiness',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Info\'' key
+  /// `Info`
+  String get Info {
+    return Intl.message(
+      'Info',
+      name: 'Info',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Posts\'' key
+  /// `Posts`
+  String get Posts {
+    return Intl.message(
+      'Posts',
+      name: 'Posts',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Review\'' key
+  /// `Review`
+  String get Review {
+    return Intl.message(
+      'Review',
+      name: 'Review',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Deletebusiness\'' key
+  /// `Delete business`
+  String get deleteBusiness {
+    return Intl.message(
+      'Delete business',
+      name: 'deleteBusiness',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Doyoureallywantthisbusiness\'' key
+  /// `Do you really want this business`
+  String get doYouReallyWantThisBusiness {
+    return Intl.message(
+      'Do you really want this business',
+      name: 'doYouReallyWantThisBusiness',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'DeletePost\'' key
+  /// `Delete Post`
+  String get deletePost {
+    return Intl.message(
+      'Delete Post',
+      name: 'deletePost',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Settings\'' key
+  /// `Settings`
+  String get Settings {
+    return Intl.message(
+      'Settings',
+      name: 'Settings',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Editaccount\'' key
+  /// `Edit account`
+  String get editAccount {
+    return Intl.message(
+      'Edit account',
+      name: 'editAccount',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Username\'' key
+  /// `Username`
+  String get userName {
+    return Intl.message(
+      'Username',
+      name: 'userName',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Phonenumber\'' key
+  /// `Phone number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'SendOtptoverify\'' key
+  /// `Send Otp to verify`
+  String get sendOtpToVerify {
+    return Intl.message(
+      'Send Otp to verify',
+      name: 'sendOtpToVerify',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'BirthdayDate\'' key
+  /// `Birthday Date`
+  String get birthdayDate {
+    return Intl.message(
+      'Birthday Date',
+      name: 'birthdayDate',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Gender\'' key
+  /// `Gender`
+  String get Gender {
+    return Intl.message(
+      'Gender',
+      name: 'Gender',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Male\'' key
+  /// `Male`
+  String get Male {
+    return Intl.message(
+      'Male',
+      name: 'Male',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Female\'' key
+  /// `Female`
+  String get Female {
+    return Intl.message(
+      'Female',
+      name: 'Female',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Rathernottosay\'' key
+  /// `Rather not to say`
+  String get ratherNotToSay {
+    return Intl.message(
+      'Rather not to say',
+      name: 'ratherNotToSay',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'AccountInfo\'' key
+  /// `Account info`
+  String get accountInfo {
+    return Intl.message(
+      'Account info',
+      name: 'accountInfo',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Darkmode\'' key
+  /// `Dark mode`
+  String get darkMode {
+    return Intl.message(
+      'Dark mode',
+      name: 'darkMode',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Registertoapp\'' key
+  // skipped getter for the 'registerToApp\'' key
 
   /// `App Version`
-  String get AppVersion {
+  String get appVersion {
     return Intl.message(
       'App Version',
-      name: 'AppVersion',
+      name: 'appVersion',
       desc: '',
       args: [],
     );
   }
 
-  // skipped getter for the 'YourBees\'' key
+  /// `Your Bees`
+  String get yourBees {
+    return Intl.message(
+      'Your Bees',
+      name: 'yourBees',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Accountinfo\'' key
+  /// `Businesses I follow`
+  String get businessesIFollow {
+    return Intl.message(
+      'Businesses I follow',
+      name: 'businessesIFollow',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'BusinessesIfollow\'' key
+  /// `Languages`
+  String get languages {
+    return Intl.message(
+      'Languages',
+      name: 'languages',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Languages\'' key
+  /// `LogOut`
+  String get logOut {
+    return Intl.message(
+      'LogOut',
+      name: 'logOut',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'LogOut\'' key
+  /// `Do you really want to logout`
+  String get doYouReallyWantToLogOut {
+    return Intl.message(
+      'Do you really want to logout',
+      name: 'doYouReallyWantToLogOut',
+      desc: '',
+      args: [],
+    );
+  }
 
-  // skipped getter for the 'Doyoureallywanttologout\'' key
+  /// `visitors`
+  String get visitors {
+    return Intl.message(
+      'visitors',
+      name: 'visitors',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select category`
+  String get selectCategory {
+    return Intl.message(
+      'Select category',
+      name: 'selectCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for service`
+  String get searchForService {
+    return Intl.message(
+      'Search for service',
+      name: 'searchForService',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose main cat`
+  String get chooseMainCat {
+    return Intl.message(
+      'Choose main cat',
+      name: 'chooseMainCat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Sub Cat`
+  String get chooseSubCat {
+    return Intl.message(
+      'Choose Sub Cat',
+      name: 'chooseSubCat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Services`
+  String get chooseServices {
+    return Intl.message(
+      'Choose Services',
+      name: 'chooseServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Followers`
+  String get Followers {
+    return Intl.message(
+      'Followers',
+      name: 'Followers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are following`
+  String get youAreFollowing {
+    return Intl.message(
+      'You are following',
+      name: 'youAreFollowing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for location`
+  String get searchForLocation {
+    return Intl.message(
+      'Search for location',
+      name: 'searchForLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Person`
+  String get Person {
+    return Intl.message(
+      'Person',
+      name: 'Person',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `People`
+  String get People {
+    return Intl.message(
+      'People',
+      name: 'People',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete account`
+  String get deleteAccount {
+    return Intl.message(
+      'Delete account',
+      name: 'deleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get enterYourPhoneNumber {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'enterYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get Continue {
+    return Intl.message(
+      'Continue',
+      name: 'Continue',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

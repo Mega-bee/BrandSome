@@ -68,7 +68,7 @@ class SettingSuccess extends States {
                   height: 3,
                 ),
                 Text(
-                  "Business",
+                  S.of(context).Business,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontStyle: FontStyle.italic),
@@ -84,7 +84,7 @@ class SettingSuccess extends States {
                   height: 3,
                 ),
                 Text(
-                  "Reviews",
+                  S.of(context).Review,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontStyle: FontStyle.italic),
@@ -218,7 +218,7 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Your Bees",style: TextStyle(fontSize: 16),
+                          S.of(context).yourBees,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -261,7 +261,7 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Account info",style: TextStyle(fontSize: 16),
+                        S.of(context).accountInfo,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -296,7 +296,7 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Businesses I follow",style: TextStyle(fontSize: 16),
+                        S.of(context).businessesIFollow,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -337,7 +337,7 @@ class SettingSuccess extends States {
 
             title: Padding(
               padding: const EdgeInsets.only(right: 100),
-              child: Text('Dark mode',style: TextStyle(fontSize: 16)),
+              child: Text(S.of(context).darkMode,style: TextStyle(fontSize: 16)),
             ),
           ),
 
@@ -360,7 +360,7 @@ class SettingSuccess extends States {
 
             title: Padding(
               padding: const EdgeInsets.only(right: 100),
-              child: Text('Languages',style: TextStyle(fontSize: 16)),
+              child: Text(S.of(context).languages,style: TextStyle(fontSize: 16)),
             ),
           ),
           SizedBox(
@@ -371,8 +371,8 @@ class SettingSuccess extends States {
               showDialog(
                 context: context,
                 builder: (context) => CustomDeleteDialog(
-                  title: "LogOut",
-                  content: "Do you really want to logout",
+                  title:S.of(context).logOut,
+                  content: S.of(context).doYouReallyWantToLogOut,
                   yesBtn: () {
                     Navigator.pop(context);
                     _settingsScreenState.logOut();
@@ -401,7 +401,7 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Logout",style: TextStyle(fontSize: 16),
+                        S.of(context).logOut,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -428,7 +428,7 @@ class SettingSuccess extends States {
               alignment: Alignment.topLeft,
               child: TextButton(
                 child: Text(
-                  "Add business",
+                  S.of(context).addBussines,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor, fontSize: 13),
                 ),
@@ -488,7 +488,7 @@ class SettingSuccess extends States {
                 width: 10,
               ),
               Text(
-                "App Version 1.0.0",
+                "${S.of(context).appVersion} 1.0.0",
                 style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ]),

@@ -22,31 +22,94 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "AddBussines": MessageLookupByLibrary.simpleMessage("Add Bussines"),
-        "AddLocation": MessageLookupByLibrary.simpleMessage("Add Location"),
-        "AddPost": MessageLookupByLibrary.simpleMessage("Add Post"),
-        "AppVersion": MessageLookupByLibrary.simpleMessage("App Version"),
         "Business": MessageLookupByLibrary.simpleMessage("Business"),
-        "BusinessName": MessageLookupByLibrary.simpleMessage("Business Name"),
-        "BusinessPhone": MessageLookupByLibrary.simpleMessage("Business Phone"),
+        "CallNow": MessageLookupByLibrary.simpleMessage("Call Now"),
         "Camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "Cars": MessageLookupByLibrary.simpleMessage("Cars"),
-        "Chooseinterests":
-            MessageLookupByLibrary.simpleMessage("Choose interests"),
+        "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
+        "Delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "Description": MessageLookupByLibrary.simpleMessage("Description"),
+        "Female": MessageLookupByLibrary.simpleMessage("Female"),
+        "Follow": MessageLookupByLibrary.simpleMessage("Follow"),
+        "Followers": MessageLookupByLibrary.simpleMessage("Followers"),
         "Gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "Gender": MessageLookupByLibrary.simpleMessage("Gender"),
+        "Info": MessageLookupByLibrary.simpleMessage("Info"),
         "Likes": MessageLookupByLibrary.simpleMessage("Likes"),
+        "Male": MessageLookupByLibrary.simpleMessage("Male"),
         "No": MessageLookupByLibrary.simpleMessage("No"),
+        "People": MessageLookupByLibrary.simpleMessage("People"),
+        "Person": MessageLookupByLibrary.simpleMessage("Person"),
         "Personal": MessageLookupByLibrary.simpleMessage("Personal"),
-        "PhotoFilter": MessageLookupByLibrary.simpleMessage("Photo Filter"),
+        "Posts": MessageLookupByLibrary.simpleMessage("Posts"),
         "Properties": MessageLookupByLibrary.simpleMessage("Properties:"),
-        "SelectImagePlease":
-            MessageLookupByLibrary.simpleMessage("Select Image Please"),
-        "Selectcitiesandservices":
-            MessageLookupByLibrary.simpleMessage("Select cities and services"),
+        "Review": MessageLookupByLibrary.simpleMessage("Review"),
         "Services": MessageLookupByLibrary.simpleMessage("Services"),
+        "Settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "Theme": MessageLookupByLibrary.simpleMessage("Theme"),
+        "Unfollow": MessageLookupByLibrary.simpleMessage("Unfollow"),
+        "Update": MessageLookupByLibrary.simpleMessage("Update"),
         "Yes": MessageLookupByLibrary.simpleMessage("Yes"),
-        "fillthefield": MessageLookupByLibrary.simpleMessage("fill the field")
+        "accountInfo": MessageLookupByLibrary.simpleMessage("Account info"),
+        "addBussines": MessageLookupByLibrary.simpleMessage("Add Bussines"),
+        "addLocation": MessageLookupByLibrary.simpleMessage("Add Location"),
+        "addPost": MessageLookupByLibrary.simpleMessage("Add Post"),
+        "addReview": MessageLookupByLibrary.simpleMessage("Add review"),
+        "addService": MessageLookupByLibrary.simpleMessage("Add Service"),
+        "appVersion": MessageLookupByLibrary.simpleMessage("App Version"),
+        "birthdayDate": MessageLookupByLibrary.simpleMessage("Birthday Date"),
+        "businessName": MessageLookupByLibrary.simpleMessage("Business Name"),
+        "businessPhone": MessageLookupByLibrary.simpleMessage("Business Phone"),
+        "businessesIFollow":
+            MessageLookupByLibrary.simpleMessage("Businesses I follow"),
+        "chooseInterests":
+            MessageLookupByLibrary.simpleMessage("Choose interests"),
+        "chooseMainCat":
+            MessageLookupByLibrary.simpleMessage("Choose main cat"),
+        "chooseServices":
+            MessageLookupByLibrary.simpleMessage("Choose Services"),
+        "chooseSubCat": MessageLookupByLibrary.simpleMessage("Choose Sub Cat"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+        "deleteAccount": MessageLookupByLibrary.simpleMessage("Delete account"),
+        "deleteBusiness":
+            MessageLookupByLibrary.simpleMessage("Delete business"),
+        "deletePost": MessageLookupByLibrary.simpleMessage("Delete Post"),
+        "doYouReallyWantThisBusiness": MessageLookupByLibrary.simpleMessage(
+            "Do you really want this business"),
+        "doYouReallyWantToLogOut": MessageLookupByLibrary.simpleMessage(
+            "Do you really want to logout"),
+        "editAccount": MessageLookupByLibrary.simpleMessage("Edit account"),
+        "editBusiness": MessageLookupByLibrary.simpleMessage("Edit business"),
+        "enterYourPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
+        "fillTheField": MessageLookupByLibrary.simpleMessage("fill the field"),
+        "languages": MessageLookupByLibrary.simpleMessage("Languages"),
+        "likedBy": MessageLookupByLibrary.simpleMessage("Liked by"),
+        "logOut": MessageLookupByLibrary.simpleMessage("LogOut"),
+        "noPostsYet": MessageLookupByLibrary.simpleMessage("No posts yet"),
+        "noResultsFound":
+            MessageLookupByLibrary.simpleMessage("No Results Found"),
+        "noReviewsYet": MessageLookupByLibrary.simpleMessage("No Reviews yet"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "photoFilter": MessageLookupByLibrary.simpleMessage("Photo Filter"),
+        "ratherNotToSay":
+            MessageLookupByLibrary.simpleMessage("Rather not to say"),
+        "searchForLocation":
+            MessageLookupByLibrary.simpleMessage("Search for location"),
+        "searchForService":
+            MessageLookupByLibrary.simpleMessage("Search for service"),
+        "selectCategory":
+            MessageLookupByLibrary.simpleMessage("Select category"),
+        "selectCitiesAndServices":
+            MessageLookupByLibrary.simpleMessage("Select cities and services"),
+        "selectImagePlease":
+            MessageLookupByLibrary.simpleMessage("Select Image Please"),
+        "sendOtpToVerify":
+            MessageLookupByLibrary.simpleMessage("Send Otp to verify"),
+        "userName": MessageLookupByLibrary.simpleMessage("Username"),
+        "visitors": MessageLookupByLibrary.simpleMessage("visitors"),
+        "youAreFollowing":
+            MessageLookupByLibrary.simpleMessage("You are following"),
+        "yourBees": MessageLookupByLibrary.simpleMessage("Your Bees")
       };
 }

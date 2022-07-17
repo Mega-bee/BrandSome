@@ -7,6 +7,7 @@ import '../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
+import '../../../generated/l10n.dart';
 import '../../reponse/business_response.dart';
 import '../screen/update_business.dart';
 
@@ -43,7 +44,7 @@ class UpdateBusinessSuccess extends States {
 //        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 5,
         title: Text(
-          "Edit business",
+            S.of(context).editBusiness,
         ),
         actions: [
           Padding(
@@ -146,7 +147,7 @@ class UpdateBusinessSuccess extends States {
                                                         .refresh();
                                                   });
                                                 },
-                                                child: Text('Camera')),
+                                                child: Text(S.of(context).Camera,)),
                                           ),
                                           Divider(
                                             indent: 16,
@@ -178,7 +179,7 @@ class UpdateBusinessSuccess extends States {
                                                         .refresh();
                                                   });
                                                 },
-                                                child: Text('Gallery')),
+                                                child: Text(S.of(context).Gallery,)),
                                           ),
                                         ],
                                       ),
@@ -211,21 +212,21 @@ class UpdateBusinessSuccess extends States {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Business Name",
+                      S.of(context).businessName,
                   ),
                   TextFormField(
                     controller: business,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Description",
+                      S.of(context).Description,
                   ),
                   TextFormField(
                     controller: description,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Business Phone",
+                      S.of(context).businessPhone,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.phone,
@@ -254,7 +255,7 @@ class UpdateBusinessSuccess extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Add Location'),
+                              Text(S.of(context).addLocation),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -334,7 +335,7 @@ class UpdateBusinessSuccess extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Add Service'),
+                              Text(S.of(context).addService),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,

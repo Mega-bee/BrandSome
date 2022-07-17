@@ -21,6 +21,7 @@ import 'package:photofilters/photofilters.dart';
 import 'package:image/image.dart' as imageLib;
 import 'package:path/path.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
@@ -57,7 +58,7 @@ class AddBusinessInit extends States {
         new MaterialPageRoute(
           builder: (context) =>
           new PhotoFilterSelector(
-            title: Text("Photo Filter"),
+            title: Text(S.of(context).photoFilter,),
             image: image!,
             filters: presetFiltersList,
             filename: fileName!,
@@ -90,7 +91,7 @@ class AddBusinessInit extends States {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 centerTitle: true,
         elevation: 5,
-        title: Text('Add Business',  style: TextStyle(
+        title: Text(S.of(context).addBussines,  style: TextStyle(
           color: Theme.of(context).primaryColor,
         ),),
         actions: [
@@ -111,10 +112,10 @@ centerTitle: true,
                                 (element) => request.services.add(element.id ?? -1));
                         addBusinessState.addBusinessRequest(request);
                       }else{
-                        Fluttertoast.showToast(msg: 'Select cities and services',backgroundColor: Theme.of(context).errorColor);
+                        Fluttertoast.showToast(msg: S.of(context).selectCitiesAndServices,backgroundColor: Theme.of(context).errorColor);
                       }
                     }else{
-                      Fluttertoast.showToast(msg: 'Select Image Please',backgroundColor: Theme.of(context).errorColor);
+                      Fluttertoast.showToast(msg: S.of(context).selectImagePlease,backgroundColor: Theme.of(context).errorColor);
                     }
                   }
                 },
@@ -198,7 +199,7 @@ centerTitle: true,
                                                     addBusinessState.refresh();
                                                   });
                                                 },
-                                                child: Text('Camera')),
+                                                child: Text(S.of(context).Camera,)),
                                           ),
                                           Divider(
                                             indent: 16,
@@ -226,7 +227,7 @@ centerTitle: true,
 
 
                                                 },
-                                                child: Text('Gallery')),
+                                                child: Text(S.of(context).Gallery,)),
                                           ),
 
                                         ],
@@ -260,7 +261,7 @@ centerTitle: true,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Business Name",
+                      S.of(context).businessName,
                   ),
                   TextFormField(
                     controller: business,
@@ -270,23 +271,23 @@ centerTitle: true,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Description",
+                    S.of(context).Description,
                   ),
                   TextFormField(
                     controller: description,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                    value!.isEmpty ? "fill the field" : null,
+                    value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    "Business Phone",
+                    S.of(context).businessPhone,
                   ),
                   TextFormField(
                     controller: phoneNumber,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                    value!.isEmpty ? "fill the field" : null,
+                    value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
 
                   // TextFormField(
@@ -320,7 +321,7 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Add Location'),
+                              Text(S.of(context).addLocation),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -405,7 +406,7 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Add Service'),
+                              Text(S.of(context).addService,),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
