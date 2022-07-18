@@ -1,13 +1,14 @@
 import 'package:brandsome/business_details_module/ui/widget/review_card.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
+import '../../../generated/l10n.dart';
 import '../../reponse/business_response.dart';
 
 class ReviewScreen extends StatelessWidget {
   final List<Reviews> review;
 
 
-  const ReviewScreen({required this.review,});
+  ReviewScreen({required this.review,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class ReviewScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
             Image.asset(ImageAsset.NO_REVIEW,height: 200,),
-            const Text('No Reviews yet')
+            Text(S.of(context).noReviewsYet,)
           ],) :
 
       ListView.builder(

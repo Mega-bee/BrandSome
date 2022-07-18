@@ -1,6 +1,9 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
+import '../../../../generated/l10n.dart';
 import '../../../request/Phone_change.dart';
 import '../../screen/account_info_screen.dart';
 
@@ -11,7 +14,7 @@ class NumberOtpState extends States {
   final phonenumber = TextEditingController();
   @override
   Widget getUI(BuildContext context) {
-    return Center(child: Container(child: const Text("Super is false"),));
+    return Center(child: Container(child: Text("Super is false"),));
   }
 
   @override
@@ -34,7 +37,7 @@ class NumberOtpState extends States {
             ),
           ),
           Container(
-            child: const Text(
+            child: Text(
               'Register account',
               style: TextStyle(
 //                    color: blackColor,
@@ -55,11 +58,11 @@ class NumberOtpState extends States {
 
 
 
-                const Text(
-                  "Phone Number",
+                Text(
+                  S.of(context).phoneNumber,
 //                    style: TextStyle(color: greyColor, fontSize: 10),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -73,16 +76,16 @@ class NumberOtpState extends States {
                           width: 5,
                         ),
                       ),
-                      hintText: 'Enter your phone number',
+                      hintText: S.of(context).enterYourPhoneNumber,
 //                        hintStyle:
 //                            TextStyle(fontSize: 12, color: darkWhiteColor),
-                      contentPadding: const EdgeInsetsDirectional.only(
+                      contentPadding: EdgeInsetsDirectional.only(
                           top: 10, bottom: 10, start: 10)),
                 ),
               ],
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 30,
           ),
           ElevatedButton(
@@ -91,13 +94,13 @@ class NumberOtpState extends States {
               screenState.changeMobilenum(ChangenumberRequest(PhoneNumber:phonenumber.text
                    ));
             },
-            child: const Text(
-              "Continue",
+            child: Text(
+              S.of(context).Continue,
               style: TextStyle(color: Colors.white),
             ),
             style: ElevatedButton.styleFrom(
                 primary: Theme.of(context).primaryColor,
-                padding: const EdgeInsets.fromLTRB(30, 12, 30, 12)),
+                padding: EdgeInsets.fromLTRB(30, 12, 30, 12)),
           ),
         ],
       ),

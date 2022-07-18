@@ -2,19 +2,27 @@ import 'dart:io';
 import 'dart:async';
 import 'package:badges/badges.dart';
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/request/create_business_request.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/categories_module/categories_routes.dart';
 import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 // import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:photofilters/filters/preset_filters.dart';
+import 'package:photofilters/widgets/photo_filter.dart';
 import '../../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:photofilters/photofilters.dart';
+import 'package:image/image.dart' as imageLib;
+import 'package:path/path.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
   final AddBusinessState addBusinessState;
@@ -30,57 +38,62 @@ class AddBusinessInit extends States {
   List<ServiceModel> selectedServices = [];
   File? _pickImage;
   MultipartFile? imageForUpload;
-//  final picker = ImagePicker();
+  final picker = ImagePicker();
   String? fileName;
+
+
 
   CreateBusinessRequest request =
       CreateBusinessRequest(cities: [], services: []);
   Future getImage(context) async {
-//    print("chrisssssssssssssssssssssssssssssssssssssssss");
-//    final pickedFile = await picker.getImage(source: ImageSource.gallery);
-//    if (pickedFile != null) {
-//      _pickImage = new File(pickedFile.path);
-//      fileName = basename(_pickImage!.path);
-//      var image = imageLib.decodeImage(await _pickImage!.readAsBytes());
-//      image = imageLib.copyResize(image!, width: 600);
-//      Map imagefile = await Navigator.push(
-//        context,
-//        new MaterialPageRoute(
-//          builder: (context) => new PhotoFilterSelector(
-//            title: Text("Photo Filter"),
-//            image: image!,
-//            filters: presetFiltersList,
-//            filename: fileName!,
-//            appBarColor: Colors.black,
-//            loader: Center(child: CircularProgressIndicator()),
-//            fit: BoxFit.contain,
-//          ),
-//        ),
-//      );
-//
-//      if (imagefile != null && imagefile.containsKey('image_filtered')) {
-//        _pickImage = imagefile['image_filtered'];
-//        imageForUpload = await MultipartFile.fromFile(_pickImage!.path);
-//        addBusinessState.refresh();
-//
-//        Navigator.pop(context);
-//      }
-//    }
+    print("chrisssssssssssssssssssssssssssssssssssssssss");
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    if(pickedFile!=null) {
+      _pickImage = new File(pickedFile.path);
+      fileName = basename(_pickImage!.path);
+      var image = imageLib.decodeImage(await _pickImage!.readAsBytes());
+      image = imageLib.copyResize(image!, width: 600);
+      Map imagefile = await Navigator.push(
+        context,
+        new MaterialPageRoute(
+          builder: (context) =>
+          new PhotoFilterSelector(
+            title: Text(S.of(context).photoFilter,),
+            image: image!,
+            filters: presetFiltersList,
+            filename: fileName!,
+            appBarColor: Colors.black,
+
+            loader: Center(child: CircularProgressIndicator()),
+            fit: BoxFit.contain,
+          ),
+        ),
+      );
+
+      if (imagefile != null && imagefile.containsKey('image_filtered')) {
+
+        _pickImage = imagefile['image_filtered'];
+        imageForUpload =
+        await MultipartFile
+            .fromFile(_pickImage!.path);
+        addBusinessState.refresh();
+
+        Navigator.pop(context);
+      }
+    }
   }
 
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        centerTitle: true,
+centerTitle: true,
         elevation: 5,
-        title: Text(
-          'Add Business',
-          style: TextStyle(
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
+        title: Text(S.of(context).addBussines,  style: TextStyle(
+          color: Theme.of(context).primaryColor,
+        ),),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),
@@ -101,15 +114,11 @@ class AddBusinessInit extends States {
                           request.services.add(element.id ?? -1);
                         }
                         addBusinessState.addBusinessRequest(request);
-                      } else {
-                        Fluttertoast.showToast(
-                            msg: 'Select cities and services',
-                            backgroundColor: Theme.of(context).errorColor);
+                      }else{
+                        Fluttertoast.showToast(msg: S.of(context).selectCitiesAndServices,backgroundColor: Theme.of(context).errorColor);
                       }
-                    } else {
-                      Fluttertoast.showToast(
-                          msg: 'Select Image Please',
-                          backgroundColor: Theme.of(context).errorColor);
+                    }else{
+                      Fluttertoast.showToast(msg: S.of(context).selectImagePlease,backgroundColor: Theme.of(context).errorColor);
                     }
                   }
                 },
@@ -175,22 +184,24 @@ class AddBusinessInit extends States {
                                                     shape: const StadiumBorder()),
                                                 onPressed: () async {
                                                   Navigator.pop(context);
-//                                                  await ImageCropHelper
-//                                                          .pickImageFromCamera()
-//                                                      .then((pickedFile) async {
-//                                                    if (pickedFile == null)
-//                                                      return;
-//                                                    _pickImage =
-//                                                        File(pickedFile.path);
-//                                                    imageForUpload =
-//                                                        await MultipartFile
-//                                                            .fromFile(pickedFile
-//                                                                .path);
-//
-//                                                    addBusinessState.refresh();
-//                                                  });
+                                                  await ImageCropHelper
+                                                          .pickImageFromCamera()
+                                                      .then((pickedFile) async {
+
+                                                    if (pickedFile == null)
+                                                      return;
+                                                    _pickImage =
+                                                        File(pickedFile.path);
+                                                    imageForUpload =
+                                                        await MultipartFile
+                                                            .fromFile(pickedFile
+                                                                .path);
+
+
+                                                    addBusinessState.refresh();
+                                                  });
                                                 },
-                                                child: const Text('Camera')),
+                                                child: Text(S.of(context).Camera,)),
                                           ),
                                           Divider(
                                             indent: 16,
@@ -203,14 +214,24 @@ class AddBusinessInit extends States {
                                             width: double.maxFinite,
                                             child: TextButton(
                                                 style: TextButton.styleFrom(
-                                                    shape: const StadiumBorder()),
+                                                    shape: StadiumBorder()),
                                                 onPressed: () async {
-                                                  getImage(context).then(
-                                                      (value) =>
-                                                          print("helloooo"));
+
+
+
+
+                                                  getImage(context).then((value) => print("helloooo"));
+
+
+
+
+
+
+
                                                 },
-                                                child: const Text('Gallery')),
+                                                child: Text(S.of(context).Gallery,)),
                                           ),
+
                                         ],
                                       ),
                                     ),
@@ -241,28 +262,28 @@ class AddBusinessInit extends States {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Business Name",
+                  Text(
+                      S.of(context).businessName,
                   ),
                   TextFormField(
                     controller: business,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                        value!.isEmpty ? "fill the field" : null,
+                    value!.isEmpty ? "fill the field" : null,
                   ),
-                  const SizedBox(height: 30),
-                  const Text(
-                    "Description",
+                  SizedBox(height: 30),
+                  Text(
+                    S.of(context).Description,
                   ),
                   TextFormField(
                     controller: description,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                        value!.isEmpty ? "fill the field" : null,
+                    value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
-                  const SizedBox(height: 30),
-                  const Text(
-                    "Business Phone",
+                  SizedBox(height: 30),
+                  Text(
+                    S.of(context).businessPhone,
                   ),
 //                  TextFormField(
 //                    controller: phoneNumber,
@@ -278,7 +299,7 @@ class AddBusinessInit extends States {
                     maxLength: 8,
                     autofocus: false,
                     validator: (value) =>
-                        value!.isEmpty ? "fill the field" : null,
+                    value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
                   const SizedBox(height: 20),
                   // CITY
@@ -302,7 +323,7 @@ class AddBusinessInit extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text('Add Location'),
+                              Text(S.of(context).addLocation),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -387,7 +408,7 @@ class AddBusinessInit extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text('Add Service'),
+                              Text(S.of(context).addService,),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,

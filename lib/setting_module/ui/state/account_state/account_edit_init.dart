@@ -1,9 +1,14 @@
 import 'dart:io';
 
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import '../../../../generated/l10n.dart';
+import '../../../../utils/components/pickertime.dart';
 import '../../../request/update_profile_request.dart';
 import '../../../response/account_response.dart';
 import '../../screen/account_info_screen.dart';
@@ -40,7 +45,7 @@ class EditAccountInit extends States {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: Text(
-          'Edit account',
+          S.of(context).editAccount,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -145,7 +150,7 @@ class EditAccountInit extends States {
                                                             screenState.refresh();
                                                           });
                                                         },
-                                                        child: Text('Camera')),
+                                                        child: Text(S.of(context).Camera)),
                                                   ),
                                                   Divider(
                                                     indent: 16,
@@ -180,7 +185,7 @@ class EditAccountInit extends States {
                                                             screenState.refresh();
                                                           });
                                                         },
-                                                        child: Text('Gallery')),
+                                                        child: Text(S.of(context).Gallery)),
                                                   ),
                                                 ],
                                               ),
@@ -203,16 +208,16 @@ class EditAccountInit extends States {
                     ]),
                   ),
                 ),
-                const Text(
-                  "Username",
+                Text(
+                  S.of(context).userName,
                 ),
                 TextFormField(
                   autofocus: false,
                   controller: username,
                 ),
-                const SizedBox(height: 30),
-                const Text(
-                  "Phone number",
+                SizedBox(height: 30),
+                Text(
+                  S.of(context).phoneNumber,
                 ),
               screenState.newNumber.text.isNotEmpty ?TextFormField(
                 autofocus: false,
@@ -230,7 +235,7 @@ class EditAccountInit extends States {
                 TextButton(onPressed: (){
                  screenState.gotoNumberAlert();
 
-                }, child: Text("Send Otp to verify",style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+                }, child: Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
 
                 const SizedBox(height: 30),
 
@@ -259,8 +264,8 @@ class EditAccountInit extends States {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Birthday Date",
+                      Text(
+                        S.of(context).birthdayDate,
                       ),
                       const SizedBox(height: 10,),
                       Text(
@@ -278,10 +283,10 @@ class EditAccountInit extends States {
                   height: 20,
                 ),
                 ListTile(
-                  title: const Padding(
-                    padding: EdgeInsets.only(right: 20),
+                  title: Padding(
+                    padding:  EdgeInsets.only(right: 20),
                     child: Text(
-                      'Gender',
+                      S.of(context).Gender,
                     ),
                   ),
                   subtitle: Column(children: [
@@ -297,8 +302,8 @@ class EditAccountInit extends States {
                             activeColor: Theme.of(context).primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            title: const Text(
-                              'Male',
+                            title: Text(
+                              S.of(context).Male,
                               style: TextStyle(fontSize: 12),
                             ),
                             value: 1,
@@ -318,8 +323,8 @@ class EditAccountInit extends States {
                           child: RadioListTile(
                             dense: true,
                             activeColor: Theme.of(context).primaryColor,
-                            title: const Text(
-                              'Female',
+                            title: Text(
+                              S.of(context).Female,
                               style: TextStyle(fontSize: 12),
                             ),
                             shape: RoundedRectangleBorder(
@@ -344,8 +349,8 @@ class EditAccountInit extends States {
                             activeColor: Theme.of(context).primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            title: const Text(
-                              'Rather not to say',
+                            title: Text(
+                              S.of(context).ratherNotToSay,
                               style: TextStyle(fontSize: 12),
                             ),
                             value: 3,

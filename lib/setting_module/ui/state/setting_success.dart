@@ -9,6 +9,7 @@ import 'package:list_tile_switch/list_tile_switch.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../business_details_module/business_details_route.dart';
 import '../../../follower_module/Follower_route.dart';
+import '../../../generated/l10n.dart';
 import '../../../hive/hive.dart';
 import '../../../localization_service/localizationSservice.dart';
 import '../../../utils/images/images.dart';
@@ -63,11 +64,11 @@ class SettingSuccess extends States {
                 Text(
                   getaccsetting.businessesCount.toString(),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 3,
                 ),
                 Text(
-                  "Business",
+                  S.of(context).Business,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontStyle: FontStyle.italic),
@@ -79,11 +80,11 @@ class SettingSuccess extends States {
                 Text(
                   getaccsetting.reviewCount.toString(),
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 3,
                 ),
                 Text(
-                  "Reviews",
+                  S.of(context).Review,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontStyle: FontStyle.italic),
@@ -92,8 +93,8 @@ class SettingSuccess extends States {
             ),
             Column(
               children: [
-                Text("${getaccsetting.followingCount}", style: const TextStyle()),
-                const SizedBox(
+                Text("${getaccsetting.followingCount}", style: TextStyle()),
+                SizedBox(
                   height: 3,
                 ),
                 Text(
@@ -110,25 +111,25 @@ class SettingSuccess extends States {
             children: [
             Text(
               "${getaccsetting.name} ",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],),
 
-          const SizedBox(
+          SizedBox(
             height: 3,
           ),
 
-          const Divider(
+          Divider(
             thickness: 2,
           ),
 
-          const SizedBox(height: 20,),
+          SizedBox(height: 20,),
 
           ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: getaccsetting.businesses!.length,
               itemBuilder: (context, index) {
@@ -216,8 +217,8 @@ class SettingSuccess extends States {
                       const SizedBox(
                         width: 27,
                       ),
-                      const Text(
-                        "Your Bees",style: TextStyle(fontSize: 16),
+                      Text(
+                          S.of(context).yourBees,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -252,7 +253,7 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.person,
                       ),
@@ -260,18 +261,18 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Account info",style: TextStyle(fontSize: 16),
+                        S.of(context).accountInfo,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                  const Icon(
+                  Icon(
                     Icons.arrow_forward_ios_rounded,
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 25,
           ),
           InkWell(
@@ -287,7 +288,7 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         Icons.add_business,
                       ),
@@ -295,24 +296,24 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Businesses I follow",style: TextStyle(fontSize: 16),
+                        S.of(context).businessesIFollow,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                  const Icon(
+                  Icon(
                     Icons.arrow_forward_ios_rounded,
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 5,
           ),
-          const Divider(
+          Divider(
             thickness: 2,
           ),
-          const SizedBox(
+          SizedBox(
             height: 5,
           ),
 
@@ -334,16 +335,16 @@ class SettingSuccess extends States {
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
 
-            title: const Padding(
-              padding: EdgeInsets.only(right: 100),
-              child: Text('Dark mode',style: TextStyle(fontSize: 16)),
+            title: Padding(
+              padding: const EdgeInsets.only(right: 100),
+              child: Text(S.of(context).darkMode,style: TextStyle(fontSize: 16)),
             ),
           ),
 
           ListTileSwitch(
             value: LanguageHelper().getLanguage()=="ar"?true:false,
 
-            leading: const Text(
+            leading: Text(
               " EN",
 
               style: TextStyle(fontSize: 10),
@@ -357,12 +358,12 @@ class SettingSuccess extends States {
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
 
-            title: const Padding(
-              padding: EdgeInsets.only(right: 100),
-              child: Text('Languages',style: TextStyle(fontSize: 16)),
+            title: Padding(
+              padding: const EdgeInsets.only(right: 100),
+              child: Text(S.of(context).languages,style: TextStyle(fontSize: 16)),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 15,
           ),
           InkWell(
@@ -370,8 +371,8 @@ class SettingSuccess extends States {
               showDialog(
                 context: context,
                 builder: (context) => CustomDeleteDialog(
-                  title: "LogOut",
-                  content: "Do you really want to logout",
+                  title:S.of(context).logOut,
+                  content: S.of(context).doYouReallyWantToLogOut,
                   yesBtn: () {
                     Navigator.pop(context);
                     _settingsScreenState.logOut();
@@ -392,7 +393,7 @@ class SettingSuccess extends States {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       Icon(
                         FontAwesomeIcons.powerOff,size: 20,
                       ),
@@ -400,22 +401,22 @@ class SettingSuccess extends States {
                         width: 27,
                       ),
                       Text(
-                        "Logout",style: TextStyle(fontSize: 16),
+                        S.of(context).logOut,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
-                  const Spacer(),
+                  Spacer(),
                 ],
               ),
             ),
           )  ,
-          const SizedBox(
+          SizedBox(
             height: 5,
           ),
-          const Divider(
+          Divider(
             thickness: 2,
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Padding(
@@ -427,7 +428,7 @@ class SettingSuccess extends States {
               alignment: Alignment.topLeft,
               child: TextButton(
                 child: Text(
-                  "Add business",
+                  S.of(context).addBussines,
                   style: TextStyle(
                       color: Theme.of(context).primaryColor, fontSize: 13),
                 ),
@@ -470,14 +471,14 @@ class SettingSuccess extends States {
           //     ),
           //   ),
           // ),
-          const Divider(
+          Divider(
             thickness: 2,
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Center(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(
                 Icons.info_outlined,
                 color: Colors.grey,
@@ -487,17 +488,17 @@ class SettingSuccess extends States {
                 width: 10,
               ),
               Text(
-                "App Version 1.0.0",
+                "${S.of(context).appVersion} 1.0.0",
                 style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ]),
           ),
 
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Image.asset(ImageAsset.MEGABEE,width: 15,height: 12,),
-          const SizedBox(
+          SizedBox(
             height: 100,
           ),
         ],

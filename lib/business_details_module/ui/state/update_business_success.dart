@@ -7,6 +7,7 @@ import '../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
+import '../../../generated/l10n.dart';
 import '../../reponse/business_response.dart';
 import '../screen/update_business.dart';
 
@@ -42,8 +43,8 @@ class UpdateBusinessSuccess extends States {
       appBar: AppBar(
 //        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 5,
-        title: const Text(
-          "Edit business",
+        title: Text(
+            S.of(context).editBusiness,
         ),
         actions: [
           Padding(
@@ -146,7 +147,7 @@ class UpdateBusinessSuccess extends States {
                                                         .refresh();
                                                   });
                                                 },
-                                                child: Text('Camera')),
+                                                child: Text(S.of(context).Camera,)),
                                           ),
                                           Divider(
                                             indent: 16,
@@ -178,7 +179,7 @@ class UpdateBusinessSuccess extends States {
                                                         .refresh();
                                                   });
                                                 },
-                                                child: Text('Gallery')),
+                                                child: Text(S.of(context).Gallery,)),
                                           ),
                                         ],
                                       ),
@@ -191,16 +192,16 @@ class UpdateBusinessSuccess extends States {
                     },
                     elevation: 10,
                     fillColor: Theme.of(context).primaryColor,
-                    child: const Icon(
+                    child: Icon(
                       Icons.camera_alt_outlined,
                       color: Colors.white,
                     ),
-                    padding: const EdgeInsets.all(15.0),
-                    shape: const CircleBorder(),
+                    padding: EdgeInsets.all(15.0),
+                    shape: CircleBorder(),
                   ))
             ]),
           ),
-          const SizedBox(
+          SizedBox(
             height: 50,
           ),
           Form(
@@ -210,22 +211,22 @@ class UpdateBusinessSuccess extends States {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Business Name",
+                  Text(
+                      S.of(context).businessName,
                   ),
                   TextFormField(
                     controller: business,
                   ),
-                  const SizedBox(height: 30),
-                  const Text(
-                    "Description",
+                  SizedBox(height: 30),
+                  Text(
+                      S.of(context).Description,
                   ),
                   TextFormField(
                     controller: description,
                   ),
-                  const SizedBox(height: 30),
-                  const Text(
-                    "Business Phone",
+                  SizedBox(height: 30),
+                  Text(
+                      S.of(context).businessPhone,
                   ),
                   TextFormField(
                     keyboardType: TextInputType.phone,
@@ -254,7 +255,7 @@ class UpdateBusinessSuccess extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text('Add Location'),
+                              Text(S.of(context).addLocation),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -275,7 +276,7 @@ class UpdateBusinessSuccess extends States {
                             },
                             child: Badge(
                               shape: BadgeShape.circle,
-                              badgeContent: const Icon(
+                              badgeContent: Icon(
                                 Icons.cancel,
                                 size: 18,
                               ),
@@ -283,7 +284,7 @@ class UpdateBusinessSuccess extends States {
                               position: BadgePosition.topEnd(top: -15),
                               stackFit: StackFit.passthrough,
                               child: Container(
-                                padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                                padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
                                   borderRadius: BorderRadius.circular(
@@ -293,7 +294,7 @@ class UpdateBusinessSuccess extends States {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
                                     "${e.name}",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -334,7 +335,7 @@ class UpdateBusinessSuccess extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text('Add Service'),
+                              Text(S.of(context).addService),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -355,7 +356,7 @@ class UpdateBusinessSuccess extends States {
                             },
                             child: Badge(
                               shape: BadgeShape.circle,
-                              badgeContent: const Icon(
+                              badgeContent: Icon(
                                 Icons.cancel,
                                 size: 18,
                               ),
@@ -363,7 +364,7 @@ class UpdateBusinessSuccess extends States {
                               position: BadgePosition.topEnd(top: -15),
                               stackFit: StackFit.passthrough,
                               child: Container(
-                                padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                                padding: EdgeInsets.fromLTRB(15, 3, 15, 3),
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).primaryColor,
                                   borderRadius: BorderRadius.circular(
@@ -373,7 +374,7 @@ class UpdateBusinessSuccess extends States {
                                   padding: const EdgeInsets.all(5.0),
                                   child: Text(
                                     "${e.name}",
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -384,17 +385,17 @@ class UpdateBusinessSuccess extends States {
                         )
                             .toList(),
                       ),
-                      const SizedBox(height: 20),
-                      const Divider(
+                      SizedBox(height: 20),
+                      Divider(
                         thickness: 3,
                         height: 2,
                       ),
                     ],
                   ),
-                  const Divider(
+                  Divider(
                     thickness: 1,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 15,
                   ),
                 ],

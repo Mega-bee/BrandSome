@@ -17,6 +17,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../generated/l10n.dart';
 import '../../../module_auth/request/otp_request.dart';
 import '../../../module_auth/ui/state/request_otp_alert_state.dart';
 import '../../../utils/global/global_state_manager.dart';
@@ -248,17 +249,17 @@ class CustomSearchDelegateIn extends SearchDelegate {
           } else {
             return ListView(
               children: [
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    'Business',
+                    S.of(context).Business,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 snapshot.data!.business.isEmpty
-                    ? const Center(
+                    ?  Center(
                         child: Text(
-                          "No Results Found.",
+                            S.of(context).noResultsFound,
                         ),
                       )
                     : ListView.builder(
@@ -310,17 +311,17 @@ class CustomSearchDelegateIn extends SearchDelegate {
                           );
                         },
                       ),
-                const Padding(
+                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-                    'Services',
+          S.of(context).Services,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 snapshot.data!.services.isEmpty
-                    ? const Center(
+                    ?  Center(
                         child: Text(
-                          "No Results Found.",
+                          S.of(context).noResultsFound,
                         ),
                       )
                     : GridView.count(

@@ -1,8 +1,11 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/setting_module/response/settings_response.dart';
 import 'package:brandsome/setting_module/ui/screen/setting_screen.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
+
+import '../../../generated/l10n.dart';
 
 class SettingNotLogged extends States {
   final SettingsScreenState _settingsScreenState ;
@@ -28,23 +31,23 @@ class SettingNotLogged extends States {
             visualDensity: VisualDensity.comfortable,
             switchType: SwitchType.cupertino,
             switchActiveColor: Colors.grey,
-            title: const Text('Dark mode'),
+            title: Text(S.of(context).darkMode,),
           ),
-          ListTile(title: const Text('Register to app'),
-            leading: const Icon(Icons.login),
+          ListTile(title: Text('Register to app'),
+            leading: Icon(Icons.login),
             onTap: (){
               _settingsScreenState.goToLogin();
             },
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const Divider(
+          Divider(
             thickness: 2,
           ),
 
           Center(
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(
                 Icons.info_outlined,
                 color: Colors.grey,
@@ -54,12 +57,12 @@ class SettingNotLogged extends States {
                 width: 10,
               ),
               Text(
-                "App Version 1.0.0",
+                "${S.of(context).appVersion} 1.0.0",
                 style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ]),
           ),
-          const SizedBox(
+          SizedBox(
             height: 100,
           )
         ],

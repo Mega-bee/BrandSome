@@ -3,6 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {
@@ -11,7 +13,7 @@ class PostCard extends StatefulWidget {
   final Function onLikeClick;
   final bool isLogged;
 
-  const PostCard(
+  PostCard(
       {required this.onViewLikeTap,
       required this.posthome,
       required this.onLikeClick,
@@ -58,7 +60,7 @@ class _PostCardState extends State<PostCard> {
                   padding: const EdgeInsets.all(15.0),
                   child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 10),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
             title: Text(
@@ -121,7 +123,7 @@ class _PostCardState extends State<PostCard> {
                         .map((e) => Container(
                               width: 5.0,
                               height: 5.0,
-                              margin: const EdgeInsets.symmetric(
+                              margin: EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 2.0),
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -165,18 +167,20 @@ class _PostCardState extends State<PostCard> {
                                 color: Theme.of(context).primaryColor,
                           size: 25,
                               )
-                            : const Icon(
+                            : Icon(
                                 Icons.thumb_up_alt_outlined,
                           size: 25,
                               )),
                     InkWell(
-                       onTap: (){
-                         widget.onViewLikeTap(widget.posthome.id.toString());
-                       },
-                         child: Text(widget.posthome.likeCount.toString() + ' Likes',
-                           style: const TextStyle(
-                           decoration: TextDecoration.underline,
-                         ),))
+                        onTap: () {
+                          widget.onViewLikeTap(widget.posthome.id.toString());
+                        },
+                        child: Text(
+                          widget.posthome.likeCount.toString() + ' Likes',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                          ),
+                        ))
                   ],
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 ),
@@ -204,102 +208,102 @@ class _PostCardState extends State<PostCard> {
     );
   }
 
-  // Widget VideoCheck(PostMedia m) {
-  //
-  //   var _controller =   VideoPlayerController.network('${m.url}')
-  //     ..initialize().then((_) {
-  //       setState(() {
-  //
-  //       });
-  //     });
-  //
-  //   if (m.mediaTypeId == 1) {
-  //     return CustomNetworkImage(imageSource: m.url ?? '',);
-  //   } else  {
-  //     print("hellooo videooooooooooooooooooo");
-  //     // return Container();
-  //
-  //      return
-  //
-  //        Stack(children: [
-  //
-  //
-  //            FittedBox(
-  //              alignment: Alignment.center,
-  //              fit: BoxFit.fill,
-  //              child: SizedBox(
-  //                height: 429,
-  //                width: 339,
-  //                child: VisibilityDetector(
-  //                  key: ObjectKey(_controller),
-  //                  onVisibilityChanged: (visibility) {
-  //                    if (visibility.visibleBounds == 0 &&
-  //                        this.mounted &&
-  //                        _controller!.value.isPlaying) {
-  //
-  //                      setState(() {
-  //                        _controller?.pause();});
-  //                    }
-  //                  },
-  //                  child: Container(
-  //
-  //                      child:
-  //                      _controller.value.isInitialized?
-  //                      AspectRatio(
-  //                          aspectRatio: 120/200,
-  //                          child: VideoPlayer(
-  //                            _controller!,
-  //                          )):Container(),),
-  //                ),
-  //              ),
-  //            ),
-  //            Padding(
-  //              padding: EdgeInsets.only(
-  //                top: 420,
-  //              ),
-  //              child: VideoProgressIndicator(
-  //                _controller!, //controller
-  //                allowScrubbing: false,
-  //
-  //
-  //
-  //                colors: VideoProgressColors(
-  //                  playedColor: Colors.red,
-  //                  bufferedColor: Colors.grey,
-  //                  backgroundColor: Colors.transparent,
-  //                ),
-  //              ),
-  //            ),
-  //
-  //                Center(
-  //                    child: IconButton(
-  //                        onPressed: () {
-  //                          setState(() {
-  //                            _controller!.value.isPlaying
-  //                                ? _controller!.pause()
-  //                                : _controller!.play();
-  //                          });
-  //                        },
-  //                        icon: _controller!.value.isPlaying
-  //                            ? AnimatedOpacity(
-  //                                duration: Duration(seconds: 2),
-  //                                opacity: 0,
-  //                                child: Icon(
-  //                                  Icons.pause,
-  //                                ))
-  //                            : AnimatedOpacity(
-  //                                duration: Duration(seconds: 2),
-  //                                opacity: 1,
-  //                                child: Icon(
-  //                                  Icons.play_arrow,
-  //                                ))))
-  //
-  //          ]);
-  //
-  //
-  //
-  //   }
+// Widget VideoCheck(PostMedia m) {
+//
+//   var _controller =   VideoPlayerController.network('${m.url}')
+//     ..initialize().then((_) {
+//       setState(() {
+//
+//       });
+//     });
+//
+//   if (m.mediaTypeId == 1) {
+//     return CustomNetworkImage(imageSource: m.url ?? '',);
+//   } else  {
+//     print("hellooo videooooooooooooooooooo");
+//     // return Container();
+//
+//      return
+//
+//        Stack(children: [
+//
+//
+//            FittedBox(
+//              alignment: Alignment.center,
+//              fit: BoxFit.fill,
+//              child: SizedBox(
+//                height: 429,
+//                width: 339,
+//                child: VisibilityDetector(
+//                  key: ObjectKey(_controller),
+//                  onVisibilityChanged: (visibility) {
+//                    if (visibility.visibleBounds == 0 &&
+//                        this.mounted &&
+//                        _controller!.value.isPlaying) {
+//
+//                      setState(() {
+//                        _controller?.pause();});
+//                    }
+//                  },
+//                  child: Container(
+//
+//                      child:
+//                      _controller.value.isInitialized?
+//                      AspectRatio(
+//                          aspectRatio: 120/200,
+//                          child: VideoPlayer(
+//                            _controller!,
+//                          )):Container(),),
+//                ),
+//              ),
+//            ),
+//            Padding(
+//              padding: EdgeInsets.only(
+//                top: 420,
+//              ),
+//              child: VideoProgressIndicator(
+//                _controller!, //controller
+//                allowScrubbing: false,
+//
+//
+//
+//                colors: VideoProgressColors(
+//                  playedColor: Colors.red,
+//                  bufferedColor: Colors.grey,
+//                  backgroundColor: Colors.transparent,
+//                ),
+//              ),
+//            ),
+//
+//                Center(
+//                    child: IconButton(
+//                        onPressed: () {
+//                          setState(() {
+//                            _controller!.value.isPlaying
+//                                ? _controller!.pause()
+//                                : _controller!.play();
+//                          });
+//                        },
+//                        icon: _controller!.value.isPlaying
+//                            ? AnimatedOpacity(
+//                                duration: Duration(seconds: 2),
+//                                opacity: 0,
+//                                child: Icon(
+//                                  Icons.pause,
+//                                ))
+//                            : AnimatedOpacity(
+//                                duration: Duration(seconds: 2),
+//                                opacity: 1,
+//                                child: Icon(
+//                                  Icons.play_arrow,
+//                                ))))
+//
+//          ]);
+//
+//
+//
+//   }
 
-  // }
+// }
 
 }

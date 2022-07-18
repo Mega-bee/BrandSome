@@ -1,5 +1,6 @@
 import 'package:brandsome/posts_module/post_route.dart';
 import 'package:flutter/material.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
 import '../../reponse/business_response.dart';
 
@@ -39,7 +40,7 @@ class _BusinessPostsState extends State<BusinessPosts> {
                   ImageAsset.NO_POST,
                   height: 200,
                 ),
-                const Text('No posts yet'),
+                Text(S.of(context).noPostsYet),
                 widget.isMyBuss
                     ? Padding(
                         padding: const EdgeInsets.all(8.0),

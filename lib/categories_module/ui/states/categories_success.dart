@@ -5,6 +5,8 @@ import 'package:brandsome/categories_module/ui/widget/category_card.dart';
 import 'package:brandsome/utils/components/costom_search.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
+
 class CategorySuccess extends States {
   final List<MainCategoryModel> categories;
   final CategoryListScreenState screenState;
@@ -37,7 +39,7 @@ class CategorySuccess extends States {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           centerTitle: true,
           title: Text(
-            'Select category',
+            S.of(context).selectCategory,
             style: TextStyle(
               color: Theme.of(context).primaryColor,
             ),
@@ -67,16 +69,16 @@ class CategorySuccess extends States {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: CustomSearch(hintText: 'Search for service'),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: CustomSearch(hintText: S.of(context).searchForService,),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Chosse main Cat'),
+                  Text(S.of(context).chooseMainCat,),
                   SizedBox(
                     height: 130,
                     child: ListView.builder(
@@ -95,7 +97,7 @@ class CategorySuccess extends States {
                           );
                         }),
                   ),
-                  const Text('Chosse Sub Cat'),
+                  Text(S.of(context).chooseSubCat,),
                   SizedBox(
                     height: 130,
                     child: ListView.builder(
@@ -114,11 +116,11 @@ class CategorySuccess extends States {
                           );
                         }),
                   ),
-                  const Text('Chosse Service'),
+                  Text(S.of(context).chooseServices,),
                   SizedBox(
 //          height: 130,
                     child: GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
+                        physics: NeverScrollableScrollPhysics(),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                                 maxCrossAxisExtent: 200,
@@ -174,7 +176,7 @@ class CategorySuccess extends States {
         subCaId = element.id ?? -1;
         serviceCa = element.services;
       }
-    }
+    };
     screenState.refresh();
   }
 }

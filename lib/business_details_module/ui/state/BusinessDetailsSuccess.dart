@@ -5,6 +5,7 @@ import 'package:brandsome/utils/components/custom_alert_dialog/CustomReviewDialo
 import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../generated/l10n.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../reponse/business_response.dart';
 import '../screen/business_info.dart';
@@ -42,15 +43,15 @@ class BusinessDetailsSuccess extends States {
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
 
-            tabs: const [
+            tabs:  [
               Tab(
-                text: "Info",
+                text: S.of(context).Info,
               ),
               Tab(
-                text: "Posts",
+                text: S.of(context).Posts,
               ),
               Tab(
-                text: "Review",
+                text: S.of(context).Review,
               ),
             ],
           ),
@@ -65,8 +66,8 @@ class BusinessDetailsSuccess extends States {
                       showDialog(
                         context: context,
                         builder: (context) => CustomDeleteDialog(
-                          title: "Delete business",
-                          content: "Do you really want\n this business",
+                          title: S.of(context).deleteBusiness,
+                          content: S.of(context).doYouReallyWantThisBusiness,
                           yesBtn: () {
                             Navigator.pop(context);
                             screenState.deleteBusiness(
@@ -114,7 +115,7 @@ class BusinessDetailsSuccess extends States {
                       showDialog(
                         context: context,
                         builder: (context) => CustomDeleteDialog(
-                          title: "Delete Post",
+                          title: S.of(context).deletePost,
                           content: "",
                           yesBtn: () {
                             screenState

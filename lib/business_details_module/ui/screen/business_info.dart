@@ -2,6 +2,9 @@ import 'package:brandsome/business_details_module/business_details_route.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pinch_zoom/pinch_zoom.dart';
+import '../../../generated/l10n.dart';
+import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/components/cutom_network_image.dart';
 import '../../reponse/business_response.dart';
 
@@ -13,7 +16,7 @@ class BusinessInfo extends StatefulWidget {
   final Function onFollow;
   final bool isLoggedin;
 
-  const BusinessInfo({
+  BusinessInfo({
     required this.businessInfoModel,
     required this.onNumberClick,
     required this.onReviewClick,
@@ -61,7 +64,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
+            padding: EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -79,16 +82,16 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       ? Padding(
                           padding: const EdgeInsets.all(1.0),
                           child: Text(
-                            "Unfollow",
+                            S.of(context).Unfollow,
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Theme.of(context).primaryColor),
                           ),
                         )
-                      : const Padding(
-                          padding: EdgeInsets.all(1.0),
+                      : Padding(
+                          padding: const EdgeInsets.all(1.0),
                           child: Text(
-                            "  Follow  ",
+                            "  ${S.of(context).Follow}  ",
                             style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 color: Colors.white),
@@ -96,7 +99,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         ),
                   style: widget.businessInfoModel.isFollow!
                       ? ElevatedButton.styleFrom(
-                          padding: const EdgeInsetsDirectional.only(
+                          padding: EdgeInsetsDirectional.only(
                             end: 20,
                             start: 20,
                           ),
@@ -108,19 +111,19 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         )
                       : ElevatedButton.styleFrom(
                           primary: Theme.of(context).primaryColor,
-                          padding: const EdgeInsetsDirectional.only(
+                          padding: EdgeInsetsDirectional.only(
                             end: 20,
                             start: 20,
                           ),
                           shape: RoundedRectangleBorder(
-                              side: const BorderSide(
+                              side: BorderSide(
                                   width: 0, color: Colors.transparent),
                               borderRadius: BorderRadius.circular(4)),
                         ),
                 ),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.remove_red_eye_outlined,
                       size: 18,
                     ),
@@ -128,7 +131,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "${widget.businessInfoModel.viewCount}",
-                        style: const TextStyle(fontSize: 12),
+                        style: TextStyle(fontSize: 12),
                       ),
                     ),
                   ],
@@ -136,17 +139,17 @@ class _BusinessInfoState extends State<BusinessInfo> {
               ],
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
               "${widget.businessInfoModel.type}",
-              style: const TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: 15),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Padding(
@@ -159,7 +162,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                             const EdgeInsetsDirectional.only(end: 8, top: 10),
                         child: Text(
                           "${e.name}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             decoration: TextDecoration.underline,
                           ),
                         ),
@@ -167,7 +170,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                     )
                     .toList(),
               )),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Padding(
@@ -182,7 +185,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
 
                 Expanded(
                   child: Container(
-                      padding: const EdgeInsets.fromLTRB(1, 3, 15, 3),
+                      padding: EdgeInsets.fromLTRB(1, 3, 15, 3),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
                             5), // radius of 10// green as background color
@@ -211,7 +214,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                               .toList())),
                 ),
 
-                const SizedBox(
+                SizedBox(
                   width: 11,
                 ),
                 // Container(
@@ -229,26 +232,26 @@ class _BusinessInfoState extends State<BusinessInfo> {
               ],
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Text(
               "${widget.businessInfoModel.description}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Padding(
             padding: const EdgeInsetsDirectional.only(start: 23.0, end: 23.0),
             child: Center(
               child: Container(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: EdgeInsets.only(top: 10, bottom: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
@@ -264,7 +267,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                           color: Colors.white,
                           height: 20,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Text("${widget.businessInfoModel.followCount}"),
@@ -281,7 +284,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                           color: Colors.white,
                           height: 20,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Text("${widget.businessInfoModel.reviewCount}"),
@@ -298,7 +301,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                           color: Colors.white,
                           height: 20,
                         ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5,
                         ),
                         Text("${widget.businessInfoModel.postCount}"),
@@ -309,7 +312,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           Padding(
@@ -329,7 +332,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                   child: Row(
                     children: [
                       widget.businessInfoModel.isUserBusiness!
-                          ? const Icon(
+                          ? Icon(
                               Icons.edit,
                               color: Colors.white,
                             )
@@ -337,22 +340,22 @@ class _BusinessInfoState extends State<BusinessInfo> {
                               SvgImg.PHONE,
                               height: 20,
                             ),
-                      const SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
                       Text(
                         widget.businessInfoModel.isUserBusiness!
-                            ? "Update"
-                            : "Call Now",
-                        style: const TextStyle(color: Colors.white),
+                            ? S.of(context).Update
+                            : S.of(context).CallNow,
+                        style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    padding: EdgeInsets.only(left: 30, right: 30),
                     primary: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1, color: Colors.transparent),
+                        side: BorderSide(width: 1, color: Colors.transparent),
                         borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
@@ -366,7 +369,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                   child: Row(
                     children: [
                       widget.businessInfoModel.isUserBusiness!
-                          ? const Icon(
+                          ? Icon(
                               Icons.delete,
                               color: Colors.white,
                             )
@@ -374,28 +377,28 @@ class _BusinessInfoState extends State<BusinessInfo> {
                               SvgImg.RATING,
                               height: 20,
                             ),
-                      const SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
                       Text(
                           widget.businessInfoModel.isUserBusiness!
-                              ? "Delete"
-                              : "Add review",
-                          style: const TextStyle(color: Colors.white)),
+                              ? S.of(context).Delete
+                              : S.of(context).addReview,
+                          style: TextStyle(color: Colors.white)),
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.only(left: 30, right: 30),
+                    padding: EdgeInsets.only(left: 30, right: 30),
                     primary: Theme.of(context).primaryColor,
                     shape: RoundedRectangleBorder(
-                        side: const BorderSide(width: 1, color: Colors.transparent),
+                        side: BorderSide(width: 1, color: Colors.transparent),
                         borderRadius: BorderRadius.circular(4)),
                   ),
                 ),
               ],
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 25,
           )
         ],

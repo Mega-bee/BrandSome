@@ -3,6 +3,7 @@ import 'package:brandsome/setting_module/ui/screen/account_info_screen.dart';
 import 'package:brandsome/utils/components/cutom_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../abstracts/states/state.dart';
+import '../../../../generated/l10n.dart';
 import '../../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 
 class AccountSuccess extends States {
@@ -17,7 +18,7 @@ class AccountSuccess extends States {
         elevation: 5,
         centerTitle: true,
         title: Text(
-          "Account Info",
+          S.of(context).accountInfo,
           style: TextStyle(
             color: Theme.of(context).primaryColor,
           ),
@@ -41,9 +42,9 @@ class AccountSuccess extends States {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20,),
+            SizedBox(height: 20,),
             Center(
-              child: SizedBox(
+              child: Container(
                 height: 150,
               width: 150,
               child: CustomNetworkImage(
@@ -51,27 +52,27 @@ class AccountSuccess extends States {
               ),
               ),
             ),
-            const SizedBox(height: 10,),
+            SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsetsDirectional.only(
                   end: 38.0, start: 27.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ListTile(title: const Text('User name'),
+                 ListTile(title: Text(S.of(context).userName,),
                  subtitle: Text(accountModel.userName ?? ''),
-                   leading: const Icon(Icons.person),
+                   leading: Icon(Icons.person),
                  ),
-                  const Divider(thickness: 3,),
+                  Divider(thickness: 3,),
 
-                  ListTile(title: const Text('Phone Number'),
+                  ListTile(title: Text(S.of(context).phoneNumber),
                     subtitle: Text(accountModel.phoneNumber ?? ''),
                     leading: const Icon(Icons.phone_android),
                   ),
                   const Divider(thickness: 3,),
 
 
-                  ListTile(title: const Text('Brithday'),
+                  ListTile(title: Text(S.of(context).birthdayDate),
                     subtitle: Text(accountModel.birthDate ?? ''),
                     leading: const Icon(Icons.cake),
                   ),
@@ -79,15 +80,15 @@ class AccountSuccess extends States {
 
 
 
-                  ListTile(title: const Text('Gender'),
+                  ListTile(title: Text(S.of(context).Gender,),
                     subtitle: Text(accountModel.gender ?? ''),
-                    leading: const Icon(Icons.transgender),
+                    leading: Icon(Icons.transgender),
                   ),
-                  const Divider(thickness: 3,)
+                  Divider(thickness: 3,)
                 ],
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Padding(
@@ -98,7 +99,7 @@ class AccountSuccess extends States {
                     context: context,
                     builder: (context) =>
                         CustomDeleteDialog(
-                          title: "Delete account",
+                          title: S.of(context).deleteAccount,
                           content: "",
                           yesBtn: () {
                             _screenState.deleteAccount();
@@ -112,7 +113,7 @@ class AccountSuccess extends States {
                   );
                 },
                 child: Text(
-                  "Delete account",
+                  S.of(context).deleteAccount,
                   style: TextStyle(
                       color: Theme
                           .of(context)

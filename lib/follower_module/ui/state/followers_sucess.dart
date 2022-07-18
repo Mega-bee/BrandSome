@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../abstracts/states/state.dart';
+import '../../../generated/l10n.dart';
 import '../../request/follow_request.dart';
 import '../../response/follower_response.dart';
 import '../screens/follower_list.dart';
@@ -19,7 +20,7 @@ class FollowersSuccess extends States {
       ),
       Padding(
         padding: const EdgeInsets.only(left: 38.0),
-        child: Text("You are following ${bussfollowers.length} businesses"),
+        child: Text("${S.of(context).youAreFollowing} ${bussfollowers.length} ${S.of(context).Business}"),
       ),
       const SizedBox(
         height: 15,

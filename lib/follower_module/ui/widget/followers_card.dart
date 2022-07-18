@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../response/follower_response.dart';
 
 class FollowCard extends StatefulWidget {
   final FollowersResp bussfol;
   final Function onFollowClick;
-  const FollowCard({required this.bussfol,required this.onFollowClick});
+  FollowCard({required this.bussfol,required this.onFollowClick});
   @override
   State<FollowCard> createState() => _FollowCardState();
 }
@@ -36,7 +37,7 @@ class _FollowCardState extends State<FollowCard> {
                      ),
                     Text(
                       widget.bussfol.type.toString(),
-                      style: const TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: 14),
                      ),
                   ],
                 ),
@@ -50,7 +51,7 @@ class _FollowCardState extends State<FollowCard> {
 
 
                   },
-                  child: const Text("Follow",),
+                  child: Text(S.of(context).Follow,),
                   style: TextButton.styleFrom(
                       // backgroundColor:   Theme.of(context).primaryColor,
                     // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
@@ -64,7 +65,7 @@ class _FollowCardState extends State<FollowCard> {
                           widget.onFollowClick(widget.bussfol.id,isSelected);
 
                         },
-                        child: const Text("Unfollow",),
+                        child: Text(S.of(context).Unfollow,),
                         style: TextButton.styleFrom(
                             // shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
                             side: BorderSide(color: Theme.of(context).primaryColor)),
@@ -72,7 +73,7 @@ class _FollowCardState extends State<FollowCard> {
               ],
             ),
           ),
-          const Divider(height: 3,)
+          Divider(height: 3,)
         ],
       ),
     );
