@@ -1,5 +1,5 @@
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/business_details_module/reponse/business_response.dart';
+import 'package:brandsome/business_details_module/reponse/business_detailes_response.dart';
 import 'package:brandsome/business_details_module/request/edit_business_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

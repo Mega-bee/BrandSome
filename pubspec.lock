@@ -433,7 +433,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.1.0"
+    version: "9.2.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -588,6 +588,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  imgly_sdk:
+    dependency: transitive
+    description:
+      name: imgly_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.0"
   injectable:
     dependency: "direct main"
     description:
@@ -819,6 +826,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  photo_editor_sdk:
+    dependency: "direct main"
+    description:
+      name: photo_editor_sdk
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.0"
   photo_manager:
     dependency: transitive
     description:

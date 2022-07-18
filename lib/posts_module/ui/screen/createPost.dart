@@ -1,8 +1,7 @@
-
-import 'package:brandsome/business_details_module/reponse/business_response.dart';
+import 'package:brandsome/business_details_module/reponse/business_detailes_response.dart';
 import 'package:brandsome/posts_module/ui/state/create_post_init.dart';
-import 'package:brandsome/posts_module/ui/state/pick_image_state.dart';
 import 'package:brandsome/test_select_Image/picker_method.dart';
+import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -24,9 +23,10 @@ class CreatePostScreenState extends State<CreatePostScreen> {
 List<Services>? services;
 List<City>? cities;
 List<AssetEntity> assets = <AssetEntity>[];
+CreatePostRequest request = CreatePostRequest(media: []);
+bool flags = true;
 
-
-void refrech(){
+void refresh(){
   if(mounted){
     setState(() {
 
@@ -44,16 +44,19 @@ void refrech(){
     services = [];
 //    openImage();
 //    widget.createPostCubit.emit(PickImagesState(openImages:selectAssets( PickMethod.cameraAndStay(maxAssetsCount: 9),) ));
-    widget.createPostCubit.emit(CreatePostInit(screenState: this));
   }
 
 
   @override
   Widget build(BuildContext context) {
+  if(flags){
+    flags = false;
     var args = ModalRoute.of(context)?.settings.arguments;
     if(args != null && args is Map){
-        services = args["service"] as List<Services>;
-        cities = args["city"] as List<City>;
+      services = args["service"] as List<Services>;
+      cities = args["city"] as List<City>;
+      widget.createPostCubit.emit(CreatePostInit(screenState: this,cities: cities ?? [],services: services ?? []));
+  }
     }
     return Scaffold(
       body: BlocBuilder<CreatePostCubit, States>(

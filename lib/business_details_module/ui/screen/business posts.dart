@@ -2,7 +2,7 @@ import 'package:brandsome/posts_module/post_route.dart';
 import 'package:flutter/material.dart';
 import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
-import '../../reponse/business_response.dart';
+import '../../reponse/business_detailes_response.dart';
 
 class BusinessPosts extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;

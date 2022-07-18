@@ -8,7 +8,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../business_details_module/business_details_module.dart' as _i46;
-import '../business_details_module/repository/business_repository.dart' as _i14;
+import '../business_details_module/repository/business__detailes_repository.dart' as _i14;
 import '../business_details_module/state_manager/business_details_state_manager.dart'
     as _i28;
 import '../business_details_module/ui/screen/business_details.dart' as _i30;

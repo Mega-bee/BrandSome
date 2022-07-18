@@ -73,12 +73,14 @@ dependencies:
   wechat_assets_picker: ^7.2.0
 
   fluttertoast: ^8.0.8
-  permission_handler: ^8.1.4+2
+  permission_handler:
   badges: ^2.0.3
   signalr_netcore: ^1.3.0
   intl_utils:
   loading_animation_widget:
   wechat_camera_picker: ^3.4.0
+#  image_editor_plus: ^0.0.1
+#  extended_image:
 
 
 
@@ -147,5 +149,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-flutter_intl:
-  enabled: true
+#flutter_intl:
+#  enabled: true

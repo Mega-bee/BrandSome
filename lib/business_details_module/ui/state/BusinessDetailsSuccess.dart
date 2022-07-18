@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../generated/l10n.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-import '../../reponse/business_response.dart';
+import '../../reponse/business_detailes_response.dart';
 import '../screen/business_info.dart';
 import '../screen/business posts.dart';
 import '../screen/business_details.dart';

@@ -2,6 +2,7 @@
 /// @Author Alex (https://github.com/AlexV525)
 /// [Date] 2021/7/13 10:51
 ///
+//import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart'
     show AssetEntity, AssetPicker, AssetPickerViewer;
@@ -115,30 +116,6 @@ class SelectedAssetsListView extends StatelessWidget {
             : 40.0,
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20.0,
-              child: GestureDetector(
-                onTap: () {
-                  if (assets.isNotEmpty) {
-                    isDisplayingDetail.value = !isDisplayingDetail.value;
-                  }
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const Text('Selected Assets'),
-                    if (assets.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsetsDirectional.only(start: 10.0),
-                        child: Icon(
-                          value ? Icons.arrow_downward : Icons.arrow_upward,
-                          size: 18.0,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
             selectedAssetsListView,
           ],
         ),
