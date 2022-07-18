@@ -11,6 +11,7 @@ import 'package:brandsome/setting_module/ui/screen/account_info_screen.dart';
 import 'package:brandsome/setting_module/ui/state/account_state/account_success.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import '../../module_auth/request/otp_request.dart';
 import '../../module_auth/ui/state/ErrorSendOtp.dart';
@@ -26,7 +27,8 @@ class AccountCubit extends Cubit<States> {
   final AuthService _authService;
   final AuthRepository _authRepository;
 
-  AccountCubit(this._getAccoun, this._authService, this._authRepository) : super(LoadingState());
+  AccountCubit(this._getAccoun, this._authService, this._authRepository)
+      : super(LoadingState());
 
   getAccount(AccountInfoScreenState screenState) {
     if (_authService.isLoggedIn) {
@@ -45,7 +47,7 @@ class AccountCubit extends Cubit<States> {
         }
       });
     } else {
-      print('hhhhh');
+      print('hehehe');
       emit(RequestOtpState(screenState));
     }
   }
@@ -74,23 +76,25 @@ class AccountCubit extends Cubit<States> {
       if (value == null) {
         emit(ErrorState(errorMessage: 'errrorr', retry: () {}));
       } else if (value.code == 200) {
-        emit(VerifyOtpState(
-            phoneNumber: request.PhoneNumber,
-            screenState: screenState,
-            errorMessage: ""));
+        emit(
+          VerifyOtpState(
+              phoneNumber: request.PhoneNumber,
+              screenState: screenState,
+              errorMessage: ""),
+        );
       }
     });
   }
-  void verifyOtp(
-      AccountInfoScreenState screenState, VerifyOtpRequest request) {
+
+  void verifyOtp(AccountInfoScreenState screenState, VerifyOtpRequest request) {
     emit(LoadingAlertState());
     _authRepository.verifyOtp(request).then((value) {
       if (value == null) {
         emit(ErrorAlertState('Somtheing error'));
       } else if (value.code == 200) {
         Navigator.pop(screenState.context);
-      screenState.newNumber.text = request.number!;
-      screenState.refresh();
+        screenState.newNumber.text = request.number!;
+        screenState.refresh();
         // String token = value.data.insideData;
         // _authService.setToken(token);
 
@@ -103,13 +107,19 @@ class AccountCubit extends Cubit<States> {
       }
     });
   }
+
   deleteAccount(
     AccountInfoScreenState screenState,
   ) {
     emit(LoadingWaitingState("Waiting To Delete Your Account"));
     _getAccoun.deleteAcc().then((value) {
       if (value == null) {
-        emit(ErrorState(errorMessage: 'errrorr', retry: () {}));
+        emit(ErrorState(
+            errorMessage: 'error',
+            retry: () {
+              Fluttertoast.showToast(
+                  msg: 'Error deleting account', backgroundColor: Colors.green);
+            }));
       } else if (value.code == 200) {
         _authService.clearToken().then((value) {
           getIt<GlobalStateManager>().update();
