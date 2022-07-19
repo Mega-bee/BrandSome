@@ -280,9 +280,9 @@ class SettingSuccess extends States {
               Navigator.pushNamed(context, FollowerRoutes.Followers);
             },
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 18.0,
-                right: 30,
+              padding: const EdgeInsetsDirectional.only(
+                start: 18.0,
+                end: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -336,7 +336,7 @@ class SettingSuccess extends States {
             switchActiveColor: Colors.grey,
 
             title: Padding(
-              padding: const EdgeInsets.only(right: 100),
+              padding: const EdgeInsetsDirectional.only(end: 100),
               child: Text(S.of(context).darkMode,style: TextStyle(fontSize: 16)),
             ),
           ),
@@ -359,7 +359,7 @@ class SettingSuccess extends States {
             switchActiveColor: Colors.grey,
 
             title: Padding(
-              padding: const EdgeInsets.only(right: 100),
+              padding: const EdgeInsetsDirectional.only(end: 100),
               child: Text(S.of(context).languages,style: TextStyle(fontSize: 16)),
             ),
           ),
@@ -385,9 +385,9 @@ class SettingSuccess extends States {
 
             },
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 18.0,
-                right: 30,
+              padding: const EdgeInsetsDirectional.only(
+                start: 18.0,
+                end: 30,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

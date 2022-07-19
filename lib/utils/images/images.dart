@@ -16,6 +16,7 @@ class ImageAsset {
   static const NO_POST = ROOT +'no-paper.png';
   static const NO_REVIEW = ROOT +'no-review.png';
   static const LOGO = ROOT +'logo/logo.png';
+  static const ADD_IMAGES = ROOT +'add_image.png';
 }
 
 ///sport images

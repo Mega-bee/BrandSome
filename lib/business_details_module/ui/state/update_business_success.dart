@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 import '../../../generated/l10n.dart';
-import '../../reponse/business_response.dart';
+import '../../reponse/business_detailes_response.dart';
 import '../screen/update_business.dart';
 
 class UpdateBusinessSuccess extends States {

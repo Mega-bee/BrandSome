@@ -81,8 +81,9 @@ class City {
   int? id;
   int? businessCityId;
   String? name;
+  bool  isSelected = false;
 
-  City({this.name, this.id ,this.businessCityId});
+  City({this.name, this.id ,this.businessCityId ,required this.isSelected});
 
   City.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -170,8 +171,9 @@ class Services {
   int? id;
   int? businessServiceId;
   String? name;
+  bool isSelected = false;
 
-  Services({this.id, this.name ,this.businessServiceId});
+  Services({this.id, this.name ,this.businessServiceId ,required this.isSelected});
 
   Services.fromJson(Map<String, dynamic> json) {
     id = json['id'];

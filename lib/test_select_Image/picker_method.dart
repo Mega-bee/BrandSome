@@ -1,3 +1,4 @@
+import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:flutter/material.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
@@ -25,21 +26,21 @@ class PickMethod {
       name: 'Pick from camera and stay',
       description: 'Take a photo or video with the camera picker, '
           'select the result and stay in the entities list.',
+
       method: (BuildContext context, List<AssetEntity> assets) {
         const AssetPickerTextDelegate textDelegate = AssetPickerTextDelegate();
         return AssetPicker.pickAssets(
           context,
           pickerConfig: AssetPickerConfig(
-
             maxAssets: maxAssetsCount,
             selectedAssets: assets,
             requestType: RequestType.common,
             gridCount: 3,
             pageSize: 120,
-//            pickerTheme: AssetPicker.themeData(
-//              Colors.lightBlueAccent,
+           pickerTheme: AssetPicker.themeData(
+             Colors.deepOrange,
 //              light: true,
-//            ),
+           ),
             specialItemPosition: SpecialItemPosition.prepend,
             specialItemBuilder: (
               BuildContext context,
@@ -76,6 +77,8 @@ class PickMethod {
                 ),
               );
             },
+            keepScrollOffset: true,
+
           ),
         );
       },
@@ -121,4 +124,6 @@ class PickMethod {
   ) method;
 
   final GestureLongPressCallback? onLongPress;
+
+
 }

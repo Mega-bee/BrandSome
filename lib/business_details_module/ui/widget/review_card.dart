@@ -1,4 +1,4 @@
-import 'package:brandsome/business_details_module/reponse/business_response.dart';
+import 'package:brandsome/business_details_module/reponse/business_detailes_response.dart';
 import 'package:brandsome/utils/helpers/date_converter.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;

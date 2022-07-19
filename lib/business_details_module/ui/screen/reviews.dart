@@ -2,7 +2,7 @@ import 'package:brandsome/business_details_module/ui/widget/review_card.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import '../../../generated/l10n.dart';
-import '../../reponse/business_response.dart';
+import '../../reponse/business_detailes_response.dart';
 
 class ReviewScreen extends StatelessWidget {
   final List<Reviews> review;

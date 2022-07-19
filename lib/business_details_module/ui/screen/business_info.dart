@@ -6,7 +6,7 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 import '../../../generated/l10n.dart';
 import '../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
 import '../../../utils/components/cutom_network_image.dart';
-import '../../reponse/business_response.dart';
+import '../../reponse/business_detailes_response.dart';
 
 class BusinessInfo extends StatefulWidget {
   final BusinessInfoResponse businessInfoModel;
