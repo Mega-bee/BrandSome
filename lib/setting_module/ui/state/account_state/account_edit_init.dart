@@ -26,6 +26,7 @@ class EditAccountInit extends States {
     username.text = model.userName ?? '';
     birthday.text = model.birthDate ?? '';
     genderID = model.genderId ?? 3;
+
   }
 
   final _formKeyBusiness = GlobalKey<FormState>();
@@ -306,8 +307,10 @@ class EditAccountInit extends States {
                               );
                             },
                             child:
-                                countrycode==null?Text("Select Country"):
-                            Text('${countrycode!.countryCode}'),
+                            countrycode==null?Wrap(children:[ Text("Country"),
+                              Icon(Icons.arrow_drop_down_outlined)
+                            ]):
+                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
                           ),
                           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
                         ),
@@ -360,8 +363,10 @@ class EditAccountInit extends States {
                               );
                             },
                             child:
-                            countrycode==null?Text("Select Country"):
-                            Text('+${countrycode!.phoneCode}'),
+                            countrycode==null?Wrap(children:[ Text("Country",style: TextStyle(color: Theme.of(context).primaryColor)),
+                            Icon(Icons.arrow_drop_down_outlined)
+                            ]):
+                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
                           ),
                           prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
                         ),

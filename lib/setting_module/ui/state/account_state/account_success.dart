@@ -66,6 +66,7 @@ class AccountSuccess extends States {
                   Divider(thickness: 3,),
 
                   ListTile(title: Text(S.of(context).phoneNumber),
+
                     subtitle: Text(accountModel.phoneNumber ?? ''),
                     leading: const Icon(Icons.phone_android),
                   ),
