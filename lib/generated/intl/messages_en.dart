@@ -104,8 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select cities and services"),
         "selectImagePlease":
             MessageLookupByLibrary.simpleMessage("Select Image Please"),
-        "sendOtpToVerify":
-            MessageLookupByLibrary.simpleMessage("Send Otp to verify"),
+        "sendOtpToVerify": MessageLookupByLibrary.simpleMessage(
+            "You Can Now Change Your Number"),
         "userName": MessageLookupByLibrary.simpleMessage("Username"),
         "visitors": MessageLookupByLibrary.simpleMessage("visitors"),
         "youAreFollowing":

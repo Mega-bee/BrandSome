@@ -58,7 +58,9 @@ class EditAccountInit extends States {
                   screenState.updateProfile(UpdateProfileRequest(
                       genderId: genderID.toString(),
                       Birthday: birthDate?.toIso8601String(),
-                      PhoneNumber: phoneNumber.text,
+                      PhoneNumber:
+                      screenState.newNumber.text.isNotEmpty ?
+                      screenState.newNumber.text:phoneNumber.text,
                       Username: username.text,
                       ImageFile:
                           imageForUpload));
@@ -212,6 +214,7 @@ class EditAccountInit extends States {
                   S.of(context).userName,
                 ),
                 TextFormField(
+
                   autofocus: false,
                   controller: username,
                 ),
@@ -220,22 +223,28 @@ class EditAccountInit extends States {
                   S.of(context).phoneNumber,
                 ),
               screenState.newNumber.text.isNotEmpty ?TextFormField(
+
+
                 autofocus: false,
                 controller: screenState.newNumber,
                 keyboardType: TextInputType.phone,
                 readOnly: true,
 
               ) :  TextFormField(
+                onTap: (){
+                  screenState.gotoNumberAlert();
+                },
                   autofocus: false,
                   controller: phoneNumber,
                   keyboardType: TextInputType.phone,
                   readOnly: false,
 
                 ),
-                TextButton(onPressed: (){
-                 screenState.gotoNumberAlert();
-
-                }, child: Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+                // const SizedBox(height: 10),
+                // screenState.newNumber.text.isNotEmpty ?
+                //  Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Colors.green,),):
+                // Container()
+                // ,
 
                 const SizedBox(height: 30),
 
