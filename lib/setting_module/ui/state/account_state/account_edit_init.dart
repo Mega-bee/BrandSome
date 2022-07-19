@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,9 +38,11 @@ class EditAccountInit extends States {
   int? genderID;
   File? _pickImage;
   MultipartFile? imageForUpload;
+  Country? countrycode;
 
   @override
   Widget getUI(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -222,24 +225,159 @@ class EditAccountInit extends States {
                 Text(
                   S.of(context).phoneNumber,
                 ),
-              screenState.newNumber.text.isNotEmpty ?TextFormField(
+                // Column(
+                //   children:[ Wrap(
+                //     children:[
+                //       ElevatedButton(
+                //     onPressed: () {
+                //       showCountryPicker(
+                //         context: context,
+                //         //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                //         exclude: <String>['KN', 'MF'],
+                //         favorite: <String>['SE'],
+                //         //Optional. Shows phone code before the country name.
+                //         showPhoneCode: true,
+                //         onSelect: (Country country) {
+                //           print('Select country: ${country.displayName}');
+                //         },
+                //         // Optional. Sets the theme for the country list picker.
+                //         countryListTheme: CountryListThemeData(
+                //           // Optional. Sets the border radius for the bottomsheet.
+                //           borderRadius: BorderRadius.only(
+                //             topLeft: Radius.circular(40.0),
+                //             topRight: Radius.circular(40.0),
+                //           ),
+                //           // Optional. Styles the search field.
+                //           inputDecoration: InputDecoration(
+                //             labelText: 'Search',
+                //             hintText: 'Start typing to search',
+                //             prefixIcon: const Icon(Icons.search),
+                //             border: OutlineInputBorder(
+                //               borderSide: BorderSide(
+                //                 color: const Color(0xFF8C98A8).withOpacity(0.2),
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //     child: Text('Country picker'),
+                //     ),
 
 
-                autofocus: false,
-                controller: screenState.newNumber,
-                keyboardType: TextInputType.phone,
-                readOnly: true,
+                      screenState.newNumber.text.isNotEmpty ?TextFormField(
+                        decoration:
+                        InputDecoration(
+                          isDense: true,
+                          prefixIcon: ElevatedButton(
 
-              ) :  TextFormField(
-                onTap: (){
-                  screenState.gotoNumberAlert();
-                },
-                  autofocus: false,
-                  controller: phoneNumber,
-                  keyboardType: TextInputType.phone,
-                  readOnly: false,
+                            onPressed: () {
+                              showCountryPicker(
+                                context: context,
+                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                                exclude: <String>['KN', 'MF'],
+                                favorite: <String>['SE'],
+                                //Optional. Shows phone code before the country name.
+                                showPhoneCode: true,
+                                onSelect: (Country country) {
+                                  countrycode=country;
+                                  screenState.refresh();
+                                  Text('Select country: ${country.displayName}');
+                                },
+                                // Optional. Sets the theme for the country list picker.
+                                countryListTheme: CountryListThemeData(
+                                  // Optional. Sets the border radius for the bottomsheet.
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40.0),
+                                    topRight: Radius.circular(40.0),
+                                  ),
+                                  // Optional. Styles the search field.
+                                  inputDecoration: InputDecoration(
+                                    labelText: 'Search',
+                                    hintText: 'Start typing to search',
+                                    prefixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child:
+                                countrycode==null?Text("Select Country"):
+                            Text('${countrycode!.countryCode}'),
+                          ),
+                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                        ),
 
-                ),
+
+                      autofocus: false,
+                      controller: screenState.newNumber,
+                      keyboardType: TextInputType.phone,
+                      readOnly: true,
+
+                        ) :  TextFormField(
+                        decoration:
+                        InputDecoration(
+                          isDense: true,
+
+                          prefixIcon: ElevatedButton(
+
+                            onPressed: () {
+                              showCountryPicker(
+                                context: context,
+                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                                exclude: <String>['KN', 'MF'],
+                                // favorite: <String>['LB'],
+                                //Optional. Shows phone code before the country name.
+                                showPhoneCode: true,
+                                onSelect: (Country country) {
+                                  countrycode=country;
+                                  screenState.refresh();
+                                  Text('Select country: ${country.displayName}');
+                                },
+                                // Optional. Sets the theme for the country list picker.
+                                countryListTheme: CountryListThemeData(
+                                  // Optional. Sets the border radius for the bottomsheet.
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40.0),
+                                    topRight: Radius.circular(40.0),
+                                  ),
+                                  // Optional. Styles the search field.
+                                  inputDecoration: InputDecoration(
+                                    labelText: 'Search',
+                                    hintText: 'Start typing to search',
+                                    prefixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child:
+                            countrycode==null?Text("Select Country"):
+                            Text('+${countrycode!.phoneCode}'),
+                          ),
+                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                        ),
+                      onTap: (){
+                        screenState.gotoNumberAlert();
+                      },
+                      autofocus: false,
+
+                      controller: phoneNumber,
+                      keyboardType: TextInputType.phone,
+                      readOnly: false,
+
+                        ),
+
+
+
                 // const SizedBox(height: 10),
                 // screenState.newNumber.text.isNotEmpty ?
                 //  Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Colors.green,),):
