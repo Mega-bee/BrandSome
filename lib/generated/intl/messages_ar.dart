@@ -104,7 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectImagePlease":
             MessageLookupByLibrary.simpleMessage("اختر الصورة من فضلك"),
         "sendOtpToVerify":
-            MessageLookupByLibrary.simpleMessage("أرسل Otp للتحقق"),
+            MessageLookupByLibrary.simpleMessage("يمكنك الآن تغيير رقمك"),
         "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "visitors": MessageLookupByLibrary.simpleMessage("الزائرين"),
         "youAreFollowing": MessageLookupByLibrary.simpleMessage("أنت تتابع"),

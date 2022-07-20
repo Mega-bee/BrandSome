@@ -9,7 +9,11 @@ import '../../screen/account_info_screen.dart';
 
 class NumberOtpState extends States {
   AccountInfoScreenState screenState;
-  NumberOtpState(this.screenState, {String? phonenumber}) : super(true);
+  String? errorMessage;
+  NumberOtpState(
+      this.screenState,
+
+      {String? phonenumber,this.errorMessage}) : super(true);
 
   final phonenumber = TextEditingController();
   @override
@@ -85,9 +89,15 @@ class NumberOtpState extends States {
               ],
             ),
           ),
+
+
+          errorMessage==null?
+              Container():
+          Text("${errorMessage}",style: TextStyle(color: Colors.red),),
           SizedBox(
             height: 30,
           ),
+
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);

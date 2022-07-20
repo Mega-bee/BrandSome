@@ -490,10 +490,10 @@ class S {
     );
   }
 
-  /// `Send Otp to verify`
+  /// `You Can Now Change Your Number`
   String get sendOtpToVerify {
     return Intl.message(
-      'Send Otp to verify',
+      'You Can Now Change Your Number',
       name: 'sendOtpToVerify',
       desc: '',
       args: [],
