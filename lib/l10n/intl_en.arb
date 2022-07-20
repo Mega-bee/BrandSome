@@ -45,7 +45,7 @@
           "editAccount":"Edit account",
           "userName":"Username",
           "phoneNumber":"Phone number",
-          "sendOtpToVerify":"Send Otp to verify",
+          "sendOtpToVerify":"You Can Now Change Your Number",
           "birthdayDate":"Birthday Date",
           "Gender":"Gender",
           "Male":"Male",
@@ -73,6 +73,7 @@
           "deleteAccount":"Delete account",
           "enterYourPhoneNumber":"Enter your phone number",
           "Continue":"Continue"
+
 
 
 }
