@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {

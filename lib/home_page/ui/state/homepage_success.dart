@@ -5,7 +5,6 @@ import 'package:brandsome/home_page/model/subCategory.dart';
 import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/material.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../generated/l10n.dart';
 import '../../../utils/images/images.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
@@ -61,9 +60,9 @@ final  bool isLogged;
   @override
   Widget getUI(BuildContext context) {
 
-    final ItemScrollController itemScrollController = ItemScrollController();
-    final ItemPositionsListener itemPositionsListener =
-        ItemPositionsListener.create();
+//    final ItemScrollController itemScrollController = ItemScrollController();
+//    final ItemPositionsListener itemPositionsListener =
+//        ItemPositionsListener.create();
 
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
@@ -134,10 +133,7 @@ final  bool isLogged;
         const Divider(
           thickness: 3,
         ),
-        ScrollablePositionedList.builder(
-
-            itemScrollController: itemScrollController,
-            itemPositionsListener: itemPositionsListener,
+        ListView.builder(
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: posthome.length,

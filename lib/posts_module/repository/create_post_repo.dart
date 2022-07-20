@@ -1,10 +1,11 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
+import 'package:dio/dio.dart';
 import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../module_auth/service/auth_service.dart';
-import '../request/bussines_filter_request.dart';
+import '../request/creat_post_request.dart';
 
 @injectable
 class CreatePostRepo {
@@ -15,6 +16,7 @@ class CreatePostRepo {
 
   Future<WebServiceResponse?> createPost(CreatePostRequest request) async {
     var token = _authService.getToken();
+
     WebServiceResponse? response = await _apiClient.post(
       Urls.CREATE_POSTS,
       request.toJson(),

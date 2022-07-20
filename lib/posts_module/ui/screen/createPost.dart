@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import '../../../abstracts/states/state.dart';
-import '../../request/bussines_filter_request.dart';
+import '../../request/creat_post_request.dart';
 import '../../state_manager/create_post_state_manager.dart';
 
 @injectable
@@ -23,7 +23,6 @@ class CreatePostScreenState extends State<CreatePostScreen> {
 List<Services>? services;
 List<City>? cities;
 List<AssetEntity> assets = <AssetEntity>[];
-CreatePostRequest request = CreatePostRequest(media: []);
 bool flags = true;
 
 void refresh(){
@@ -33,7 +32,7 @@ void refresh(){
     });
   }
 }
-  createBusinessRequest(CreatePostRequest request) {
+  createPostRequest(CreatePostRequest request) {
     widget.createPostCubit.createPost(request, this);
   }
 
@@ -67,15 +66,4 @@ void refresh(){
     );
   }
 
-
-Future<void> selectAssets(PickMethod model) async {
-
-  final List<AssetEntity>? result = await model.method(context, assets);
-  if (result != null) {
-    assets = List<AssetEntity>.from(result);
-    if (mounted) {
-      setState(() {});
-    }
-  }
-}
 }

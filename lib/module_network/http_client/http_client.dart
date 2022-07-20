@@ -101,6 +101,7 @@ class ApiClient {
       );
       return _processResponse(response);
     } catch (e) {
+      print(e.toString());
       if (e is DioError) {
         DioError err = e;
         if (err.response != null) {
@@ -221,6 +222,7 @@ class ApiClient {
       _logger.info(tag, response.data.toString());
       return WebServiceResponse.fromJson(response.data);
     } else {
+      _logger.info(tag, response.data.toString());
       _logger.error(
           tag,
           response.statusCode.toString() + '\n\n' + response.data.toString(),
