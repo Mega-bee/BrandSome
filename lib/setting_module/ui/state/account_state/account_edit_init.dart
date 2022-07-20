@@ -205,6 +205,7 @@ class EditAccountInit extends States {
                             elevation: 10,
                             fillColor: Theme.of(context).primaryColor,
                             child: const Icon(
+
                               Icons.camera_alt_outlined,
                               color: Colors.white,
                             ),
