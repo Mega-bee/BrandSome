@@ -216,7 +216,7 @@ class EditAccountInit extends States {
                   ),
                 ),
                 Text(
-                  S.of(context).userName,
+                  S.of(context).userName,style: TextStyle(color:Colors.grey),
                 ),
                 TextFormField(
 
@@ -225,7 +225,7 @@ class EditAccountInit extends States {
                 ),
                 SizedBox(height: 30),
                 Text(
-                  S.of(context).phoneNumber,
+                  S.of(context).phoneNumber,style: TextStyle(color:Colors.grey),
                 ),
                 // Column(
                 //   children:[ Wrap(
@@ -271,7 +271,7 @@ class EditAccountInit extends States {
                         decoration:
                         InputDecoration(
                           isDense: true,
-                          prefixIcon: ElevatedButton(
+                          prefixIcon: TextButton(
 
                             onPressed: () {
                               showCountryPicker(
@@ -327,7 +327,9 @@ class EditAccountInit extends States {
                         InputDecoration(
                           isDense: true,
 
-                          prefixIcon: ElevatedButton(
+                          prefixIcon: TextButton(
+
+
 
                             onPressed: () {
                               showCountryPicker(
@@ -364,8 +366,8 @@ class EditAccountInit extends States {
                               );
                             },
                             child:
-                            countrycode==null?Wrap(children:[ Text("Country",style: TextStyle(color: Theme.of(context).primaryColor)),
-                            Icon(Icons.arrow_drop_down_outlined)
+                            countrycode==null?Wrap(children:[ Text("...",style: TextStyle(color:Colors.grey[400]),),
+                            Icon(Icons.arrow_drop_down_outlined,color: Theme.of(context).primaryColor,)
                             ]):
                             Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
                           ),
@@ -418,7 +420,7 @@ class EditAccountInit extends States {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        S.of(context).birthdayDate,
+                        S.of(context).birthdayDate,style: TextStyle(color:Colors.grey),
                       ),
                       const SizedBox(height: 10,),
                       Text(
@@ -435,86 +437,92 @@ class EditAccountInit extends States {
                 const SizedBox(
                   height: 20,
                 ),
-                ListTile(
-                  title: Padding(
-                    padding:  EdgeInsets.only(right: 20),
-                    child: Text(
-                      S.of(context).Gender,
+             Text(
+                      S.of(context).Gender,style: TextStyle(color:Colors.grey),
                     ),
-                  ),
-                  subtitle: Column(children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).Male,
-                              style: TextStyle(fontSize: 12),
+
+                  Padding(
+                    padding: const EdgeInsets.only(right: 32),
+                    child: Column(
+
+                        children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+
+                              activeColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              title: Text(
+                                S.of(context).Male,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              value: 1,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            value: 1,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                      ],
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            title: Text(
-                              S.of(context).Female,
-                              style: TextStyle(fontSize: 12),
+                        ],
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              activeColor: Theme.of(context).primaryColor,
+                              title: Text(
+                                S.of(context).Female,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              value: 2,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            value: 2,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                        const SizedBox(height: 30),
-                      ],
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).ratherNotToSay,
-                              style: TextStyle(fontSize: 12),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              activeColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              title: Text(
+                                S.of(context).ratherNotToSay,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              value: 3,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            value: 3,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                        const SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
 //                    Expanded(
 //                      child: Container(
@@ -536,10 +544,11 @@ class EditAccountInit extends States {
 //                        ),
 //                      ),
 //                    ),
-                      ],
-                    ),
-                  ]),
-                ),
+                        ],
+                      ),
+                    ]),
+                  ),
+
                 const SizedBox(height: 30),
               ],
             ),

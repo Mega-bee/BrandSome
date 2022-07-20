@@ -59,31 +59,31 @@ class AccountSuccess extends States {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ListTile(title: Text(S.of(context).userName,),
-                 subtitle: Text(accountModel.userName ?? ''),
-                   leading: Icon(Icons.person),
+                 ListTile(title: Text(S.of(context).userName,style: TextStyle(color:Colors.grey),),
+                 subtitle: Text(accountModel.userName ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
+                   leading: Icon(Icons.person,size: 40,color:Colors.grey,),
                  ),
                   Divider(thickness: 3,),
 
-                  ListTile(title: Text(S.of(context).phoneNumber),
+                  ListTile(title: Text(S.of(context).phoneNumber,style: TextStyle(color:Colors.grey),),
 
-                    subtitle: Text(accountModel.phoneNumber ?? ''),
-                    leading: const Icon(Icons.phone_android),
+                    subtitle: Text(accountModel.phoneNumber ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
+                    leading: const Icon(Icons.phone_android,size: 40,color:Colors.grey,),
                   ),
                   const Divider(thickness: 3,),
 
 
-                  ListTile(title: Text(S.of(context).birthdayDate),
-                    subtitle: Text(accountModel.birthDate ?? ''),
-                    leading: const Icon(Icons.cake),
+                  ListTile(title: Text(S.of(context).birthdayDate,style: TextStyle(color:Colors.grey),),
+                    subtitle: Text(accountModel.birthDate ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
+                    leading: const Icon(Icons.cake,size: 40,color:Colors.grey,),
                   ),
                   const Divider(thickness: 3,),
 
 
 
-                  ListTile(title: Text(S.of(context).Gender,),
-                    subtitle: Text(accountModel.gender ?? ''),
-                    leading: Icon(Icons.transgender),
+                  ListTile(title: Text(S.of(context).Gender,style: TextStyle(color:Colors.grey),),
+                    subtitle: Text(accountModel.gender ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
+                    leading: Icon(Icons.transgender,size: 40,color:Colors.grey,),
                   ),
                   Divider(thickness: 3,)
                 ],
