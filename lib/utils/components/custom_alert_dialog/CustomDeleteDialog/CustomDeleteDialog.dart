@@ -47,17 +47,20 @@ class CustomDeleteDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ElevatedButton(
+
                     onPressed: () {
                       yesBtn();
                     },
+
                     child: Text("  Yes  ",
                         style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).brightness==Brightness.dark?Colors.white:Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 12)),
                     style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
                         elevation: 0,
-                        side: BorderSide(color: Theme.of(context).primaryColor),
+                        side: BorderSide(color: Colors.grey),
                         padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                   ElevatedButton(
@@ -67,10 +70,11 @@ class CustomDeleteDialog extends StatelessWidget {
                     child: Text(
                       "Cancel",
                         style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                            color: Theme.of(context).brightness==Brightness.dark?Colors.white:Colors.black,
                             fontWeight: FontWeight.w400,
                             fontSize: 12)     ,               ),
                       style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
                           elevation: 0,
                           side: BorderSide(color: Theme.of(context).primaryColor),
                           padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),

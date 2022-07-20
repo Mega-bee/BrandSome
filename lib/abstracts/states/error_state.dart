@@ -27,10 +27,10 @@ class ErrorState extends States {
           ],
           repeatForever: true,
           ),
-           Text(
-             errorMessage,
-             style: const TextStyle(color: Colors.white),
-           ),
+           // Text(
+           //   errorMessage,
+           //   style: const TextStyle(color: Colors.white),
+           // ),
           const   SizedBox(
             height: 30,
           ),
