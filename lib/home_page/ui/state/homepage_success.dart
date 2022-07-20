@@ -1,72 +1,72 @@
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/categories_module/ui/widget/category_card.dart';
 import 'package:brandsome/home_page/model/category_model.dart';
-import 'package:brandsome/home_page/model/subCategory.dart';
 import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import '../../../categories_module/reponse/category_response.dart';
 import '../../../generated/l10n.dart';
-import '../../../utils/images/images.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
 import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
+import '../widgets/sub_service_card.dart';
 
 class HomePageSuccess extends States {
   final HomePageScreenState screenState;
   final List<Post> posthome;
-final  bool isLogged;
+  final List<MainCategoryModel> mainCategory;
 
-  HomePageSuccess(this.screenState, this.posthome, this.isLogged) : super(false);
+  final bool isLogged;
 
-  List<CategoryModel> categorys = [
-    CategoryModel(id: 1, name: "Personal", selectedCard: true),
-    CategoryModel(id: 2, name: "Properties", selectedCard: false),
-    CategoryModel(id: 3, name: "Cars", selectedCard: false),
-  ];
+  HomePageSuccess(
+    this.screenState,
+    this.posthome,
+    this.isLogged,
+    this.mainCategory,
+  ) : super(false) {
+    if (screenState.isFlag) {
+      if (mainCategory.isNotEmpty) {
+        mainCaId = mainCategory.first.id ?? -1;
+        if (mainCategory.isNotEmpty) {
+          subsCa = mainCategory.first.subs;
+          subCaId = subsCa.first.id ?? -1;
+          if (subsCa.isNotEmpty) {
+            serviceCa = subsCa.first.services;
+          }
+        }
+      }
+    }
+  }
 
-  List<SubCategoryModel> subCat = [
-    SubCategoryModel(
-        id: 1,
-        img: ImageAssetSports.BOXING,
-        unselectedImg: ImageAssetUnselectedSports.BOXING,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 2,
-        img: ImageAssetSports.DRAWING,
-        unselectedImg: ImageAssetUnselectedSports.DRAWING,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 3,
-        img: ImageAssetSports.KUNG_FU,
-        unselectedImg: ImageAssetUnselectedSports.KUNG_FU,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 4,
-        img: ImageAssetSports.MUAY_THAI,
-        unselectedImg: ImageAssetUnselectedSports.MUAY_THAI,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 5,
-        img: ImageAssetSports.PERSONAL_TRAINER,
-        unselectedImg: ImageAssetUnselectedSports.PERSONAL_TRAINER,
-        selectedCard: false),
-    SubCategoryModel(
-        id: 6,
-        img: ImageAssetSports.PING_PONG,
-        unselectedImg: ImageAssetUnselectedSports.PING_PONG,
-        selectedCard: false),
-  ];
+  List<SubCategoryModel> subsCa = [];
+  List<ServiceModel> serviceCa = [];
+
+  int mainCaId = -1;
+  int subCaId = -1;
+
+  void selectFirstItem(int firstCatId) {
+    for (var element in mainCategory) {
+      if (element.id == firstCatId) {
+        mainCaId = element.id ?? -1;
+        subsCa = element.subs;
+      }
+    }
+    if (subsCa.isNotEmpty) {
+      serviceCa = subsCa.first.services;
+    }
+    screenState.refresh();
+  }
 
   @override
   Widget getUI(BuildContext context) {
-
     final ItemScrollController itemScrollController = ItemScrollController();
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
 
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+      physics:
+          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const SizedBox(
           height: 20,
@@ -78,15 +78,16 @@ final  bool isLogged;
             child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: categorys.length,
+                itemCount: mainCategory.length,
                 itemBuilder: (context, index) {
                   return Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: MainCategoryCard(categorys[index], () {
-                        for (var element in categorys) {
-                          element.selectedCard = false;
-                        }
-                        categorys[index].selectedCard = true;
+                      child: MainCategoryCard(mainCategory[index], () {
+                        selectFirstItem(mainCategory[index].id ?? -1);
+                        // for (var element in mainCategory) {
+                        //   element.isSelected = false;
+                        // }
+                        // mainCategory[index].isSelected = true;
                       }));
                 }),
           ),
@@ -94,21 +95,28 @@ final  bool isLogged;
         const SizedBox(
           height: 5,
         ),
-        SizedBox(
-          height: 150,
-          child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: subCat.length,
-              itemBuilder: (context, index) {
-                return CategoryCard(
-                  isSlecteced: false,
-                  catName: 'personal',
-                  onCardTap: () {},
-                  catId: -1,
-                );
-              }),
-        ),
+        subsCa.isEmpty
+            ? SizedBox(
+                height: 150,
+              )
+            : SizedBox(
+                height: 150,
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: serviceCa.length,
+                    itemBuilder: (context, index) {
+                      return SubServieCard(
+                        subId: subsCa[0].id ?? -1,
+                        subName: subsCa[0].name ?? "",
+                        serviceImage: serviceCa[index].image.toString(),
+                        serviceName: serviceCa[index].name ?? "",
+                        isSlecteced: false,
+                        onCardTap: () {},
+
+                      );
+                    }),
+              ),
         Align(
           alignment: AlignmentDirectional.topEnd,
           child: InkWell(
@@ -135,7 +143,6 @@ final  bool isLogged;
           thickness: 3,
         ),
         ScrollablePositionedList.builder(
-
             itemScrollController: itemScrollController,
             itemPositionsListener: itemPositionsListener,
             physics: const BouncingScrollPhysics(),
@@ -143,10 +150,14 @@ final  bool isLogged;
             itemCount: posthome.length,
             itemBuilder: (context, index) {
               return PostCard(
-                isLogged: isLogged,
-                onLikeClick: (like){
-                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString());
-                },
+                  isLogged: isLogged,
+                  onLikeClick: (like) {
+                    screenState.Islike(
+                        LikeRequest(
+                          isLike: like,
+                        ),
+                        posthome[index].id.toString());
+                  },
                   onViewLikeTap: (id) {
                     screenState.goToLikes(id);
                   },

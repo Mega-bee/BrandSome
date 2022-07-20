@@ -34,6 +34,14 @@ class HomePageScreenState extends State<HomePage>
     widget.cubit.getToLikeList(this,id);
   }
 
+  void refresh(){
+    if(mounted){
+      setState(() {
+
+      });
+    }
+  }
+
   requestOtp(OtpRequest request) {
     widget.cubit.requestOtp(this, request);
   }
@@ -46,6 +54,7 @@ class HomePageScreenState extends State<HomePage>
     widget.cubit.Islike(this, request, id);
   }
 
+  bool isFlag = true;
   @override
   void initState() {
     super.initState();

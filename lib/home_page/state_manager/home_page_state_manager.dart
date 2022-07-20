@@ -31,10 +31,11 @@ class HomePageCubit extends Cubit<States> {
   final GeneralDataHelper _dataHelper;
   final HomeP _homePage;
 
-  HomePageCubit(this._authService, this._authRepository, this._homePage, this._dataHelper)
+  HomePageCubit(
+      this._authService, this._authRepository, this._homePage, this._dataHelper)
       : super(LoadingState());
 
-  getToLikeList(HomePageScreenState screenState , String id) {
+  getToLikeList(HomePageScreenState screenState, String id) {
     if (_authService.isLoggedIn) {
       Navigator.pushNamed(
         screenState.context,
@@ -57,30 +58,39 @@ class HomePageCubit extends Cubit<States> {
       } else if (value.code == 200) {
         HomePageResponse hom = HomePageResponse.fromJson(value.data.insideData);
 
-        List<HiveCity> citiesHive =[];
+        List<HiveCity> citiesHive = [];
         hom.cities?.forEach((element) {
-          citiesHive.add(HiveCity(name: element.name , id: element.id));
+          citiesHive.add(HiveCity(name: element.name, id: element.id));
         });
 
-        List<HiveMainCategory> categories =[];
-
+        List<HiveMainCategory> categories = [];
 
         hom.categories?.forEach((element) {
-          List<HiveSubCategory> subCategories =[];
+          List<HiveSubCategory> subCategories = [];
           for (var element in element.subs) {
-            List<HiveService> service =[];
+            List<HiveService> service = [];
             for (var element in element.services) {
-              service.add(HiveService(id: element.id , name: element.name));
+              service.add(HiveService(id: element.id, name: element.name));
             }
-            subCategories.add(HiveSubCategory(name: element.name ,id: element.id,service: service));
+            subCategories.add(HiveSubCategory(
+                name: element.name, id: element.id, service: service));
           }
-          categories.add(HiveMainCategory(name: element.name ,id: element.id,subs: subCategories));
+          categories.add(HiveMainCategory(
+              name: element.name, id: element.id, subs: subCategories));
         });
 
         _dataHelper.setCities(citiesHive);
         _dataHelper.setCategories(categories);
-        emit(HomePageSuccess(
-            screenState, hom.postt ?? [], _authService.isLoggedIn));
+
+        emit(
+          HomePageSuccess(
+            screenState,
+            hom.postt ?? [],
+            _authService.isLoggedIn,
+            hom.categories ?? [],
+          ),
+        );
+        screenState.isFlag = false;
       }
     });
   }
@@ -99,39 +109,41 @@ class HomePageCubit extends Cubit<States> {
   }
 
   requestOtp(HomePageScreenState screenState, OtpRequest request) {
-      emit(LoadingAlertState());
-      _authRepository.requestOtp(request).then((value) {
-        if (value == null) {
-          emit(ErrorAlertState('Somtheing error'));
-        } else if (value.code == 200) {
-          Navigator.pop(screenState.context);
-          emit(VerifyOtpState(
-              phoneNumber: request.number, screenState: screenState));
-        } else if (value.code != 200) {
-          Navigator.pop(screenState.context);
-          emit(ErrorAlertState(value.errorMessage));
-        }
-      });
-    }
-
-    verifyOtp(HomePageScreenState screenState, VerifyOtpRequest request) {
-      emit(LoadingAlertState());
-      _authRepository.verifyOtp(request).then((value) {
-        if (value == null) {
-          emit(ErrorAlertState('Somtheing error'));
-        } else if (value.code == 200) {
-          Navigator.pop(screenState.context);
-          String token = value.data.insideData;
-          _authService.setToken(token);
-          Fluttertoast.showToast(msg: 'Your account created Successfuly',backgroundColor: Colors.green);
-          getIt<GlobalStateManager>().update();
-        } else if (value.code != 200) {
-          Navigator.pop(screenState.context);
-          emit(VerifyOtpState(
-              phoneNumber: request.number,
-              screenState: screenState,
-              errorMessage: value.errorMessage));
-        }
-      });
-    }
+    emit(LoadingAlertState());
+    _authRepository.requestOtp(request).then((value) {
+      if (value == null) {
+        emit(ErrorAlertState('Somtheing error'));
+      } else if (value.code == 200) {
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number, screenState: screenState));
+      } else if (value.code != 200) {
+        Navigator.pop(screenState.context);
+        emit(ErrorAlertState(value.errorMessage));
+      }
+    });
   }
+
+  verifyOtp(HomePageScreenState screenState, VerifyOtpRequest request) {
+    emit(LoadingAlertState());
+    _authRepository.verifyOtp(request).then((value) {
+      if (value == null) {
+        emit(ErrorAlertState('Somtheing error'));
+      } else if (value.code == 200) {
+        Navigator.pop(screenState.context);
+        String token = value.data.insideData;
+        _authService.setToken(token);
+        Fluttertoast.showToast(
+            msg: 'Your account created Successfuly',
+            backgroundColor: Colors.green);
+        getIt<GlobalStateManager>().update();
+      } else if (value.code != 200) {
+        Navigator.pop(screenState.context);
+        emit(VerifyOtpState(
+            phoneNumber: request.number,
+            screenState: screenState,
+            errorMessage: value.errorMessage));
+      }
+    });
+  }
+}
