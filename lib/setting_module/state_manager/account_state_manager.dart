@@ -20,6 +20,7 @@ import '../../utils/global/global_state_manager.dart';
 import '../request/Phone_change.dart';
 import '../request/update_profile_request.dart';
 import '../response/account_response.dart';
+import '../ui/state/account_state/number_otp.dart';
 
 @injectable
 class AccountCubit extends Cubit<States> {
@@ -75,15 +76,29 @@ class AccountCubit extends Cubit<States> {
     _getAccoun.Phonechange(request).then((value) {
       if (value == null) {
         emit(ErrorState(errorMessage: 'errrorr', retry: () {}));
-      } else if (value.code == 200) {
+      }
+
+      else if (value.code == 200) {
         emit(
           VerifyOtpState(
               phoneNumber: request.PhoneNumber,
               screenState: screenState,
               errorMessage: ""),
         );
+      }else if (value.code != 200) {
+        Navigator.pop(screenState.context);
+        emit(NumberOtpState(
+          screenState,
+          errorMessage:value.errorMessage ,
+
+          phonenumber: request.PhoneNumber
+
+        ));
       }
     });
+
+
+
   }
 
   void verifyOtp(AccountInfoScreenState screenState, VerifyOtpRequest request) {

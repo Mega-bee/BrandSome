@@ -145,10 +145,11 @@ centerTitle: true,
                   borderRadius: BorderRadius.circular(20.0),
                   child: _pickImage != null
                       ? Image.file(_pickImage!,
-                          fit: BoxFit.cover, width: 150, height: 150)
+                          fit: BoxFit.cover, width: 400, height: 230)
                       : Image.network(
                           "https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg",
                           fit: BoxFit.cover,
+
                           width: 350,
                           height: 200,
                         ),
@@ -263,7 +264,7 @@ centerTitle: true,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      S.of(context).businessName,
+                      S.of(context).businessName,style: TextStyle(color: Colors.grey),
                   ),
                   TextFormField(
                     controller: business,
@@ -273,7 +274,7 @@ centerTitle: true,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    S.of(context).Description,
+                    S.of(context).Description,style: TextStyle(color: Colors.grey),
                   ),
                   TextFormField(
                     controller: description,
@@ -283,7 +284,7 @@ centerTitle: true,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    S.of(context).businessPhone,
+                    S.of(context).businessPhone,style: TextStyle(color: Colors.grey),
                   ),
 //                  TextFormField(
 //                    controller: phoneNumber,
@@ -323,7 +324,7 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(S.of(context).addLocation),
+                              Text(S.of(context).addLocation,style: TextStyle(color: Colors.grey),),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -408,10 +409,11 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(S.of(context).addService,),
+                              Text(S.of(context).addService,style: TextStyle(color: Colors.grey),),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
+
                               )
                             ],
                           ),

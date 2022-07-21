@@ -10,9 +10,12 @@ import 'package:permission_handler/permission_handler.dart';
 @injectable
 class AuthService {
   final AuthPrefsHelper _prefsHelper;
-  final AuthRepository _authRepository;
+  // final AuthRepository _authRepository;
 
-  AuthService(this._prefsHelper, this._authRepository);
+  AuthService(
+      this._prefsHelper,
+      // this._authRepository
+      );
 
   bool get isLoggedIn => _prefsHelper.isSignedIn();
 

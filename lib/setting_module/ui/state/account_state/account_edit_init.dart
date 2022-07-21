@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -25,6 +26,7 @@ class EditAccountInit extends States {
     username.text = model.userName ?? '';
     birthday.text = model.birthDate ?? '';
     genderID = model.genderId ?? 3;
+
   }
 
   final _formKeyBusiness = GlobalKey<FormState>();
@@ -37,9 +39,11 @@ class EditAccountInit extends States {
   int? genderID;
   File? _pickImage;
   MultipartFile? imageForUpload;
+  Country? countrycode;
 
   @override
   Widget getUI(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -58,7 +62,9 @@ class EditAccountInit extends States {
                   screenState.updateProfile(UpdateProfileRequest(
                       genderId: genderID.toString(),
                       Birthday: birthDate?.toIso8601String(),
-                      PhoneNumber: phoneNumber.text,
+                      PhoneNumber:
+                      screenState.newNumber.text.isNotEmpty ?
+                      screenState.newNumber.text:phoneNumber.text,
                       Username: username.text,
                       ImageFile:
                           imageForUpload));
@@ -199,6 +205,7 @@ class EditAccountInit extends States {
                             elevation: 10,
                             fillColor: Theme.of(context).primaryColor,
                             child: const Icon(
+
                               Icons.camera_alt_outlined,
                               color: Colors.white,
                             ),
@@ -209,33 +216,181 @@ class EditAccountInit extends States {
                   ),
                 ),
                 Text(
-                  S.of(context).userName,
+                  S.of(context).userName,style: TextStyle(color:Colors.grey),
                 ),
                 TextFormField(
+
                   autofocus: false,
                   controller: username,
                 ),
                 SizedBox(height: 30),
                 Text(
-                  S.of(context).phoneNumber,
+                  S.of(context).phoneNumber,style: TextStyle(color:Colors.grey),
                 ),
-              screenState.newNumber.text.isNotEmpty ?TextFormField(
-                autofocus: false,
-                controller: screenState.newNumber,
-                keyboardType: TextInputType.phone,
-                readOnly: true,
+                // Column(
+                //   children:[ Wrap(
+                //     children:[
+                //       ElevatedButton(
+                //     onPressed: () {
+                //       showCountryPicker(
+                //         context: context,
+                //         //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                //         exclude: <String>['KN', 'MF'],
+                //         favorite: <String>['SE'],
+                //         //Optional. Shows phone code before the country name.
+                //         showPhoneCode: true,
+                //         onSelect: (Country country) {
+                //           print('Select country: ${country.displayName}');
+                //         },
+                //         // Optional. Sets the theme for the country list picker.
+                //         countryListTheme: CountryListThemeData(
+                //           // Optional. Sets the border radius for the bottomsheet.
+                //           borderRadius: BorderRadius.only(
+                //             topLeft: Radius.circular(40.0),
+                //             topRight: Radius.circular(40.0),
+                //           ),
+                //           // Optional. Styles the search field.
+                //           inputDecoration: InputDecoration(
+                //             labelText: 'Search',
+                //             hintText: 'Start typing to search',
+                //             prefixIcon: const Icon(Icons.search),
+                //             border: OutlineInputBorder(
+                //               borderSide: BorderSide(
+                //                 color: const Color(0xFF8C98A8).withOpacity(0.2),
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //     child: Text('Country picker'),
+                //     ),
 
-              ) :  TextFormField(
-                  autofocus: false,
-                  controller: phoneNumber,
-                  keyboardType: TextInputType.phone,
-                  readOnly: false,
 
-                ),
-                TextButton(onPressed: (){
-                 screenState.gotoNumberAlert();
+                      screenState.newNumber.text.isNotEmpty ?TextFormField(
+                        decoration:
+                        InputDecoration(
+                          isDense: true,
+                          prefixIcon: TextButton(
 
-                }, child: Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Theme.of(context).primaryColor,decoration: TextDecoration.underline),)),
+                            onPressed: () {
+                              showCountryPicker(
+                                context: context,
+                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                                exclude: <String>['KN', 'MF'],
+                                favorite: <String>['SE'],
+                                //Optional. Shows phone code before the country name.
+                                showPhoneCode: true,
+                                onSelect: (Country country) {
+                                  countrycode=country;
+                                  screenState.refresh();
+                                  Text('Select country: ${country.displayName}');
+                                },
+                                // Optional. Sets the theme for the country list picker.
+                                countryListTheme: CountryListThemeData(
+                                  // Optional. Sets the border radius for the bottomsheet.
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40.0),
+                                    topRight: Radius.circular(40.0),
+                                  ),
+                                  // Optional. Styles the search field.
+                                  inputDecoration: InputDecoration(
+                                    labelText: 'Search',
+                                    hintText: 'Start typing to search',
+                                    prefixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child:
+                            countrycode==null?Wrap(children:[ Text("Country"),
+                              Icon(Icons.arrow_drop_down_outlined)
+                            ]):
+                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
+                          ),
+                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                        ),
+
+
+                      autofocus: false,
+                      controller: screenState.newNumber,
+                      keyboardType: TextInputType.phone,
+                      readOnly: true,
+
+                        ) :  TextFormField(
+                        decoration:
+                        InputDecoration(
+                          isDense: true,
+
+                          prefixIcon: TextButton(
+
+
+
+                            onPressed: () {
+                              showCountryPicker(
+                                context: context,
+                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                                exclude: <String>['KN', 'MF'],
+                                // favorite: <String>['LB'],
+                                //Optional. Shows phone code before the country name.
+                                showPhoneCode: true,
+                                onSelect: (Country country) {
+                                  countrycode=country;
+                                  screenState.refresh();
+                                  Text('Select country: ${country.displayName}');
+                                },
+                                // Optional. Sets the theme for the country list picker.
+                                countryListTheme: CountryListThemeData(
+                                  // Optional. Sets the border radius for the bottomsheet.
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(40.0),
+                                    topRight: Radius.circular(40.0),
+                                  ),
+                                  // Optional. Styles the search field.
+                                  inputDecoration: InputDecoration(
+                                    labelText: 'Search',
+                                    hintText: 'Start typing to search',
+                                    prefixIcon: const Icon(Icons.search),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child:
+                            countrycode==null?Wrap(children:[ Text("...",style: TextStyle(color:Colors.grey[400]),),
+                            Icon(Icons.arrow_drop_down_outlined,color: Theme.of(context).primaryColor,)
+                            ]):
+                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
+                          ),
+                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                        ),
+                      onTap: (){
+                        screenState.gotoNumberAlert();
+                      },
+                      autofocus: false,
+
+                      controller: phoneNumber,
+                      keyboardType: TextInputType.phone,
+                      readOnly: false,
+
+                        ),
+
+
+
+                // const SizedBox(height: 10),
+                // screenState.newNumber.text.isNotEmpty ?
+                //  Text(S.of(context).sendOtpToVerify,style: TextStyle(fontSize: 10,color: Colors.green,),):
+                // Container()
+                // ,
 
                 const SizedBox(height: 30),
 
@@ -265,7 +420,7 @@ class EditAccountInit extends States {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        S.of(context).birthdayDate,
+                        S.of(context).birthdayDate,style: TextStyle(color:Colors.grey),
                       ),
                       const SizedBox(height: 10,),
                       Text(
@@ -282,86 +437,92 @@ class EditAccountInit extends States {
                 const SizedBox(
                   height: 20,
                 ),
-                ListTile(
-                  title: Padding(
-                    padding:  EdgeInsets.only(right: 20),
-                    child: Text(
-                      S.of(context).Gender,
+             Text(
+                      S.of(context).Gender,style: TextStyle(color:Colors.grey),
                     ),
-                  ),
-                  subtitle: Column(children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).Male,
-                              style: TextStyle(fontSize: 12),
+
+                  Padding(
+                    padding: const EdgeInsets.only(right: 32),
+                    child: Column(
+
+                        children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+
+                              activeColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              title: Text(
+                                S.of(context).Male,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              value: 1,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            value: 1,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                      ],
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            title: Text(
-                              S.of(context).Female,
-                              style: TextStyle(fontSize: 12),
+                        ],
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              activeColor: Theme.of(context).primaryColor,
+                              title: Text(
+                                S.of(context).Female,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              value: 2,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            value: 2,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                        const SizedBox(height: 30),
-                      ],
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).ratherNotToSay,
-                              style: TextStyle(fontSize: 12),
+                          const SizedBox(height: 30),
+                        ],
+                      ),
+                      Flex(
+                        direction: Axis.horizontal,
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              dense: true,
+                              controlAffinity: ListTileControlAffinity.trailing,
+                              activeColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              title: Text(
+                                S.of(context).ratherNotToSay,
+                                style: TextStyle(fontSize: 12,),
+                              ),
+                              value: 3,
+                              groupValue: genderID,
+                              onChanged: (int? v) {
+                                genderID = v;
+                                screenState.refresh();
+                              },
                             ),
-                            value: 3,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
                           ),
-                        ),
-                        const SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
 //                    Expanded(
 //                      child: Container(
@@ -383,10 +544,11 @@ class EditAccountInit extends States {
 //                        ),
 //                      ),
 //                    ),
-                      ],
-                    ),
-                  ]),
-                ),
+                        ],
+                      ),
+                    ]),
+                  ),
+
                 const SizedBox(height: 30),
               ],
             ),
