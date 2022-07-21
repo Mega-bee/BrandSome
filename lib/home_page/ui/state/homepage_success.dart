@@ -8,6 +8,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../categories_module/reponse/category_response.dart';
 import '../../../generated/l10n.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
+import '../../home_route.dart';
 import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
 import '../widgets/sub_service_card.dart';
@@ -121,11 +122,8 @@ class HomePageSuccess extends States {
           alignment: AlignmentDirectional.topEnd,
           child: InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => SearchBarFilterScreen()),
-              // );
+              Navigator.pushNamed(context,
+                  HomeRoutes.CATEGORY_LIST_SCREEN);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
