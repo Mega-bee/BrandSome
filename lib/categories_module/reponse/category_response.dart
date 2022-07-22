@@ -41,13 +41,14 @@ class ServiceModel {
   String? name;
   String? image;
   String? category;
-  bool  isSelected = false;
+  bool?  isUserInterest;
   ServiceModel({
     this.category,
-    required this.id, required this.name ,this.image ,required this.isSelected});
+    required this.id, required this.name ,this.image ,required this.isUserInterest});
 
   ServiceModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    isUserInterest = json['isUserInterest'];
     name = json['name'];
     image = json['image'];
     category = json['category'];

@@ -22,6 +22,7 @@ import 'package:injectable/injectable.dart';
 import '../../abstracts/states/error_state.dart';
 import '../repository/home_repository.dart';
 import '../request/is_like.dart';
+import '../request/userInterestsRequest.dart';
 import '../response/home_page.dart';
 
 @injectable
@@ -145,5 +146,17 @@ class HomePageCubit extends Cubit<States> {
             errorMessage: value.errorMessage));
       }
     });
+  }
+
+  interestsscat(setUserInterestsRequest request,) {
+    if (_authService.isLoggedIn) {
+      _homePage.userInterests(request).then((value) {
+        if (value!.code == 200) {
+         Fluttertoast.showToast(msg: "Done",backgroundColor: Colors.green);
+        }
+      });
+    } else {
+      Fluttertoast.showToast(msg: "error",backgroundColor: Colors.red);
+    }
   }
 }

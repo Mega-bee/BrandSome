@@ -30,6 +30,7 @@ class Urls {
   static const BUSINESS_VIEW = BASE_API_BUSINESS + 'RegisterBusinessView/';
 
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
+  static const SET_USER_INTERESTS = BASE_API_FILTER + 'SetUserInterests';
   static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
   static const CREATE_POSTS = BASE_API_POSTS + 'CreatePost';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';

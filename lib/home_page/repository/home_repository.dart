@@ -4,6 +4,7 @@ import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
 import '../../module_auth/service/auth_service.dart';
 import '../request/is_like.dart';
+import '../request/userInterestsRequest.dart';
 
 @injectable
 class HomeP {
@@ -36,6 +37,17 @@ class HomeP {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.put(
       Urls.LIKE_HOME + "$id",
+      request.toJson(),
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
+  Future<WebServiceResponse?> userInterests(setUserInterestsRequest request) async {
+    var token = _authService.getToken();
+    WebServiceResponse? response = await _apiClient.put(
+      Urls.SET_USER_INTERESTS,
       request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );

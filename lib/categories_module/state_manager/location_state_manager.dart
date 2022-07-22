@@ -58,7 +58,7 @@ class GeneralDataCubit extends Cubit<States> {
         element.subs?.forEach((element) {
           List<ServiceModel> service = [];
           element.service?.forEach((element) {
-            service.add(ServiceModel(id: element.id, name: element.name,isSelected: false));
+            service.add(ServiceModel(id: element.id, name: element.name, isUserInterest: false,));
           });
           subCategories.add(SubCategoryModel(
               name: element.name, id: element.id, services: service));
