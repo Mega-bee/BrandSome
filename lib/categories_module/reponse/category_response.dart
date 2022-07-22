@@ -18,13 +18,15 @@ class MainCategoryModel {
 }
 class SubCategoryModel {
   int? id;
+  String?image;
   String? name;
   bool? isSelected = false;
   List<ServiceModel>  services = [];
-  SubCategoryModel({required this.id, required this.name , required this.services,this.isSelected});
+  SubCategoryModel({required this.id, required this.name , required this.services,this.isSelected,this.image});
 
   SubCategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    image = json['image'];
     name = json['name'];
     if (json['services'] != null) {
       services = <ServiceModel>[];

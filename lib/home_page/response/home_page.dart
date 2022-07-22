@@ -7,7 +7,6 @@ class HomePageResponse {
   List<MainCategoryModel>? categories;
   List<AddLocationResponse>? cities;
 
-
   HomePageResponse({this.postt,this.cities,this.categories});
 
   HomePageResponse.fromJson(Map<String, dynamic> json) {

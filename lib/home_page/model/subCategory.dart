@@ -1,16 +1,16 @@
-class SubCategoryModel {
-  int? id;
-  String? name;
-  String? img;
-  String? unselectedImg;
-  String? subName;
-  bool selectedCard;
-
-  SubCategoryModel(
-      {this.id,
-      this.name,
-      this.img,
-      this.subName,
-      this.selectedCard = false,
-      this.unselectedImg});
-}
+// class SubCategoryModel {
+//   int? id;
+//   String? name;
+//   String? img;
+//   String? unselectedImg;
+//   String? subName;
+//   bool selectedCard;
+//
+//   SubCategoryModel(
+//       {this.id,
+//       this.name,
+//       this.img,
+//       this.subName,
+//       this.selectedCard = false,
+//       this.unselectedImg});
+// }

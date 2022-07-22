@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 
+import '../../../categories_module/reponse/category_response.dart';
 import '../../model/category_model.dart';
 
 class MainCategoryCard extends StatefulWidget {
-  final CategoryModel category;
+  final MainCategoryModel category;
   final Function onCardTAP;
 
 
@@ -29,16 +30,16 @@ class _CategoryState extends State<MainCategoryCard> {
           const SizedBox(
             height: 2,
           ),
-          Visibility(
-            visible: widget.category.selectedCard,
-            child: Center(
-              child: Container(
-                width: 80,
-                height: 2,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
+          // Visibility(
+          //   visible: widget.category,,
+          //   child: Center(
+          //     child: Container(
+          //       width: 80,
+          //       height: 2,
+          //       color: Theme.of(context).primaryColor,
+          //     ),
+          //   ),
+          // ),
         ]));
   }
 }
