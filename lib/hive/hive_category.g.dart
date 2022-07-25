@@ -99,17 +99,20 @@ class HiveServiceAdapter extends TypeAdapter<HiveService> {
     return HiveService(
       id: fields[0] as int?,
       name: fields[1] as String?,
+      isUserSelected: fields[2] as bool?,
     );
   }
 
   @override
   void write(BinaryWriter writer, HiveService obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(2)
+      ..write(obj.isUserSelected);
   }
 
   @override

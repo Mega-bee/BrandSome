@@ -71,7 +71,7 @@ class HomePageCubit extends Cubit<States> {
           for (var element in element.subs) {
             List<HiveService> service = [];
             for (var element in element.services) {
-              service.add(HiveService(id: element.id, name: element.name));
+              service.add(HiveService(id: element.id, name: element.name,isUserSelected: element.isUserInterest));
             }
             subCategories.add(HiveSubCategory(
                 name: element.name, id: element.id, service: service));
