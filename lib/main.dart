@@ -20,7 +20,6 @@ import 'generated/l10n.dart';
 import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
 import 'localization_service/localizationSservice.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,7 +55,6 @@ class MyApp extends StatefulWidget {
   final  LikedListModule _likedListModule;
   final SettingModule _settingModule;
   final FollowerModule _followersModule;
-//  final AuthorizationModule _authorizationModule;/
   final CategoryModule _categoryModule;
   final HomeModule _homeModule;
   final PostModule _postModule;
@@ -74,7 +72,6 @@ class MyApp extends StatefulWidget {
       this._likedListModule,
       this._settingModule,
       this._followersModule,
-//      this._authorizationModule,
       this._categoryModule,
       this._homeModule,
       this._postModule,
