@@ -46,13 +46,8 @@ class HiveService extends HiveObject {
   @HiveField(1)
   String? name;
 
-  @HiveField(2)
-  bool? isUserSelected;
-
   HiveService({
     this.id,
     this.name,
-    this.isUserSelected
   });
 }
-

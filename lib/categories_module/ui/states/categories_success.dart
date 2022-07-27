@@ -138,7 +138,7 @@ class CategorySuccess extends States {
                             },
                             catId: serviceCa[index].id ?? 0,
                             catName: serviceCa[index].name ?? '',
-                            isSlecteced: serviceCa[index].isUserInterest  ??false,
+                            isSlecteced: false,
                           );
                         }),
                   ),
