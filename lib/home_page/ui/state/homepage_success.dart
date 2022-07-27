@@ -126,8 +126,8 @@ class HomePageSuccess extends States {
           alignment: AlignmentDirectional.topEnd,
           child: InkWell(
             onTap: () {
-              Navigator.pushNamed(context,
-                  HomeRoutes.CATEGORY_LIST_SCREEN);
+              // Navigator.pushNamed(context,
+              //     HomeRoutes.CATEGORY_LIST_SCREEN);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -144,9 +144,7 @@ class HomePageSuccess extends States {
         const Divider(
           thickness: 3,
         ),
-        ScrollablePositionedList.builder(
-            itemScrollController: itemScrollController,
-            itemPositionsListener: itemPositionsListener,
+        ListView.builder(
             physics: const BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: posthome.length,
