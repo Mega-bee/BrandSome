@@ -14,9 +14,9 @@ class PostCard extends StatefulWidget {
 
   PostCard(
       {required this.onViewLikeTap,
-      required this.posthome,
-      required this.onLikeClick,
-      required this.isLogged});
+        required this.posthome,
+        required this.onLikeClick,
+        required this.isLogged});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -96,14 +96,14 @@ class _PostCardState extends State<PostCard> {
                       }),
                   itemCount: widget.posthome.postMedia?.length,
                   itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
+                      int pageViewIndex) =>
                       SizedBox(
                           width: 500,
 
                           // margin: EdgeInsets.symmetric(horizontal: .0),
                           child:
-    widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
- CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container()
+                          widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
+                          CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container()
 
 //
 //                           VideoApp(
@@ -132,7 +132,7 @@ class _PostCardState extends State<PostCard> {
                                       : Colors.grey),
                             ))
                         .toList() //
-                    )
+                )
               ],
             ),
           ),
@@ -162,14 +162,14 @@ class _PostCardState extends State<PostCard> {
                         },
                         child: widget.posthome.isLiked
                             ? Icon(
-                                Icons.thumb_up,
-                                color: Theme.of(context).primaryColor,
+                          Icons.thumb_up,
+                          color: Theme.of(context).primaryColor,
                           size: 25,
-                              )
+                        )
                             : Icon(
-                                Icons.thumb_up_alt_outlined,
+                          Icons.thumb_up_alt_outlined,
                           size: 25,
-                              )),
+                        )),
                     InkWell(
                         onTap: () {
                           widget.onViewLikeTap(widget.posthome.id.toString());

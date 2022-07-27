@@ -27,6 +27,7 @@ class HomePageSuccess extends States {
     if (screenState.isFlag) {
       if (mainCategory.isNotEmpty) {
         mainCaId = mainCategory.first.id ?? -1;
+        mainCategory.first.isSelected = true;
         if (mainCategory.isNotEmpty) {
           subsCa = mainCategory.first.subs;
           subCaId = subsCa.first.id ?? -1;
@@ -84,10 +85,10 @@ class HomePageSuccess extends States {
                       padding: const EdgeInsets.all(10.0),
                       child: MainCategoryCard(mainCategory[index], () {
                         selectFirstItem(mainCategory[index].id ?? -1);
-                        // for (var element in mainCategory) {
-                        //   element.isSelected = false;
-                        // }
-                        // mainCategory[index].isSelected = true;
+                         for (var element in mainCategory) {
+                           element.isSelected = false;
+                         }
+                         mainCategory[index].isSelected = true;
                       }));
                 }),
           ),

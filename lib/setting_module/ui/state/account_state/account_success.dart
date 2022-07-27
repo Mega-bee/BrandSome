@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../../abstracts/states/state.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-
 class AccountSuccess extends States {
   final AccountResponse accountModel;
   final AccountInfoScreenState _screenState;
@@ -46,10 +45,10 @@ class AccountSuccess extends States {
             Center(
               child: Container(
                 height: 150,
-              width: 150,
-              child: CustomNetworkImage(
-               imageSource: accountModel.imageUrl ??'',
-              ),
+                width: 150,
+                child: CustomNetworkImage(
+                  imageSource: accountModel.imageUrl ??'',
+                ),
               ),
             ),
             SizedBox(height: 10,),
@@ -59,31 +58,31 @@ class AccountSuccess extends States {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ListTile(title: Text(S.of(context).userName,style: TextStyle(color:Colors.grey),),
-                 subtitle: Text(accountModel.userName ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
-                   leading: Icon(Icons.person,size: 40,color:Colors.grey,),
-                 ),
+                  ListTile(title: Text(S.of(context).userName,),
+                    subtitle: Text(accountModel.userName ?? ''),
+                    leading: Icon(Icons.person),
+                  ),
                   Divider(thickness: 3,),
 
-                  ListTile(title: Text(S.of(context).phoneNumber,style: TextStyle(color:Colors.grey),),
+                  ListTile(title: Text(S.of(context).phoneNumber),
 
-                    subtitle: Text(accountModel.phoneNumber ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
-                    leading: const Icon(Icons.phone_android,size: 40,color:Colors.grey,),
+                    subtitle: Text(accountModel.phoneNumber ?? ''),
+                    leading: const Icon(Icons.phone_android),
                   ),
                   const Divider(thickness: 3,),
 
 
-                  ListTile(title: Text(S.of(context).birthdayDate,style: TextStyle(color:Colors.grey),),
-                    subtitle: Text(accountModel.birthDate ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
-                    leading: const Icon(Icons.cake,size: 40,color:Colors.grey,),
+                  ListTile(title: Text(S.of(context).birthdayDate),
+                    subtitle: Text(accountModel.birthDate ?? ''),
+                    leading: const Icon(Icons.cake),
                   ),
                   const Divider(thickness: 3,),
 
 
 
-                  ListTile(title: Text(S.of(context).Gender,style: TextStyle(color:Colors.grey),),
-                    subtitle: Text(accountModel.gender ?? '',style: TextStyle(color: Color(0xFFE8E8E8)),),
-                    leading: Icon(Icons.transgender,size: 40,color:Colors.grey,),
+                  ListTile(title: Text(S.of(context).Gender,),
+                    subtitle: Text(accountModel.gender ?? ''),
+                    leading: Icon(Icons.transgender),
                   ),
                   Divider(thickness: 3,)
                 ],
@@ -105,8 +104,6 @@ class AccountSuccess extends States {
                           yesBtn: () {
                             _screenState.deleteAccount();
                             Navigator.pop(context);
-
-
                           },
                           noBtn: () {
                             Navigator.pop(context);
@@ -128,8 +125,6 @@ class AccountSuccess extends States {
       ),
     );
   }
-
-
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
