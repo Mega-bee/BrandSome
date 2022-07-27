@@ -32,45 +32,53 @@ class _BusinessCardState extends State<BusinessCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 5, end: 5),
-      child: Card(
-        elevation: 5,
-        // color: Theme.of(context).dividerColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        child: Row(
-          children: [
-            Flexible(
-              flex: 1,
-              fit: FlexFit.tight,
-              child: SizedBox(
-                height: 120,
-                child: CachedNetworkImage(
-                  imageUrl: widget.businessCardModel.image ?? '',
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
+      child: InkWell(
+        onTap:() {
+    Navigator.pushNamed(
+    context, BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+    arguments: {
+    "id": widget.businessCardModel.id.toString(),
+    "name": widget.businessCardModel.name.toString()
+    });
+    },
+        child: Card(
+
+
+
+
+          // color: Colors.black,
+          elevation: 5,
+
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Row(
+            children: [
+              Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: Container(
+
+
+                  height: 130,
+
+                  child: CachedNetworkImage(
+                    imageUrl: widget.businessCardModel.image ?? '',fit: BoxFit.cover,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,fit: BoxFit.cover
+                        ),
                       ),
                     ),
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(strokeWidth: 1),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(strokeWidth: 1),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
-            ),
-            Flexible(
-              flex: 2,
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                      context, BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
-                      arguments: {
-                        "id": widget.businessCardModel.id.toString(),
-                        "name": widget.businessCardModel.name.toString()
-                      });
-                },
+              Flexible(
+                flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -266,8 +274,8 @@ class _BusinessCardState extends State<BusinessCard> {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

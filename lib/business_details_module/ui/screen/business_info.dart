@@ -344,9 +344,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         width: 10,
                       ),
                       Text(
-                        widget.businessInfoModel.isUserBusiness!
-                            ? S.of(context).Update
-                            : S.of(context).CallNow,
+                        // widget.businessInfoModel.isUserBusiness!
+                        //     ? S.of(context).Update
+                            S.of(context).CallNow,
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -361,19 +361,20 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    widget.businessInfoModel.isUserBusiness!
-                        ? widget.onDeleteClick()
-                        : widget.onReviewClick();
+                    // widget.businessInfoModel.isUserBusiness!
+                    //     ? widget.onDeleteClick()
+                         widget.onReviewClick();
                     // );
                   },
                   child: Row(
                     children: [
-                      widget.businessInfoModel.isUserBusiness!
-                          ? Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            )
-                          : SvgPicture.asset(
+                      // widget.businessInfoModel.isUserBusiness!
+                      //     ? Icon(
+                      //         Icons.delete,
+                      //         color: Colors.white,
+                      //       )
+                      //     :
+                  SvgPicture.asset(
                               SvgImg.RATING,
                               height: 20,
                             ),
@@ -381,9 +382,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         width: 10,
                       ),
                       Text(
-                          widget.businessInfoModel.isUserBusiness!
-                              ? S.of(context).Delete
-                              : S.of(context).addReview,
+                          // widget.businessInfoModel.isUserBusiness!
+                          //     ? S.of(context).Delete
+                               S.of(context).addReview,
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),
