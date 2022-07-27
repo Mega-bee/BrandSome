@@ -9,7 +9,6 @@ import '../../../categories_module/reponse/category_response.dart';
 import '../../../generated/l10n.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
 import '../../home_route.dart';
-import '../../request/userInterestsRequest.dart';
 import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
 import '../widgets/sub_service_card.dart';
@@ -59,9 +58,7 @@ class HomePageSuccess extends States {
     }
     screenState.refresh();
   }
-  List<int> serviceId = [];
-  setUserInterestsRequest request =
-  setUserInterestsRequest(id: []);
+
   @override
   Widget getUI(BuildContext context) {
     final ItemScrollController itemScrollController = ItemScrollController();
@@ -126,17 +123,7 @@ class HomePageSuccess extends States {
           child: InkWell(
             onTap: () {
               Navigator.pushNamed(context,
-                  HomeRoutes.CATEGORY_LIST_SCREEN).then((value) {
-                    value as List<ServiceModel>;
-                    for (var element in value) {
-                      serviceId.add(element.id??-1);
-
-                    }
-                    ///request
-                    request.id = serviceId;
-                    print("ServiceId:${serviceId}");
-
-                  });
+                  HomeRoutes.CATEGORY_LIST_SCREEN);
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(

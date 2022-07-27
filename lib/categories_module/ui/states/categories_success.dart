@@ -52,7 +52,7 @@ class CategorySuccess extends States {
                 onPressed: () {
                   List<ServiceModel> selected = [];
                   for (var element in serviceCa) {
-                    if (element.isUserInterest==true) {
+                    if (element.isSelected) {
                       selected.add(element);
                     }
                   }
@@ -133,7 +133,7 @@ class CategorySuccess extends States {
                           return CategoryCard(
                             onCardTap: (ss) {
                               print('incardClickkc' '$ss');
-                              serviceCa[index].isUserInterest = ss;
+                              serviceCa[index].isSelected = ss;
 //                          screenState.selectedServiceCa.add(serviceCa[index]);
                             },
                             catId: serviceCa[index].id ?? 0,
