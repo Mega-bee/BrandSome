@@ -30,16 +30,16 @@ class _CategoryState extends State<MainCategoryCard> {
           const SizedBox(
             height: 2,
           ),
-          // Visibility(
-          //   visible: widget.category,,
-          //   child: Center(
-          //     child: Container(
-          //       width: 80,
-          //       height: 2,
-          //       color: Theme.of(context).primaryColor,
-          //     ),
-          //   ),
-          // ),
+          Visibility(
+            visible: widget.category.isSelected!,
+            child: Center(
+              child: Container(
+                width: 80,
+                height: 2,
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
+          ),
         ]));
   }
 }
