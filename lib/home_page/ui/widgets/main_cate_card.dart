@@ -34,7 +34,7 @@ class _CategoryState extends State<MainCategoryCard> {
             visible: widget.category.isSelected!,
             child: Center(
               child: Container(
-                width: 80,
+                width: 70,
                 height: 2,
                 color: Theme.of(context).primaryColor,
               ),

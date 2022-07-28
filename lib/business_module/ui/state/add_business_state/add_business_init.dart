@@ -10,6 +10,7 @@ import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+
 // import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:photofilters/filters/preset_filters.dart';
 import 'package:photofilters/widgets/photo_filter.dart';
@@ -26,9 +27,10 @@ import '../../../../utils/helpers/image_crop_helper.dart';
 
 class AddBusinessInit extends States {
   final AddBusinessState addBusinessState;
+
   AddBusinessInit(
-      this.addBusinessState,
-      ) : super(false);
+    this.addBusinessState,
+  ) : super(false);
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
@@ -41,14 +43,13 @@ class AddBusinessInit extends States {
   final picker = ImagePicker();
   String? fileName;
 
-
-
   CreateBusinessRequest request =
-  CreateBusinessRequest(cities: [], services: []);
+      CreateBusinessRequest(cities: [], services: []);
+
   Future getImage(context) async {
     print("chrisssssssssssssssssssssssssssssssssssssssss");
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
-    if(pickedFile!=null) {
+    if (pickedFile != null) {
       _pickImage = new File(pickedFile.path);
       fileName = basename(_pickImage!.path);
       var image = imageLib.decodeImage(await _pickImage!.readAsBytes());
@@ -56,14 +57,14 @@ class AddBusinessInit extends States {
       Map imagefile = await Navigator.push(
         context,
         new MaterialPageRoute(
-          builder: (context) =>
-          new PhotoFilterSelector(
-            title: Text(S.of(context).photoFilter,),
+          builder: (context) => new PhotoFilterSelector(
+            title: Text(
+              S.of(context).photoFilter,
+            ),
             image: image!,
             filters: presetFiltersList,
             filename: fileName!,
             appBarColor: Colors.black,
-
             loader: Center(child: CircularProgressIndicator()),
             fit: BoxFit.contain,
           ),
@@ -71,11 +72,8 @@ class AddBusinessInit extends States {
       );
 
       if (imagefile != null && imagefile.containsKey('image_filtered')) {
-
         _pickImage = imagefile['image_filtered'];
-        imageForUpload =
-        await MultipartFile
-            .fromFile(_pickImage!.path);
+        imageForUpload = await MultipartFile.fromFile(_pickImage!.path);
         addBusinessState.refresh();
 
         Navigator.pop(context);
@@ -86,14 +84,16 @@ class AddBusinessInit extends States {
   @override
   Widget getUI(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         elevation: 5,
-        title: Text(S.of(context).addBussines,  style: TextStyle(
-          color: Theme.of(context).primaryColor,
-        ),),
+        title: Text(
+          S.of(context).addBussines,
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: 15),
@@ -114,11 +114,15 @@ class AddBusinessInit extends States {
                           request.services.add(element.id ?? -1);
                         }
                         addBusinessState.addBusinessRequest(request);
-                      }else{
-                        Fluttertoast.showToast(msg: S.of(context).selectCitiesAndServices,backgroundColor: Theme.of(context).errorColor);
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: S.of(context).selectCitiesAndServices,
+                            backgroundColor: Theme.of(context).errorColor);
                       }
-                    }else{
-                      Fluttertoast.showToast(msg: S.of(context).selectImagePlease,backgroundColor: Theme.of(context).errorColor);
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: S.of(context).selectImagePlease,
+                          backgroundColor: Theme.of(context).errorColor);
                     }
                   }
                 },
@@ -140,18 +144,19 @@ class AddBusinessInit extends States {
           Center(
             child: Stack(children: [
               Container(
-                margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(0.0),
                   child: _pickImage != null
                       ? Image.file(_pickImage!,
-                      fit: BoxFit.cover, width: 150, height: 150)
+                          fit: BoxFit.cover, width: 150, height: 150)
                       : Image.network(
-                    "https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg",
-                    fit: BoxFit.cover,
-                    width: 350,
-                    height: 200,
-                  ),
+                          "https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg",
+                          fit: BoxFit.cover,
+                          width: 350,
+                          height: 300,
+                        ),
                 ),
               ),
               Positioned(
@@ -181,27 +186,28 @@ class AddBusinessInit extends States {
                                             width: double.maxFinite,
                                             child: TextButton(
                                                 style: TextButton.styleFrom(
-                                                    shape: const StadiumBorder()),
+                                                    shape:
+                                                        const StadiumBorder()),
                                                 onPressed: () async {
                                                   Navigator.pop(context);
                                                   await ImageCropHelper
-                                                      .pickImageFromCamera()
+                                                          .pickImageFromCamera()
                                                       .then((pickedFile) async {
-
                                                     if (pickedFile == null)
                                                       return;
                                                     _pickImage =
                                                         File(pickedFile.path);
                                                     imageForUpload =
-                                                    await MultipartFile
-                                                        .fromFile(pickedFile
-                                                        .path);
-
+                                                        await MultipartFile
+                                                            .fromFile(pickedFile
+                                                                .path);
 
                                                     addBusinessState.refresh();
                                                   });
                                                 },
-                                                child: Text(S.of(context).Camera,)),
+                                                child: Text(
+                                                  S.of(context).Camera,
+                                                )),
                                           ),
                                           Divider(
                                             indent: 16,
@@ -216,22 +222,14 @@ class AddBusinessInit extends States {
                                                 style: TextButton.styleFrom(
                                                     shape: StadiumBorder()),
                                                 onPressed: () async {
-
-
-
-
-                                                  getImage(context).then((value) => print("helloooo"));
-
-
-
-
-
-
-
+                                                  getImage(context).then(
+                                                      (value) =>
+                                                          print("helloooo"));
                                                 },
-                                                child: Text(S.of(context).Gallery,)),
+                                                child: Text(
+                                                  S.of(context).Gallery,
+                                                )),
                                           ),
-
                                         ],
                                       ),
                                     ),
@@ -242,12 +240,21 @@ class AddBusinessInit extends States {
                           });
                     },
                     elevation: 10,
-                    fillColor: Theme.of(context).primaryColor,
-                    child: const Icon(
-                      Icons.camera_alt_outlined,
-                      color: Colors.white,
+                    // fillColor: Theme.of(context).primaryColor,
+                    child:  Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).primaryColor,
+// radius of 10
+                      ),
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.white
+                      ),
                     ),
-                    padding: const EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.only(top: 80.0),
                     shape: const CircleBorder(),
                   ))
             ]),
@@ -269,7 +276,7 @@ class AddBusinessInit extends States {
                     controller: business,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                    value!.isEmpty ? "fill the field" : null,
+                        value!.isEmpty ? "fill the field" : null,
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -279,7 +286,7 @@ class AddBusinessInit extends States {
                     controller: description,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) =>
-                    value!.isEmpty ? S.of(context).fillTheField : null,
+                        value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
                   SizedBox(height: 30),
                   Text(
@@ -299,7 +306,7 @@ class AddBusinessInit extends States {
                     maxLength: 8,
                     autofocus: false,
                     validator: (value) =>
-                    value!.isEmpty ? S.of(context).fillTheField : null,
+                        value!.isEmpty ? S.of(context).fillTheField : null,
                   ),
                   const SizedBox(height: 20),
                   // CITY
@@ -309,11 +316,11 @@ class AddBusinessInit extends States {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                              context, CategoriesRoutes.CITY_LIST_SCREEN,
-                              arguments: selectedLoca)
+                                  context, CategoriesRoutes.CITY_LIST_SCREEN,
+                                  arguments: selectedLoca)
                               .then((returnedLocation) {
                             selectedLoca =
-                            returnedLocation as List<AddLocationResponse>;
+                                returnedLocation as List<AddLocationResponse>;
                             addBusinessState.refresh();
                           });
                         },
@@ -352,7 +359,8 @@ class AddBusinessInit extends States {
                                   position: BadgePosition.topEnd(top: -15),
                                   stackFit: StackFit.passthrough,
                                   child: Container(
-                                    padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(15, 3, 15, 3),
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(
@@ -395,10 +403,10 @@ class AddBusinessInit extends States {
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context,
-                              CategoriesRoutes.CATEGORY_LIST_SCREEN)
+                                  CategoriesRoutes.CATEGORY_LIST_SCREEN)
                               .then((returnedService) {
                             selectedServices =
-                            returnedService as List<ServiceModel>;
+                                returnedService as List<ServiceModel>;
                             addBusinessState.refresh();
                           });
                         },
@@ -408,7 +416,9 @@ class AddBusinessInit extends States {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(S.of(context).addService,),
+                              Text(
+                                S.of(context).addService,
+                              ),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -437,7 +447,8 @@ class AddBusinessInit extends States {
                                   position: BadgePosition.topEnd(top: -15),
                                   stackFit: StackFit.passthrough,
                                   child: Container(
-                                    padding: const EdgeInsets.fromLTRB(15, 3, 15, 3),
+                                    padding:
+                                        const EdgeInsets.fromLTRB(15, 3, 15, 3),
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).primaryColor,
                                       borderRadius: BorderRadius.circular(

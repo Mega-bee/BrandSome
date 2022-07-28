@@ -114,28 +114,70 @@ class HomePageScreenState extends State<HomePage>
             ),
           ],
         ),
-        body: BlocConsumer<HomePageCubit, States>(
-          bloc: widget.cubit,
-          buildWhen: (previous, current) => !current.isListener,
-          listenWhen: (previous, current) => current.isListener,
-          builder: (context, state) {
-            print(state);
-            print('builderr');
-            if (!state.isListener) {
-              return state.getUI(context);
-            }
-            return Container();
-          },
-          listener: (context, state) {
-            print(state);
-            print('in Lisssennnerrr');
-            if (state.isListener) {
-              showDialog(
-                  context: context,
-                  builder: (context) => state.getAlert(context));
-            }
-          },
-        ));
+//         body: NestedScrollView(
+//           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+//             AppBar(
+//               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//               title: Text(
+//                 "Brandsome",
+//                 style: TextStyle(
+//                   color: Theme.of(context).primaryColor,
+//                 ),
+//               ),
+//               actions: [
+//                 IconButton(
+//                   onPressed: () {
+//                     // Navigator.push(
+//                     //   context,
+//                     //   MaterialPageRoute(
+//                     //     builder: (context) => SearchBarFilterScreen(),
+//                     //   ),
+//                     // );
+//                   },
+//                   icon: const Icon(
+//                     Icons.search,
+//                   ),
+//                 ),
+//
+// //            CustomMenuDropDown(
+// //              mainIcon: Icons.add_circle_outline,
+// //              menuItems: menuItems,
+// //            ),
+//                 Padding(
+//                   padding: const EdgeInsets.only(right: 10.0),
+//                   child: IconButton(
+//                     onPressed: () {},
+//                     icon: const Icon(Icons.notifications_none),
+//                   ),
+//                 ),
+//               ],
+//             ) ;
+//           },
+
+          body: BlocConsumer<HomePageCubit, States>(
+            
+            bloc: widget.cubit,
+            buildWhen: (previous, current) => !current.isListener,
+            listenWhen: (previous, current) => current.isListener,
+            builder: (context, state) {
+              print(state);
+              print('builderr');
+              if (!state.isListener) {
+                return state.getUI(context);
+              }
+              return Container();
+            },
+            listener: (context, state) {
+              print(state);
+              print('in Lisssennnerrr');
+              if (state.isListener) {
+                showDialog(
+                    context: context,
+                    builder: (context) => state.getAlert(context));
+              }
+            },
+          ),
+        );
   }
 
   @override
