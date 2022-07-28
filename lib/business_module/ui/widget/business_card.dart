@@ -64,71 +64,139 @@ class _BusinessCardState extends State<BusinessCard> {
                 Flexible(
                   flex: 1,
                   fit: FlexFit.tight,
-                  child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Container(
 
 
-                    height: 180,
+                      height: 130,
 
-                    child: CachedNetworkImage(
-                      imageUrl: widget.businessCardModel.image ?? '',fit: BoxFit.cover,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: imageProvider,fit: BoxFit.cover
+                      child: CachedNetworkImage(
+                        imageUrl: widget.businessCardModel.image ?? '',fit: BoxFit.cover,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,fit: BoxFit.cover
+                            ),
                           ),
                         ),
+                        placeholder: (context, url) =>
+                            const CircularProgressIndicator(strokeWidth: 1),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(strokeWidth: 1),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),
                 Flexible(
                   flex: 2,
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0,left: 10,),
+                    padding: const EdgeInsets.only(left: 10,),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              widget.businessCardModel.name ?? "",
-                              style: const TextStyle(fontSize: 17),
-                              // style:Theme.of(context).textTheme.titleMedium,
-                            ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 11.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
 
-                            Row(
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 18.0),
+                                    child: Text(
+                                      widget.businessCardModel.name ?? "",
+                                      style: const TextStyle(fontSize: 24),
+                                      // style:Theme.of(context).textTheme.titleMedium,
+                                    ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 4,
+                                    child: IconButton(
+                                        onPressed: () {
+                                          if (widget.isLoggedin) {
+                                            widget.businessCardModel.isFollowed =
+                                                !widget.businessCardModel.isFollowed!;
+                                            setState(() {});
+                                          }
+                                          widget.onFollowClick(
+                                            widget.businessCardModel.isFollowed,
+                                          );
+                                        },
+                                        icon: widget.businessCardModel.isFollowed!
+                                            ? const Icon(
+                                                FontAwesomeIcons.solidHeart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
+                                              )
+                                            : const Icon(
+                                                FontAwesomeIcons.heart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
+                                              )),
+                                  ),
+                                ],
+                              ),
+
+
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Row(
                               children: [
-                                IconButton(
-                                    onPressed: () {
-                                      if (widget.isLoggedin) {
-                                        widget.businessCardModel.isFollowed =
-                                            !widget.businessCardModel.isFollowed!;
-                                        setState(() {});
-                                      }
-                                      widget.onFollowClick(
-                                        widget.businessCardModel.isFollowed,
-                                      );
-                                    },
-                                    icon: widget.businessCardModel.isFollowed!
-                                        ? const Icon(
-                                            FontAwesomeIcons.solidHeart,
-                                          )
-                                        : const Icon(
-                                            FontAwesomeIcons.heart,
-                                          )),
+                                // Icon(
+                                //   Icons.location_on_outlined,
+                                //   size: 18,
+                                // ),
+                                Wrap(spacing: 3,
+                                    children: widget.businessCardModel.city!
+                                        .map(
+                                          (e) => Container(
+                                        color: Colors.grey[900],
+                                        child: Text(
+                                          "${e.name} ",
+                                          style: const TextStyle(
+                                              fontSize: 10, color: Colors.grey),
+                                          // style:Theme.of(context).textTheme.overline,
+                                        ),
+                                      ),
+                                    )
+                                        .toList()),
                               ],
                             ),
-                          ],
+                          ),],
+                          ),
                         ),
+
+
                         const SizedBox(
-                          height: 5,
+                          height: 2,
                         ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(left: 220,top: 20),
+                        //   child: IconButton(
+                        //       onPressed: () {
+                        //         if (widget.isLoggedin) {
+                        //           widget.businessCardModel.isFollowed =
+                        //           !widget.businessCardModel.isFollowed!;
+                        //           setState(() {});
+                        //         }
+                        //         widget.onFollowClick(
+                        //           widget.businessCardModel.isFollowed,
+                        //         );
+                        //       },
+                        //       icon: widget.businessCardModel.isFollowed!
+                        //           ? const Icon(
+                        //         FontAwesomeIcons.solidHeart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 22,
+                        //       )
+                        //           : const Icon(
+                        //         FontAwesomeIcons.heart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 22,
+                        //       )),
+
+                        // ),
+
+
+
+
+
                         Flexible(
 
                           child: Text(
@@ -139,38 +207,16 @@ class _BusinessCardState extends State<BusinessCard> {
 //                            style:Theme.of(context).textTheme.labelMedium,
                             style: TextStyle(
                               color:Theme.of(context).brightness==Brightness.light?Colors.black: const Color.fromRGBO(255, 255, 255, 0.9),
-                              fontSize: 11,
+                              fontSize: 13,
                             ),
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 40,
                         ),
-                        Row(
-                          children: [
-                            // Icon(
-                            //   Icons.location_on_outlined,
-                            //   size: 18,
-                            // ),
-                            Expanded(
 
-                              child: Wrap(
-                                  children: widget.businessCardModel.city!
-                                      .map(
-                                        (e) => Text(
-                                          "${e.name} ",
-                                          style: const TextStyle(
-                                              fontSize: 10, color: Colors.grey),
-                                          // style:Theme.of(context).textTheme.overline,
-                                        ),
-                                      )
-                                      .toList()),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height:25,
-                        ),
+
+
                         Padding(
                           padding: const EdgeInsetsDirectional.only(
                               start: 8.0, end: 8.0),
@@ -179,23 +225,23 @@ class _BusinessCardState extends State<BusinessCard> {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.person_outline_outlined,size: 17,color: Colors.white70,),
+                                  Icon(Icons.person_outline_outlined,size: 17,color:Color.fromRGBO(255, 255, 255, 0.9)),
                                   const SizedBox(
                                     width: 6,
                                   ),
                                   Text(
-                                    "${widget.businessCardModel.followCount}",style: TextStyle(   color: Colors.white70,)
+                                    "${widget.businessCardModel.followCount}",style: TextStyle(color:Color.fromRGBO(255, 255, 255, 0.9))
                                   ),
                                 ],
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.rate_review_outlined,size: 15,color: Colors.white70,),
+                                  Icon(Icons.rate_review_outlined,size: 15,color:Color.fromRGBO(255, 255, 255, 0.9)),
                                   const SizedBox(
                                     width: 6,
                                   ),
                                   Text(
-                                    "${widget.businessCardModel.reviewCount}",style: TextStyle(   color: Colors.white70,)
+                                    "${widget.businessCardModel.reviewCount}",style: TextStyle(color:Color.fromRGBO(255, 255, 255, 0.9))
                                   ),
                                 ],
                               ),
@@ -205,13 +251,14 @@ class _BusinessCardState extends State<BusinessCard> {
                                   const Icon(
                                     Icons.remove_red_eye_outlined,
                                     size: 18,
-                                    color: Colors.white70,
+                                      color:Color.fromRGBO(255, 255, 255, 0.9)
                                   ),
                                   const SizedBox(
                                     width: 5,
                                   ),
                                   Text(widget.businessCardModel.viewCount
-                                      .toString(),style: TextStyle(   color: Colors.white70,),),
+                                      .toString(),style: TextStyle(color:Color.fromRGBO(255, 255, 255, 0.9)),),
+
 
                                   // ElevatedButton(
                                   //     child: widget.businessCardModel.isFollowed!
@@ -282,7 +329,8 @@ class _BusinessCardState extends State<BusinessCard> {
                               )
                             ],
                           ),
-                        )
+                        ),
+
                       ],
                     ),
                   ),
