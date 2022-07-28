@@ -4,7 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pinch_zoom/pinch_zoom.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {
@@ -80,7 +79,9 @@ class _PostCardState extends State<PostCard> {
             child: Column(
               children: [
                 CarouselSlider.builder(
+
                   options: CarouselOptions(
+
                       height: 450,
                       enlargeStrategy: CenterPageEnlargeStrategy.scale,
                       padEnds: true,
@@ -98,22 +99,8 @@ class _PostCardState extends State<PostCard> {
                   itemCount: widget.posthome.postMedia?.length,
                   itemBuilder: (BuildContext context, int itemIndex,
                       int pageViewIndex) =>
-                      SizedBox(
-                          width: 500,
-
-                          // margin: EdgeInsets.symmetric(horizontal: .0),
-                          child:
-                          widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
-                          CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container()
-
-//
-//                           VideoApp(
-// video:
-//                               widget.posthome.postMedia![itemIndex].url.toString()
-//
-//                           )
-
-                      ),
+                      widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
+                      CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container(),
 
 
                 ),

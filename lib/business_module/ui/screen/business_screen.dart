@@ -64,36 +64,50 @@ class BusinessScreenState extends State<BusinessScreen> {
     menuItems = [
       ItemModel(
           'A-Z',
-          const Icon(Icons.sort_by_alpha,size: 20,), () {
+          const Icon(
+            Icons.sort_by_alpha,
+            size: 20,
+          ), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.A_Z);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Followers',
-    const Icon(Icons.follow_the_signs,size: 20,), () {
+          const Icon(
+            Icons.follow_the_signs,
+            size: 20,
+          ), () {
         request.sortBy = HelperBusinessSort.getBusinessSortString(
             BusinessSortEnum.FOLLOWERS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Reviwes',
-          const Icon(Icons.reviews_outlined,size: 20,), () {
+          const Icon(
+            Icons.reviews_outlined,
+            size: 20,
+          ), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.REVIEWS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Posts',
-          const Icon(Icons.post_add,size: 20,),() {
+          const Icon(
+            Icons.post_add,
+            size: 20,
+          ), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.POSTS);
         widget.cubit.getBusinessList(this, request);
       }),
       ItemModel(
           'Views',
-          const Icon( FontAwesomeIcons.eye,
-            size: 18,), () {
+          const Icon(
+            FontAwesomeIcons.eye,
+            size: 18,
+          ), () {
         request.sortBy =
             HelperBusinessSort.getBusinessSortString(BusinessSortEnum.VIEWS);
         widget.cubit.getBusinessList(this, request);
@@ -120,6 +134,7 @@ class BusinessScreenState extends State<BusinessScreen> {
   bool checkIfLogin() {
     return widget.cubit.checkIfLogged();
   }
+
   loginFirst() {
     widget.cubit.emit(RequestOtpState(this));
   }
@@ -180,7 +195,6 @@ class BusinessScreenState extends State<BusinessScreen> {
                     context: context,
                     builder: (context) => state.getAlert(context));
               }
-
             },
             builder: (context, state) {
               return Column(
@@ -249,7 +263,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
           } else {
             return ListView(
               children: [
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
                     S.of(context).Business,
@@ -257,9 +271,9 @@ class CustomSearchDelegateIn extends SearchDelegate {
                   ),
                 ),
                 snapshot.data!.business.isEmpty
-                    ?  Center(
+                    ? Center(
                         child: Text(
-                            S.of(context).noResultsFound,
+                          S.of(context).noResultsFound,
                         ),
                       )
                     : ListView.builder(
@@ -291,7 +305,8 @@ class CustomSearchDelegateIn extends SearchDelegate {
                                                   bottom: 3),
                                           child: Text(
                                             "${e.name}",
-                                            style: const TextStyle(fontSize: 10),
+                                            style:
+                                                const TextStyle(fontSize: 10),
                                           ),
                                         ),
                                       ),
@@ -311,15 +326,15 @@ class CustomSearchDelegateIn extends SearchDelegate {
                           );
                         },
                       ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Text(
-          S.of(context).Services,
+                    S.of(context).Services,
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 snapshot.data!.services.isEmpty
-                    ?  Center(
+                    ? Center(
                         child: Text(
                           S.of(context).noResultsFound,
                         ),

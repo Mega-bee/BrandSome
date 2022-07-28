@@ -30,6 +30,7 @@ class SettingCubit extends Cubit<States> {
 
   getSetting(SettingsScreenState screenState) {
     if (_authService.isLoggedIn) {
+      emit(LoadingState());
       _getAccountSetting.getSet().then((value) {
         if (value == null) {
           emit(ErrorState(
