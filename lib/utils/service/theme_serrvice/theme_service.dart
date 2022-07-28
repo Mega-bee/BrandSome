@@ -37,7 +37,7 @@ class AppThemeDataService {
 
           brightness: Brightness.dark,
           colorScheme: darkScheme,
-          useMaterial3: true,
+          useMaterial3: false,
           primarySwatch: Colors.deepOrange,
           focusColor: PrimaryColor,
           primaryColor: PrimaryColor,

@@ -129,7 +129,8 @@ class BusinessScreenState extends State<BusinessScreen> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          elevation: 5,
+          // backgroundColor: Colors.grey[900],
+          elevation: 0,
           title: Text("Brandsome",
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
