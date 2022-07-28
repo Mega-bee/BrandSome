@@ -67,7 +67,7 @@ class EditAccountInit extends States {
                       screenState.newNumber.text:phoneNumber.text,
                       Username: username.text,
                       ImageFile:
-                          imageForUpload));
+                      imageForUpload));
                 },
                 child: Icon(
                   Icons.check,
@@ -93,18 +93,18 @@ class EditAccountInit extends States {
                     child: Stack(children: [
                       Container(
                         margin:
-                            const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+                        const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20.0),
                           child: _pickImage != null
                               ? Image.file(_pickImage!,
-                                  fit: BoxFit.cover, width: 150, height: 150)
+                              fit: BoxFit.cover, width: 150, height: 150)
                               : Image.network(
-                                  model.imageUrl ?? '',
-                                  fit: BoxFit.cover,
-                                  width: 150,
-                                  height: 150,
-                                ),
+                            model.imageUrl ?? '',
+                            fit: BoxFit.cover,
+                            width: 150,
+                            height: 150,
+                          ),
                         ),
                       ),
                       Positioned(
@@ -124,7 +124,7 @@ class EditAccountInit extends States {
                                           child: Container(
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(25),
+                                                BorderRadius.circular(25),
                                                 color: Theme.of(context)
                                                     .dialogBackgroundColor),
                                             child: Padding(
@@ -136,25 +136,25 @@ class EditAccountInit extends States {
                                                     child: TextButton(
                                                         style: TextButton.styleFrom(
                                                             shape:
-                                                                StadiumBorder()),
+                                                            StadiumBorder()),
                                                         onPressed: () async {
                                                           Navigator.pop(context);
                                                           await ImageCropHelper
-                                                                  .pickImageFromCamera()
+                                                              .pickImageFromCamera()
                                                               .then(
                                                                   (pickedFile) async {
-                                                            if (pickedFile ==
-                                                                null) return;
-                                                            _pickImage = File(
-                                                                pickedFile.path);
-                                                            imageForUpload =
+                                                                if (pickedFile ==
+                                                                    null) return;
+                                                                _pickImage = File(
+                                                                    pickedFile.path);
+                                                                imageForUpload =
                                                                 await MultipartFile
                                                                     .fromFile(
-                                                                        pickedFile
-                                                                            .path);
+                                                                    pickedFile
+                                                                        .path);
 
-                                                            screenState.refresh();
-                                                          });
+                                                                screenState.refresh();
+                                                              });
                                                         },
                                                         child: Text(S.of(context).Camera)),
                                                   ),
@@ -170,26 +170,26 @@ class EditAccountInit extends States {
                                                     child: TextButton(
                                                         style: TextButton.styleFrom(
                                                             shape:
-                                                                StadiumBorder()),
+                                                            StadiumBorder()),
                                                         onPressed: () async {
                                                           Navigator.pop(context);
                                                           await ImageCropHelper
-                                                                  .pickImageFromGallery()
+                                                              .pickImageFromGallery()
                                                               .then(
                                                                   (pickedFile) async {
-                                                            if (pickedFile ==
-                                                                null) return;
-                                                            _pickImage = File(
-                                                                pickedFile.path);
+                                                                if (pickedFile ==
+                                                                    null) return;
+                                                                _pickImage = File(
+                                                                    pickedFile.path);
 
-                                                            imageForUpload =
+                                                                imageForUpload =
                                                                 await MultipartFile
                                                                     .fromFile(
-                                                                        pickedFile
-                                                                            .path);
+                                                                    pickedFile
+                                                                        .path);
 
-                                                            screenState.refresh();
-                                                          });
+                                                                screenState.refresh();
+                                                              });
                                                         },
                                                         child: Text(S.of(context).Gallery)),
                                                   ),
@@ -267,120 +267,120 @@ class EditAccountInit extends States {
                 //     ),
 
 
-                      screenState.newNumber.text.isNotEmpty ?TextFormField(
-                        decoration:
-                        InputDecoration(
-                          isDense: true,
-                          prefixIcon: ElevatedButton(
+                screenState.newNumber.text.isNotEmpty ?TextFormField(
+                  decoration:
+                  InputDecoration(
+                    isDense: true,
+                    prefixIcon: ElevatedButton(
 
-                            onPressed: () {
-                              showCountryPicker(
-                                context: context,
-                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
-                                exclude: <String>['KN', 'MF'],
-                                favorite: <String>['SE'],
-                                //Optional. Shows phone code before the country name.
-                                showPhoneCode: true,
-                                onSelect: (Country country) {
-                                  countrycode=country;
-                                  screenState.refresh();
-                                  Text('Select country: ${country.displayName}');
-                                },
-                                // Optional. Sets the theme for the country list picker.
-                                countryListTheme: CountryListThemeData(
-                                  // Optional. Sets the border radius for the bottomsheet.
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(40.0),
-                                    topRight: Radius.circular(40.0),
-                                  ),
-                                  // Optional. Styles the search field.
-                                  inputDecoration: InputDecoration(
-                                    labelText: 'Search',
-                                    hintText: 'Start typing to search',
-                                    prefixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
-                                      ),
-                                    ),
-                                  ),
+                      onPressed: () {
+                        showCountryPicker(
+                          context: context,
+                          //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                          exclude: <String>['KN', 'MF'],
+                          favorite: <String>['SE'],
+                          //Optional. Shows phone code before the country name.
+                          showPhoneCode: true,
+                          onSelect: (Country country) {
+                            countrycode=country;
+                            screenState.refresh();
+                            Text('Select country: ${country.displayName}');
+                          },
+                          // Optional. Sets the theme for the country list picker.
+                          countryListTheme: CountryListThemeData(
+                            // Optional. Sets the border radius for the bottomsheet.
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40.0),
+                              topRight: Radius.circular(40.0),
+                            ),
+                            // Optional. Styles the search field.
+                            inputDecoration: InputDecoration(
+                              labelText: 'Search',
+                              hintText: 'Start typing to search',
+                              prefixIcon: const Icon(Icons.search),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: const Color(0xFF8C98A8).withOpacity(0.2),
                                 ),
-                              );
-                            },
-                            child:
-                            countrycode==null?Wrap(children:[ Text("Country"),
-                              Icon(Icons.arrow_drop_down_outlined)
-                            ]):
-                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
+                              ),
+                            ),
                           ),
-                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                        ),
-
-
-                      autofocus: false,
-                      controller: screenState.newNumber,
-                      keyboardType: TextInputType.phone,
-                      readOnly: true,
-
-                        ) :  TextFormField(
-                        decoration:
-                        InputDecoration(
-                          isDense: true,
-
-                          prefixIcon: ElevatedButton(
-
-                            onPressed: () {
-                              showCountryPicker(
-                                context: context,
-                                //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
-                                exclude: <String>['KN', 'MF'],
-                                // favorite: <String>['LB'],
-                                //Optional. Shows phone code before the country name.
-                                showPhoneCode: true,
-                                onSelect: (Country country) {
-                                  countrycode=country;
-                                  screenState.refresh();
-                                  Text('Select country: ${country.displayName}');
-                                },
-                                // Optional. Sets the theme for the country list picker.
-                                countryListTheme: CountryListThemeData(
-                                  // Optional. Sets the border radius for the bottomsheet.
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(40.0),
-                                    topRight: Radius.circular(40.0),
-                                  ),
-                                  // Optional. Styles the search field.
-                                  inputDecoration: InputDecoration(
-                                    labelText: 'Search',
-                                    hintText: 'Start typing to search',
-                                    prefixIcon: const Icon(Icons.search),
-                                    border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: const Color(0xFF8C98A8).withOpacity(0.2),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                            child:
-                            countrycode==null?Wrap(children:[ Text("Country",style: TextStyle(color: Theme.of(context).primaryColor)),
-                            Icon(Icons.arrow_drop_down_outlined)
-                            ]):
-                            Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
-                          ),
-                          prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
-                        ),
-                      onTap: (){
-                        screenState.gotoNumberAlert();
+                        );
                       },
-                      autofocus: false,
+                      child:
+                      countrycode==null?Wrap(children:[ Text("Country"),
+                        Icon(Icons.arrow_drop_down_outlined)
+                      ]):
+                      Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
+                    ),
+                    prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                  ),
 
-                      controller: phoneNumber,
-                      keyboardType: TextInputType.phone,
-                      readOnly: false,
 
-                        ),
+                  autofocus: false,
+                  controller: screenState.newNumber,
+                  keyboardType: TextInputType.phone,
+                  readOnly: true,
+
+                ) :  TextFormField(
+                  decoration:
+                  InputDecoration(
+                    isDense: true,
+
+                    prefixIcon: ElevatedButton(
+
+                      onPressed: () {
+                        showCountryPicker(
+                          context: context,
+                          //Optional.  Can be used to exclude(remove) one ore more country from the countries list (optional).
+                          exclude: <String>['KN', 'MF'],
+                          // favorite: <String>['LB'],
+                          //Optional. Shows phone code before the country name.
+                          showPhoneCode: true,
+                          onSelect: (Country country) {
+                            countrycode=country;
+                            screenState.refresh();
+                            Text('Select country: ${country.displayName}');
+                          },
+                          // Optional. Sets the theme for the country list picker.
+                          countryListTheme: CountryListThemeData(
+                            // Optional. Sets the border radius for the bottomsheet.
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(40.0),
+                              topRight: Radius.circular(40.0),
+                            ),
+                            // Optional. Styles the search field.
+                            inputDecoration: InputDecoration(
+                              labelText: 'Search',
+                              hintText: 'Start typing to search',
+                              prefixIcon: const Icon(Icons.search),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: const Color(0xFF8C98A8).withOpacity(0.2),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child:
+                      countrycode==null?Wrap(children:[ Text("Country",style: TextStyle(color: Theme.of(context).primaryColor)),
+                        Icon(Icons.arrow_drop_down_outlined)
+                      ]):
+                      Text('+${countrycode!.phoneCode}',style: TextStyle(color: Theme.of(context).primaryColor),),
+                    ),
+                    prefixIconConstraints: BoxConstraints(minWidth: 0, minHeight: 0),
+                  ),
+                  onTap: (){
+                    screenState.gotoNumberAlert();
+                  },
+                  autofocus: false,
+
+                  controller: phoneNumber,
+                  keyboardType: TextInputType.phone,
+                  readOnly: false,
+
+                ),
 
 
 
@@ -395,19 +395,19 @@ class EditAccountInit extends States {
                 InkWell(
                   onTap: (){
                     showDatePicker(
-                      context: context,
-                      builder: (context, widget) {
-                        return widget ?? const SizedBox();
-                      },
-                      firstDate: DateTime(1995),
-                      lastDate: DateTime.now(),
-                      initialDate:DateTime(1995)
+                        context: context,
+                        builder: (context, widget) {
+                          return widget ?? const SizedBox();
+                        },
+                        firstDate: DateTime(1995),
+                        lastDate: DateTime.now(),
+                        initialDate:DateTime(1995)
                     ).then((value) {
                       if (value == null) {
 
                       } else {
                         DateTime DOB = value;
-                          birthDate = DateTime(DOB.year, DOB.month,
+                        birthDate = DateTime(DOB.year, DOB.month,
                             DOB.day);
                         screenState.refresh();
                       }
@@ -422,9 +422,9 @@ class EditAccountInit extends States {
                       ),
                       const SizedBox(height: 10,),
                       Text(
-                 birthDate != null ?
-                         birthDate.toString().split(' ').first :
-                         birthday.text
+                          birthDate != null ?
+                          birthDate.toString().split(' ').first :
+                          birthday.text
                       ),
                     ],
                   ),

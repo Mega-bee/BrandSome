@@ -1,14 +1,12 @@
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:brandsome/categories_module/ui/widget/category_card.dart';
 import 'package:brandsome/home_page/model/category_model.dart';
 import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/home_page/ui/screen/homePage.dart';
 import 'package:flutter/material.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '../../../categories_module/reponse/category_response.dart';
 import '../../../generated/l10n.dart';
 import '../../../posts_module/ui/widgets/post_card.dart';
-import '../../home_route.dart';
 import '../../response/home_page.dart';
 import '../widgets/main_cate_card.dart';
 import '../widgets/sub_service_card.dart';
@@ -36,7 +34,6 @@ class HomePageSuccess extends States {
           if (subsCa.isNotEmpty) {
             serviceCa = subsCa.first.services;
           }
-
         }
       }
     }
@@ -61,13 +58,12 @@ class HomePageSuccess extends States {
     screenState.refresh();
   }
 
-
-
   @override
   Widget getUI(BuildContext context) {
-    final ItemScrollController itemScrollController = ItemScrollController();
-    final ItemPositionsListener itemPositionsListener =
-        ItemPositionsListener.create();
+
+//    final ItemScrollController itemScrollController = ItemScrollController();
+//    final ItemPositionsListener itemPositionsListener =
+//        ItemPositionsListener.create();
 
     return SingleChildScrollView(
       physics:
@@ -89,10 +85,10 @@ class HomePageSuccess extends States {
                       padding: const EdgeInsets.all(10.0),
                       child: MainCategoryCard(mainCategory[index], () {
                         selectFirstItem(mainCategory[index].id ?? -1);
-                        for (var element in mainCategory) {
-                          element.isSelected = false;
-                        }
-                        mainCategory[index].isSelected = true;
+                         for (var element in mainCategory) {
+                           element.isSelected = false;
+                         }
+                         mainCategory[index].isSelected = true;
                       }));
                 }),
           ),
@@ -126,8 +122,11 @@ class HomePageSuccess extends States {
           alignment: AlignmentDirectional.topEnd,
           child: InkWell(
             onTap: () {
-              // Navigator.pushNamed(context,
-              //     HomeRoutes.CATEGORY_LIST_SCREEN);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => SearchBarFilterScreen()),
+              // );
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -150,14 +149,10 @@ class HomePageSuccess extends States {
             itemCount: posthome.length,
             itemBuilder: (context, index) {
               return PostCard(
-                  isLogged: isLogged,
-                  onLikeClick: (like) {
-                    screenState.Islike(
-                        LikeRequest(
-                          isLike: like,
-                        ),
-                        posthome[index].id.toString());
-                  },
+                isLogged: isLogged,
+                onLikeClick: (like){
+                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString());
+                },
                   onViewLikeTap: (id) {
                     screenState.goToLikes(id);
                   },

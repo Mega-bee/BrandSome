@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
 class CustomDeleteDialog extends StatelessWidget {
   final String title;
   final String content;
   final Function yesBtn;
   final Function noBtn;
-
   const CustomDeleteDialog({
     required this.title,
     required this.content,
@@ -66,14 +64,14 @@ class CustomDeleteDialog extends StatelessWidget {
                     },
                     child: Text(
                       "Cancel",
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 12)     ,               ),
-                      style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          side: BorderSide(color: Theme.of(context).primaryColor),
-                          padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12)     ,               ),
+                    style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        side: BorderSide(color: Theme.of(context).primaryColor),
+                        padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),
                   ),
                 ],
               ),

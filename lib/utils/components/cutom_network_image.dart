@@ -6,10 +6,9 @@ import 'package:pinch_zoom/pinch_zoom.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final String imageSource;
-   const CustomNetworkImage({
+  const CustomNetworkImage({
     required this.imageSource,
   });
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -69,7 +68,7 @@ class CustomNetworkImage extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           margin: const EdgeInsets.only(top: 20),
                           child: Center(
-                            child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
+                              child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
                           )),
                       errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
@@ -80,7 +79,6 @@ class CustomNetworkImage extends StatelessWidget {
                 ),
               );
             });
-
       },
       child: CachedNetworkImage(
         imageUrl:imageSource,
@@ -99,7 +97,7 @@ class CustomNetworkImage extends StatelessWidget {
             alignment: Alignment.topCenter,
             margin: const EdgeInsets.only(top: 20),
             child: Center(
-              child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
+                child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
             )),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),

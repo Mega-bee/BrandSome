@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../../abstracts/states/state.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/components/custom_alert_dialog/CustomDeleteDialog/CustomDeleteDialog.dart';
-
 class AccountSuccess extends States {
   final AccountResponse accountModel;
   final AccountInfoScreenState _screenState;
@@ -46,10 +45,10 @@ class AccountSuccess extends States {
             Center(
               child: Container(
                 height: 150,
-              width: 150,
-              child: CustomNetworkImage(
-               imageSource: accountModel.imageUrl ??'',
-              ),
+                width: 150,
+                child: CustomNetworkImage(
+                  imageSource: accountModel.imageUrl ??'',
+                ),
               ),
             ),
             SizedBox(height: 10,),
@@ -59,10 +58,10 @@ class AccountSuccess extends States {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 ListTile(title: Text(S.of(context).userName,),
-                 subtitle: Text(accountModel.userName ?? ''),
-                   leading: Icon(Icons.person),
-                 ),
+                  ListTile(title: Text(S.of(context).userName,),
+                    subtitle: Text(accountModel.userName ?? ''),
+                    leading: Icon(Icons.person),
+                  ),
                   Divider(thickness: 3,),
 
                   ListTile(title: Text(S.of(context).phoneNumber),
@@ -105,8 +104,6 @@ class AccountSuccess extends States {
                           yesBtn: () {
                             _screenState.deleteAccount();
                             Navigator.pop(context);
-
-
                           },
                           noBtn: () {
                             Navigator.pop(context);
@@ -128,8 +125,6 @@ class AccountSuccess extends States {
       ),
     );
   }
-
-
   @override
   Widget getAlert(BuildContext context) {
     // TODO: implement getAlert
