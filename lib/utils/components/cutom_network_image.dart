@@ -43,11 +43,14 @@ class CustomNetworkImage extends StatelessWidget {
                   ),
                 ),
                 backgroundColor: Colors.black,
-                body: GestureDetector(
-                 onTapUp: (peter){
-                   Navigator.pop(context);
-                 },
-                  child: PinchZoom(
+                body: PinchZoom(
+                  child: SwipeDetector(
+                    onSwipeUp: (peter){
+                      Navigator.pop(context);
+                    },
+                    onSwipeDown: (peter){
+                      Navigator.pop(context);
+                    },
                     child: CachedNetworkImage(
                       imageUrl:imageSource,
                       imageBuilder: (context, imageProvider) => Center(
@@ -69,10 +72,10 @@ class CustomNetworkImage extends StatelessWidget {
                           )),
                       errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
-                    resetDuration: const Duration(milliseconds: 150),
-                    onZoomStart: () {},
-                    onZoomEnd: () {},
                   ),
+                  resetDuration: const Duration(milliseconds: 150),
+                  onZoomStart: () {},
+                  onZoomEnd: () {},
                 ),
               );
             });
@@ -85,7 +88,7 @@ class CustomNetworkImage extends StatelessWidget {
               borderRadius: BorderRadius.circular(0),
               image: DecorationImage(
                 image: imageProvider,
-                fit: BoxFit.fitWidth,
+                fit: BoxFit.cover,
               ),
             ),
           ),
