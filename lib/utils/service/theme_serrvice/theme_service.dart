@@ -89,15 +89,17 @@ class AppThemeDataService {
             unselectedLabelColor: Colors.black, labelColor: Color(0xffFF4C29)),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
-          primary: Colors.white,
+
+          primary:  Color(0xffFF4C29),
         )),
+
         brightness: Brightness.light,
-        primaryColor: PrimaryColor,
+        primaryColor: Color(0xffFF4C29),
         colorScheme: lightScheme,
-        useMaterial3: true,
+        useMaterial3: false,
         focusColor: PrimaryColor,
         primarySwatch: Colors.deepOrange,
-        cardColor: const Color.fromRGBO(245, 245, 245, 1),
+
         backgroundColor: const Color.fromRGBO(236, 239, 241, 1),
         textTheme: const TextTheme(button: TextStyle(color: Colors.white)),
         fontFamily: 'Dubai',

@@ -129,8 +129,8 @@ class _HomePageState extends State<HomePage> {
                 child: PageView(
                   controller: controller,
                   children: <Widget>[
-//                    MultiAssetsPage(),
-//                    SingleAssetPage(),
+                    MultiAssetsPage(),
+                    SingleAssetPage(),
 //                    CustomPickersPage(),
                   ],
                 ),

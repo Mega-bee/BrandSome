@@ -27,8 +27,8 @@ import '../../../../utils/helpers/image_crop_helper.dart';
 class AddBusinessInit extends States {
   final AddBusinessState addBusinessState;
   AddBusinessInit(
-    this.addBusinessState,
-  ) : super(false);
+      this.addBusinessState,
+      ) : super(false);
 
   final _formKeyBusiness = GlobalKey<FormState>();
   final business = TextEditingController();
@@ -44,7 +44,7 @@ class AddBusinessInit extends States {
 
 
   CreateBusinessRequest request =
-      CreateBusinessRequest(cities: [], services: []);
+  CreateBusinessRequest(cities: [], services: []);
   Future getImage(context) async {
     print("chrisssssssssssssssssssssssssssssssssssssssss");
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -89,7 +89,7 @@ class AddBusinessInit extends States {
 
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-centerTitle: true,
+        centerTitle: true,
         elevation: 5,
         title: Text(S.of(context).addBussines,  style: TextStyle(
           color: Theme.of(context).primaryColor,
@@ -145,14 +145,13 @@ centerTitle: true,
                   borderRadius: BorderRadius.circular(20.0),
                   child: _pickImage != null
                       ? Image.file(_pickImage!,
-                          fit: BoxFit.cover, width: 400, height: 230)
+                      fit: BoxFit.cover, width: 150, height: 150)
                       : Image.network(
-                          "https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg",
-                          fit: BoxFit.cover,
-
-                          width: 350,
-                          height: 200,
-                        ),
+                    "https://img.myloview.com/posters/avatar-icon-with-question-mark-speech-bubble-symbol-vector-male-person-profile-for-help-in-a-flat-color-glyph-pictogram-illustration-400-218634845.jpg",
+                    fit: BoxFit.cover,
+                    width: 350,
+                    height: 200,
+                  ),
                 ),
               ),
               Positioned(
@@ -186,7 +185,7 @@ centerTitle: true,
                                                 onPressed: () async {
                                                   Navigator.pop(context);
                                                   await ImageCropHelper
-                                                          .pickImageFromCamera()
+                                                      .pickImageFromCamera()
                                                       .then((pickedFile) async {
 
                                                     if (pickedFile == null)
@@ -194,9 +193,9 @@ centerTitle: true,
                                                     _pickImage =
                                                         File(pickedFile.path);
                                                     imageForUpload =
-                                                        await MultipartFile
-                                                            .fromFile(pickedFile
-                                                                .path);
+                                                    await MultipartFile
+                                                        .fromFile(pickedFile
+                                                        .path);
 
 
                                                     addBusinessState.refresh();
@@ -264,7 +263,7 @@ centerTitle: true,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      S.of(context).businessName,style: TextStyle(color: Colors.grey),
+                    S.of(context).businessName,
                   ),
                   TextFormField(
                     controller: business,
@@ -274,7 +273,7 @@ centerTitle: true,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    S.of(context).Description,style: TextStyle(color: Colors.grey),
+                    S.of(context).Description,
                   ),
                   TextFormField(
                     controller: description,
@@ -284,7 +283,7 @@ centerTitle: true,
                   ),
                   SizedBox(height: 30),
                   Text(
-                    S.of(context).businessPhone,style: TextStyle(color: Colors.grey),
+                    S.of(context).businessPhone,
                   ),
 //                  TextFormField(
 //                    controller: phoneNumber,
@@ -310,11 +309,11 @@ centerTitle: true,
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(
-                                  context, CategoriesRoutes.CITY_LIST_SCREEN,
-                                  arguments: selectedLoca)
+                              context, CategoriesRoutes.CITY_LIST_SCREEN,
+                              arguments: selectedLoca)
                               .then((returnedLocation) {
                             selectedLoca =
-                                returnedLocation as List<AddLocationResponse>;
+                            returnedLocation as List<AddLocationResponse>;
                             addBusinessState.refresh();
                           });
                         },
@@ -324,7 +323,7 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(S.of(context).addLocation,style: TextStyle(color: Colors.grey),),
+                              Text(S.of(context).addLocation),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
@@ -396,10 +395,10 @@ centerTitle: true,
                       InkWell(
                         onTap: () {
                           Navigator.pushNamed(context,
-                                  CategoriesRoutes.CATEGORY_LIST_SCREEN)
+                              CategoriesRoutes.CATEGORY_LIST_SCREEN)
                               .then((returnedService) {
                             selectedServices =
-                                returnedService as List<ServiceModel>;
+                            returnedService as List<ServiceModel>;
                             addBusinessState.refresh();
                           });
                         },
@@ -409,11 +408,10 @@ centerTitle: true,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(S.of(context).addService,style: TextStyle(color: Colors.grey),),
+                              Text(S.of(context).addService,),
                               Icon(
                                 FontAwesomeIcons.arrowRight,
                                 color: Theme.of(context).primaryColor,
-
                               )
                             ],
                           ),

@@ -27,25 +27,22 @@ class ErrorState extends States {
           ],
           repeatForever: true,
           ),
-           // Text(
-           //   errorMessage,
-           //   style: const TextStyle(color: Colors.white),
-           // ),
+
           const   SizedBox(
             height: 30,
           ),
-          RaisedButton(
-              onPressed: () {
-               retry();
-              },
-              child:const Text(
-                'Retry',
-                style: TextStyle(color: Colors.black),
-              ),
-              // color: AppColors.greenBasic,
-              elevation: 5.0,
-              shape:const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0))))
+          // RaisedButton(
+          //     onPressed: () {
+          //      retry();
+          //     },
+          //     child:const Text(
+          //       'Retry',
+          //       style: TextStyle(color: Colors.black),
+          //     ),
+          //     // color: AppColors.greenBasic,
+          //     elevation: 5.0,
+          //     shape:const RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.all(Radius.circular(20.0))))
         ],
       ),
     );

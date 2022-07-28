@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:injectable/injectable.dart';
 import '../../abstracts/states/error_state.dart';
 import '../repository/create_post_repo.dart';
-import '../request/creat_post_request.dart';
+import '../request/bussines_filter_request.dart';
 
 @injectable
 class CreatePostCubit extends Cubit<States> {
