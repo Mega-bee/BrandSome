@@ -1,14 +1,17 @@
 class OtpRequest{
   String? number;
   String? userName;
+  String? countryCode;
 
-  OtpRequest({required this.userName ,required this.number } );
+
+  OtpRequest({required this.userName ,required this.number,required this.countryCode} );
 
 
   Map<String, dynamic> toJson() {
     return {
       'phoneNumber': number,
       'username': userName,
+      'countryCode':countryCode,
     };
   }
 

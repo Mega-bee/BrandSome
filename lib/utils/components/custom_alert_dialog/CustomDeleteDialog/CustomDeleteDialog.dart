@@ -52,8 +52,10 @@ class CustomDeleteDialog extends StatelessWidget {
                         style: TextStyle(
                             color: Theme.of(context).primaryColor,
                             fontWeight: FontWeight.w400,
-                            fontSize: 12)),
+                            fontSize: 12)
+                    ),
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
                         elevation: 0,
                         side: BorderSide(color: Theme.of(context).primaryColor),
                         padding: const EdgeInsets.fromLTRB(30, 10, 30, 10)),

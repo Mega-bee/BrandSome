@@ -50,7 +50,10 @@ class SettingSuccess extends States {
         const Icon(
           Icons.language_outlined,
           size: 13,
-        ), () {}),
+        ), () {
+      LocalizationService().setLanguage('en');
+
+    }),
 
   ];
 

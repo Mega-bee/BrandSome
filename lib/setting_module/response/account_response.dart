@@ -5,6 +5,7 @@ class AccountResponse {
   String? gender;
   int? genderId;
   String? birthDate;
+  String? countryCode;
 
   AccountResponse(
       {this.userName,
@@ -12,7 +13,8 @@ class AccountResponse {
         this.imageUrl,
         this.gender,
         this.genderId,
-        this.birthDate});
+        this.birthDate,
+        this.countryCode});
 
   AccountResponse.fromJson(Map<String, dynamic> json) {
     userName = json['userName'];
@@ -21,6 +23,7 @@ class AccountResponse {
     gender = json['gender'];
     genderId = json['genderId'];
     birthDate = json['birthDate'];
+    countryCode = json['countryCode'];
   }
 
 

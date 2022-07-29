@@ -17,9 +17,9 @@ import '../../request/is_like.dart';
 @injectable
 class HomePage extends StatefulWidget {
   final HomePageCubit cubit;
-  final AuthService  authService;
+  final AuthService authService;
 
-  const HomePage({required this.cubit,required this.authService});
+  const HomePage({required this.cubit, required this.authService});
 
   @override
   State<HomePage> createState() => HomePageScreenState();
@@ -31,14 +31,12 @@ class HomePageScreenState extends State<HomePage>
   StreamSubscription? _globalStateManager;
 
   goToLikes(String id) {
-    widget.cubit.getToLikeList(this,id);
+    widget.cubit.getToLikeList(this, id);
   }
 
-  void refresh(){
-    if(mounted){
-      setState(() {
-
-      });
+  void refresh() {
+    if (mounted) {
+      setState(() {});
     }
   }
 
@@ -55,6 +53,7 @@ class HomePageScreenState extends State<HomePage>
   }
 
   bool isFlag = true;
+
   @override
   void initState() {
     super.initState();
@@ -73,117 +72,128 @@ class HomePageScreenState extends State<HomePage>
       }),
     ];
     widget.cubit.getHome(this);
+
+    _scrollController = ScrollController();
   }
+
+  ScrollController? _scrollController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text(
-            "Brandsome",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => SearchBarFilterScreen(),
-                //   ),
-                // );
-              },
-              icon: const Icon(
-                Icons.search,
-              ),
-            ),
-
-//            CustomMenuDropDown(
-//              mainIcon: Icons.add_circle_outline,
-//              menuItems: menuItems,
-//            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.notifications_none),
-              ),
-            ),
-          ],
-        ),
-//         body: NestedScrollView(
-//           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-//             AppBar(
-//               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-//               title: Text(
-//                 "Brandsome",
-//                 style: TextStyle(
-//                   color: Theme.of(context).primaryColor,
-//                 ),
-//               ),
-//               actions: [
-//                 IconButton(
-//                   onPressed: () {
-//                     // Navigator.push(
-//                     //   context,
-//                     //   MaterialPageRoute(
-//                     //     builder: (context) => SearchBarFilterScreen(),
-//                     //   ),
-//                     // );
-//                   },
-//                   icon: const Icon(
-//                     Icons.search,
-//                   ),
-//                 ),
+//       appBar: AppBar(
+//         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+//         title: Text(
+//           "Brandsome",
+//           style: TextStyle(
+//             color: Theme.of(context).primaryColor,
+//           ),
+//         ),
+//         actions: [
+//           IconButton(
+//             onPressed: () {
+//               // Navigator.push(
+//               //   context,
+//               //   MaterialPageRoute(
+//               //     builder: (context) => SearchBarFilterScreen(),
+//               //   ),
+//               // );
+//             },
+//             icon: const Icon(
+//               Icons.search,
+//             ),
+//           ),
 //
 // //            CustomMenuDropDown(
 // //              mainIcon: Icons.add_circle_outline,
 // //              menuItems: menuItems,
 // //            ),
-//                 Padding(
-//                   padding: const EdgeInsets.only(right: 10.0),
-//                   child: IconButton(
-//                     onPressed: () {},
-//                     icon: const Icon(Icons.notifications_none),
-//                   ),
-//                 ),
-//               ],
-//             ) ;
-//           },
+//           Padding(
+//             padding: const EdgeInsets.only(right: 10.0),
+//             child: IconButton(
+//               onPressed: () {},
+//               icon: const Icon(Icons.notifications_none),
+//             ),
+//           ),
+//         ],
+//       ),
+      body: NestedScrollView(
+        floatHeaderSlivers: true,
+        controller: _scrollController,
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              // pinned: true,
+              floating: true,
+              // forceElevated: innerBoxIsScrolled,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Text(
+                "Brandsome",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => SearchBarFilterScreen(),
+                    //   ),
+                    // );
+                  },
+                  icon: const Icon(
+                    Icons.search,
+                  ),
+                ),
 
-          body: BlocConsumer<HomePageCubit, States>(
-            
-            bloc: widget.cubit,
-            buildWhen: (previous, current) => !current.isListener,
-            listenWhen: (previous, current) => current.isListener,
-            builder: (context, state) {
-              print(state);
-              print('builderr');
-              if (!state.isListener) {
-                return state.getUI(context);
-              }
-              return Container();
-            },
-            listener: (context, state) {
-              print(state);
-              print('in Lisssennnerrr');
-              if (state.isListener) {
-                showDialog(
-                    context: context,
-                    builder: (context) => state.getAlert(context));
-              }
-            },
-          ),
-        );
+//            CustomMenuDropDown(
+//              mainIcon: Icons.add_circle_outline,
+//              menuItems: menuItems,
+//            ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.notifications_none),
+                  ),
+                ),
+              ],
+            )
+          ];
+        },
+        body: BlocConsumer<HomePageCubit, States>(
+          bloc: widget.cubit,
+          buildWhen: (previous, current) => !current.isListener,
+          listenWhen: (previous, current) => current.isListener,
+          builder: (context, state) {
+            print(state);
+            print('builderr');
+            if (!state.isListener) {
+              return state.getUI(context);
+            }
+            return Container();
+          },
+          listener: (context, state) {
+            print(state);
+            print('in Lisssennnerrr');
+            if (state.isListener) {
+              showDialog(
+                  context: context,
+                  builder: (context) => state.getAlert(context));
+            }
+          },
+        ),
+      ),
+    );
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    _scrollController!.dispose();
     _globalStateManager?.cancel();
   }
 }
