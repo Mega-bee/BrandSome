@@ -60,6 +60,7 @@ class EditAccountInit extends States {
             child: InkWell(
                 onTap: () {
                   screenState.updateProfile(UpdateProfileRequest(
+                     countryCode: countrycode!.phoneCode,
                       genderId: genderID.toString(),
                       Birthday: birthDate?.toIso8601String(),
                       PhoneNumber:

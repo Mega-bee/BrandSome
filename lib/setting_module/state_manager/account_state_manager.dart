@@ -9,6 +9,7 @@ import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/setting_module/repository/account_repository.dart';
 import 'package:brandsome/setting_module/ui/screen/account_info_screen.dart';
 import 'package:brandsome/setting_module/ui/state/account_state/account_success.dart';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -91,7 +92,9 @@ class AccountCubit extends Cubit<States> {
           screenState,
           errorMessage:value.errorMessage ,
 
-          phonenumber: request.PhoneNumber
+          phonenumber: request.PhoneNumber,
+          countrycode: request.counrtyCode as Country,
+
 
         ));
       }
