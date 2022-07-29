@@ -435,7 +435,7 @@ class SettingSuccess extends States {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 20,
           ),
           InkWell(
             onTap: () {
