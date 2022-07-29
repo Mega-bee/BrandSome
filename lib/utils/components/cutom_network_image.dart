@@ -1,14 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+import 'package:photo_view/photo_view.dart';
 
 class CustomNetworkImage extends StatelessWidget {
-  final String imageSource;
-  const CustomNetworkImage({
-    required this.imageSource,
-  });
+  final List<String>? imageSource;
+  final String thumbnail;
+  CustomNetworkImage({this.imageSource, required this.thumbnail}) : super() {
+    if (imageSource == null) {
+      imageSource?.add(thumbnail);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -43,42 +46,35 @@ class CustomNetworkImage extends StatelessWidget {
                   ),
                 ),
                 backgroundColor: Colors.black,
-                body: GestureDetector(
-                 onTapUp: (peter){
-                   Navigator.pop(context);
-                 },
-                  child: PinchZoom(
-                    child: CachedNetworkImage(
-                      imageUrl:imageSource,
-                      imageBuilder: (context, imageProvider) => Center(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(0),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) => Container(
-                          alignment: Alignment.topCenter,
-                          margin: const EdgeInsets.only(top: 20),
-                          child: Center(
-                              child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
-                          )),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                    ),
-                    resetDuration: const Duration(milliseconds: 150),
-                    onZoomStart: () {},
-                    onZoomEnd: () {},
+                body: Dismissible(
+                  direction: DismissDirection.down,
+                  key: const Key('key'),
+                   onDismissed: (_) => Navigator.of(context).pop(),
+                  movementDuration: Duration(milliseconds: 5),
+                  child: PhotoViewGallery.builder(
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    builder: (BuildContext context, int index) {
+                      return PhotoViewGalleryPageOptions(
+                        imageProvider: CachedNetworkImageProvider(imageSource![index]),
+                        initialScale: PhotoViewComputedScale.contained * 1.0,
+                        minScale: PhotoViewComputedScale.contained * 1.0,
+                        maxScale: PhotoViewComputedScale.contained * 3.0,
+//                      initialScale: PhotoViewComputedScale.contained * 0.8,
+                      );
+                    },
+                    itemCount: imageSource!.length,
+                    loadingBuilder: (context, event) => Center(
+                        child: Center(
+                            child: LoadingAnimationWidget.staggeredDotsWave(
+                                color: Theme.of(context).primaryColor,
+                                size: 30))),
                   ),
                 ),
               );
             });
       },
       child: CachedNetworkImage(
-        imageUrl:imageSource,
+        imageUrl: thumbnail,
         imageBuilder: (context, imageProvider) => Center(
           child: Container(
             decoration: BoxDecoration(
@@ -94,8 +90,8 @@ class CustomNetworkImage extends StatelessWidget {
             alignment: Alignment.topCenter,
             margin: const EdgeInsets.only(top: 20),
             child: Center(
-                child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 30)
-            )),
+                child: LoadingAnimationWidget.staggeredDotsWave(
+                    color: Theme.of(context).primaryColor, size: 30))),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );

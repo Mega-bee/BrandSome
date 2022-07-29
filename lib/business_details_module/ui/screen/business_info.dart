@@ -44,7 +44,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
           SizedBox(
               height: 260,
               child: CustomNetworkImage(
-                imageSource: widget.businessInfoModel.image.toString(),
+                thumbnail: widget.businessInfoModel.image.toString(),
               )
               // PinchZoom(
               //   resetDuration: const Duration(milliseconds: 150),

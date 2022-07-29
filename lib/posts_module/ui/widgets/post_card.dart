@@ -14,22 +14,22 @@ class PostCard extends StatefulWidget {
 
   PostCard(
       {required this.onViewLikeTap,
-        required this.posthome,
-        required this.onLikeClick,
-        required this.isLogged});
-
+      required this.posthome,
+      required this.onLikeClick,
+      required this.isLogged});
   @override
   State<PostCard> createState() => _PostCardState();
 }
 
 class _PostCardState extends State<PostCard> {
   late int _currentIndex;
+  List<String>   imagesUrl= [];
 
   @override
   void initState() {
     super.initState();
     _currentIndex = 0;
-
+    asyncOne();
   }
 
   @override
@@ -57,7 +57,8 @@ class _PostCardState extends State<PostCard> {
                 ),
                 placeholder: (context, url) => Padding(
                   padding: const EdgeInsets.all(15.0),
-                  child: LoadingAnimationWidget.staggeredDotsWave(color: Theme.of(context).primaryColor, size: 10),
+                  child: LoadingAnimationWidget.staggeredDotsWave(
+                      color: Theme.of(context).primaryColor, size: 10),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
@@ -79,9 +80,7 @@ class _PostCardState extends State<PostCard> {
             child: Column(
               children: [
                 CarouselSlider.builder(
-
                   options: CarouselOptions(
-
                       height: 450,
                       enlargeStrategy: CenterPageEnlargeStrategy.scale,
                       padEnds: true,
@@ -96,17 +95,21 @@ class _PostCardState extends State<PostCard> {
                         print(_currentIndex);
                         setState(() {});
                       }),
-                  itemCount: widget.posthome.postMedia?.length,
+                  itemCount: widget.posthome.postMedia.length,
                   itemBuilder: (BuildContext context, int itemIndex,
-                      int pageViewIndex) =>
-                      widget.posthome.postMedia![itemIndex].mediaTypeId == 1?
-                      CustomNetworkImage(imageSource: widget.posthome.postMedia![itemIndex].url ?? '',):Container(),
-
-
+                          int pageViewIndex) =>
+                      widget.posthome.postMedia[itemIndex].mediaTypeId == 1
+                          ? CustomNetworkImage(
+                              thumbnail:
+                                  widget.posthome.postMedia[itemIndex].url ??
+                                      '',
+                              imageSource: imagesUrl,
+                            )
+                          : Container(),
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: widget.posthome.postMedia!
+                    children: widget.posthome.postMedia
                         .map((e) => Container(
                               width: 5.0,
                               height: 5.0,
@@ -115,12 +118,12 @@ class _PostCardState extends State<PostCard> {
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: _currentIndex ==
-                                          widget.posthome.postMedia!.indexOf(e)
+                                          widget.posthome.postMedia.indexOf(e)
                                       ? Colors.white
                                       : Colors.grey),
                             ))
                         .toList() //
-                )
+                    )
               ],
             ),
           ),
@@ -136,28 +139,27 @@ class _PostCardState extends State<PostCard> {
                           bool like = !widget.posthome.isLiked;
                           if (widget.isLogged) {
                             widget.posthome.isLiked = like;
-                            if(like){
-                              widget.posthome.likeCount ++;
-                            }else{
-                              widget.posthome.likeCount --;
+                            if (like) {
+                              widget.posthome.likeCount++;
+                            } else {
+                              widget.posthome.likeCount--;
                             }
 
                             print('persooon lllooggedd');
                             setState(() {});
-
                           }
                           widget.onLikeClick(like);
                         },
                         child: widget.posthome.isLiked
                             ? Icon(
-                          Icons.thumb_up,
-                          color: Theme.of(context).primaryColor,
-                          size: 25,
-                        )
+                                Icons.thumb_up,
+                                color: Theme.of(context).primaryColor,
+                                size: 25,
+                              )
                             : Icon(
-                          Icons.thumb_up_alt_outlined,
-                          size: 25,
-                        )),
+                                Icons.thumb_up_alt_outlined,
+                                size: 25,
+                              )),
                     InkWell(
                         onTap: () {
                           widget.onViewLikeTap(widget.posthome.id.toString());
@@ -293,4 +295,11 @@ class _PostCardState extends State<PostCard> {
 
 // }
 
+  asyncOne() async {
+    print("asyncOne start");
+    await Future.forEach(widget.posthome.postMedia, (PostMedia e)   {
+         imagesUrl.add(e.url ?? '');
+    });
+
+  }
 }

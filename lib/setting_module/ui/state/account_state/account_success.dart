@@ -47,7 +47,7 @@ class AccountSuccess extends States {
                 height: 150,
                 width: 150,
                 child: CustomNetworkImage(
-                  imageSource: accountModel.imageUrl ??'',
+                  thumbnail: accountModel.imageUrl ??'',
                 ),
               ),
             ),

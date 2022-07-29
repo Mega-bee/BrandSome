@@ -34,7 +34,7 @@ class Post {
   int? id;
   String? profileImage;
   String? name;
-  List<PostMedia>? postMedia;
+  List<PostMedia>  postMedia =[];
   String? description;
   int  likeCount = 0;
   bool isLiked =false;
@@ -45,7 +45,7 @@ class Post {
       {this.id,
         this.profileImage,
         this.name,
-        this.postMedia,
+     required   this.postMedia,
         this.description,
       required  this.likeCount,
         required this.isLiked ,
@@ -59,7 +59,7 @@ class Post {
     if (json['postMedia'] != null) {
       postMedia = <PostMedia>[];
       json['postMedia'].forEach((v) {
-        postMedia!.add(PostMedia.fromJson(v));
+        postMedia.add(PostMedia.fromJson(v));
       });
     }
     description = json['description'];
