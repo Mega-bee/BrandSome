@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:list_tile_switch/list_tile_switch.dart';
 
 import '../../../generated/l10n.dart';
+import '../../../utils/images/images.dart';
 
 class SettingNotLogged extends States {
   final SettingsScreenState _settingsScreenState ;
@@ -33,7 +34,7 @@ class SettingNotLogged extends States {
             switchActiveColor: Colors.grey,
             title: Text(S.of(context).darkMode,),
           ),
-          ListTile(title: Text('Register to app'),
+          ListTile(title: Text('Add business'),
             leading: Icon(Icons.login),
             onTap: (){
               _settingsScreenState.goToLogin();
@@ -62,6 +63,11 @@ class SettingNotLogged extends States {
               ),
             ]),
           ),
+          SizedBox(
+            height: 10,
+          ),
+          Image.asset(ImageAsset.MEGABEE,width: 15,height: 12,),
+
           SizedBox(
             height: 100,
           )

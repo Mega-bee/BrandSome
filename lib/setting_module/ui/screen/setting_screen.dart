@@ -36,6 +36,14 @@ class SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  void refrech(){
+    if(mounted){
+      setState(() {
+
+      });
+    }
+  }
+
   void goToLogin() {
     widget.cubit.emit(RequestOtpState(this));
   }
