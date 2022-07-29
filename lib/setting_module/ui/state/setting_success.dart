@@ -148,34 +148,42 @@ class SettingSuccess extends States {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: CachedNetworkImage(
-                                imageUrl:  getaccsetting.businesses![index].image.toString(),
-                                imageBuilder: (context, imageProvider) => Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
+                        Flexible(
+                          flex: 1,
+                          fit: FlexFit.tight,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CachedNetworkImage(
+                                  imageUrl:  getaccsetting.businesses![index].image.toString(),
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
+                                  placeholder: (context, url) => const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
                                 ),
-                                placeholder: (context, url) => const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
-                            ),
 
-                            const SizedBox(
-                              width: 27,
-                            ),
-                            Text(
-                              getaccsetting.businesses![index].name.toString(),style: const TextStyle(fontSize: 16)
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 27,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  getaccsetting.businesses![index].name.toString(),style: const TextStyle(fontSize: 16,),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,

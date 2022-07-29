@@ -60,7 +60,7 @@ class SettingsScreenState extends State<SettingsScreen> {
           title: Text(
             S.of(context).Settings,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).brightness==Brightness.dark?Colors.white:Colors.black,
             ),
           ),
         ),
