@@ -185,6 +185,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
 
                 Expanded(
                   child: Container(
+
+
+
                       padding: EdgeInsets.fromLTRB(1, 3, 15, 3),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(
@@ -196,15 +199,15 @@ class _BusinessInfoState extends State<BusinessInfo> {
                               .map<Widget>(
                                 (e) => SizedBox(
                                   height: 30,
-                                  width: 80,
+                                  width: 60,
                                   child: Card(
-                                    // color: Colors.grey[900],
+color: Colors.grey[800],
                                     child: Center(
                                       child: Text(
                                         "${e.name} ",
                                         style: TextStyle(
                                           fontSize: 12,
-                                          color: Colors.grey[500],
+                                          color: Colors.grey[300],
                                         ),
                                       ),
                                     ),
@@ -344,9 +347,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         width: 10,
                       ),
                       Text(
-                        // widget.businessInfoModel.isUserBusiness!
-                        //     ? S.of(context).Update
-                            S.of(context).CallNow,
+                        widget.businessInfoModel.isUserBusiness!
+                            ? S.of(context).Update
+                           : S.of(context).CallNow,
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -361,19 +364,19 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // widget.businessInfoModel.isUserBusiness!
-                    //     ? widget.onDeleteClick()
-                         widget.onReviewClick();
+                    widget.businessInfoModel.isUserBusiness!
+                        ? widget.onDeleteClick()
+                         :widget.onReviewClick();
                     // );
                   },
                   child: Row(
                     children: [
-                      // widget.businessInfoModel.isUserBusiness!
-                      //     ? Icon(
-                      //         Icons.delete,
-                      //         color: Colors.white,
-                      //       )
-                      //     :
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            )
+                          :
                   SvgPicture.asset(
                               SvgImg.RATING,
                               height: 20,

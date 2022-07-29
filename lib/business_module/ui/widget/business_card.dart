@@ -14,6 +14,7 @@ class BusinessCard extends StatefulWidget {
   final BusinessScreenState screenState;
 
   final bool isLoggedin;
+  final int maxline=2;
 
   const BusinessCard(
       {required this.businessCardModel,
@@ -32,7 +33,10 @@ class _BusinessCardState extends State<BusinessCard> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 5, end: 5,),
-      child: InkWell(
+      child:
+
+
+      InkWell(
         onTap:() {
     Navigator.pushNamed(
     context, BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
@@ -69,7 +73,7 @@ class _BusinessCardState extends State<BusinessCard> {
                     child: Container(
 
 
-                      height: 130,
+                      height: 200,
 
                       child: CachedNetworkImage(
                         imageUrl: widget.businessCardModel.image ?? '',fit: BoxFit.cover,
@@ -104,36 +108,35 @@ class _BusinessCardState extends State<BusinessCard> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
 
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 18.0),
-                                    child: Text(
-                                      widget.businessCardModel.name ?? "",
-                                      style: const TextStyle(fontSize: 24),
-                                      // style:Theme.of(context).textTheme.titleMedium,
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 18.0),
+                                      child: Text(
+                                        widget.businessCardModel.name ?? "",
+                                        style: const TextStyle(fontSize: 24,),maxLines: widget.maxline,
+                                        // style:Theme.of(context).textTheme.titleMedium,
+                                      ),
                                     ),
                                   ),
 
-                                  SizedBox(
-                                    height: 4,
-                                    child: IconButton(
-                                        onPressed: () {
-                                          if (widget.isLoggedin) {
-                                            widget.businessCardModel.isFollowed =
-                                                !widget.businessCardModel.isFollowed!;
-                                            setState(() {});
-                                          }
-                                          widget.onFollowClick(
-                                            widget.businessCardModel.isFollowed,
-                                          );
-                                        },
-                                        icon: widget.businessCardModel.isFollowed!
-                                            ? const Icon(
-                                                FontAwesomeIcons.solidHeart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
-                                              )
-                                            : const Icon(
-                                                FontAwesomeIcons.heart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
-                                              )),
-                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        if (widget.isLoggedin) {
+                                          widget.businessCardModel.isFollowed =
+                                              !widget.businessCardModel.isFollowed!;
+                                          setState(() {});
+                                        }
+                                        widget.onFollowClick(
+                                          widget.businessCardModel.isFollowed,
+                                        );
+                                      },
+                                      icon: widget.businessCardModel.isFollowed!
+                                          ? const Icon(
+                                              FontAwesomeIcons.solidHeart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
+                                            )
+                                          : const Icon(
+                                              FontAwesomeIcons.heart,color:Color.fromRGBO(255, 255, 255, 0.9),size: 18,
+                                            )),
                                 ],
                               ),
 
@@ -141,6 +144,7 @@ class _BusinessCardState extends State<BusinessCard> {
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Row(
+
                               children: [
                                 // Icon(
                                 //   Icons.location_on_outlined,
@@ -151,6 +155,7 @@ class _BusinessCardState extends State<BusinessCard> {
                                         .map(
                                           (e) => Container(
                                         color: Colors.grey[900],
+
                                         child: Text(
                                           "${e.name} ",
                                           style: const TextStyle(
@@ -212,14 +217,16 @@ class _BusinessCardState extends State<BusinessCard> {
                           ),
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 70,
                         ),
+
+
 
 
 
                         Padding(
                           padding: const EdgeInsetsDirectional.only(
-                              start: 8.0, end: 8.0),
+                              start: 18.0, end: 8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

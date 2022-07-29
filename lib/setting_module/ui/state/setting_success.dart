@@ -58,6 +58,8 @@ class SettingSuccess extends States {
   ];
 
   @override
+
+
   Widget getUI(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5.0),
@@ -194,40 +196,42 @@ class SettingSuccess extends States {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: CachedNetworkImage(
-                                imageUrl: getaccsetting.businesses![index].image
-                                    .toString(),
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50),
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
-                                        ),
+                        Flexible(
+                          flex: 1,
+                          fit: FlexFit.tight,
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 30,
+                                height: 30,
+                                child: CachedNetworkImage(
+                                  imageUrl:  getaccsetting.businesses![index].image.toString(),
+                                  imageBuilder: (context, imageProvider) => Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                placeholder: (context,
-                                    url) => const CircularProgressIndicator(),
-                                errorWidget: (context, url,
-                                    error) => const Icon(Icons.error),
+                                  ),
+                                  placeholder: (context, url) => const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                                ),
                               ),
-                            ),
 
-                            const SizedBox(
-                              width: 27,
-                            ),
-                            Text(
-                                getaccsetting.businesses![index].name
-                                    .toString(), style: const TextStyle(
-                                fontSize: 16)
-                            ),
-                          ],
+                              const SizedBox(
+                                width: 27,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  getaccsetting.businesses![index].name.toString(),style: const TextStyle(fontSize: 16,),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const Icon(
                           Icons.arrow_forward_ios_rounded,
@@ -433,35 +437,9 @@ class SettingSuccess extends States {
               ],
             ),
           ),
-          SizedBox(height: 15,),
-
-
-          // ListTileSwitch(
-          //   value: LanguageHelper().getLanguage()=="ar"?true:false,
-          //
-          //   leading: Text(
-          //     " EN",
-          //
-          //     style: TextStyle(fontSize: 10),
-          //   ),
-          //   onChanged: (mode) {
-          //     print('fffffffffffffffffffff');
-          //     LocalizationService().setLanguage(mode?"ar":"en");
-          //   },
-          //
-          //   visualDensity: VisualDensity.comfortable,
-          //   switchType: SwitchType.cupertino,
-          //   switchActiveColor: Colors.grey,
-          //
-          //   title: Padding(
-          //     padding: const EdgeInsetsDirectional.only(end: 100),
-          //     child: Text(S.of(context).languages,style: TextStyle(fontSize: 16)),
-          //   ),
-          // ),
           SizedBox(
-            height: 15,
-          )
-          ,
+            height: 20,
+          ),
           InkWell(
             onTap: () {
               showDialog(
@@ -483,6 +461,7 @@ class SettingSuccess extends States {
                       },
                     ),
               );
+
             },
             child: Padding(
               padding: const EdgeInsetsDirectional.only(
@@ -495,15 +474,13 @@ class SettingSuccess extends States {
                   Row(
                     children: [
                       Icon(
-                        FontAwesomeIcons.powerOff, size: 20,
+                        FontAwesomeIcons.powerOff,size: 20,
                       ),
                       SizedBox(
                         width: 27,
                       ),
                       Text(
-                        S
-                            .of(context)
-                            .logOut, style: TextStyle(fontSize: 16),
+                        S.of(context).logOut,style: TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
@@ -511,7 +488,7 @@ class SettingSuccess extends States {
                 ],
               ),
             ),
-          ),
+          )  ,
           SizedBox(
             height: 5,
           ),
@@ -530,13 +507,9 @@ class SettingSuccess extends States {
               alignment: Alignment.topLeft,
               child: TextButton(
                 child: Text(
-                  S
-                      .of(context)
-                      .addBussines,
+                  S.of(context).addBussines,
                   style: TextStyle(
-                      color: Theme
-                          .of(context)
-                          .primaryColor, fontSize: 13),
+                      color: Theme.of(context).primaryColor, fontSize: 13),
                 ),
                 onPressed: () {
                   Navigator.pushNamed(context, BusinessRoutes.ADD_BUSINESS);
@@ -594,9 +567,7 @@ class SettingSuccess extends States {
                 width: 10,
               ),
               Text(
-                "${S
-                    .of(context)
-                    .appVersion} 1.0.0",
+                "${S.of(context).appVersion} 1.0.0",
                 style: TextStyle(color: Colors.grey, fontSize: 10),
               ),
             ]),
@@ -605,7 +576,7 @@ class SettingSuccess extends States {
           SizedBox(
             height: 10,
           ),
-          Image.asset(ImageAsset.MEGABEE, width: 15, height: 12,),
+          Image.asset(ImageAsset.MEGABEE,width: 15,height: 12,),
           SizedBox(
             height: 100,
           ),

@@ -45,6 +45,10 @@ class UpdateBusinessSuccess extends States {
         elevation: 5,
         title: Text(
             S.of(context).editBusiness,
+          style: TextStyle(
+
+
+          ),
         ),
         actions: [
           Padding(

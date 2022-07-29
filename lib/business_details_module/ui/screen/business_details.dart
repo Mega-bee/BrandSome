@@ -76,7 +76,7 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
           title: Text(
             name!,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+                color: Theme.of(context).brightness==Brightness.dark?Colors.white:Colors.black,
             ),
           ),
         ),
