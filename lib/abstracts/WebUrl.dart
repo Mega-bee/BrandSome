@@ -28,14 +28,15 @@ class Urls {
   static const PHONE_CLICK = BASE_API_BUSINESS + 'RegisterNewPhoneClick/';
   static const CREATE_REVIEW = BASE_API_BUSINESS + 'CreateReview';
   static const BUSINESS_VIEW = BASE_API_BUSINESS + 'RegisterBusinessView/';
-
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
-  static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
-  static const CREATE_POSTS = BASE_API_POSTS + 'CreatePost';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
+
+  static const GET_USER_BUSINESS = BASE_API_BUSINESS + 'GetUserBusinesses';
 
   /*--------postHOMEPAGE-------------------*/
   static const LIKE_HOME = BASE_API_POSTS + 'LikePost/';
+  static const GET_LIKED_POSTS = BASE_API_POSTS + 'LikeList/';
+  static const CREATE_POSTS = BASE_API_POSTS + 'CreatePost';
   //
   /*--------Settings-------------------*/
   static const ACCOUNTS_SETTINGS =BSE_API_SETTINGS + 'GetAccountSetings';

@@ -1,6 +1,5 @@
 import 'package:brandsome/abstracts/model/WebServiceResponse.dart';
 import 'package:brandsome/module_network/http_client/http_client.dart';
-import 'package:dio/dio.dart';
 import '../../abstracts/WebUrl.dart';
 import 'package:injectable/injectable.dart';
 

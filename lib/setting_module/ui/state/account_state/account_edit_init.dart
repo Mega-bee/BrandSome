@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/utils/helpers/image_crop_helper.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:dio/dio.dart';
@@ -9,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import '../../../../generated/l10n.dart';
-import '../../../../utils/components/pickertime.dart';
 import '../../../request/update_profile_request.dart';
 import '../../../response/account_response.dart';
 import '../../screen/account_info_screen.dart';
@@ -60,6 +58,7 @@ class EditAccountInit extends States {
             child: InkWell(
                 onTap: () {
                   screenState.updateProfile(UpdateProfileRequest(
+                     countryCode: countrycode!.phoneCode,
                       genderId: genderID.toString(),
                       Birthday: birthDate?.toIso8601String(),
                       PhoneNumber:
@@ -435,112 +434,75 @@ class EditAccountInit extends States {
                 const SizedBox(
                   height: 20,
                 ),
-                ListTile(
-                  title: Padding(
-                    padding:  EdgeInsets.only(right: 20),
-                    child: Text(
-                      S.of(context).Gender,
+                Text(
+                  S.of(context).Gender,
+                ),
+                Row(
+                    children: [
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: RadioListTile(
+                      dense: true,
+                      toggleable: true,
+                      contentPadding:  EdgeInsets.zero,
+                      activeColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      title: Text(
+                        S.of(context).Male,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      value: 1,
+                      groupValue: genderID,
+                      onChanged: (int? v) {
+                        genderID = v;
+                        screenState.refresh();
+                      },
                     ),
                   ),
-                  subtitle: Column(children: [
-                    const SizedBox(
-                      height: 20,
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: RadioListTile(
+                      dense: true,
+                      toggleable: true,
+                      activeColor: Theme.of(context).primaryColor,
+                      contentPadding:  EdgeInsets.zero,
+                      title: Text(
+                        S.of(context).Female,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      value: 2,
+                      groupValue: genderID,
+                      onChanged: (int? v) {
+                        genderID = v;
+                        screenState.refresh();
+                      },
                     ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).Male,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            value: 1,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
-                          ),
-                        ),
-                      ],
+                  ),
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: RadioListTile(
+                      dense: true,
+                      toggleable: true,
+                      contentPadding:  EdgeInsets.zero,
+                      activeColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      title: Text(
+                        S.of(context).ratherNotToSay,
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      value: 3,
+                      groupValue: genderID,
+                      onChanged: (int? v) {
+                        genderID = v;
+                        screenState.refresh();
+                      },
                     ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            title: Text(
-                              S.of(context).Female,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            value: 2,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-                      ],
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      children: [
-                        Expanded(
-                          child: RadioListTile(
-                            dense: true,
-                            activeColor: Theme.of(context).primaryColor,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            title: Text(
-                              S.of(context).ratherNotToSay,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            value: 3,
-                            groupValue: genderID,
-                            onChanged: (int? v) {
-                              genderID = v;
-                              screenState.refresh();
-                            },
-                          ),
-                        ),
-                        const SizedBox(height: 30),
-
-//                    Expanded(
-//                      child: Container(
-//                        decoration: BoxDecoration(
-//                          borderRadius: BorderRadius.circular(10),
-//                          color: Theme.of(context).cardColor,
-//                        ),
-//                        child: RadioListTile(
-//                          activeColor: Theme.of(context).primaryColor,
-//                          title: Text('Other'),
-//                          shape: RoundedRectangleBorder(
-//                              borderRadius: BorderRadius.circular(10)),
-//                          value: 3,
-//                          groupValue: genderID,
-//                          onChanged: (int? v) {
-//                            genderID =  v;
-//                            screenState.refresh();
-//                          },
-//                        ),
-//                      ),
-//                    ),
-                      ],
-                    ),
-                  ]),
-                ),
-                const SizedBox(height: 30),
+                  ),
+                ]),
               ],
             ),
           ),

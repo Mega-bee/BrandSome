@@ -1,5 +1,6 @@
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/di/di_config.dart';
 import 'package:brandsome/hive/hive.dart';
 import 'package:brandsome/hive/hive_category.dart';
@@ -14,6 +15,8 @@ import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
 import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
+import 'package:brandsome/posts_module/post_module.dart';
+import 'package:brandsome/posts_module/post_route.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -145,5 +148,27 @@ class HomePageCubit extends Cubit<States> {
             errorMessage: value.errorMessage));
       }
     });
+  }
+
+
+  goToAddBusiness(HomePageScreenState screenState){
+    if (_authService.isLoggedIn) {
+      Navigator.pushNamed(
+        screenState.context,
+        BusinessRoutes.ADD_BUSINESS,
+      );
+    } else {
+      emit(RequestOtpState(screenState));
+    }
+  }
+  goToAddPost(HomePageScreenState screenState){
+    if (_authService.isLoggedIn) {
+      Navigator.pushNamed(
+        screenState.context,
+        PostRoutes.ADD_POST,
+      );
+    } else {
+      emit(RequestOtpState(screenState));
+    }
   }
 }

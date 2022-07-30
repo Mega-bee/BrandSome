@@ -38,6 +38,8 @@ class BusinessScreenState extends State<BusinessScreen> {
   late BusinessFilterRequest request;
   late List<ItemModel> menuItems;
   StreamSubscription? _globalStateManager;
+  StreamSubscription? _chnageIndexManager;
+  StreamSubscription? _filterRefresh;
 
   String? returnServiceName;
   String? query;
@@ -61,6 +63,18 @@ class BusinessScreenState extends State<BusinessScreen> {
         widget.cubit.getBusinessList(this, request);
       }
     });
+    _chnageIndexManager =
+        getIt<GlobalStateManager>().currentIndexRefresh.listen((event) {
+          print('inSideListen');
+          showSearchDelegate();
+        });
+    _filterRefresh =
+        getIt<GlobalStateManager>().filterRefresh.listen((event) {
+          request.services = [];
+         request.services.add(event.id ?? -1);
+         returnServiceName = '/' + event.name.toString();
+         widget.cubit.getBusinessList(this, request);
+        });
     menuItems = [
       ItemModel(
           'A-Z',
@@ -139,6 +153,28 @@ class BusinessScreenState extends State<BusinessScreen> {
     widget.cubit.emit(RequestOtpState(this));
   }
 
+  showSearchDelegate(){
+    showSearch(
+        context: context,
+        query: query,
+        delegate: CustomSearchDelegateIn(widget.cubit))
+        .then((value) {
+      if (value != null) {
+        value as List<Object>;
+        query = value[0] as String;
+        if (value[1] == null) {
+//                      widget.cubit.getBusinessList(this, request);
+        } else {
+          ServiceModel vv = value[1] as ServiceModel;
+          request.services = [];
+          request.services.add(vv.id ?? -1);
+          returnServiceName =
+              vv.category.toString() + '/' + vv.name.toString();
+          widget.cubit.getBusinessList(this, request);
+        }
+      }
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,26 +189,7 @@ class BusinessScreenState extends State<BusinessScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                showSearch(
-                        context: context,
-                        query: query,
-                        delegate: CustomSearchDelegateIn(widget.cubit))
-                    .then((value) {
-                  if (value != null) {
-                    value as List<Object>;
-                    query = value[0] as String;
-                    if (value[1] == null) {
-//                      widget.cubit.getBusinessList(this, request);
-                    } else {
-                      ServiceModel vv = value[1] as ServiceModel;
-                      request.services = [];
-                      request.services.add(vv.id ?? -1);
-                      returnServiceName =
-                          vv.category.toString() + '/' + vv.name.toString();
-                      widget.cubit.getBusinessList(this, request);
-                    }
-                  }
-                });
+                showSearchDelegate();
               },
               icon: const Icon(
                 Icons.search,
@@ -218,6 +235,7 @@ class BusinessScreenState extends State<BusinessScreen> {
               );
             }));
   }
+
 }
 
 class CustomSearchDelegateIn extends SearchDelegate {
@@ -278,6 +296,7 @@ class CustomSearchDelegateIn extends SearchDelegate {
                         ),
                       )
                     : ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: snapshot.data!.business.length,
                         itemBuilder: (context, index) {

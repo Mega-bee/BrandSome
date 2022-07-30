@@ -28,7 +28,7 @@ class BusinessListSuccess extends States {
         _screenState.getBusiness();
       },
       child: ListView(
-        itemExtent: 160,
+//        itemExtent: 160,
         physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         children: getBussCard(),
       ),
@@ -66,7 +66,7 @@ class BusinessListSuccess extends States {
         );
       }
     }
-    widgets.add(const SizedBox(height: 30));
+    widgets.add(const SizedBox(height: 10));
     return widgets;
   }
 

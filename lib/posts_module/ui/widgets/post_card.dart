@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:pinch_zoom/pinch_zoom.dart';
 import '../../../home_page/response/home_page.dart';
 
 class PostCard extends StatefulWidget {
@@ -104,6 +103,7 @@ class _PostCardState extends State<PostCard> {
                                   widget.posthome.postMedia[itemIndex].url ??
                                       '',
                               imageSource: imagesUrl,
+                        indexPage: itemIndex,
                             )
                           : Container(),
                 ),

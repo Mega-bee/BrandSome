@@ -72,5 +72,6 @@
           "People":"اشخاص",
           "deleteAccount":"حذف الحساب",
           "enterYourPhoneNumber":"أدخل رقم هاتفك",
-          "Continue":"استمر"
+          "Continue":"استمر",
+  "errorConnection": "خطأ في الإتصال"
 }

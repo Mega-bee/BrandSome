@@ -34,7 +34,7 @@ class ErrorState extends States {
           const   SizedBox(
             height: 30,
           ),
-          RaisedButton(
+          MaterialButton(
               onPressed: () {
                retry();
               },

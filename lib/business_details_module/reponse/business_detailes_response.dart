@@ -1,12 +1,15 @@
+import 'package:brandsome/business_module/reponse/business_response.dart';
+import 'package:brandsome/home_page/response/home_page.dart';
+
 class BusinessInfoResponse {
   String? type;
   String? phoneNumber;
 
-  List<Posts>? posts;
+  List<Post>? posts;
   List<Reviews>? reviews;
   bool? isUserBusiness;
 
-  List<Services>? services;
+  List<Service>? services;
   List<City>? cities;
   String? description;
   int? viewCount;
@@ -41,9 +44,9 @@ class BusinessInfoResponse {
     type = json['type'];
     phoneNumber = json['phoneNumber'];
     if (json['posts'] != null) {
-      posts = <Posts>[];
+      posts = <Post>[];
       json['posts'].forEach((v) {
-        posts!.add(Posts.fromJson(v));
+        posts!.add(Post.fromJson(v));
       });
     }
     if (json['reviews'] != null) {
@@ -54,9 +57,9 @@ class BusinessInfoResponse {
     }
     isUserBusiness = json['isUserBusiness'];
     if (json['services'] != null) {
-      services = <Services>[];
+      services = <Service>[];
       json['services'].forEach((v) {
-        services!.add(Services.fromJson(v));
+        services!.add(Service.fromJson(v));
       });
     }
     if (json['cities'] != null) {
@@ -77,20 +80,6 @@ class BusinessInfoResponse {
   }
 }
 
-class City {
-  int? id;
-  int? businessCityId;
-  String? name;
-  bool  isSelected = false;
-
-  City({this.name, this.id ,this.businessCityId ,required this.isSelected});
-
-  City.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json["name"];
-    businessCityId = json["businessCityId"];
-  }
-}
 
 class Reviews {
   int? id;
@@ -110,74 +99,3 @@ class Reviews {
   }
 }
 
-class Posts {
-  int? id;
-  String? name;
-  String? profileImage;
-  List<PostMedia>? postMedia;
-  String? description;
-  int? likeCount;
-  bool? isLiked;
-  String? city;
-  String? type;
-
-  Posts(
-      {this.id,
-        this.name,
-        this.profileImage,
-        this.postMedia,
-        this.description,
-        this.likeCount,
-        this.isLiked,
-        this.city,
-        this.type});
-
-  Posts.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    if (json['postMedia'] != null) {
-      postMedia = <PostMedia>[];
-      json['postMedia'].forEach((v) {
-        postMedia!.add(PostMedia.fromJson(v));
-      });
-    }
-    description = json['description'];
-    likeCount = json['likeCount'];
-    isLiked = json['isLiked'];
-    city = json['city'];
-    type = json['type'];
-    profileImage = json['profileImage'];
-
-  }
-}
-
-class PostMedia {
-  int? id;
-  String? url;
-  int? mediaTypeId;
-  String? mediaTypeName;
-
-  PostMedia({this.id, this.url, this.mediaTypeId, this.mediaTypeName});
-
-  PostMedia.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    url = json['url'];
-    mediaTypeId = json['mediaTypeId'];
-    mediaTypeName = json['mediaTypeName'];
-  }
-}
-
-class Services {
-  int? id;
-  int? businessServiceId;
-  String? name;
-  bool isSelected = false;
-
-  Services({this.id, this.name ,this.businessServiceId ,required this.isSelected});
-
-  Services.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    businessServiceId = json['businessServiceId'];
-  }
-}

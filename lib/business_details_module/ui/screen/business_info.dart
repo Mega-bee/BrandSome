@@ -1,4 +1,6 @@
 import 'package:brandsome/business_details_module/business_details_route.dart';
+import 'package:brandsome/di/di_config.dart';
+import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,6 +47,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
               height: 260,
               child: CustomNetworkImage(
                 thumbnail: widget.businessInfoModel.image.toString(),
+                imageSource: [widget.businessInfoModel.image.toString()],
               )
               // PinchZoom(
               //   resetDuration: const Duration(milliseconds: 150),
@@ -157,13 +160,19 @@ class _BusinessInfoState extends State<BusinessInfo> {
               child: Wrap(
                 children: widget.businessInfoModel.services!
                     .map<Widget>(
-                      (e) => Padding(
-                        padding:
-                            const EdgeInsetsDirectional.only(end: 8, top: 10),
-                        child: Text(
-                          "${e.name}",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
+                      (e) => InkWell(
+                        onTap: (){
+                          getIt<GlobalStateManager>().stateFilterSubject.add(e);
+                          Navigator.pop(context);
+                        },
+                        child: Padding(
+                          padding:
+                              const EdgeInsetsDirectional.only(end: 8, top: 10),
+                          child: Text(
+                            "${e.name}",
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                            ),
                           ),
                         ),
                       ),
@@ -196,15 +205,15 @@ class _BusinessInfoState extends State<BusinessInfo> {
                               .map<Widget>(
                                 (e) => SizedBox(
                                   height: 30,
-                                  width: 80,
+                                  width: 60,
                                   child: Card(
-                                    // color: Colors.grey[900],
+                                    color: Colors.grey[800],
                                     child: Center(
                                       child: Text(
                                         "${e.name} ",
                                         style: TextStyle(
                                           fontSize: 12,
-                                          color: Colors.grey[500],
+                                          color: Colors.grey[300],
                                         ),
                                       ),
                                     ),
@@ -344,9 +353,9 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         width: 10,
                       ),
                       Text(
-                        // widget.businessInfoModel.isUserBusiness!
-                        //     ? S.of(context).Update
-                            S.of(context).CallNow,
+                        widget.businessInfoModel.isUserBusiness!
+                            ? S.of(context).Update
+                            : S.of(context).CallNow,
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -361,20 +370,19 @@ class _BusinessInfoState extends State<BusinessInfo> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // widget.businessInfoModel.isUserBusiness!
-                    //     ? widget.onDeleteClick()
-                         widget.onReviewClick();
+                    widget.businessInfoModel.isUserBusiness!
+                        ? widget.onDeleteClick()
+                        : widget.onReviewClick();
                     // );
                   },
                   child: Row(
                     children: [
-                      // widget.businessInfoModel.isUserBusiness!
-                      //     ? Icon(
-                      //         Icons.delete,
-                      //         color: Colors.white,
-                      //       )
-                      //     :
-                  SvgPicture.asset(
+                      widget.businessInfoModel.isUserBusiness!
+                          ? Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            )
+                          : SvgPicture.asset(
                               SvgImg.RATING,
                               height: 20,
                             ),
@@ -384,7 +392,7 @@ class _BusinessInfoState extends State<BusinessInfo> {
                       Text(
                           // widget.businessInfoModel.isUserBusiness!
                           //     ? S.of(context).Delete
-                               S.of(context).addReview,
+                          S.of(context).addReview,
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),

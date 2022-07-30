@@ -13,7 +13,7 @@ class AppThemeDataService {
   final ThemeHelper _themeHelper = ThemeHelper();
 
   static Color get PrimaryColor {
-    return Colors.deepOrange;
+    return const Color(0xffFF4C29);
   }
 
   ThemeData getActiveTheme() {

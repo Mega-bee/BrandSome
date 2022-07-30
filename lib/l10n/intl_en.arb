@@ -72,7 +72,8 @@
           "People":"People",
           "deleteAccount":"Delete account",
           "enterYourPhoneNumber":"Enter your phone number",
-          "Continue":"Continue"
+          "Continue":"Continue",
+  "errorConnection": "Error Connection"
 
 
 

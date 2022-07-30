@@ -80,6 +80,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "editBusiness": MessageLookupByLibrary.simpleMessage("تحرير الأعمال"),
         "enterYourPhoneNumber":
             MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "errorConnection":
+            MessageLookupByLibrary.simpleMessage("خطأ في الإتصال"),
         "fillTheField": MessageLookupByLibrary.simpleMessage("املأ الحقل"),
         "languages": MessageLookupByLibrary.simpleMessage("اللغات"),
         "likedBy": MessageLookupByLibrary.simpleMessage("اعجب به"),

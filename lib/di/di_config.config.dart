@@ -119,7 +119,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i28.BusinessListDetailsCubit>(() => _i28.BusinessListDetailsCubit(
       get<_i14.BusinessRepositoryDetails>(),
       get<_i12.AuthRepository>(),
-      get<_i5.AuthService>()));
+      get<_i5.AuthService>(),
+      get<_i19.HomeP>()));
   gh.factory<_i29.BusinessScreen>(
       () => _i29.BusinessScreen(get<_i27.BusinessListCubit>()));
   gh.factory<_i30.BusnessDetailsScreen>(
@@ -129,9 +130,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i32.CategoryModule>(() => _i32.CategoryModule(
       get<_i31.CategoryListScreen>(), get<_i26.AddLocationScreen>()));
   gh.factory<_i33.CreatePostCubit>(() => _i33.CreatePostCubit(
-      get<_i5.AuthService>(),
-      get<_i12.AuthRepository>(),
-      get<_i15.CreatePostRepo>()));
+      get<_i15.CreatePostRepo>(), get<_i13.BusinessRepository>()));
   gh.factory<_i34.CreatePostScreen>(() =>
       _i34.CreatePostScreen(createPostCubit: get<_i33.CreatePostCubit>()));
   gh.factory<_i35.Followers>(() => _i35.Followers(get<_i17.FollowersCubit>()));

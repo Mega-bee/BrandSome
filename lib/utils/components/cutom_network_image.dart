@@ -6,12 +6,13 @@ import 'package:photo_view/photo_view.dart';
 
 class CustomNetworkImage extends StatelessWidget {
   final List<String>? imageSource;
+  final int? indexPage;
   final String thumbnail;
-  CustomNetworkImage({this.imageSource, required this.thumbnail}) : super() {
-    if (imageSource == null) {
-      imageSource?.add(thumbnail);
-    }
+  CustomNetworkImage({this.imageSource, required this.thumbnail, this.indexPage}) : super() {
+    dd = PageController(initialPage: indexPage ?? 0);
   }
+
+ late PageController dd;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,6 +54,7 @@ class CustomNetworkImage extends StatelessWidget {
                   movementDuration: Duration(milliseconds: 5),
                   child: PhotoViewGallery.builder(
                     scrollPhysics: const BouncingScrollPhysics(),
+                    pageController: dd,
                     builder: (BuildContext context, int index) {
                       return PhotoViewGalleryPageOptions(
                         imageProvider: CachedNetworkImageProvider(imageSource![index]),
@@ -68,6 +70,7 @@ class CustomNetworkImage extends StatelessWidget {
                             child: LoadingAnimationWidget.staggeredDotsWave(
                                 color: Theme.of(context).primaryColor,
                                 size: 30))),
+
                   ),
                 ),
               );

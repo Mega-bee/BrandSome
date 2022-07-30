@@ -769,6 +769,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Error Connection`
+  String get errorConnection {
+    return Intl.message(
+      'Error Connection',
+      name: 'errorConnection',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

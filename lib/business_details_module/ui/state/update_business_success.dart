@@ -1,14 +1,15 @@
 import 'dart:io';
 import 'package:badges/badges.dart';
 import 'package:brandsome/abstracts/states/state.dart';
+import 'package:brandsome/business_details_module/reponse/business_detailes_response.dart';
 import 'package:brandsome/business_details_module/request/edit_business_request.dart';
+import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../categories_module/reponse/add_location_response.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 import '../../../generated/l10n.dart';
-import '../../reponse/business_detailes_response.dart';
 import '../screen/update_business.dart';
 
 class UpdateBusinessSuccess extends States {
@@ -31,7 +32,7 @@ class UpdateBusinessSuccess extends States {
   final description = TextEditingController();
   final phoneNumber = TextEditingController();
   List<AddLocationResponse> selected = [];
-  List<Services> services = [];
+  List<Service> services = [];
   List<City> cities = [];
   File? _pickImage;
   MultipartFile? imageForUpload;

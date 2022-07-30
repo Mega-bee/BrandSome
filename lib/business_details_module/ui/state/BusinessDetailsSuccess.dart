@@ -1,6 +1,7 @@
 import 'package:brandsome/business_details_module/request/add_review_request.dart';
 import 'package:brandsome/business_details_module/request/is_follow.dart';
 import 'package:brandsome/business_details_module/ui/screen/reviews.dart';
+import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/utils/components/custom_alert_dialog/CustomReviewDialog/CustomVerificationDialog.dart';
 import 'package:flutter/material.dart';
 
@@ -111,21 +112,28 @@ class BusinessDetailsSuccess extends States {
                       }
                     }),
                 BusinessPosts(
+                  onLikeClick: (liked,postId){
+                    screenState.likedPost(LikeRequest(isLike: liked,),postId);
+                  },
+                    onViewLikeTap: (id){
+                    screenState.goToLikes(id);
+                    },
+                  isLoggedIn: islogged,
                     onDeletePost: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => CustomDeleteDialog(
-                          title: S.of(context).deletePost,
-                          content: "",
-                          yesBtn: () {
-                            screenState
-                                .deletePost(businessInfoModel.id.toString());
-                          },
-                          noBtn: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      );
+//                      showDialog(
+//                        context: context,
+//                        builder: (context) => CustomDeleteDialog(
+//                          title: S.of(context).deletePost,
+//                          content: "",
+//                          yesBtn: () {
+//                            screenState
+//                                .deletePost(businessInfoModel.id.toString());
+//                          },
+//                          noBtn: () {
+//                            Navigator.pop(context);
+//                          },
+//                        ),
+//                      );
                     },
                     isMyBuss: businessInfoModel.isUserBusiness ?? false,
                     businessInfoModel: businessInfoModel),

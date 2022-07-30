@@ -20,8 +20,7 @@ const CreatePostScreen({required this.createPostCubit});
 }
 
 class CreatePostScreenState extends State<CreatePostScreen> {
-List<Services>? services;
-List<City>? cities;
+
 List<AssetEntity> assets = <AssetEntity>[];
 bool flags = true;
 
@@ -39,24 +38,12 @@ void refresh(){
   @override
   void initState() {
     super.initState();
-    cities = [];
-    services = [];
-//    openImage();
-//    widget.createPostCubit.emit(PickImagesState(openImages:selectAssets( PickMethod.cameraAndStay(maxAssetsCount: 9),) ));
+    widget.createPostCubit.getUserBusiness(this);
   }
 
 
   @override
   Widget build(BuildContext context) {
-  if(flags){
-    flags = false;
-    var args = ModalRoute.of(context)?.settings.arguments;
-    if(args != null && args is Map){
-      services = args["service"] as List<Services>;
-      cities = args["city"] as List<City>;
-      widget.createPostCubit.emit(CreatePostInit(screenState: this,cities: cities ?? [],services: services ?? []));
-  }
-    }
     return Scaffold(
       body: BlocBuilder<CreatePostCubit, States>(
           bloc: widget.createPostCubit,

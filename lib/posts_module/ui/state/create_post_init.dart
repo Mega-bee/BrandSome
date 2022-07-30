@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:brandsome/business_details_module/reponse/business_detailes_response.dart';
+import 'package:brandsome/business_module/reponse/business_response.dart';
 import 'package:brandsome/posts_module/request/creat_post_request.dart';
 import 'package:brandsome/posts_module/ui/widgets/preview_full_screen.dart';
 import 'package:brandsome/test_select_Image/picker_method.dart';
@@ -17,21 +17,26 @@ import '../screen/createPost.dart';
 
 class CreatePostInit extends States {
   final CreatePostScreenState screenState;
-  final List<Services> services;
-  final List<City> cities;
+  final List<BusinessResponse> business;
 
   CreatePostInit(
-      {required this.services, required this.cities, required this.screenState})
+      {required this.business, required this.screenState})
       : super(false) {
-    selectedCity = cities.first;
-    selectedCity?.isSelected = true;
-    selectedService = services.first;
-    selectedService?.isSelected = true;
+    if(business.isNotEmpty){
+      selectedBusiness = business.first;
+      selectedBusiness?.isSelected = true;
+      selectedCity = selectedBusiness?.city?.first;
+      selectedCity?.isSelected = true;
+      selectedService = selectedBusiness?.services?.first;
+      selectedService?.isSelected = true;
+    }
+
   }
 
   final description = TextEditingController();
+  BusinessResponse? selectedBusiness;
   City? selectedCity;
-  Services? selectedService;
+  Service? selectedService;
   List<AssetEntity> assets = <AssetEntity>[];
   List<Uint8List> imagesFile = [];
   List<ImageItem> imagesAfterEdit = [];
@@ -126,6 +131,30 @@ class CreatePostInit extends States {
             ),
             ListTile(
               leading: Text(
+                'Bussines : ',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              title: FilterChip(
+                label: Text(selectedBusiness?.name ?? ''),
+                backgroundColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onSelected: (bool value) {
+                  showBttonAlert(context);
+                },
+              ),
+            ),
+
+            Divider(
+                indent: 16,
+                endIndent: 16,
+                color: Theme.of(context).backgroundColor,
+                thickness: 1),
+            SizedBox(
+              height: 8,
+            ),
+            ListTile(
+              leading: Text(
                 'Service : ',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -217,25 +246,52 @@ class CreatePostInit extends States {
   Widget getAlert(BuildContext context) {
     throw UnimplementedError();
   }
-
-  List<Widget> techChips(BuildContext context, Function refresh) {
+  List<Widget> busChips(BuildContext context, Function refresh) {
     List<Widget> chips = [];
-    for (int i = 0; i < services.length; i++) {
+    for (int i = 0; i < business.length; i++) {
       Widget item = Padding(
         padding: const EdgeInsets.only(left: 10, right: 5),
         child: FilterChip(
           backgroundColor: Theme.of(context).primaryColorDark,
-          label: Text(services[i].name ?? ''),
+          label: Text(business[i].name ?? ''),
           labelStyle: TextStyle(color: Colors.white),
-          selected: services[i].isSelected,
+          selected: business[i].isSelected,
           selectedColor: Theme.of(context).primaryColor,
           onSelected: (bool value) {
-            services.forEach((element) {
+            business.forEach((element) {
+              element.isSelected = false;
+              selectedBusiness?.isSelected = false;
+            });
+            business[i].isSelected = true;
+            selectedBusiness = business[i];
+            refresh();
+            screenState.refresh();
+          },
+        ),
+      );
+      chips.add(item);
+    }
+    return chips;
+  }
+
+  List<Widget> serviceChips(BuildContext context, Function refresh) {
+    List<Widget> chips = [];
+    for (int i = 0; i < selectedBusiness!.services!.length; i++) {
+      Widget item = Padding(
+        padding: const EdgeInsets.only(left: 10, right: 5),
+        child: FilterChip(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          label: Text(selectedBusiness!.services![i].name ?? ''),
+          labelStyle: TextStyle(color: Colors.white),
+          selected: selectedBusiness!.services![i].isSelected,
+          selectedColor: Theme.of(context).primaryColor,
+          onSelected: (bool value) {
+            selectedBusiness!.services!.forEach((element) {
               element.isSelected = false;
               selectedService?.isSelected = false;
             });
-            services[i].isSelected = true;
-            selectedService = services[i];
+            selectedBusiness!.services![i].isSelected = true;
+            selectedService = selectedBusiness!.services![i];
             refresh();
             screenState.refresh();
           },
@@ -248,22 +304,22 @@ class CreatePostInit extends States {
 
   List<Widget> cityChips(BuildContext context, Function refresh) {
     List<Widget> chips = [];
-    for (int i = 0; i < cities.length; i++) {
+    for (int i = 0; i < selectedBusiness!.city!.length; i++) {
       Widget item = Padding(
         padding: const EdgeInsets.only(left: 10, right: 5),
         child: FilterChip(
           backgroundColor: Theme.of(context).primaryColorDark,
-          label: Text(cities[i].name ?? ''),
+          label: Text(selectedBusiness!.city![i].name ?? ''),
           labelStyle: TextStyle(color: Colors.white),
-          selected: cities[i].isSelected,
+          selected: selectedBusiness!.city![i].isSelected,
           selectedColor: Theme.of(context).primaryColor,
           onSelected: (bool value) {
-            cities.forEach((element) {
+            selectedBusiness!.city!.forEach((element) {
               element.isSelected = false;
               selectedCity?.isSelected = false;
             });
-            cities[i].isSelected = true;
-            selectedCity = cities[i];
+            selectedBusiness!.city![i].isSelected = true;
+            selectedCity = selectedBusiness!.city![i];
             refresh();
             screenState.refresh();
           },
@@ -359,13 +415,32 @@ class CreatePostInit extends States {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
+                        'Select Busines',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Wrap(
+                        children: busChips(context, () {
+                          mystate(() {});
+                        })),
+                    Divider(
+                      indent: 16,
+                      endIndent: 16,
+                      color: Theme.of(context).backgroundColor,
+                      thickness: 2.5,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
                         'Select Service',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Wrap(
-                        children: techChips(context, () {
+                        children: serviceChips(context, () {
                       mystate(() {});
                     })),
                     Divider(

@@ -1,4 +1,5 @@
 
+import 'package:brandsome/home_page/request/is_like.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,21 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
     widget._businessListDetailsCubit.emit(RequestOtpState(this));
   }
 
+  goToLikes(String id) {
+    widget._businessListDetailsCubit.getToLikeList(this, id);
+  }
+
+  void refresh() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  likedPost(LikeRequest request, String id) {
+    widget._businessListDetailsCubit.Islike(this, request, id);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)?.settings.arguments;
@@ -76,7 +92,7 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
           title: Text(
             name!,
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+                color: Theme.of(context).brightness==Brightness.dark?Colors.white:Colors.black,
             ),
           ),
         ),

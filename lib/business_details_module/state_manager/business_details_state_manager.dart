@@ -2,11 +2,15 @@ import 'package:brandsome/abstracts/states/error_state.dart';
 import 'package:brandsome/abstracts/states/loading_state.dart';
 import 'package:brandsome/abstracts/states/state.dart';
 import 'package:brandsome/di/di_config.dart';
+import 'package:brandsome/home_page/repository/home_repository.dart';
+import 'package:brandsome/home_page/request/is_like.dart';
+import 'package:brandsome/liked_module/liked_list_route.dart';
 import 'package:brandsome/module_auth/repository/auth_repository.dart';
 import 'package:brandsome/module_auth/request/otp_request.dart';
 import 'package:brandsome/module_auth/service/auth_service.dart';
 import 'package:brandsome/module_auth/ui/state/ErrorSendOtp.dart';
 import 'package:brandsome/module_auth/ui/state/loading_alert.dart';
+import 'package:brandsome/module_auth/ui/state/request_otp_alert_state.dart';
 import 'package:brandsome/module_auth/ui/state/verify_otp_alert_state.dart';
 import 'package:brandsome/utils/global/global_state_manager.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +32,10 @@ class BusinessListDetailsCubit extends Cubit<States> {
   final BusinessRepositoryDetails _businessRepositoryDetails;
   final AuthRepository _authRepository;
   final AuthService _authService;
+  final HomeP _homePage;
 
-  BusinessListDetailsCubit(
-      this._businessRepositoryDetails, this._authRepository, this._authService)
+  BusinessListDetailsCubit(this._businessRepositoryDetails,
+      this._authRepository, this._authService, this._homePage)
       : super(LoadingState());
 
   getBusinessDetails(BusnessDetailsScreenState screenstate, String? id) {
@@ -74,8 +79,9 @@ class BusinessListDetailsCubit extends Cubit<States> {
       BusnessDetailsScreenState screenState, IsFollower request, String? id) {
     _businessRepositoryDetails.IsFollow(id, request).then((value) {
       if (value!.code == 200) {
-       request.isFollow ?  Fluttertoast.showToast(msg: "Followed Successfully")
-       : Fluttertoast.showToast(msg: "UnFollowed Successfully");
+        request.isFollow
+            ? Fluttertoast.showToast(msg: "Followed Successfully")
+            : Fluttertoast.showToast(msg: "UnFollowed Successfully");
       }
     });
   }
@@ -106,7 +112,7 @@ class BusinessListDetailsCubit extends Cubit<States> {
   }
 
   bool checkIfLogged() {
-   return _authService.isLoggedIn;
+    return _authService.isLoggedIn;
   }
 
   void requestOtp(BusnessDetailsScreenState screenState, OtpRequest request) {
@@ -151,17 +157,16 @@ class BusinessListDetailsCubit extends Cubit<States> {
 
   void editBusiness(
       EditBusinessRequest request, UpdateBusinessState screenstate) {
-     emit(LoadingWaitingState('waiting to update your business'));
+    emit(LoadingWaitingState('waiting to update your business'));
     _businessRepositoryDetails.updateBusiness(request).then((value) {
       if (value == null) {
         Fluttertoast.showToast(msg: "Error try again");
       } else if (value.code == 200) {
         getIt<GlobalStateManager>().update();
         Navigator.pop(screenstate.context);
-        Fluttertoast.showToast(msg: "bussines update successfully", backgroundColor: Colors.green);
+        Fluttertoast.showToast(
+            msg: "bussines update successfully", backgroundColor: Colors.green);
         Navigator.pop(screenstate.context);
-
-
       }
     });
   }
@@ -177,7 +182,6 @@ class BusinessListDetailsCubit extends Cubit<States> {
         Navigator.pop(screenstate.context);
         getIt<GlobalStateManager>().update();
         Fluttertoast.showToast(msg: 'Business deleted successfully');
-
       }
     });
   }
@@ -193,5 +197,31 @@ class BusinessListDetailsCubit extends Cubit<States> {
         Navigator.pop(screenstate.context);
       }
     });
+  }
+
+  Islike(
+      BusnessDetailsScreenState screenState, LikeRequest request, String? id) {
+    if (_authService.isLoggedIn) {
+      _homePage.Like(id, request).then((value) {
+        if (value!.code == 200) {
+//         request.isLike ?  Fluttertoast.showToast(msg: "Like Post success"):
+//          Fluttertoast.showToast(msg: "UnLike Post success");
+        }
+      });
+    } else {
+      emit(RequestOtpState(screenState));
+    }
+  }
+
+  getToLikeList(BusnessDetailsScreenState screenState, String id) {
+    if (_authService.isLoggedIn) {
+      Navigator.pushNamed(
+        screenState.context,
+        LikedListRoute.LIKED_LIST,
+        arguments: id,
+      );
+    } else {
+      emit(RequestOtpState(screenState));
+    }
   }
 }

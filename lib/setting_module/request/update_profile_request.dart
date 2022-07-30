@@ -7,8 +7,9 @@ class UpdateProfileRequest {
   final String? Birthday;
   final MultipartFile? ImageFile;
   final String? PhoneNumber;
+  final String? countryCode;
 
-  UpdateProfileRequest({ this.Birthday, this.genderId,this.ImageFile,this.PhoneNumber,this.Username});
+  UpdateProfileRequest({ this.Birthday, this.genderId,this.ImageFile,this.PhoneNumber,this.Username,this.countryCode});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -17,6 +18,7 @@ class UpdateProfileRequest {
     data['ImageFile'] = ImageFile;
     data['GenderId'] = genderId;
     data['Birthday '] = Birthday;
+    data['countryCode '] = countryCode;
     return data;
   }
 

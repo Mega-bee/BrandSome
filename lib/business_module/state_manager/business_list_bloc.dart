@@ -39,11 +39,13 @@ class BusinessListCubit extends Cubit<States> {
   final PublishSubject<SearchResponse> _stateSubject = PublishSubject();
 
   Stream<SearchResponse> get searchResults => _stateSubject.stream;
+
+
   late HubConnection signalRSearch;
 
   getBusinessList(
       BusinessScreenState screenState, BusinessFilterRequest request) {
-//    emit(LoadingState());
+    emit(LoadingState());
     _businessRepository.getBusiness(request).then((value) {
       if (value == null) {
         emit(ErrorState(

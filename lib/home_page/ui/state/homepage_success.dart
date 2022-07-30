@@ -60,11 +60,6 @@ class HomePageSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-
-//    final ItemScrollController itemScrollController = ItemScrollController();
-//    final ItemPositionsListener itemPositionsListener =
-//        ItemPositionsListener.create();
-
     return SingleChildScrollView(
       physics:
           const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
