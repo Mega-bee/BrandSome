@@ -264,6 +264,18 @@ class CreatePostInit extends States {
             });
             business[i].isSelected = true;
             selectedBusiness = business[i];
+
+            selectedService =  business[i].services?.first;
+            business[i].services?.forEach((element) {
+              element.isSelected = false;
+            });
+            business[i].services?.first.isSelected = true;
+
+            selectedCity =  business[i].city?.first;
+            business[i].city?.forEach((element) {
+              element.isSelected = false;
+            });
+            business[i].city?.first.isSelected = true;
             refresh();
             screenState.refresh();
           },

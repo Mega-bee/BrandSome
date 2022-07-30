@@ -58,6 +58,7 @@ class BusinessListCubit extends Cubit<States> {
         for (var item in value.data.insideData) {
           bus.add(BusinessResponse.fromJson(item));
         }
+        print(bus.length);
         emit(
           BusinessListSuccess(
             screenState,

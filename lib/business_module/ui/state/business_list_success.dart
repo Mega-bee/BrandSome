@@ -38,15 +38,17 @@ class BusinessListSuccess extends States {
   List<Widget> getBussCard() {
     List<Widget> widgets = [];
     if (business == null) {
+      print('null');
       return widgets;
     } else if (business.isEmpty) {
+      print('empty');
       return widgets;
     } else {
       for (var element in business) {
-        if (element.name?.toLowerCase().contains(_screenState.query ?? '') ==
-            false) {
-          continue;
-        }
+//        if (element.name?.toLowerCase().contains(_screenState.query ?? '') ==
+//            false) {
+//          continue;
+//        }
         widgets.add(
           BusinessCard(
             onFollowClick: (isSelected) {
