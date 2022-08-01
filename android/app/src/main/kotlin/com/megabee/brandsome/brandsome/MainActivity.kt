@@ -1,4 +1,4 @@
-package com.megabee.brandsome.brandsome
+package brand.some
 
 import io.flutter.embedding.android.FlutterActivity
 

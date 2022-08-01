@@ -30,6 +30,7 @@ class Urls {
   static const BUSINESS_VIEW = BASE_API_BUSINESS + 'RegisterBusinessView/';
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
+  static const NOTIFICATION = BSE_API_SETTINGS + 'RefreshFcmToken';
 
   static const GET_USER_BUSINESS = BASE_API_BUSINESS + 'GetUserBusinesses';
 

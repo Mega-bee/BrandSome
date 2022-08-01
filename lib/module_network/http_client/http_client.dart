@@ -81,7 +81,7 @@ class ApiClient {
     ));
     try {
       _logger.info(tag, 'Requesting Post to: ' + url);
-       _logger.info(tag, 'POST: ' + payLoad.toString());
+      _logger.info(tag, 'POST: ' + payLoad.toString());
       _logger.info(tag, 'Headers: ' + jsonEncode(headers));
       if (headers != null) {
         if (headers['Authorization'] != null) {
@@ -130,7 +130,10 @@ class ApiClient {
     try {
       _logger.info(tag, 'Requesting PUT to: ' + url);
       _logger.info(tag, 'PUT: ' + payLoad.toString());
-      _logger.info(tag, 'Headers: ' + jsonEncode(headers));
+      _logger.info(
+        tag,
+        'Headers: ' + jsonEncode(headers),
+      );
       Dio client = Dio(BaseOptions(
         sendTimeout: 60000,
         receiveTimeout: 60000,
@@ -143,14 +146,14 @@ class ApiClient {
           client.options.headers['Authorization'] = headers['Authorization'];
         }
       }
-       //  client.options.headers['Access-Control-Allow-Origin'] = '*';
+      //  client.options.headers['Access-Control-Allow-Origin'] = '*';
       if (!kIsWeb) {
 //        client.interceptors.add(performanceInterceptor);
       }
       var response = await client.put(
         url,
         queryParameters: queryParams,
-        data:FormData.fromMap(payLoad),
+        data: FormData.fromMap(payLoad),
         options: Options(headers: headers),
       );
       return _processResponse(response);
