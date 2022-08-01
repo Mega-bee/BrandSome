@@ -4,6 +4,7 @@ class OtpRequest{
   String? countryCode;
 
 
+
   OtpRequest({required this.userName ,required this.number,required this.countryCode} );
 
 

@@ -11,6 +11,7 @@ import 'package:brandsome/posts_module/post_module.dart';
 import 'package:brandsome/setting_module/setting_module.dart';
 import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -23,6 +24,7 @@ import 'localization_service/localizationSservice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await HiveSetUp.init();
 
 //  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');

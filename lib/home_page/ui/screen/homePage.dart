@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../notification_module/request/notification_request.dart';
+import '../../../services/fire_notification_service.dart';
 import '../../request/is_like.dart';
 
 @injectable
@@ -52,7 +54,8 @@ class HomePageScreenState extends State<HomePage>
   }
 
   bool isFlag = true;
-
+  static FireNotificationService fireNotificationService =
+  FireNotificationService();
   @override
   void initState() {
     super.initState();
@@ -73,6 +76,12 @@ class HomePageScreenState extends State<HomePage>
     widget.cubit.getHome(this);
 
     _scrollController = ScrollController();
+
+    String FirebaseToken = '';
+    fireNotificationService.GetFireBaseToken().then((tokenFire) {
+      FirebaseToken = tokenFire ?? '';
+      NotificationRequest(firebaseToken: FirebaseToken);
+    });
   }
 
   ScrollController? _scrollController;
