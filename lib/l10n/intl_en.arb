@@ -73,7 +73,9 @@
           "deleteAccount":"Delete account",
           "enterYourPhoneNumber":"Enter your phone number",
           "Continue":"Continue",
-  "errorConnection": "Error Connection"
+          "errorConnection": "Error Connection",
+          "Notifications": "Notifications",
+          "Search": "Search"
 
 
 

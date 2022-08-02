@@ -390,10 +390,11 @@ class _BusinessInfoState extends State<BusinessInfo> {
                         width: 10,
                       ),
                       Text(
-                          // widget.businessInfoModel.isUserBusiness!
-                          //     ? S.of(context).Delete
-                          S.of(context).addReview,
-                          style: TextStyle(color: Colors.white)),
+                        widget.businessInfoModel.isUserBusiness!
+                            ? S.of(context).Delete
+                            : S.of(context).addReview,
+                        style: TextStyle(color: Colors.white),
+                      )
                     ],
                   ),
                   style: ElevatedButton.styleFrom(

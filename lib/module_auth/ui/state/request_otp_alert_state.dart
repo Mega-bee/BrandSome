@@ -4,6 +4,8 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
 import '../../../generated/l10n.dart';
+import '../../../notification_module/request/notification_request.dart';
+import '../../../services/fire_notification_service.dart';
 
 class RequestOtpState extends States {
   dynamic screenState;
@@ -19,6 +21,8 @@ class RequestOtpState extends States {
       child: const Text("Super is false"),
     ));
   }
+
+
 
   Country? countrycode;
 
@@ -104,7 +108,6 @@ class RequestOtpState extends States {
                           width: 5,
                         ),
                       ),
-
                       prefixIcon: TextButton(
                         onPressed: () {
                           showCountryPicker(
@@ -139,22 +142,22 @@ class RequestOtpState extends States {
                         },
                         child: countrycode == null
                             ? Wrap(children: [
-                          Text(
-                            "Country",
-                            style: TextStyle(
-                              color: Theme.of(context).brightness ==
-                                  Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
-                          ),
-                          Icon(Icons.arrow_drop_down_outlined)
-                        ])
+                                Text(
+                                  "Country",
+                                  style: TextStyle(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black,
+                                  ),
+                                ),
+                                Icon(Icons.arrow_drop_down_outlined)
+                              ])
                             : Text(
-                          '+${countrycode!.phoneCode}',
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor),
-                        ),
+                                '+${countrycode!.phoneCode}',
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              ),
                       ),
                       hintText: S.of(context).enterYourPhoneNumber,
 //                        hintStyle:
@@ -234,9 +237,16 @@ class RequestOtpState extends States {
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              screenState.requestOtp(OtpRequest(
-                countryCode: countrycode!.phoneCode,
-                  userName: username.text, number: phonenumber.text));
+
+              screenState.requestOtp(
+                OtpRequest(
+                  countryCode: countrycode!.phoneCode,
+                  userName: username.text,
+                  number: phonenumber.text,
+                ),
+              );
+
+
             },
             child: const Text(
               "Continue",

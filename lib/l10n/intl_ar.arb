@@ -73,5 +73,7 @@
           "deleteAccount":"حذف الحساب",
           "enterYourPhoneNumber":"أدخل رقم هاتفك",
           "Continue":"استمر",
-  "errorConnection": "خطأ في الإتصال"
+          "errorConnection": "خطأ في الإتصال",
+          "Notifications": "تنبيه",
+          "Search": "بحث"
 }
