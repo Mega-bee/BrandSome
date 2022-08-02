@@ -24,7 +24,7 @@ class LikedListSuccess extends States {
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: CustomSearch(
-            hintText: S.of(context).searchForLocation,
+            hintText: S.of(context).Search,
             onChanged: (searchText) {
               searchText = searchText.toLowerCase();
               print(searchText);

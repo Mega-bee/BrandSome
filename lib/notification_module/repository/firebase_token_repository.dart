@@ -17,12 +17,23 @@ class FireBaseToken {
   Future<WebServiceResponse?> FBT(NotificationRequest request) async {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.put(
-      Urls.NOTIFICATION,
+      Urls.NOTIFICATION_FBT,
       request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
     );
     if (response == null) return null;
     return response;
   }
+
+  Future<WebServiceResponse?> getNotifications() async {
+    var token =   _authService.getToken();
+    WebServiceResponse? response = await _apiClient.get(
+      Urls.NOTIFICATION,
+      headers: {'Authorization': 'Bearer ' '$token'},
+    );
+    if (response == null) return null;
+    return response;
+  }
+
 
 }
