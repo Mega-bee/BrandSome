@@ -87,6 +87,13 @@ class _NotificationCardState extends State<NotificationCard> {
               : Container(),
           widget.noti.eventId == 1
               ? ListTile(
+            subtitle: Text(
+              timeago.format(
+                DateHelper.convertDateToLocal(
+                  widget.noti.createdDate ?? DateTime(0),
+                ),
+              ),
+            ),
                   leading: CircleAvatar(
                     foregroundImage:
                         NetworkImage(widget.noti.initiatorImage.toString()),
@@ -110,18 +117,42 @@ class _NotificationCardState extends State<NotificationCard> {
                               ),
                             ]),
                         TextSpan(
-                          text: widget.noti.businessName,
+                          text:"${widget.noti.initiatorName} ",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
-                        )
+                        ),
+                        TextSpan(
+                            text: "liked your post",
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                  Brightness.dark
+                                  ? Color(0xffe8e8e8)
+                                  : Colors.black,
+                            ),
+                            children: [
+                              WidgetSpan(
+                                child: SizedBox(
+                                  height: 5,
+                                ),
+                              ),
+                            ]),
+
                       ],
                     ),
+
                   ),
                 )
               : Container(),
           widget.noti.eventId == 3
               ? ListTile(
+            subtitle: Text(
+              timeago.format(
+                DateHelper.convertDateToLocal(
+                  widget.noti.createdDate ?? DateTime(0),
+                ),
+              ),
+            ),
                   leading: CircleAvatar(
                     foregroundImage:
                         NetworkImage(widget.noti.initiatorImage.toString()),
@@ -129,7 +160,9 @@ class _NotificationCardState extends State<NotificationCard> {
                     backgroundColor: Colors.transparent,
                   ),
                   title: RichText(
-                    text: TextSpan(
+
+                    text:
+                    TextSpan(
                       children: <TextSpan>[
                         TextSpan(
                             text: widget.noti.initiatorName,
@@ -143,15 +176,31 @@ class _NotificationCardState extends State<NotificationCard> {
                                 ),
                               ),
                             ]),
+
                         TextSpan(
-                          text: widget.noti.businessName,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
+                            text: " added a review",
+                            style: TextStyle(
+                              color: Theme.of(context).brightness ==
+                                  Brightness.dark
+                                  ? Color(0xffe8e8e8)
+                                  : Colors.black,
+                            ),
+                            children: [
+                              WidgetSpan(
+                                child: SizedBox(
+                                  height: 5,
+                                ),
+                              ),
+                            ]),
+
+
+
+
                       ],
                     ),
+
                   ),
+
                 )
               : Container(),
           Divider(

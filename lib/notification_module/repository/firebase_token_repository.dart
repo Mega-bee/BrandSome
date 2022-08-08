@@ -26,7 +26,7 @@ class FireBaseToken {
   }
 
   Future<WebServiceResponse?> getNotifications() async {
-    var token =   _authService.getToken();
+    var token =  _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
       Urls.NOTIFICATION,
       headers: {'Authorization': 'Bearer ' '$token'},

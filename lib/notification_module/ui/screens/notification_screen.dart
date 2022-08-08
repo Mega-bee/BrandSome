@@ -18,7 +18,7 @@ class NotificationScreen extends StatefulWidget {
 class NotificationScreenState extends State<NotificationScreen> {
   @override
   void initState() {
-    widget.notificationCubit.getNotification(this);
+    widget.notificationCubit.getNotification();
   }
   @override
   Widget build(BuildContext context) {

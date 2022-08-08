@@ -8,12 +8,16 @@ import 'package:brandsome/home_page/home_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:brandsome/posts_module/post_module.dart';
+import 'package:brandsome/services/fire_notification_service.dart';
+import 'package:brandsome/services/local_notification_service.dart';
 import 'package:brandsome/setting_module/setting_module.dart';
 import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'business_details_module/business_details_module.dart';
@@ -22,9 +26,17 @@ import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
 import 'localization_service/localizationSservice.dart';
 
+///Receive message when app is in background(solution for on message)
+// Future<void>BackGroundHandler(RemoteMessage message)async{
+//    print(message.data.toString());
+//    print(message.notification!.title);
+// }
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(BackGroundHandler);
   await HiveSetUp.init();
 
 //  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
@@ -66,7 +78,7 @@ class MyApp extends StatefulWidget {
 
 
 
-  const MyApp(
+   MyApp(
       this._themeDataService,
       this._navigatorModule,
       this._businessModule,
@@ -144,6 +156,8 @@ class _MyAppState extends State<MyApp> {
 
       });
     });
+
+
   }
 
 

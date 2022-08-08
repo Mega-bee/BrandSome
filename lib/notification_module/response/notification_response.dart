@@ -1,3 +1,4 @@
+
 class NotificationModel {
   String? initiatorId;
   String? initiatorName;
@@ -20,7 +21,8 @@ class NotificationModel {
         this.reviewId,
         this.postId,
         this.postImage,
-        this.createdDate});
+        this.createdDate}
+      );
 
   NotificationModel.fromJson(Map<String, dynamic> json) {
     initiatorId = json['initiatorId'];
@@ -33,8 +35,20 @@ class NotificationModel {
     postId = json['postId'];
     postImage = json['postImage'];
     createdDate = DateTime.parse(json['createdDate']);
-
   }
 
-
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['initiatorId'] = this.initiatorId;
+    data['initiatorName'] = this.initiatorName;
+    data['initiatorImage'] = this.initiatorImage;
+    data['eventId'] = this.eventId;
+    data['businessId'] = this.businessId;
+    data['businessName'] = this.businessName;
+    data['reviewId'] = this.reviewId;
+    data['postId'] = this.postId;
+    data['postImage'] = this.postImage;
+    data['createdDate'] = this.createdDate;
+    return data;
+  }
 }

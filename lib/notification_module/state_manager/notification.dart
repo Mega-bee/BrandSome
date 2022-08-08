@@ -18,17 +18,18 @@ class NotificationCubit extends Cubit<States> {
         );
 
 
-  getNotification(NotificationScreenState state) {
+  getNotification() {
     print("Noti Loadingggggg");
     emit(LoadingState());
     print("Noti Loadingggggg");
     _fireBaseToken.getNotifications().then((value) {
+      print("value:${value}");
       if (value == null) {
         print("Notification error");
         emit(ErrorState(
             errorMessage: 'Connection error',
             retry: () {
-              getNotification(state);
+              getNotification();
             }));
       } else if (value.code == 200) {
         print("Notification Success");

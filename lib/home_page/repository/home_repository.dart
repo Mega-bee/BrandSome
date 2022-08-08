@@ -26,7 +26,7 @@ class HomeP {
     var token = _authService.getToken();
     WebServiceResponse? response = await _apiClient.get(
       Urls.GET_HOME_PAGE,
-      headers: {'Authorization': 'Bearer ' '$token'},
+      headers: {'Authorization': 'Bearer ' '$token'}
     );
     if (response == null) return null;
     return response;

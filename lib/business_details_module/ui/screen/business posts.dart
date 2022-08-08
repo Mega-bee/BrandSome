@@ -12,10 +12,12 @@ class BusinessPosts extends StatefulWidget {
   final Function onLikeClick;
   final bool isMyBuss;
   final bool isLoggedIn;
-  const BusinessPosts(
+  int? id;
+
+   BusinessPosts(
       {required this.businessInfoModel,
       required this.onDeletePost,
-      required this.isMyBuss ,required this.isLoggedIn ,  required this.onLikeClick ,required this.onViewLikeTap});
+      required this.isMyBuss ,required this.isLoggedIn ,  required this.onLikeClick ,required this.onViewLikeTap,this.id});
 
   @override
   State<BusinessPosts> createState() => _BusinessPostsState();

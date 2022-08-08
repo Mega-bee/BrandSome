@@ -20,11 +20,7 @@ class NotificationSuccess extends States {
 
         }
     );
-    // return ListView.builder(
-    //   children: [
 
-    //   ],
-    // );
   }
 
   @override
