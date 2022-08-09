@@ -26,17 +26,12 @@ import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
 import 'localization_service/localizationSservice.dart';
 
-///Receive message when app is in background(solution for on message)
-// Future<void>BackGroundHandler(RemoteMessage message)async{
-//    print(message.data.toString());
-//    print(message.notification!.title);
-// }
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // FirebaseMessaging.onBackgroundMessage(BackGroundHandler);
   await HiveSetUp.init();
 
 //  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
@@ -62,6 +57,7 @@ void main() async {
 
 @injectable
 class MyApp extends StatefulWidget {
+
   final AppThemeDataService _themeDataService;
   final NavigatorModule _navigatorModule;
   final BusinessModule _businessModule;
@@ -73,12 +69,14 @@ class MyApp extends StatefulWidget {
   final HomeModule _homeModule;
   final PostModule _postModule;
   final LocalizationService _localizationService;
+  final LocalNotificationService _localNotificationService;
 
 
 
 
 
    MyApp(
+    this._localNotificationService,
       this._themeDataService,
       this._navigatorModule,
       this._businessModule,
@@ -152,6 +150,14 @@ class _MyAppState extends State<MyApp> {
     widget._localizationService.localizationStream.listen((event) {
       print(event);
      lang = event;
+      setState(() {
+
+      });
+    });
+
+    ///inside the app event
+    widget._localNotificationService.init();
+    widget._localNotificationService.onLocalNotificationStream.listen((event) {
       setState(() {
 
       });

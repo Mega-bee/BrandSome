@@ -5,20 +5,24 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 
 
 
 
-
+@injectable
 class LocalNotificationService {
+  ///to use the icon and sound...
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
   FlutterLocalNotificationsPlugin();
 
+  ///change when notification received action
   static final PublishSubject<String> _onNotificationReceived =
   PublishSubject();
 
+  ///stream listen in main
   Stream get onLocalNotificationStream => _onNotificationReceived.stream;
 
   Future<void> init() async {

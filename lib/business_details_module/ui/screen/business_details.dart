@@ -23,6 +23,7 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
     with TickerProviderStateMixin {
   String? id = "-1";
   String? name = "";
+  bool? isEvent;
 
   clickCall(String? number) {
     widget._businessListDetailsCubit.PostCall(this, id, number);
@@ -81,11 +82,17 @@ class BusnessDetailsScreenState extends State<BusnessDetailsScreen>
       if(args is Map) {
         id = args["id"] as String;
         name = args["name"] as String;
+        isEvent = args["isReview"];
         widget._businessListDetailsCubit.getBusinessDetails(this, id);
         widget._businessListDetailsCubit.ImeiView(this, id);
       }
 
     }
+    ///without map
+    // else if (args is int){
+    //   id = args as String?;
+    //
+    // }
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,

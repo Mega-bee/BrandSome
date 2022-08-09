@@ -45,14 +45,11 @@ class FireNotificationService {
       ///gives u the message on which user taps and opened the app when terminated state
       FirebaseMessaging.instance.getInitialMessage().then((message) {
         print(message);
-
       });
 
-
       ///gives you the message on which user taps and it opened the app from terminated state
-      FirebaseMessaging.instance.getInitialMessage().then((message){
+      FirebaseMessaging.instance.getInitialMessage().then((message) {
         print("terminated app title message:${message!.notification!.title} ");
-
       });
 
       ///forground
@@ -64,10 +61,18 @@ class FireNotificationService {
       FirebaseMessaging.onMessageOpenedApp.listen((message) {
         print("background title message:${message}");
         if (message != null) {
-          int businessid = int.parse(message.data["businessId"].toString());
-          int eventid = int.parse(message.data["eventId"].toString());
+          int businessid = int.parse(
+            message.data["businessId"].toString(),
+          );
+          int eventid = int.parse(
+            message.data["eventId"].toString(),
+          );
 
-
+          Navigator.pushNamed(
+            GlobalVariable.navState.currentState!.context,
+            BusinessDetailsRoutes.BUSINESS_DETAILS_SCREEN,
+            arguments: {'id':businessid,},
+          );
         }
       });
       FirebaseMessaging.onBackgroundMessage(backgroundMessageHandler);

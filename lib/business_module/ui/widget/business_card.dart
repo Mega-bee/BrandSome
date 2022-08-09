@@ -141,6 +141,7 @@ class _BusinessCardState extends State<BusinessCard> {
                               maxLines: 2,
                               style: TextStyle(
                                 fontSize: 14,
+                                color: Theme.of(context).brightness == Brightness.dark?Color(0xffe8e8e8):Colors.black
                               ),
 
 //                            softWrap: true,
