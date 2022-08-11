@@ -8,12 +8,16 @@ import 'package:brandsome/home_page/home_module.dart';
 import 'package:brandsome/navigation_bar/navigator_module.dart';
 import 'package:brandsome/navigation_bar/navigator_routes.dart';
 import 'package:brandsome/posts_module/post_module.dart';
+import 'package:brandsome/services/fire_notification_service.dart';
+import 'package:brandsome/services/local_notification_service.dart';
 import 'package:brandsome/setting_module/setting_module.dart';
 import 'package:brandsome/utils/logger/logger.dart';
 import 'package:brandsome/utils/service/theme_serrvice/theme_service.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 import 'business_details_module/business_details_module.dart';
@@ -22,6 +26,9 @@ import 'hive/hive.dart';
 import 'liked_module/liked_list_module.dart';
 import 'localization_service/localizationSservice.dart';
 
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -50,6 +57,7 @@ void main() async {
 
 @injectable
 class MyApp extends StatefulWidget {
+
   final AppThemeDataService _themeDataService;
   final NavigatorModule _navigatorModule;
   final BusinessModule _businessModule;
@@ -61,12 +69,14 @@ class MyApp extends StatefulWidget {
   final HomeModule _homeModule;
   final PostModule _postModule;
   final LocalizationService _localizationService;
+  final LocalNotificationService _localNotificationService;
 
 
 
 
 
-  const MyApp(
+   MyApp(
+    this._localNotificationService,
       this._themeDataService,
       this._navigatorModule,
       this._businessModule,
@@ -144,6 +154,16 @@ class _MyAppState extends State<MyApp> {
 
       });
     });
+
+    ///inside the app event
+    widget._localNotificationService.init();
+    widget._localNotificationService.onLocalNotificationStream.listen((event) {
+      setState(() {
+
+      });
+    });
+
+
   }
 
 

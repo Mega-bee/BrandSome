@@ -9,6 +9,7 @@ class Urls {
   static const String BSE_API_SETTINGS = DOMAIN + '/api/Accounts/';
   static const String BSE_API_LOCATION = DOMAIN + '/api/General/';
   static const String BASE_HOME_PAGE = DOMAIN + '/api/Home/';
+  static const String BASE_NOTIFICATION = DOMAIN + '/api/Notifications/';
   static const String  HUBS ='https://brandsome.azurewebsites.net/hubs/signalrHub';
 
 //  /*--------Auth-------------------*/
@@ -30,7 +31,8 @@ class Urls {
   static const BUSINESS_VIEW = BASE_API_BUSINESS + 'RegisterBusinessView/';
   static const GET_FILTER = BASE_API_FILTER + 'GetSearchCategories';
   static const FOLLOW_UNFOLLOW = BASE_API_BUSINESS + 'FollowBusiness/';
-  static const NOTIFICATION = BSE_API_SETTINGS + 'RefreshFcmToken';
+  static const NOTIFICATION_FBT = BSE_API_SETTINGS + 'RefreshFcmToken';
+  static const NOTIFICATION = BASE_NOTIFICATION + 'GetNotifications';
 
   static const GET_USER_BUSINESS = BASE_API_BUSINESS + 'GetUserBusinesses';
 

@@ -57,7 +57,7 @@ class _BusinessCardState extends State<BusinessCard> {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 15.0),
                   child: Container(
-                      height: 130,
+                    height: 130,
                     child: CachedNetworkImage(
                       imageUrl: widget.businessCardModel.image ?? '',
                       fit: BoxFit.cover,
@@ -90,8 +90,7 @@ class _BusinessCardState extends State<BusinessCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: Padding(
@@ -99,7 +98,9 @@ class _BusinessCardState extends State<BusinessCard> {
                                     child: Text(
                                       widget.businessCardModel.name ?? "",
                                       maxLines: 2,
-style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
 //                                       style:Theme.of(context).textTheme.headlineSmall,
                                     ),
                                   ),
@@ -108,8 +109,8 @@ style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                                     onPressed: () {
                                       if (widget.isLoggedin) {
                                         widget.businessCardModel.isFollowed =
-                                            !widget.businessCardModel
-                                                .isFollowed!;
+                                            !widget
+                                                .businessCardModel.isFollowed!;
                                         setState(() {});
                                       }
                                       widget.onFollowClick(
@@ -131,18 +132,24 @@ style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                                           )),
                               ],
                             ),
-                            SizedBox(height: 5,),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                               widget.businessCardModel.description ?? "",
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,
-                              style: TextStyle(fontSize: 14,),
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Theme.of(context).brightness == Brightness.dark?Color(0xffe8e8e8):Colors.black
+                              ),
 
 //                            softWrap: true,
 //                              style:Theme.of(context).textTheme.titleSmall,
-
                             ),
-                            SizedBox(height: 2,),
+                            SizedBox(
+                              height: 2,
+                            ),
                             Align(
                               alignment: AlignmentDirectional.centerStart,
                               child: Wrap(
@@ -168,58 +175,52 @@ style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                           ],
                         ),
                       ),
-
                       const SizedBox(
                         height: 5,
                       ),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.person_outline_outlined,
-                                  size: 17,),
-                              const SizedBox(
-                                width: 6,
-                              ),
-                              Text(
-                                  "${widget.businessCardModel.followCount}",
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(
-                                          255, 255, 255, 0.9))),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.rate_review_outlined,
-                                  size: 15,
+                              Icon(
+                                Icons.person_outline_outlined,
+                                size: 17,
                               ),
                               const SizedBox(
                                 width: 6,
                               ),
                               Text(
-                                  "${widget.businessCardModel.reviewCount}",
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(
-                                          255, 255, 255, 0.9))),
+                                "${widget.businessCardModel.followCount}",
+                              ),
                             ],
                           ),
                           Row(
                             children: [
-                              const Icon(Icons.remove_red_eye_outlined,
-                                  size: 18,
-                                  color:
-                                      Color.fromRGBO(255, 255, 255, 0.9)),
+                              Icon(
+                                Icons.rate_review_outlined,
+                                size: 15,
+                              ),
+                              const SizedBox(
+                                width: 6,
+                              ),
+                              Text(
+                                "${widget.businessCardModel.reviewCount}",
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.remove_red_eye_outlined,
+                                size: 18,
+                              ),
                               const SizedBox(
                                 width: 5,
                               ),
                               Text(
-                                widget.businessCardModel.viewCount
-                                    .toString(),
-                                style: TextStyle(
-                                    color:
-                                        Color.fromRGBO(255, 255, 255, 0.9)),
+                                widget.businessCardModel.viewCount.toString(),
+
                               ),
 
                               // ElevatedButton(

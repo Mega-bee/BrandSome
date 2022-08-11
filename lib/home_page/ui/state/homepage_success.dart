@@ -146,7 +146,8 @@ class HomePageSuccess extends States {
               return PostCard(
                 isLogged: isLogged,
                 onLikeClick: (like){
-                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString());
+                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString()
+                  );
                 },
                   onViewLikeTap: (id) {
                     screenState.goToLikes(id);

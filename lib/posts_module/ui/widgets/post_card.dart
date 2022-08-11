@@ -63,7 +63,7 @@ class _PostCardState extends State<PostCard> {
               ),
             ),
             title: Text(
-              "${widget.posthome.name}",
+              "${widget.posthome.name}",style: TextStyle(fontSize: 18),
             ),
             subtitle: Text(
               "${widget.posthome.city}",
@@ -187,7 +187,7 @@ class _PostCardState extends State<PostCard> {
                   "${widget.posthome.description}",
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 50,
                 ),
               ],
             ),
