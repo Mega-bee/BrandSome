@@ -1,15 +1,19 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:brandsome/business_module/reponse/business_response.dart';
+import 'package:brandsome/generated/l10n.dart';
 import 'package:brandsome/posts_module/request/creat_post_request.dart';
+import 'package:brandsome/posts_module/ui/screen/editable_image.dart';
 import 'package:brandsome/posts_module/ui/widgets/preview_full_screen.dart';
 import 'package:brandsome/test_select_Image/picker_method.dart';
 import 'package:brandsome/utils/images/images.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_editor_plus/data/image_item.dart';
 import 'package:image_editor_plus/image_editor_plus.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:photofilters/widgets/photo_filter.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 import '../../../abstracts/states/state.dart';
@@ -39,7 +43,8 @@ class CreatePostInit extends States {
   Service? selectedService;
   List<AssetEntity> assets = <AssetEntity>[];
   List<Uint8List> imagesFile = [];
-  List<ImageItem> imagesAfterEdit = [];
+  List<File> imagePaths = [];
+  List<File> imagesAfterEdit = [];
   CreatePostRequest request = CreatePostRequest(media: []);
 
   final ValueNotifier<bool> isDisplayingDetail = ValueNotifier<bool>(true);
@@ -63,10 +68,15 @@ class CreatePostInit extends States {
         actions: [
           IconButton(
             onPressed: () {
-              request.cityId = selectedCity?.businessCityId;
-              request.serviceId = selectedService?.businessServiceId;
-              request.description = description.text;
-              screenState.createPostRequest(request);
+              if(description.text.isEmpty){
+                Fluttertoast.showToast(msg: 'fill description',backgroundColor: Colors.red);
+              }else {
+                request.cityId = selectedCity?.businessCityId;
+                request.serviceId = selectedService?.businessServiceId;
+                request.description = description.text;
+                screenState.createPostRequest(request);
+              }
+
             },
             icon: Icon(
               Icons.check,
@@ -89,10 +99,10 @@ class CreatePostInit extends States {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  FullscreenSlider(imagesAfterEdit)),
+                                  FullscreenSlider(imagePaths)),
                         );
                       },
-                      child: Image.memory(imagesAfterEdit.first.image))
+                      child: Image.file(imagePaths.first))
                   : InkWell(
                       onTap: () {
                         selectAssets(
@@ -351,29 +361,37 @@ class CreatePostInit extends States {
         await element.file.then((value) {
           if (value != null) {
             print('pathhhhh ${value}');
+            imagePaths.add(value);
             Uint8List bytes = value.readAsBytesSync();
             imagesFile.add(bytes);
           }
         });
       });
-      imagesAfterEdit = await Navigator.push(
+      imagePaths = await Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ImageEditor(
-            images: imagesFile,
-            allowGallery: true,
-            allowMultiple: true,
+          builder: (context) => EditerImageList(
+            imagePaths,
           ),
         ),
       );
-      imagesAfterEdit.forEach((element) async {
-        int i =1 ;
-        final tempDir = await getTemporaryDirectory();
-        File file = await File('${tempDir.path}/image${i}.png').create();
-        file.writeAsBytesSync(element.image);
-        MultipartFile nn = await MultipartFile.fromBytes(File(file.path).readAsBytesSync(), filename: file.path.split("/").last);
+//      imagesAfterEdit = await Navigator.push(
+//        context,
+//        MaterialPageRoute(
+//          builder: (context) => ImageEditor(
+//            images: imagesFile,
+//            allowGallery: true,
+//            allowMultiple: true,
+//          ),
+//        ),
+//      );
+      imagesAfterEdit = imagePaths;
+      imagePaths.forEach((element) async {
+//        final tempDir = await getTemporaryDirectory();
+//        File file = await File('${tempDir.path}/image${i}.png').create();
+//        file.writeAsBytesSync(element.image);
+        MultipartFile nn = await MultipartFile.fromFile(element.path);
         request.media.add(nn);
-        i++;
       });
     }
     screenState.refresh();
@@ -395,17 +413,17 @@ class CreatePostInit extends States {
     }
   }
 
-  void onResultAfterEdit(List<ImageItem>? result) {
-    if (result != null) {
-      imagesAfterEdit = result;
-//      imagesAfterEdit.forEach((element) async {
-//        File mu = File.fromRawPath(element.image);
-//        MultipartFile nn = await MultipartFile.fromFile(mu.path);
-//        request.media.add(nn);
-//      });
-      screenState.refresh();
-    }
-  }
+//  void onResultAfterEdit(List<ImageItem>? result) {
+//    if (result != null) {
+//      imagesAfterEdit = result;
+////      imagesAfterEdit.forEach((element) async {
+////        File mu = File.fromRawPath(element.image);
+////        MultipartFile nn = await MultipartFile.fromFile(mu.path);
+////        request.media.add(nn);
+////      });
+//      screenState.refresh();
+//    }
+//  }
 
   showBttonAlert(BuildContext context) {
     showModalBottomSheet(

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'package:badges/badges.dart';
 import 'package:brandsome/abstracts/states/state.dart';
-import 'package:brandsome/business_module/business_routes.dart';
 import 'package:brandsome/business_module/request/create_business_request.dart';
 import 'package:brandsome/business_module/ui/screen/add_business.dart';
 import 'package:brandsome/categories_module/categories_routes.dart';
@@ -10,8 +9,6 @@ import 'package:brandsome/categories_module/reponse/category_response.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-
-// import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:photofilters/filters/preset_filters.dart';
 import 'package:photofilters/widgets/photo_filter.dart';
 import '../../../../categories_module/reponse/add_location_response.dart';
@@ -21,7 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:photofilters/photofilters.dart';
 import 'package:image/image.dart' as imageLib;
 import 'package:path/path.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../utils/helpers/image_crop_helper.dart';
 

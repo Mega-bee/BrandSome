@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_editor_plus/data/image_item.dart';
 
 class FullscreenSlider extends StatelessWidget {
- final List<ImageItem> imgList;
+ final List<File> imgList;
 
 
   FullscreenSlider(this.imgList);
@@ -25,8 +27,8 @@ class FullscreenSlider extends StatelessWidget {
             items: imgList
                 .map((item) => Container(
               child: Center(
-                  child: Image.memory(
-                    item.image,
+                  child: Image.file(
+                    item,
                     fit: BoxFit.contain,
                     height: height,
                   )),
