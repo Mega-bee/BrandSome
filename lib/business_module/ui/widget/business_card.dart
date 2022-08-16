@@ -118,16 +118,16 @@ class _BusinessCardState extends State<BusinessCard> {
                                       );
                                     },
                                     icon: widget.businessCardModel.isFollowed!
-                                        ? const Icon(
+                                        ?  Icon(
                                             FontAwesomeIcons.solidHeart,
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0.9),
+                                            color: Theme.of(context).brightness == Brightness.dark?Color.fromRGBO(
+                                                255, 255, 255, 0.9):Colors.black,
                                             size: 18,
                                           )
-                                        : const Icon(
+                                        :  Icon(
                                             FontAwesomeIcons.heart,
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0.9),
+                                            color:Theme.of(context).brightness == Brightness.dark? Color.fromRGBO(
+                                                255, 255, 255, 0.9):Colors.black,
                                             size: 18,
                                           )),
                               ],
@@ -157,7 +157,7 @@ class _BusinessCardState extends State<BusinessCard> {
                                   children: widget.businessCardModel.city!
                                       .map(
                                         (e) => Container(
-                                          color: Colors.grey[900],
+                                          color: Theme.of(context).brightness == Brightness.dark?Colors.grey[900]:Colors.black12,
                                           child: Padding(
                                             padding: const EdgeInsets.all(3.0),
                                             child: Text(

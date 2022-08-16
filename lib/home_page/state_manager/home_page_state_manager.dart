@@ -51,6 +51,7 @@ class HomePageCubit extends Cubit<States> {
   }
 
   getHome(HomePageScreenState screenState) {
+    emit(LoadingState());
     _homePage.getHomePage().then((value) {
       if (value == null) {
         emit(ErrorState(

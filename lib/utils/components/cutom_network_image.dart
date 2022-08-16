@@ -78,14 +78,12 @@ class CustomNetworkImage extends StatelessWidget {
       },
       child: CachedNetworkImage(
         imageUrl: thumbnail,
-        imageBuilder: (context, imageProvider) => Center(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(0),
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.fitWidth,
-              ),
+        imageBuilder: (context, imageProvider) => Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(0),
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
             ),
           ),
         ),

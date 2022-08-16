@@ -80,14 +80,9 @@ class _PostCardState extends State<PostCard> {
               children: [
                 CarouselSlider.builder(
                   options: CarouselOptions(
+
                       height: 450,
-                      enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                      padEnds: true,
-                      pageSnapping: true,
-                      autoPlay: false,
                       enlargeCenterPage: true,
-                      reverse: false,
-                      disableCenter: true,
                       enableInfiniteScroll: false,
                       onPageChanged: (index, reason) {
                         _currentIndex = index;

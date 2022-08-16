@@ -19,6 +19,7 @@ class FollowerRepository {
     WebServiceResponse? response = await _apiClient.get(
       Urls.GETFOLLOWEDBUSINESSES,
       headers: {'Authorization': 'Bearer ' '$token'},
+
     );
     if (response == null) return null;
     return response;

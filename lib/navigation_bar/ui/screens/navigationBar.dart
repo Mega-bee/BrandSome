@@ -63,7 +63,7 @@ class  NavigationState extends State<NavigationScreen> {
         // color: Colors.black87,
         buttonBackgroundColor: Theme.of(context).primaryColor,
         backgroundColor: Colors.transparent,
-        height: 50,
+        height: 65,
         onTap: (index) {
           setState(() {
           currentIndex = index;
