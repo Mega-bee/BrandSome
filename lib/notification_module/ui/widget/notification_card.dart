@@ -104,22 +104,16 @@ class _NotificationCardState extends State<NotificationCard> {
                   title: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
-                        TextSpan(
-                            text: widget.noti.initiatorName,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: [
-                              WidgetSpan(
-                                child: SizedBox(
-                                  height: 30,
-                                ),
-                              ),
-                            ]),
+
                         TextSpan(
                           text:"${widget.noti.initiatorName} ",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
+
+                                color: Theme.of(context).brightness ==
+                                    Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
                           ),
                         ),
                         TextSpan(
@@ -168,6 +162,10 @@ class _NotificationCardState extends State<NotificationCard> {
                             text: widget.noti.initiatorName,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
+                              color: Theme.of(context).brightness ==
+                                  Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
                             ),
                             children: [
                               WidgetSpan(

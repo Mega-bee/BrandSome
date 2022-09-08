@@ -17,7 +17,6 @@ class HomePageSuccess extends States {
   final List<MainCategoryModel> mainCategory;
 
   final bool isLogged;
-
   HomePageSuccess(
     this.screenState,
     this.posthome,
@@ -60,104 +59,119 @@ class HomePageSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return SingleChildScrollView(
-      physics:
-          const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SizedBox(
-          height: 20,
-        ),
-        SizedBox(
-          height: 50,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: mainCategory.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: MainCategoryCard(mainCategory[index], () {
-                        selectFirstItem(mainCategory[index].id ?? -1);
-                         for (var element in mainCategory) {
-                           element.isSelected = false;
-                         }
-                         mainCategory[index].isSelected = true;
-                      }));
-                }),
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        subsCa.isEmpty
-            ? SizedBox(
-                height: 150,
-              )
-            : SizedBox(
-                height: 150,
+    return RefreshIndicator(
+      onRefresh: ()async{
+        screenState.menuItems;
+        screenState.isFlag = true;
+        screenState.Gethome();
+
+      },
+      child: SingleChildScrollView(
+        physics:
+            const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        child: RefreshIndicator(
+          onRefresh: ()async{},
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 50,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15.0),
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: serviceCa.length,
+                    itemCount: mainCategory.length,
                     itemBuilder: (context, index) {
-                      return SubServieCard(
-                        subId: subsCa[0].id ?? -1,
-                        subName: subsCa[0].name ?? "",
-                        serviceImage: serviceCa[index].image.toString(),
-                        serviceName: serviceCa[index].name ?? "",
-                        isSlecteced: false,
-                        onCardTap: () {},
-
-                      );
+                      return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: MainCategoryCard(mainCategory[index], () {
+                            selectFirstItem(mainCategory[index].id ?? -1);
+                            for (var element in mainCategory) {
+                              element.isSelected = false;
+                            }
+                            mainCategory[index].isSelected = true;
+                          }));
                     }),
               ),
-        Align(
-          alignment: AlignmentDirectional.topEnd,
-          child: InkWell(
-            onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => SearchBarFilterScreen()),
-              // );
-            },
-            child: Padding(
-              padding: const EdgeInsetsDirectional.only(
-                  end: 8.0, start: 10, top: 5, bottom: 13),
-              child: Text(
-                S.of(context).chooseInterests,
-                style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    decoration: TextDecoration.underline),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            subsCa.isEmpty
+                ? SizedBox(
+                    height: 150,
+                  )
+                : SizedBox(
+                    height: 150,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: serviceCa.length,
+                        itemBuilder: (context, index) {
+                          return SubServieCard(
+                            subId: subsCa[0].id ?? -1,
+                            subName: subsCa[0].name ?? "",
+                            serviceImage: serviceCa[index].image.toString(),
+                            serviceName: serviceCa[index].name ?? "",
+                            isSlecteced: false,
+                            onCardTap: () {},
+                          );
+                        }),
+                  ),
+            Align(
+              alignment: AlignmentDirectional.topEnd,
+              child: InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => SearchBarFilterScreen()),
+                  // );
+                },
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.only(
+                      end: 8.0, start: 10, top: 5, bottom: 13),
+                  child: Text(
+                    S.of(context).chooseInterests,
+                    style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        decoration: TextDecoration.underline),
+                  ),
+                ),
               ),
             ),
-          ),
+            const Divider(
+              thickness: 3,
+            ),
+            ListView.builder(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: posthome.length,
+                itemBuilder: (context, index) {
+                  return PostCard(
+                      isLogged: isLogged,
+                      onLikeClick: (like) {
+                        screenState.Islike(
+                            LikeRequest(
+                              isLike: like,
+                            ),
+                            posthome[index].id.toString());
+                      },
+                      onViewLikeTap: (id) {
+                        screenState.goToLikes(id);
+                      },
+                      posthome: posthome[index]);
+                }),
+            const SizedBox(
+              height: 55,
+            ),
+          ]),
         ),
-        const Divider(
-          thickness: 3,
-        ),
-        ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: posthome.length,
-            itemBuilder: (context, index) {
-              return PostCard(
-                isLogged: isLogged,
-                onLikeClick: (like){
-                  screenState.Islike(LikeRequest(isLike: like,),posthome[index].id.toString()
-                  );
-                },
-                  onViewLikeTap: (id) {
-                    screenState.goToLikes(id);
-                  },
-                  posthome: posthome[index]);
-            }),
-        const SizedBox(
-          height: 55,
-        ),
-      ]),
+      ),
     );
   }
 

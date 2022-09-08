@@ -33,6 +33,11 @@ class HomePageScreenState extends State<HomePage>
   late List<ItemModel> menuItems;
   StreamSubscription? _globalStateManager;
 
+  void Gethome(){
+    widget.cubit.getHome(this);
+
+  }
+
   goToLikes(String id) {
     widget.cubit.getToLikeList(this, id);
   }
@@ -75,6 +80,9 @@ class HomePageScreenState extends State<HomePage>
         widget.cubit.goToAddPost(this);
       }),
     ];
+
+
+
     widget.cubit.getHome(this);
 
     _scrollController = ScrollController();
